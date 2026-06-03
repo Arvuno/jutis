@@ -1,0 +1,105 @@
+<!-- ==========================================================================
+   Jutis Brand Elements — Logo Mark & Wordmark
+   vault/components/brand.html
+
+   USAGE:
+   - Use the mark (logo-mark) in header, footer, hero, and cards.
+   - Use the lockup (brand-lockup) for page-level branding where indicated.
+   - Always include aria-label or alt text describing the image.
+   - Dark background (#1a1d23) assumed — lime accent is designed for dark contexts.
+   ========================================================================== -->
+
+<!-- COMPACT MARK — for header, sidebar, small contexts -->
+<a href="index.html" class="brand-mark" aria-label="Jutis">
+  <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <!-- Outer rotated square -->
+    <rect x="4" y="4" width="32" height="32" rx="6"
+          transform="rotate(45 20 20)"
+          stroke="#dce87a" stroke-width="2.5"/>
+    <!-- Inner rotated square (subtle) -->
+    <rect x="4" y="4" width="32" height="32" rx="6"
+          transform="rotate(12 20 20)"
+          stroke="#e6e8ec" stroke-opacity="0.2" stroke-width="1.5"/>
+    <!-- Center bar -->
+    <rect x="18" y="12" width="4" height="16" rx="2" fill="#dce87a"/>
+  </svg>
+</a>
+
+<!-- LARGE HERO MARK — homepage hero, landing sections -->
+<div class="brand-mark-lg" aria-label="Jutis">
+  <svg width="96" height="96" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="8" y="8" width="80" height="80" rx="16"
+          transform="rotate(45 48 48)"
+          stroke="#dce87a" stroke-width="3"/>
+    <rect x="8" y="8" width="80" height="80" rx="16"
+          transform="rotate(12 48 48)"
+          stroke="#e6e8ec" stroke-opacity="0.2" stroke-width="2"/>
+    <rect x="44" y="26" width="8" height="44" rx="4" fill="#dce87a"/>
+  </svg>
+</div>
+
+<!-- BRAND LOCKUP — wordmark with mark, for footer and trust contexts -->
+<div class="brand-lockup">
+  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="2" y="2" width="28" height="28" rx="5" transform="rotate(45 16 16)" stroke="#dce87a" stroke-width="2"/>
+    <rect x="2" y="2" width="28" height="28" rx="5" transform="rotate(12 16 16)" stroke="#e6e8ec" stroke-opacity="0.2" stroke-width="1.5"/>
+    <rect x="14" y="9" width="4" height="14" rx="2" fill="#dce87a"/>
+  </svg>
+  <span class="brand-lockup__wordmark">Jutis</span>
+</div>
+
+<!-- INLINE MARK — small inline usage, links -->
+<span class="brand-inline">
+  <svg width="16" height="16" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="2" y="2" width="28" height="28" rx="5" transform="rotate(45 16 16)" stroke="#dce87a" stroke-width="2"/>
+    <rect x="14" y="9" width="4" height="14" rx="2" fill="#dce87a"/>
+  </svg>
+</span>
+
+<style>
+/* Compact mark (header use) */
+.brand-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: transform 200ms ease;
+}
+.brand-mark:hover { transform: scale(1.05); }
+
+/* Large hero mark */
+.brand-mark-lg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+/* Lockup */
+.brand-lockup {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.brand-lockup__wordmark {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-size: 16px;
+    color: var(--fg-primary);
+}
+
+/* Inline mark */
+.brand-inline {
+    display: inline-flex;
+    align-items: center;
+    vertical-align: middle;
+}
+</style>

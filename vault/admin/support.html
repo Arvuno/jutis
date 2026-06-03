@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Support — Jutis Admin</title>
+    <meta name="robots" content="noindex, nofollow">
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <meta property="og:title" content="Support — Jutis Admin">
+    <meta property="og:site_name" content="Jutis">
+
+    <link rel="stylesheet" href="../styles/tokens.css">
+    <link rel="stylesheet" href="../styles/base.css">
+    <link rel="stylesheet" href="../styles/layout.css">
+    <link rel="stylesheet" href="../styles/components.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+</head>
+
+<body class="page page--admin">
+
+    <div class="admin-sidebar">
+        <div class="sidebar-logo">
+            <a href="index.html" class="sidebar-logo__link">
+                <div class="sidebar-logo__mark" aria-hidden="true">
+                    <div class="sidebar-logo__ring sidebar-logo__ring--outer"></div>
+                    <div class="sidebar-logo__ring sidebar-logo__ring--inner"></div>
+                    <div class="sidebar-logo__bar"></div>
+                </div>
+                <span class="sidebar-logo__wordmark">Jutis</span>
+                <span class="sidebar-logo__badge">Admin</span>
+            </a>
+        </div>
+
+        <nav class="sidebar-nav">
+            <ul class="sidebar-nav__list">
+                <li><a href="index.html" class="sidebar-nav__item"><span class="material-symbols-outlined sidebar-nav__icon" aria-hidden="true">dashboard</span>Overview</a></li>
+                <li><a href="users.html" class="sidebar-nav__item"><span class="material-symbols-outlined sidebar-nav__icon" aria-hidden="true">group</span>Users</a></li>
+                <li><a href="site.html" class="sidebar-nav__item"><span class="material-symbols-outlined sidebar-nav__icon" aria-hidden="true">public</span>Site</a></li>
+                <li><a href="smtp.html" class="sidebar-nav__item"><span class="material-symbols-outlined sidebar-nav__icon" aria-hidden="true">mail</span>SMTP</a></li>
+                <li><a href="waitlist.html" class="sidebar-nav__item"><span class="material-symbols-outlined sidebar-nav__icon" aria-hidden="true">inbox</span>Waitlist</a></li>
+                <li><a href="assets.html" class="sidebar-nav__item"><span class="material-symbols-outlined sidebar-nav__icon" aria-hidden="true">account_balance_wallet</span>Assets</a></li>
+                <li><a href="support.html" class="sidebar-nav__item sidebar-nav__item--active"><span class="material-symbols-outlined sidebar-nav__icon" aria-hidden="true">support_agent</span>Support</a></li>
+                <li><a href="partners.html" class="sidebar-nav__item"><span class="material-symbols-outlined sidebar-nav__icon" aria-hidden="true">handshake</span>Partners</a></li>
+                <li><a href="partner-applications.html" class="sidebar-nav__item"><span class="material-symbols-outlined sidebar-nav__icon" aria-hidden="true">how_to_reg</span>Partner Applications</a></li>
+                <li><a href="blog.html" class="sidebar-nav__item"><span class="material-symbols-outlined sidebar-nav__icon" aria-hidden="true">article</span>Blog</a></li>
+                <li><a href="settings.html" class="sidebar-nav__item"><span class="material-symbols-outlined sidebar-nav__icon" aria-hidden="true">settings</span>Settings</a></li>
+                <li><a href="audit-log.html" class="sidebar-nav__item"><span class="material-symbols-outlined sidebar-nav__icon" aria-hidden="true">history</span>Audit Log</a></li>
+            </ul>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="login.html" class="sidebar-nav__item sidebar-nav__item--logout">
+                <span class="material-symbols-outlined sidebar-nav__icon" aria-hidden="true">logout</span>
+                Logout
+            </a>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <header class="topbar">
+            <div class="topbar-left">
+                <h1 class="page-title">Support Tickets</h1>
+                <p class="page-subtitle">23 open tickets · 4 high priority</p>
+            </div>
+            <div class="topbar-right">
+                <select class="form-select">
+                    <option>All Priority</option>
+                    <option>High</option>
+                    <option>Medium</option>
+                    <option>Low</option>
+                </select>
+                <select class="form-select">
+                    <option>All Status</option>
+                    <option>Open</option>
+                    <option>In Progress</option>
+                    <option>Resolved</option>
+                    <option>Closed</option>
+                </select>
+            </div>
+        </header>
+
+        <div class="content-area">
+            <div class="support-layout">
+                <div class="support-main">
+                    <div class="card">
+                        <div class="table-wrapper">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Subject</th>
+                                        <th>User</th>
+                                        <th>Priority</th>
+                                        <th>Status</th>
+                                        <th>Assignee</th>
+                                        <th>Category</th>
+                                        <th>Created</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="ticket-row ticket-row--unread">
+                                        <td class="mono">#8291</td>
+                                        <td>
+                                            <div class="ticket-subject">
+                                                <span class="ticket-subject__title">Withdrawal not received after 5 days</span>
+                                                <span class="ticket-subject__preview">I initiated a withdrawal on May 6th but still haven't received the funds in my wallet...</span>
+                                            </div>
+                                        </td>
+                                        <td>Marco Klein</td>
+                                        <td><span class="badge badge--red">High</span></td>
+                                        <td><span class="badge badge--yellow">In Progress</span></td>
+                                        <td>
+                                            <div class="assignee-cell">
+                                                <div class="assignee-avatar">JD</div>
+                                                <span>Jordan D.</span>
+                                            </div>
+                                        </td>
+                                        <td>Payout</td>
+                                        <td>May 10, 2026</td>
+                                    </tr>
+                                    <tr class="ticket-row">
+                                        <td class="mono">#8287</td>
+                                        <td>
+                                            <div class="ticket-subject">
+                                                <span class="ticket-subject__title">Partner link not tracking conversions</span>
+                                                <span class="ticket-subject__preview">My referral link shows clicks but no signups are being credited...</span>
+                                            </div>
+                                        </td>
+                                        <td>TechReview Hub</td>
+                                        <td><span class="badge badge--red">High</span></td>
+                                        <td><span class="badge badge--blue">Open</span></td>
+                                        <td>
+                                            <div class="assignee-cell">
+                                                <div class="assignee-avatar">SL</div>
+                                                <span>Sam L.</span>
+                                            </div>
+                                        </td>
+                                        <td>Partner</td>
+                                        <td>May 10, 2026</td>
+                                    </tr>
+                                    <tr class="ticket-row">
+                                        <td class="mono">#8283</td>
+                                        <td>
+                                            <div class="ticket-subject">
+                                                <span class="ticket-subject__title">Cannot connect WalletConnect wallet</span>
+                                                <span class="ticket-subject__preview">WalletConnect shows a connection error when I try to link my MetaMask...</span>
+                                            </div>
+                                        </td>
+                                        <td>Sara Jensen</td>
+                                        <td><span class="badge badge--yellow">Medium</span></td>
+                                        <td><span class="badge badge--blue">Open</span></td>
+                                        <td><span class="text-muted">Unassigned</span></td>
+                                        <td>Technical</td>
+                                        <td>May 9, 2026</td>
+                                    </tr>
+                                    <tr class="ticket-row">
+                                        <td class="mono">#8279</td>
+                                        <td>
+                                            <div class="ticket-subject">
+                                                <span class="ticket-subject__title">Blog post URL returning 404</span>
+                                                <span class="ticket-subject__preview">The blog post about Jutis rewards has a broken link from the homepage...</span>
+                                            </div>
+                                        </td>
+                                        <td>David Liang</td>
+                                        <td><span class="badge badge--gray">Low</span></td>
+                                        <td><span class="badge badge--green">Resolved</span></td>
+                                        <td>
+                                            <div class="assignee-cell">
+                                                <div class="assignee-avatar">AK</div>
+                                                <span>Alex K.</span>
+                                            </div>
+                                        </td>
+                                        <td>Bug</td>
+                                        <td>May 8, 2026</td>
+                                    </tr>
+                                    <tr class="ticket-row">
+                                        <td class="mono">#8276</td>
+                                        <td>
+                                            <div class="ticket-subject">
+                                                <span class="ticket-subject__title">Request to increase withdrawal limit</span>
+                                                <span class="ticket-subject__preview">I'm an active partner and would like to request a higher withdrawal limit...</span>
+                                            </div>
+                                        </td>
+                                        <td>Petra O.</td>
+                                        <td><span class="badge badge--yellow">Medium</span></td>
+                                        <td><span class="badge badge--blue">Open</span></td>
+                                        <td>
+                                            <div class="assignee-cell">
+                                                <div class="assignee-avatar">JD</div>
+                                                <span>Jordan D.</span>
+                                            </div>
+                                        </td>
+                                        <td>Account</td>
+                                        <td>May 8, 2026</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="table-footer">
+                            <span class="table-info">Showing 1–5 of 23 tickets</span>
+                            <div class="pagination">
+                                <button class="pagination-btn" disabled>←</button>
+                                <button class="pagination-btn pagination-btn--active">1</button>
+                                <button class="pagination-btn">2</button>
+                                <button class="pagination-btn">3</button>
+                                <button class="pagination-btn">→</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <aside class="ticket-panel" id="ticketPanel">
+                    <div class="panel-header">
+                        <h3 class="panel-title">Ticket #8291</h3>
+                        <div class="panel-header-actions">
+                            <button class="action-btn"><span class="material-symbols-outlined">edit</span></button>
+                            <button class="action-btn" onclick="document.getElementById('ticketPanel').style.display='none'">
+                                <span class="material-symbols-outlined">close</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="ticket-meta">
+                            <span class="badge badge--red">High Priority</span>
+                            <span class="badge badge--yellow">In Progress</span>
+                        </div>
+
+                        <div class="ticket-title">Withdrawal not received after 5 days</div>
+                        <div class="ticket-user-info">
+                            <div class="user-avatar">MK</div>
+                            <div>
+                                <div class="user-name">Marco Klein</div>
+                                <div class="user-email">marco.klein@proton.me</div>
+                            </div>
+                        </div>
+
+                        <div class="panel-section">
+                            <div class="panel-section-title">Message</div>
+                            <div class="ticket-message">
+                                I initiated a withdrawal on May 6th for $340.00 to my wallet address 0x8a3f...2b9e. The transaction shows as approved in the admin panel but I still haven't received the funds. It's been 5 days now. Can you please check the blockchain status or resend the transaction? My wallet balance shows $0 even though the withdrawal was approved.
+                            </div>
+                        </div>
+
+                        <div class="panel-section">
+                            <div class="panel-section-title">Admin Reply</div>
+                            <div class="ticket-reply">
+                                <div class="ticket-reply__header">
+                                    <div class="assignee-avatar">JD</div>
+                                    <span>Jordan D. · May 10, 2026 16:42</span>
+                                </div>
+                                <div class="ticket-reply__body">
+                                    Hi Marco, we've identified a delay in our payout processor. Your withdrawal was re-initiated and should arrive within 24 hours. We'll monitor the transaction and update you once confirmed on-chain. Apologies for the inconvenience.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel-section">
+                            <div class="panel-section-title">Reply to User</div>
+                            <textarea class="form-textarea" rows="4" placeholder="Write your reply..."></textarea>
+                            <div class="reply-actions">
+                                <button class="btn btn--ghost">Save Draft</button>
+                                <button class="btn btn--accent">Send Reply</button>
+                            </div>
+                        </div>
+
+                        <div class="panel-section">
+                            <div class="panel-section-title">Actions</div>
+                            <div class="panel-actions">
+                                <select class="form-select">
+                                    <option>Jordan D.</option>
+                                    <option>Sam L.</option>
+                                    <option>Alex K.</option>
+                                    <option>Unassign</option>
+                                </select>
+                                <select class="form-select">
+                                    <option>In Progress</option>
+                                    <option>Resolved</option>
+                                    <option>Closed</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </div>
+
+    <style>
+    .admin-sidebar { position: fixed; top: 0; left: 0; width: 248px; height: 100vh; background: var(--bg-card); border-right: 1px solid var(--border); display: flex; flex-direction: column; z-index: 100; overflow-y: auto; }
+    .sidebar-logo { padding: var(--space-5) var(--space-4) var(--space-4); border-bottom: 1px solid var(--border); }
+    .sidebar-logo__link { display: flex; align-items: center; gap: var(--space-3); text-decoration: none; }
+    .sidebar-logo__mark { position: relative; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .sidebar-logo__ring { position: absolute; border-radius: 6px; border: 2px solid var(--accent); }
+    .sidebar-logo__ring--outer { inset: 0; transform: rotate(45deg) scale(0.9); }
+    .sidebar-logo__ring--inner { inset: 4px; border-color: rgba(230, 232, 236, 0.2); transform: rotate(12deg); }
+    .sidebar-logo__bar { position: relative; z-index: 1; width: 4px; height: 14px; background-color: var(--accent); border-radius: 2px; }
+    .sidebar-logo__wordmark { font-family: var(--font-display); font-weight: 700; font-size: var(--text-base); color: var(--fg-primary); }
+    .sidebar-logo__badge { margin-left: auto; padding: 2px 6px; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.2); border-radius: var(--radius-sm); font-size: 10px; font-weight: 700; color: #ef4444; text-transform: uppercase; letter-spacing: 0.05em; }
+    .sidebar-nav { flex: 1; padding: var(--space-3); }
+    .sidebar-nav__list { list-style: none; display: flex; flex-direction: column; gap: 2px; }
+    .sidebar-nav__item { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-2) var(--space-3); border-radius: var(--radius-md); color: var(--fg-secondary); text-decoration: none; font-size: var(--text-sm); font-weight: 500; transition: background-color var(--duration-fast) var(--ease-out), color var(--duration-fast) var(--ease-out); }
+    .sidebar-nav__item:hover { background: var(--bg-inset); color: var(--fg-primary); }
+    .sidebar-nav__item--active { background: rgba(183, 245, 58, 0.08); color: var(--accent); }
+    .sidebar-nav__icon { font-size: 20px; flex-shrink: 0; }
+    .sidebar-footer { padding: var(--space-3); border-top: 1px solid var(--border); }
+    .sidebar-nav__item--logout { color: var(--fg-muted); }
+    .sidebar-nav__item--logout:hover { color: #ef4444; background: rgba(239, 68, 68, 0.08); }
+
+    .main-content { margin-left: 248px; min-height: 100vh; display: flex; flex-direction: column; }
+    .topbar { position: sticky; top: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between; padding: var(--space-4) var(--space-8); background: var(--bg-main); border-bottom: 1px solid var(--border); backdrop-filter: blur(8px); }
+    .topbar-left { display: flex; flex-direction: column; gap: var(--space-1); }
+    .page-title { font-family: var(--font-display); font-weight: 700; font-size: var(--text-xl); color: var(--fg-primary); }
+    .page-subtitle { font-size: var(--text-sm); color: var(--fg-secondary); }
+    .topbar-right { display: flex; gap: var(--space-3); align-items: center; }
+
+    .content-area { flex: 1; padding: var(--space-6) var(--space-8); }
+
+    .support-layout { display: grid; grid-template-columns: 1fr 420px; gap: var(--space-6); align-items: start; }
+
+    .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+    .card-header { padding: var(--space-5) var(--space-6); border-bottom: 1px solid var(--border); }
+    .card-title { font-weight: 600; font-size: var(--text-base); }
+
+    .table-wrapper { overflow-x: auto; }
+    .data-table { width: 100%; border-collapse: collapse; font-size: var(--text-sm); }
+    .data-table th { padding: var(--space-3) var(--space-4); text-align: left; font-size: var(--text-xs); font-weight: 600; color: var(--fg-secondary); text-transform: uppercase; letter-spacing: var(--tracking-wide); border-bottom: 1px solid var(--border); white-space: nowrap; }
+    .data-table td { padding: var(--space-4); border-bottom: 1px solid var(--border); color: var(--fg-primary); vertical-align: top; }
+    .data-table tbody tr:last-child td { border-bottom: none; }
+    .data-table tbody tr:hover { background: var(--bg-inset); cursor: pointer; }
+    .ticket-row--unread { background: rgba(183, 245, 58, 0.03); }
+
+    .mono { font-family: monospace; font-size: var(--text-xs); }
+
+    .ticket-subject { display: flex; flex-direction: column; gap: 2px; }
+    .ticket-subject__title { font-weight: 600; font-size: var(--text-sm); }
+    .ticket-subject__preview { font-size: var(--text-xs); color: var(--fg-muted); max-width: 280px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+    .assignee-cell { display: flex; align-items: center; gap: var(--space-2); font-size: var(--text-sm); }
+    .assignee-avatar { width: 24px; height: 24px; border-radius: 50%; background: rgba(183, 245, 58, 0.15); color: var(--accent); font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .text-muted { color: var(--fg-muted); font-size: var(--text-sm); }
+
+    .table-footer { display: flex; align-items: center; justify-content: space-between; padding: var(--space-4) var(--space-5); border-top: 1px solid var(--border); }
+    .table-info { font-size: var(--text-sm); color: var(--fg-muted); }
+    .pagination { display: flex; align-items: center; gap: var(--space-1); }
+    .pagination-btn { min-width: 32px; height: 32px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: transparent; color: var(--fg-secondary); font-size: var(--text-sm); cursor: pointer; display: flex; align-items: center; justify-content: center; }
+    .pagination-btn:hover:not(:disabled) { background: var(--bg-inset); }
+    .pagination-btn--active { background: var(--accent); border-color: var(--accent); color: var(--bg-main); font-weight: 600; }
+
+    .ticket-panel { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; position: sticky; top: var(--space-6); }
+    .panel-header { display: flex; align-items: center; justify-content: space-between; padding: var(--space-4) var(--space-5); border-bottom: 1px solid var(--border); }
+    .panel-title { font-weight: 600; font-size: var(--text-base); }
+    .panel-header-actions { display: flex; gap: var(--space-1); }
+    .panel-body { padding: var(--space-5); display: flex; flex-direction: column; gap: var(--space-5); max-height: calc(100vh - 120px); overflow-y: auto; }
+
+    .ticket-meta { display: flex; gap: var(--space-2); flex-wrap: wrap; }
+    .ticket-title { font-size: var(--text-lg); font-weight: 700; line-height: 1.3; }
+    .ticket-user-info { display: flex; align-items: center; gap: var(--space-3); }
+    .user-avatar { width: 36px; height: 36px; border-radius: 50%; background: rgba(183, 245, 58, 0.15); color: var(--accent); font-size: var(--text-xs); font-weight: 700; display: flex; align-items: center; justify-content: center; }
+    .user-name { font-weight: 600; font-size: var(--text-sm); }
+    .user-email { font-size: var(--text-xs); color: var(--fg-muted); }
+
+    .panel-section { display: flex; flex-direction: column; gap: var(--space-2); }
+    .panel-section-title { font-size: var(--text-xs); font-weight: 700; color: var(--fg-secondary); text-transform: uppercase; letter-spacing: var(--tracking-wide); }
+
+    .ticket-message { font-size: var(--text-sm); color: var(--fg-secondary); line-height: 1.6; padding: var(--space-4); background: var(--bg-inset); border-radius: var(--radius-md); border: 1px solid var(--border); }
+
+    .ticket-reply { padding: var(--space-4); background: var(--bg-main); border-radius: var(--radius-md); border: 1px solid var(--border); }
+    .ticket-reply__header { display: flex; align-items: center; gap: var(--space-2); font-size: var(--text-xs); color: var(--fg-muted); margin-bottom: var(--space-3); }
+    .ticket-reply__body { font-size: var(--text-sm); color: var(--fg-primary); line-height: 1.6; }
+
+    .form-textarea { width: 100%; padding: var(--space-3) var(--space-4); background: var(--bg-main); border: 1px solid var(--border); border-radius: var(--radius-md); color: var(--fg-primary); font-size: var(--text-sm); resize: vertical; min-height: 80px; }
+    .form-textarea:focus { outline: none; border-color: var(--accent-30); }
+    .form-textarea::placeholder { color: var(--fg-muted); }
+    .reply-actions { display: flex; justify-content: flex-end; gap: var(--space-2); margin-top: var(--space-2); }
+    .panel-actions { display: flex; gap: var(--space-3); }
+
+    .action-btn { width: 30px; height: 30px; border-radius: var(--radius-sm); border: none; background: transparent; color: var(--fg-muted); cursor: pointer; display: flex; align-items: center; justify-content: center; }
+    .action-btn:hover { background: var(--bg-inset); color: var(--fg-primary); }
+    .action-btn .material-symbols-outlined { font-size: 18px; }
+
+    .form-select { padding: var(--space-2) var(--space-3); background: var(--bg-main); border: 1px solid var(--border); border-radius: var(--radius-md); color: var(--fg-primary); font-size: var(--text-sm); cursor: pointer; }
+    .form-select:focus { outline: none; border-color: var(--accent-30); }
+
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2); padding: var(--space-2) var(--space-4); border-radius: var(--radius-md); font-size: var(--text-sm); font-weight: 600; cursor: pointer; border: none; transition: background-color var(--duration-fast) var(--ease-out); }
+    .btn--accent { background-color: var(--accent); color: var(--bg-main); }
+    .btn--accent:hover { background-color: var(--fg-primary); }
+    .btn--ghost { background: transparent; border: 1px solid var(--border); color: var(--fg-primary); }
+    .btn--ghost:hover { background: var(--bg-inset); }
+    .btn .material-symbols-outlined { font-size: 18px; }
+
+    .badge { display: inline-flex; align-items: center; padding: 2px var(--space-2); border-radius: var(--radius-pill); font-size: var(--text-xs); font-weight: 600; }
+    .badge--red { background: rgba(239, 68, 68, 0.1); color: #ef4444; }
+    .badge--yellow { background: rgba(234, 179, 8, 0.1); color: #eab308; }
+    .badge--green { background: rgba(34, 197, 94, 0.1); color: #22c55e; }
+    .badge--blue { background: rgba(59, 130, 246, 0.1); color: #3b82f6; }
+    .badge--gray { background: rgba(156, 163, 175, 0.1); color: #9ca3af; }
+
+    @media (max-width: 1200px) { .support-layout { grid-template-columns: 1fr; } .ticket-panel { position: static; } }
+    @media (max-width: 768px) { .admin-sidebar { transform: translateX(-100%); } .main-content { margin-left: 0; } .content-area { padding: var(--space-4); } }
+    </style>
+
+</body>
+</html>

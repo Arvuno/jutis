@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/>
+<title>Pills & Badges</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<style>
+  html,body{margin:0;background:transparent;font-family:'Inter',system-ui}
+  .card{
+    width:700px;padding:22px;box-sizing:border-box;color:#e6e8ec;position:relative;overflow:hidden;
+    background:linear-gradient(180deg,#1a1d23 0%,#13161b 100%);
+    border:1px solid #2e323c;
+    display:flex;flex-direction:column;gap:14px
+  }
+  .card::before{
+    content:'';position:absolute;inset:0;pointer-events:none;
+    background-image:radial-gradient(rgba(46,50,60,.4) 1px, transparent 1px);
+    background-size:22px 22px;opacity:.3
+  }
+  .head{position:relative;display:flex;align-items:center;justify-content:space-between}
+  .eyebrow{font:700 9px 'Inter';letter-spacing:.28em;text-transform:uppercase;color:#9aa1ac;display:inline-flex;align-items:center;gap:8px}
+  .eyebrow .d{width:6px;height:6px;border-radius:9999px;background:#dce87a;box-shadow:0 0 10px #dce87a}
+  .count{font:500 10px 'JetBrains Mono';color:#9aa1ac}
+
+  .section{position:relative}
+  .lab{font:500 8px 'JetBrains Mono';letter-spacing:.2em;text-transform:uppercase;color:#4a4f5a;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+  .lab::before{content:'';width:3px;height:3px;background:#dce87a;border-radius:9999px}
+  .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+
+  .pill{display:inline-flex;align-items:center;gap:6px;padding:5px 11px 5px 10px;border-radius:9999px;font:700 10px 'Inter';letter-spacing:.12em;text-transform:uppercase;border:1px solid;position:relative}
+  .live{background:rgba(220,232,122,.08);border-color:rgba(220,232,122,.22);color:#dce87a}
+  .neutral{background:rgba(154,161,172,.08);border-color:rgba(154,161,172,.20);color:#9aa1ac}
+  .now{background:#dce87a;border-color:#dce87a;color:#1a1d23;box-shadow:0 0 16px rgba(220,232,122,.35)}
+  .warn{background:rgba(245,158,11,.10);border-color:rgba(245,158,11,.30);color:#f59e0b}
+  .info{background:rgba(74,158,255,.10);border-color:rgba(74,158,255,.30);color:#4a9eff}
+  .danger{background:rgba(248,113,113,.10);border-color:rgba(248,113,113,.30);color:#f87171}
+  .success{background:rgba(74,222,128,.10);border-color:rgba(74,222,128,.30);color:#4ade80}
+
+  .dot{width:6px;height:6px;border-radius:9999px;background:currentColor;position:relative}
+  .dot.pulse::after{content:'';position:absolute;inset:-3px;border-radius:9999px;background:currentColor;opacity:.4;animation:p 1.6s ease-out infinite}
+  @keyframes p{0%{transform:scale(.6);opacity:.6}100%{transform:scale(1.8);opacity:0}}
+
+  .arrow{font-size:11px;line-height:1;display:inline-flex;align-items:center}
+  .num{font-family:'JetBrains Mono';font-weight:500;letter-spacing:0;text-transform:none}
+
+  .chev{
+    display:inline-flex;align-items:center;gap:6px;padding:4px 8px 4px 10px;
+    background:linear-gradient(160deg,#232730,#1a1d23);border:1px solid #2e323c;border-radius:9999px;
+    font:500 10px 'JetBrains Mono';color:#9aa1ac
+  }
+  .chev .tick{color:#4ade80}
+</style></head>
+<body>
+<div class="card">
+  <div class="head">
+    <div class="eyebrow"><span class="d"></span>Status Pills · Badges</div>
+    <div class="count">3 clusters · 13 states</div>
+  </div>
+
+  <div class="section">
+    <div class="lab">Live states</div>
+    <div class="row">
+      <span class="pill live"><span class="dot pulse"></span>Live</span>
+      <span class="pill live"><span class="dot"></span>Beta</span>
+      <span class="pill live"><span class="dot"></span>Active</span>
+      <span class="pill now">Now On</span>
+      <span class="pill neutral">Inactive</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="lab">Semantic · values</div>
+    <div class="row">
+      <span class="pill success"><span class="arrow">▲</span><span class="num">+230.50</span></span>
+      <span class="pill danger"><span class="arrow">▼</span><span class="num">−125.00</span></span>
+      <span class="pill warn"><span class="dot"></span>Session expiring</span>
+      <span class="pill info"><span class="dot pulse"></span>Pending</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="lab">Compound · meta</div>
+    <div class="row">
+      <span class="chev"><span style="color:#dce87a">⚡</span>Canton · Block <span style="color:#e6e8ec">4,219</span></span>
+      <span class="chev"><span class="tick">●</span>All systems operational</span>
+      <span class="chev">Gas <span style="color:#e6e8ec">0.0001</span> CANT</span>
+    </div>
+  </div>
+</div>
+</body></html>

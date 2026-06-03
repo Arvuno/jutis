@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Security - Jutis</title>
+    <meta name="description" content="Jutis security architecture: non-custodial design, local key handling, user-controlled approvals, and phishing-resistant UX.">
+
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Security - Jutis">
+    <meta property="og:description" content="Non-custodial security designed around user approval and local key control.">
+    <meta property="og:image" content="og-image.svg">
+    <meta property="og:site_name" content="Jutis">
+
+    <link rel="stylesheet" href="styles/tokens.css">
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/layout.css">
+    <link rel="stylesheet" href="styles/components.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+</head>
+
+<body class="page page--atmosphere">
+
+    <div class="bg-grid" aria-hidden="true" style="position:fixed;inset:0;pointer-events:none;opacity:0.3;z-index:0;"></div>
+    <div class="atmosphere-orb atmosphere-orb--lime" aria-hidden="true"></div>
+    <div class="atmosphere-orb atmosphere-orb--white" aria-hidden="true"></div>
+
+    <header class="site-header">
+        <div class="site-header__inner">
+            <a href="index.html" class="site-header__logo" aria-label="Jutis home">
+                <div class="site-header__logo-mark" aria-hidden="true">
+                    <div class="site-header__logo-ring site-header__logo-ring--outer"></div>
+                    <div class="site-header__logo-ring site-header__logo-ring--inner"></div>
+                    <div class="site-header__logo-bar"></div>
+                </div>
+                <span class="site-header__wordmark">Jutis</span>
+            </a>
+            <nav class="site-header__nav" aria-label="Primary navigation">
+                <a href="feature.html">Features</a>
+                <a href="security.html" aria-current="page">Security</a>
+                <a href="developers/index.html">Developers</a>
+                <a href="docs/index.html">Docs</a>
+                <a href="blog/index.html">Blog</a>
+                <a href="partner/index.html">Partner</a>
+            </nav>
+            <div class="site-header__actions">
+                <a href="login.html" class="site-header__login">Login</a>
+                <a href="signup.html" class="btn-signup">Get Started</a>
+            </div>
+        </div>
+    </header>
+    <div class="site-header__top-accent" aria-hidden="true"></div>
+
+    <main class="page-content" style="padding-top:72px; position:relative; z-index:1;">
+
+        <!-- HERO: Security centered -->
+        <section style="padding: 100px 0 80px; text-align: center;">
+            <div class="container container--narrow">
+                <span class="badge" style="margin-bottom: 24px;">
+                    <span class="badge__dot badge__dot--pulse"></span>
+                    Security Architecture
+                </span>
+                <h1 class="hero__title hero__title--display" style="margin-bottom: 24px;">Security built around your approval</h1>
+                <p class="hero__subtitle" style="max-width: 560px; margin: 0 auto 40px;">Jutis is designed so that no transaction, no app connection, and no key access happens without your explicit, informed consent. Your keys stay on your device — always.</p>
+                <div class="cta-pair" style="justify-content: center;">
+                    <a href="signup.html" class="btn btn--primary btn--lg">Create Wallet</a>
+                    <a href="legal/privacy-policy.html" class="btn btn--ghost btn--lg">Review Privacy</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- NON-CUSTODIAL MODEL: Big statement + diagram -->
+        <section style="padding: 0 0 120px;">
+            <div class="container">
+                <div class="security-architecture">
+
+                    <div class="security-architecture__text">
+                        <span class="sec-label">Non-Custodial Model</span>
+                        <h2 class="sec-heading">You own your keys. We own nothing.</h2>
+                        <p class="sec-body">Jutis is a non-custodial wallet interface. Your private keys are generated and stored locally — in your browser's secure storage, protected by your device's OS-level encryption. We never receive, store, or transmit your private keys at any point.</p>
+                        <p class="sec-body">This is not a marketing claim — it's enforced by the architecture. There is no server-side key management, no cloud-based secret storage, and no recovery mechanism that gives Jutis access to your funds.</p>
+                        <div class="sec-note">
+                            <span class="material-symbols-outlined" aria-hidden="true">info</span>
+                            <p>If you lose access to your device, Jutis cannot recover your keys. We strongly recommend setting up a recovery phrase and storing it safely offline.</p>
+                        </div>
+                    </div>
+
+                    <div class="security-architecture__diagram" aria-hidden="true">
+                        <div class="arch-diagram">
+                            <div class="arch-node arch-node--you">
+                                <span class="material-symbols-outlined" aria-hidden="true">person</span>
+                                <div class="arch-node__label">You</div>
+                                <div class="arch-node__sub">Private key lives here</div>
+                            </div>
+                            <div class="arch-arrow">
+                                <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
+                                <span class="arch-arrow__label">Your approval only</span>
+                            </div>
+                            <div class="arch-node arch-node--jutis">
+                                <span class="material-symbols-outlined" aria-hidden="true">extension</span>
+                                <div class="arch-node__label">Jutis UI</div>
+                                <div class="arch-node__sub">Signs transactions you approve</div>
+                            </div>
+                            <div class="arch-arrow">
+                                <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
+                                <span class="arch-arrow__label">Signed tx only</span>
+                            </div>
+                            <div class="arch-node arch-node--canton">
+                                <span class="material-symbols-outlined" aria-hidden="true">account_balance</span>
+                                <div class="arch-node__label">Canton Network</div>
+                                <div class="arch-node__sub">Receives signed transactions</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- LOCAL KEY HANDLING: Horizontal scroll reveal -->
+        <section style="padding: 0 0 120px;">
+            <div class="container">
+                <div style="text-align:center; margin-bottom: 64px;">
+                    <span class="sec-label">Local Key Handling</span>
+                    <h2 class="sec-heading">Keys never leave your browser</h2>
+                    <p class="sec-sub">The wallet extension communicates with your keys through the browser's secure context. No network request ever carries private key material.</p>
+                </div>
+                <div class="key-flow">
+                    <div class="key-step">
+                        <div class="key-step__num">01</div>
+                        <div class="key-step__icon">
+                            <span class="material-symbols-outlined" aria-hidden="true">vpn_key</span>
+                        </div>
+                        <h3 class="key-step__title">Key Generation</h3>
+                        <p class="key-step__desc">Keys are generated locally using cryptographically secure random number generation in your browser's memory. The seed phrase is shown once — never stored by Jutis.</p>
+                    </div>
+                    <div class="key-step">
+                        <div class="key-step__num">02</div>
+                        <div class="key-step__icon">
+                            <span class="material-symbols-outlined" aria-hidden="true">storage</span>
+                        </div>
+                        <h3 class="key-step__title">Local Storage</h3>
+                        <p class="key-step__desc">Encrypted key storage uses your wallet password as the encryption key. The encrypted blob never leaves your device. Decryption happens only in memory, on demand.</p>
+                    </div>
+                    <div class="key-step">
+                        <div class="key-step__num">03</div>
+                        <div class="key-step__icon">
+                            <span class="material-symbols-outlined" aria-hidden="true">lock</span>
+                        </div>
+                        <h3 class="key-step__title">Signing In Memory</h3>
+                        <p class="key-step__desc">Transaction signing happens entirely in your browser's JavaScript context. The signed transaction — not the private key — is what gets sent to the Canton network.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PERMISSIONS & CONNECTIONS: Two-column layout -->
+        <section style="padding: 0 0 120px;">
+            <div class="container">
+                <div class="perms-layout">
+                    <div class="perms-layout__header">
+                        <span class="sec-label">Permissions &amp; Connections</span>
+                        <h2 class="sec-heading" style="text-align:left;">Every connection is your choice</h2>
+                        <p class="sec-sub" style="text-align:left;">When you connect Jutis to an app, you're granting a specific, limited permission — and Jutis shows you exactly what you're granting before you confirm.</p>
+                    </div>
+                    <div class="perms-grid">
+                        <div class="perm-card">
+                            <div class="perm-card__header">
+                                <span class="material-symbols-outlined perm-card__icon" aria-hidden="true">visibility</span>
+                                <h3 class="perm-card__title">View Address</h3>
+                            </div>
+                            <p class="perm-card__desc">The app can see your wallet address. It cannot see balances, transaction history, or initiate any transactions.</p>
+                            <div class="perm-card__badge perm-card__badge--low">Read-only</div>
+                        </div>
+                        <div class="perm-card">
+                            <div class="perm-card__header">
+                                <span class="material-symbols-outlined perm-card__icon" aria-hidden="true">send</span>
+                                <h3 class="perm-card__title">Request Transactions</h3>
+                            </div>
+                            <p class="perm-card__desc">The app can request that you sign and send transactions. You must manually review and approve every transaction individually.</p>
+                            <div class="perm-card__badge perm-card__badge--med">Approval Required</div>
+                        </div>
+                        <div class="perm-card">
+                            <div class="perm-card__header">
+                                <span class="material-symbols-outlined perm-card__icon" aria-hidden="true">approval_delegation</span>
+                                <h3 class="perm-card__title">Token Approvals</h3>
+                            </div>
+                            <p class="perm-card__desc">If an app requests permission to spend tokens on your behalf, Jutis shows you the exact allowance amount and contract address before approval.</p>
+                            <div class="perm-card__badge perm-card__badge--med">Explicit Approval</div>
+                        </div>
+                        <div class="perm-card">
+                            <div class="perm-card__header">
+                                <span class="material-symbols-outlined perm-card__icon" aria-hidden="true">link_off</span>
+                                <h3 class="perm-card__title">Revoke Anytime</h3>
+                            </div>
+                            <p class="perm-card__desc">All granted permissions can be reviewed and revoked at any time from the Jutis permission manager. Revocation takes effect immediately.</p>
+                            <div class="perm-card__badge perm-card__badge--low">You Control</div>
+                        </div>
+                    </div>
+                    <div class="perms-manager" aria-hidden="true">
+                        <div class="perms-manager__header">Permission Manager — Your Connected Apps</div>
+                        <div class="perms-row">
+                            <div class="perms-row__site">
+                                <div class="perms-row__icon">CS</div>
+                                <div>
+                                    <div class="perms-row__name">CantonSwap.app</div>
+                                    <div class="perms-row__scope">View address, request transactions</div>
+                                </div>
+                            </div>
+                            <div class="perms-row__status">
+                                <span class="perms-row__badge perms-row__badge--active">Connected</span>
+                                <button class="perms-row__revoke">Revoke</button>
+                            </div>
+                        </div>
+                        <div class="perms-row">
+                            <div class="perms-row__site">
+                                <div class="perms-row__icon">NF</div>
+                                <div>
+                                    <div class="perms-row__name">CantonNFT.market</div>
+                                    <div class="perms-row__scope">View address only</div>
+                                </div>
+                            </div>
+                            <div class="perms-row__status">
+                                <span class="perms-row__badge perms-row__badge--active">Connected</span>
+                                <button class="perms-row__revoke">Revoke</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TRANSACTION APPROVAL: Checklist pattern -->
+        <section style="padding: 0 0 120px;">
+            <div class="container container--narrow">
+                <div style="text-align:center; margin-bottom: 64px;">
+                    <span class="sec-label">Transaction Approval</span>
+                    <h2 class="sec-heading">Every transaction gets reviewed</h2>
+                    <p class="sec-sub">Jutis presents a structured, human-readable summary before you approve any transaction. No blind signing.</p>
+                </div>
+                <div class="approval-checklist">
+                    <div class="approval-item">
+                        <div class="approval-item__check approval-item__check--done">
+                            <span class="material-symbols-outlined" aria-hidden="true">check</span>
+                        </div>
+                        <div class="approval-item__content">
+                            <div class="approval-item__title">Recipient address shown in plain text</div>
+                            <div class="approval-item__detail">Full address displayed — not truncated — so you can verify the exact recipient.</div>
+                        </div>
+                    </div>
+                    <div class="approval-item">
+                        <div class="approval-item__check approval-item__check--done">
+                            <span class="material-symbols-outlined" aria-hidden="true">check</span>
+                        </div>
+                        <div class="approval-item__content">
+                            <div class="approval-item__title">Token amounts and fees shown upfront</div>
+                            <div class="approval-item__detail">What you're sending, what you'll receive, and what the network fee will cost — before you confirm.</div>
+                        </div>
+                    </div>
+                    <div class="approval-item">
+                        <div class="approval-item__check approval-item__check--done">
+                            <span class="material-symbols-outlined" aria-hidden="true">check</span>
+                        </div>
+                        <div class="approval-item__content">
+                            <div class="approval-item__title">Contract interaction clearly labeled</div>
+                            <div class="approval-item__detail">If the transaction calls a smart contract, Jutis shows the contract name and what action it will perform.</div>
+                        </div>
+                    </div>
+                    <div class="approval-item">
+                        <div class="approval-item__check approval-item__check--done">
+                            <span class="material-symbols-outlined" aria-hidden="true">check</span>
+                        </div>
+                        <div class="approval-item__content">
+                            <div class="approval-item__title">Domain clearly displayed</div>
+                            <div class="approval-item__detail">The requesting site domain is shown so you can confirm you're signing a transaction from the right app.</div>
+                        </div>
+                    </div>
+                    <div class="approval-item">
+                        <div class="approval-item__check approval-item__check--done">
+                            <span class="material-symbols-outlined" aria-hidden="true">check</span>
+                        </div>
+                        <div class="approval-item__content">
+                            <div class="approval-item__title">No token approvals hidden in defaults</div>
+                            <div class="approval-item__detail">Token approval requests are shown as a separate step with the full allowance amount — not buried in a gas fee.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PHISHING-AWARE UX: Alert pattern -->
+        <section style="padding: 0 0 120px;">
+            <div class="container">
+                <div class="phishing-section">
+                    <div class="phishing-section__text">
+                        <span class="sec-label">Phishing-Aware UX</span>
+                        <h2 class="sec-heading" style="text-align:left;">Designed to resist deception</h2>
+                        <p class="sec-body">Most wallet theft happens because users sign transactions they don't understand, on sites they didn't intend to use. Jutis layers protections across the experience to make deception harder.</p>
+                        <div class="phishing-list">
+                            <div class="phishing-item">
+                                <span class="material-symbols-outlined phishing-item__icon" aria-hidden="true">domain</span>
+                                <div>
+                                    <div class="phishing-item__title">Domain verification prompt</div>
+                                    <div class="phishing-item__desc">Every transaction request clearly shows which domain is requesting it. If something looks wrong, don't sign.</div>
+                                </div>
+                            </div>
+                            <div class="phishing-item">
+                                <span class="material-symbols-outlined phishing-item__icon" aria-hidden="true">warning</span>
+                                <div>
+                                    <div class="phishing-item__title">Suspicious contract warnings</div>
+                                    <div class="phishing-item__desc">Jutis is designed to flag known patterns associated with malicious contracts — though no system is perfect.</div>
+                                </div>
+                            </div>
+                            <div class="phishing-item">
+                                <span class="material-symbols-outlined phishing-item__icon" aria-hidden="true">history</span>
+                                <div>
+                                    <div class="phishing-item__title">Active session awareness</div>
+                                    <div class="phishing-item__desc">Jutis shows your active connected sites in the extension header so you can spot unexpected connections.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="security-reminder">
+                            <span class="material-symbols-outlined" aria-hidden="true">shield</span>
+                            <p><strong>Remember:</strong> Jutis will never randomly prompt you to sign a transaction. If you didn't initiate an action, don't approve it. When in doubt, close the tab.</p>
+                        </div>
+                    </div>
+                    <div class="phishing-section__visual" aria-hidden="true">
+                        <div class="domain-card">
+                            <div class="domain-card__header">
+                                <span class="material-symbols-outlined" aria-hidden="true">account_balance_wallet</span>
+                                Signature Request
+                            </div>
+                            <div class="domain-card__body">
+                                <div class="domain-card__field">
+                                    <span class="domain-card__field-label">Site requesting</span>
+                                    <span class="domain-card__domain">
+                                        <span class="domain-card__domain-dot domain-card__domain-dot--safe"></span>
+                                        CantonSwap.app
+                                    </span>
+                                </div>
+                                <div class="domain-card__field">
+                                    <span class="domain-card__field-label">Connection</span>
+                                    <span class="domain-card__value">Connected · Verified</span>
+                                </div>
+                                <div class="domain-card__action">
+                                    Review Transaction
+                                </div>
+                            </div>
+                        </div>
+                        <div class="domain-card domain-card--warn">
+                            <div class="domain-card__header">
+                                <span class="material-symbols-outlined" aria-hidden="true">account_balance_wallet</span>
+                                Signature Request
+                            </div>
+                            <div class="domain-card__body">
+                                <div class="domain-card__field">
+                                    <span class="domain-card__field-label">Site requesting</span>
+                                    <span class="domain-card__domain">
+                                        <span class="domain-card__domain-dot domain-card__domain-dot--warn"></span>
+                                        Cant0nSwap.app
+                                    </span>
+                                </div>
+                                <div class="domain-card__field">
+                                    <span class="domain-card__field-label">Connection</span>
+                                    <span class="domain-card__value domain-card__value--warn">Unknown site · Not connected</span>
+                                </div>
+                                <div class="domain-card__action domain-card__action--warn">Do Not Approve</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- RECOVERY & BACKUP: Centered guidance -->
+        <section style="padding: 0 0 120px;">
+            <div class="container container--narrow" style="text-align: center;">
+                <span class="sec-label">Recovery &amp; Backup</span>
+                <h2 class="sec-heading">Your recovery path, your responsibility</h2>
+                <p class="sec-sub" style="max-width: 600px; margin: 0 auto 48px;">Jutis is designed to be non-custodial, which means recovery depends entirely on you. We provide the tools — the safety of your funds depends on how you use them.</p>
+
+                <div class="recovery-cards">
+                    <div class="recovery-card">
+                        <div class="recovery-card__icon">
+                            <span class="material-symbols-outlined" aria-hidden="true">key</span>
+                        </div>
+                        <h3 class="recovery-card__title">Recovery Phrase</h3>
+                        <p class="recovery-card__desc">Your 12 or 24-word recovery phrase is displayed once during setup. Write it down. Store it offline. Never share it. Jutis does not keep a copy.</p>
+                    </div>
+                    <div class="recovery-card">
+                        <div class="recovery-card__icon">
+                            <span class="material-symbols-outlined" aria-hidden="true">cloud_upload</span>
+                        </div>
+                        <h3 class="recovery-card__title">Encrypted Backup</h3>
+                        <p class="recovery-card__desc">An optional encrypted backup exports your keys in a password-protected format. The backup file alone is useless without your password.</p>
+                    </div>
+                    <div class="recovery-card">
+                        <div class="recovery-card__icon">
+                            <span class="material-symbols-outlined" aria-hidden="true">hardware</span>
+                        </div>
+                        <h3 class="recovery-card__title">Hardware Wallet</h3>
+                        <p class="recovery-card__desc">For the highest security, import or derive your keys on a hardware device. Jutis is designed to work with Ledger and Trezor devices.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECURITY PRINCIPLES: Numbered list -->
+        <section style="padding: 0 0 120px;">
+            <div class="container">
+                <div class="principles-layout">
+                    <div class="principles-layout__header">
+                        <span class="sec-label">Security Principles</span>
+                        <h2 class="sec-heading" style="text-align:left;">How we think about security</h2>
+                    </div>
+                    <div class="principles-list">
+                        <div class="principle">
+                            <div class="principle__num">01</div>
+                            <div class="principle__content">
+                                <h3 class="principle__title">User consent is mandatory</h3>
+                                <p class="principle__desc">No action that affects your funds or permissions happens without your explicit, informed approval. There is no backdoor.</p>
+                            </div>
+                        </div>
+                        <div class="principle">
+                            <div class="principle__num">02</div>
+                            <div class="principle__content">
+                                <h3 class="principle__title">Least privilege by default</h3>
+                                <p class="principle__desc">Apps get the minimum permissions they need — and nothing more. Read-only access is the default; explicit approval is required for anything beyond that.</p>
+                            </div>
+                        </div>
+                        <div class="principle">
+                            <div class="principle__num">03</div>
+                            <div class="principle__content">
+                                <h3 class="principle__title">Transparency over convenience</h3>
+                                <p class="principle__desc">We show full transaction details before signing, even if it adds a step. Clarity matters more than speed.</p>
+                            </div>
+                        </div>
+                        <div class="principle">
+                            <div class="principle__num">04</div>
+                            <div class="principle__content">
+                                <h3 class="principle__title">Defense in depth</h3>
+                                <p class="principle__desc">Multiple independent protections — browser sandboxing, encrypted storage, user approval gates — so no single failure compromises your funds.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA SECTION -->
+        <section style="padding: 80px 0; text-align: center;">
+            <div class="container container--narrow">
+                <h2 style="font-family: var(--font-display); font-size: var(--text-display); font-weight: 700; margin-bottom: 24px;">Take control of your security</h2>
+                <p style="color: var(--fg-secondary); margin-bottom: 40px; font-size: var(--text-lg);">Your keys. Your funds. Your control. Start with Jutis today.</p>
+                <div class="cta-pair" style="justify-content: center;">
+                    <a href="signup.html" class="btn btn--primary btn--lg">Create Wallet</a>
+                    <a href="feature.html" class="btn btn--ghost btn--lg">View Features</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="site-footer__inner">
+            <div class="site-footer__brand">
+                <a href="index.html" class="site-footer__logo">
+                    <div class="site-footer__logo-mark" aria-hidden="true">
+                        <div class="site-footer__logo-ring site-footer__logo-ring--outer"></div>
+                        <div class="site-footer__logo-ring site-footer__logo-ring--inner"></div>
+                        <div class="site-footer__logo-bar"></div>
+                    </div>
+                    <span class="site-footer__wordmark">Jutis</span>
+                </a>
+                <p class="site-footer__tagline">Premium wallet for the Canton ecosystem</p>
+            </div>
+            <nav class="site-footer__links" aria-label="Footer navigation">
+                <div class="site-footer__col">
+                    <span class="site-footer__col-head">Product</span>
+                    <a href="feature.html">Features</a>
+                    <a href="security.html">Security</a>
+                    <a href="dashboard/index.html">Wallet</a>
+                    <a href="waitlist.html">Early Access</a>
+                </div>
+                <div class="site-footer__col">
+                    <span class="site-footer__col-head">Developers</span>
+                    <a href="developers/index.html">Overview</a>
+                    <a href="developers/quick-start.html">Quick Start</a>
+                    <a href="developers/api-reference.html">API Reference</a>
+                    <a href="developers/tutorials.html">Tutorials</a>
+                </div>
+                <div class="site-footer__col">
+                    <span class="site-footer__col-head">Resources</span>
+                    <a href="docs/index.html">Documentation</a>
+                    <a href="docs/getting-started/installation.html">Installation</a>
+                    <a href="docs/guides/send-receive.html">Guides</a>
+                </div>
+                <div class="site-footer__col">
+                    <span class="site-footer__col-head">Legal</span>
+                    <a href="legal/privacy-policy.html">Privacy Policy</a>
+                    <a href="legal/terms-of-service.html">Terms of Service</a>
+                    <a href="legal/cookie-policy.html">Cookie Policy</a>
+                </div>
+            </nav>
+            <div class="site-footer__bottom">
+                <p class="site-footer__copy">© 2026 Jutis. All rights reserved.</p>
+                <div class="site-footer__trust">
+                    <span class="site-footer__trust-badge"><span class="site-footer__trust-dot"></span>SOC 2 Compliant</span>
+                    <span class="site-footer__trust-badge"><span class="site-footer__trust-dot"></span>Pen Tested</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="bottom-dots" aria-hidden="true">
+        <div class="bottom-dots__item bottom-dots__item--filled"></div>
+        <div class="bottom-dots__item bottom-dots__item--outline"></div>
+        <div class="bottom-dots__item bottom-dots__item--outline"></div>
+    </div>
+
+    <style>
+    .sec-label { display: inline-block; font-size: 10px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 12px; }
+    .sec-heading { font-family: var(--font-display); font-weight: 700; font-size: clamp(var(--text-xl), 3vw, 32px); margin-bottom: 16px; }
+    .sec-sub { font-size: var(--text-base); color: var(--fg-secondary); line-height: 1.7; margin-bottom: 0; }
+    .sec-body { font-size: var(--text-base); color: var(--fg-secondary); line-height: 1.7; margin-bottom: 16px; }
+    .sec-note { display: flex; align-items: flex-start; gap: 12px; padding: 16px 20px; background: rgba(234, 179, 8, 0.06); border: 1px solid rgba(234, 179, 8, 0.2); border-radius: var(--radius-md); margin-top: 8px; }
+    .sec-note .material-symbols-outlined { font-size: 18px; color: #eab308; flex-shrink: 0; margin-top: 1px; }
+    .sec-note p { font-size: var(--text-sm); color: var(--fg-secondary); margin: 0; line-height: 1.6; }
+    .sec-note strong { color: #eab308; }
+
+    .security-architecture { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .arch-diagram { display: flex; flex-direction: column; gap: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-xl); overflow: hidden; }
+    .arch-node { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 28px 20px; border-bottom: 1px solid var(--border); text-align: center; }
+    .arch-node:last-child { border-bottom: none; }
+    .arch-node .material-symbols-outlined { font-size: 32px; color: var(--fg-muted); }
+    .arch-node__label { font-size: var(--text-sm); font-weight: 700; color: var(--fg-primary); }
+    .arch-node__sub { font-size: 11px; color: var(--fg-muted); }
+    .arch-node--you .material-symbols-outlined { color: var(--accent); }
+    .arch-node--jutis .material-symbols-outlined { color: #3b82f6; }
+    .arch-node--canton .material-symbols-outlined { color: #a855f7; }
+    .arch-arrow { display: flex; align-items: center; gap: 12px; padding: 12px 20px; background: var(--bg-inset); border-bottom: 1px solid var(--border); }
+    .arch-arrow:last-child { border-bottom: none; }
+    .arch-arrow .material-symbols-outlined { font-size: 18px; color: var(--fg-muted); }
+    .arch-arrow__label { font-size: 11px; color: var(--fg-muted); }
+
+    .key-flow { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-xl); overflow: hidden; }
+    .key-step { padding: 36px 32px; border-right: 1px solid var(--border); }
+    .key-step:last-child { border-right: none; }
+    .key-step__num { font-size: 11px; font-weight: 700; color: var(--accent); font-family: monospace; letter-spacing: 0.05em; margin-bottom: 16px; }
+    .key-step__icon { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; background: rgba(183, 245, 58, 0.08); border-radius: var(--radius-lg); margin-bottom: 20px; }
+    .key-step__icon .material-symbols-outlined { font-size: 24px; color: var(--accent); }
+    .key-step__title { font-family: var(--font-display); font-weight: 700; font-size: var(--text-base); margin-bottom: 12px; }
+    .key-step__desc { font-size: var(--text-sm); color: var(--fg-secondary); line-height: 1.7; margin: 0; }
+
+    .perms-layout__header { max-width: 600px; margin-bottom: 48px; }
+    .perms-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 32px; }
+    .perm-card { padding: 24px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); }
+    .perm-card__header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+    .perm-card__icon { font-size: 20px; color: var(--accent); }
+    .perm-card__title { font-size: var(--text-sm); font-weight: 700; color: var(--fg-primary); }
+    .perm-card__desc { font-size: var(--text-sm); color: var(--fg-secondary); line-height: 1.6; margin: 0 0 16px; }
+    .perm-card__badge { display: inline-block; padding: 2px 10px; border-radius: var(--radius-pill); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+    .perm-card__badge--low { background: rgba(183, 245, 58, 0.1); color: var(--accent); }
+    .perm-card__badge--med { background: rgba(234, 179, 8, 0.1); color: #eab308; }
+
+    .perms-manager { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-xl); overflow: hidden; }
+    .perms-manager__header { padding: 16px 24px; background: var(--bg-inset); border-bottom: 1px solid var(--border); font-size: var(--text-sm); font-weight: 600; color: var(--fg-secondary); }
+    .perms-row { display: flex; align-items: center; justify-content: space-between; padding: 16px 24px; border-bottom: 1px solid var(--border); }
+    .perms-row:last-child { border-bottom: none; }
+    .perms-row__site { display: flex; align-items: center; gap: 14px; }
+    .perms-row__icon { width: 36px; height: 36px; border-radius: var(--radius-md); background: var(--bg-inset); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: var(--fg-secondary); }
+    .perms-row__name { font-size: var(--text-sm); font-weight: 600; color: var(--fg-primary); margin-bottom: 2px; }
+    .perms-row__scope { font-size: 11px; color: var(--fg-muted); }
+    .perms-row__status { display: flex; align-items: center; gap: 12px; }
+    .perms-row__badge { padding: 2px 10px; border-radius: var(--radius-pill); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+    .perms-row__badge--active { background: rgba(183, 245, 58, 0.1); color: var(--accent); }
+    .perms-row__revoke { padding: 4px 12px; background: transparent; border: 1px solid var(--border); border-radius: var(--radius-md); font-size: 11px; font-weight: 600; color: var(--fg-secondary); cursor: pointer; }
+    .perms-row__revoke:hover { border-color: #ef4444; color: #ef4444; }
+
+    .approval-checklist { display: flex; flex-direction: column; gap: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-xl); overflow: hidden; }
+    .approval-item { display: flex; align-items: flex-start; gap: 20px; padding: 24px; border-bottom: 1px solid var(--border); }
+    .approval-item:last-child { border-bottom: none; }
+    .approval-item__check { width: 32px; height: 32px; border-radius: 50%; background: rgba(183, 245, 58, 0.12); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .approval-item__check .material-symbols-outlined { font-size: 16px; color: var(--accent); }
+    .approval-item__title { font-size: var(--text-sm); font-weight: 600; color: var(--fg-primary); margin-bottom: 4px; }
+    .approval-item__detail { font-size: var(--text-sm); color: var(--fg-muted); line-height: 1.6; }
+
+    .phishing-section { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    .phishing-list { display: flex; flex-direction: column; gap: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-xl); overflow: hidden; margin-top: 24px; }
+    .phishing-item { display: flex; align-items: flex-start; gap: 16px; padding: 20px 24px; border-bottom: 1px solid var(--border); }
+    .phishing-item:last-child { border-bottom: none; }
+    .phishing-item__icon { font-size: 20px; color: var(--accent); flex-shrink: 0; margin-top: 1px; }
+    .phishing-item__title { font-size: var(--text-sm); font-weight: 600; color: var(--fg-primary); margin-bottom: 4px; }
+    .phishing-item__desc { font-size: var(--text-sm); color: var(--fg-muted); line-height: 1.6; margin: 0; }
+    .security-reminder { display: flex; align-items: flex-start; gap: 12px; padding: 16px 20px; background: rgba(183, 245, 58, 0.06); border: 1px solid rgba(183, 245, 58, 0.2); border-radius: var(--radius-md); margin-top: 24px; }
+    .security-reminder .material-symbols-outlined { font-size: 18px; color: var(--accent); flex-shrink: 0; margin-top: 1px; }
+    .security-reminder p { font-size: var(--text-sm); color: var(--fg-secondary); margin: 0; line-height: 1.6; }
+    .security-reminder strong { color: var(--accent); }
+
+    .domain-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-xl); overflow: hidden; margin-bottom: 16px; }
+    .domain-card--warn { border-color: rgba(239, 68, 68, 0.3); }
+    .domain-card__header { display: flex; align-items: center; gap: 10px; padding: 14px 20px; background: var(--bg-inset); border-bottom: 1px solid var(--border); font-size: var(--text-sm); font-weight: 600; color: var(--fg-secondary); }
+    .domain-card__header .material-symbols-outlined { font-size: 16px; color: var(--fg-muted); }
+    .domain-card__body { padding: 20px; }
+    .domain-card__field { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+    .domain-card__field:last-of-type { margin-bottom: 16px; }
+    .domain-card__field-label { font-size: 11px; color: var(--fg-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+    .domain-card__domain { display: flex; align-items: center; gap: 6px; font-size: var(--text-sm); font-weight: 600; color: var(--fg-primary); }
+    .domain-card__domain-dot { width: 8px; height: 8px; border-radius: 50%; }
+    .domain-card__domain-dot--safe { background: var(--accent); }
+    .domain-card__domain-dot--warn { background: #ef4444; }
+    .domain-card__value { font-size: var(--text-sm); color: var(--fg-secondary); }
+    .domain-card__value--warn { color: #ef4444; }
+    .domain-card__action { padding: 10px; background: var(--accent); color: var(--bg-main); border-radius: var(--radius-md); font-size: var(--text-sm); font-weight: 700; text-align: center; cursor: pointer; }
+    .domain-card__action--warn { background: #ef4444; color: #fff; }
+
+    .recovery-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; text-align: left; }
+    .recovery-card { padding: 32px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-xl); }
+    .recovery-card__icon { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; background: rgba(183, 245, 58, 0.08); border-radius: var(--radius-lg); margin-bottom: 20px; }
+    .recovery-card__icon .material-symbols-outlined { font-size: 24px; color: var(--accent); }
+    .recovery-card__title { font-family: var(--font-display); font-weight: 700; font-size: var(--text-base); margin-bottom: 12px; }
+    .recovery-card__desc { font-size: var(--text-sm); color: var(--fg-secondary); line-height: 1.7; margin: 0; }
+
+    .principles-layout { display: grid; grid-template-columns: 300px 1fr; gap: 80px; align-items: start; }
+    .principles-list { display: flex; flex-direction: column; gap: 0; }
+    .principle { display: flex; align-items: flex-start; gap: 24px; padding: 32px 0; border-bottom: 1px solid var(--border); }
+    .principle:first-child { padding-top: 0; }
+    .principle:last-child { border-bottom: none; }
+    .principle__num { font-family: monospace; font-size: var(--text-xl); font-weight: 700; color: var(--accent); opacity: 0.4; flex-shrink: 0; width: 40px; }
+    .principle__title { font-family: var(--font-display); font-weight: 700; font-size: var(--text-base); margin-bottom: 8px; }
+    .principle__desc { font-size: var(--text-sm); color: var(--fg-secondary); line-height: 1.7; margin: 0; }
+
+    @media (max-width: 900px) {
+        .security-architecture { grid-template-columns: 1fr; gap: 40px; }
+        .key-flow { grid-template-columns: 1fr; }
+        .key-step { border-right: none; border-bottom: 1px solid var(--border); }
+        .key-step:last-child { border-bottom: none; }
+        .perms-grid { grid-template-columns: 1fr 1fr; }
+        .phishing-section { grid-template-columns: 1fr; gap: 40px; }
+        .recovery-cards { grid-template-columns: 1fr; }
+        .principles-layout { grid-template-columns: 1fr; gap: 32px; }
+    }
+    @media (max-width: 768px) {
+        .site-header__nav { display: none; }
+        .perms-grid { grid-template-columns: 1fr; }
+        .hero__title--display { font-size: var(--text-2xl); }
+    }
+    </style>
+
+</body>
+</html>

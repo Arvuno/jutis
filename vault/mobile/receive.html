@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Receive - Jutis Mobile</title>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="stylesheet" href="styles/tokens.css">
+    <link rel="stylesheet" href="styles/base.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
+    <style>
+        .receive-page {
+            min-height: 100vh;
+            min-height: 100dvh;
+            background: var(--bg-main);
+            display: flex;
+            flex-direction: column;
+            padding-top: env(safe-area-inset-top, 0px);
+            padding-bottom: env(safe-area-inset-bottom, 0px);
+        }
+
+        /* Top bar */
+        .receive-topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--space-4);
+            height: var(--topbar-height);
+            background: var(--bg-overlay);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .receive-topbar__back {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--fg-secondary);
+            border-radius: var(--radius-md);
+        }
+
+        .receive-topbar__title {
+            font-size: var(--text-lg);
+            font-weight: 600;
+        }
+
+        .receive-topbar__share {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            border-radius: var(--radius-md);
+        }
+
+        /* Content */
+        .receive-content {
+            flex: 1;
+            padding: var(--space-6);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Network Badge */
+        .receive-network {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            padding: var(--space-2) var(--space-4);
+            background: var(--accent-10);
+            border: 1px solid var(--accent-30);
+            border-radius: var(--radius-full);
+            margin-bottom: var(--space-6);
+        }
+
+        .receive-network__dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        .receive-network__name {
+            font-size: var(--text-sm);
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        /* QR Code */
+        .receive-qr {
+            width: 200px;
+            height: 200px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: var(--space-6);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .receive-qr__placeholder {
+            width: 160px;
+            height: 160px;
+            background: var(--fg-primary);
+            border-radius: var(--radius-lg);
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            grid-template-rows: repeat(8, 1fr);
+            gap: 2px;
+            padding: 8px;
+        }
+
+        .receive-qr__cell {
+            background: var(--bg-main);
+            border-radius: 2px;
+        }
+
+        .receive-qr__cell--dark {
+            background: var(--fg-secondary);
+        }
+
+        .receive-qr__overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(13, 15, 20, 0.8);
+            opacity: 0;
+            transition: opacity var(--duration-fast) var(--ease-out);
+        }
+
+        .receive-qr:hover .receive-qr__overlay {
+            opacity: 1;
+        }
+
+        .receive-qr__hint {
+            padding: var(--space-2) var(--space-4);
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            font-size: var(--text-xs);
+            color: var(--fg-secondary);
+        }
+
+        /* Address Section */
+        .receive-address {
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .receive-address__label {
+            font-size: var(--text-sm);
+            font-weight: 600;
+            color: var(--fg-secondary);
+            margin-bottom: var(--space-3);
+        }
+
+        .receive-address__card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            padding: var(--space-5);
+            margin-bottom: var(--space-4);
+        }
+
+        .receive-address__value {
+            font-size: var(--text-sm);
+            font-family: monospace;
+            color: var(--fg-primary);
+            word-break: break-all;
+            line-height: var(--leading-relaxed);
+            margin-bottom: var(--space-4);
+        }
+
+        .receive-address__actions {
+            display: flex;
+            gap: var(--space-3);
+        }
+
+        .receive-address__btn {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-2);
+            padding: var(--space-4);
+            background: var(--bg-input);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            font-size: var(--text-sm);
+            font-weight: 600;
+            color: var(--fg-primary);
+            transition: all var(--duration-fast) var(--ease-out);
+        }
+
+        .receive-address__btn:hover {
+            border-color: var(--accent-30);
+            background: var(--bg-card-hover);
+        }
+
+        .receive-address__btn--primary {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: var(--bg-main);
+        }
+
+        .receive-address__btn--primary:hover {
+            background: #c8e63a;
+        }
+
+        /* Copy Feedback */
+        .receive-address__copy-feedback {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-2);
+            padding: var(--space-3);
+            background: rgba(52, 211, 153, 0.15);
+            border-radius: var(--radius-md);
+            color: var(--success);
+            font-size: var(--text-sm);
+            font-weight: 500;
+            opacity: 0;
+            transform: translateY(8px);
+            transition: all var(--duration-fast) var(--ease-out);
+            margin-top: var(--space-4);
+        }
+
+        .receive-address__copy-feedback--visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Network Note */
+        .receive-note {
+            margin-top: var(--space-6);
+            padding: var(--space-4);
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            text-align: center;
+        }
+
+        .receive-note__title {
+            font-size: var(--text-sm);
+            font-weight: 600;
+            margin-bottom: var(--space-2);
+        }
+
+        .receive-note__text {
+            font-size: var(--text-xs);
+            color: var(--fg-secondary);
+            line-height: var(--leading-relaxed);
+        }
+
+        /* Bottom Nav */
+        .mobile-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: var(--nav-height);
+            background: var(--bg-overlay);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: 1px solid var(--border);
+            z-index: 100;
+            padding-bottom: env(safe-area-inset-bottom, 0px);
+        }
+
+        .mobile-nav__inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            height: 100%;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        .mobile-nav__item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-1);
+            padding: var(--space-2);
+            color: var(--fg-tertiary);
+            transition: color var(--duration-fast) var(--ease-out);
+            flex: 1;
+        }
+
+        .mobile-nav__item--active {
+            color: var(--accent);
+        }
+
+        .mobile-nav__icon {
+            font-size: 22px;
+        }
+
+        .mobile-nav__label {
+            font-size: var(--text-xs);
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <div class="receive-page">
+        <!-- Top bar -->
+        <div class="receive-topbar">
+            <a href="wallet.html" class="receive-topbar__back">
+                <span class="material-symbols-outlined">arrow_back</span>
+            </a>
+            <span class="receive-topbar__title">Receive</span>
+            <button class="receive-topbar__share">
+                <span class="material-symbols-outlined">share</span>
+            </button>
+        </div>
+
+        <!-- Content -->
+        <div class="receive-content">
+            <!-- Network Badge -->
+            <div class="receive-network">
+                <span class="receive-network__dot"></span>
+                <span class="receive-network__name">Canton Network</span>
+            </div>
+
+            <!-- QR Code -->
+            <div class="receive-qr">
+                <div class="receive-qr__placeholder">
+                    <div class="receive-qr__cell receive-qr__cell--dark"></div>
+                    <div class="receive-qr__cell receive-qr__cell--dark"></div>
+                    <div class="receive-qr__cell receive-qr__cell--dark"></div>
+                    <div class="receive-qr__cell receive-qr__cell--dark"></div>
+                    <div class="receive-qr__cell"></div>
+                    <div class="receive-qr__cell receive-qr__cell--dark"></div>
+                    <div class="receive-qr__cell receive-qr__cell--dark"></div>
+                    <div class="receive-qr__cell"></div>
+                    <div class="receive-qr__cell receive-qr__cell--dark"></div>
+                    <div class="receive-qr__cell"></div>
+                    <div class="receive-qr__cell"></div>
+                    <div class="receive-qr__cell"></div>
+                    <div class="receive-qr__cell receive-qr__cell--dark"></div>
+                    <div class="receive-qr__cell"></div>
+                    <div class="receive-qr__cell receive-qr__cell--dark"></div>
+                    <div class="receive-qr__cell receive-qr__cell--dark"></div>
+                    <div class="receive-qr__cell"></div>
+                    <div class="receive-qr__cell receive-qr__cell--dark"></div>
+                    <div class="receive-qr__cell"></div>
+                    <div class="receive-qr__cell receive-qr__cell--dark"></div>
+                    <div class="receive-qr__cell"></div>
+                    <div class="receive-qr__cell"></div>
+                    <div class="receive-qr__cell receive-qr__cell--dark"></div>
+                    <div class="receive-qr__cell"></div>
+                    <div class="receive-qr__cell"></div>
+                    <div class="receive-qr__cell receive-qr__cell--dark"></div>
+                    <div class="receive-qr__cell"></div>
+                    <div class="receive-qr__cell"></div>
+                    <div class="receive-qr__cell"></div>
+                    <div class="receive-qr__cell receive-qr__cell--dark"></div>
+                    <div class="receive-qr__cell"></div>
+                    <div class="receive-qr__cell"></div>
+                    <div class="receive-qr__cell"></div>
+                    <div class="receive-qr__cell receive-qr__cell--dark"></div>
+                    <div class="receive-qr__cell receive-qr__cell--dark"></div>
+                    <div class="receive-qr__cell"></div>
+                    <div class="receive-qr__cell receive-qr__cell--dark"></div>
+                    <div class="receive-qr__cell"></div>
+                    <div class="receive-qr__cell"></div>
+                    <div class="receive-qr__cell"></div>
+                    <div class="receive-qr__cell receive-qr__cell--dark"></div>
+                    <div class="receive-qr__cell receive-qr__cell--dark"></div>
+                    <div class="receive-qr__cell"></div>
+                    <div class="receive-qr__cell"></div>
+                    <div class="receive-qr__cell"></div>
+                    <div class="receive-qr__cell receive-qr__cell--dark"></div>
+                    <div class="receive-qr__cell"></div>
+                    <div class="receive-qr__cell receive-qr__cell--dark"></div>
+                    <div class="receive-qr__cell"></div>
+                    <div class="receive-qr__cell"></div>
+                    <div class="receive-qr__cell"></div>
+                    <div class="receive-qr__cell receive-qr__cell--dark"></div>
+                    <div class="receive-qr__cell"></div>
+                    <div class="receive-qr__cell"></div>
+                    <div class="receive-qr__cell"></div>
+                    <div class="receive-qr__cell receive-qr__cell--dark"></div>
+                    <div class="receive-qr__cell receive-qr__cell--dark"></div>
+                </div>
+                <div class="receive-qr__overlay">
+                    <span class="receive-qr__hint">Tap to enlarge</span>
+                </div>
+            </div>
+
+            <!-- Address Section -->
+            <div class="receive-address">
+                <p class="receive-address__label">Your Canton Address</p>
+                <div class="receive-address__card">
+                    <p class="receive-address__value" id="addressText">
+                        canton1abc123xyz...def456ghi789
+                    </p>
+                    <div class="receive-address__actions">
+                        <button class="receive-address__btn receive-address__btn--primary" onclick="copyAddress()">
+                            <span class="material-symbols-outlined">content_copy</span>
+                            Copy
+                        </button>
+                        <button class="receive-address__btn">
+                            <span class="material-symbols-outlined">qr_code</span>
+                            QR
+                        </button>
+                    </div>
+                </div>
+                <div class="receive-address__copy-feedback" id="copyFeedback">
+                    <span class="material-symbols-outlined" style="font-size:16px;">check_circle</span>
+                    Address copied to clipboard
+                </div>
+            </div>
+
+            <!-- Note -->
+            <div class="receive-note">
+                <p class="receive-note__title">Only send CANTON on Canton</p>
+                <p class="receive-note__text">Sending other assets to this address may result in permanent loss.</p>
+            </div>
+        </div>
+
+        <!-- Bottom Nav -->
+        <nav class="mobile-nav">
+            <a href="wallet.html" class="mobile-nav__item">
+                <span class="material-symbols-outlined mobile-nav__icon">home</span>
+                <span class="mobile-nav__label">Home</span>
+            </a>
+            <a href="activity.html" class="mobile-nav__item">
+                <span class="material-symbols-outlined mobile-nav__icon">swap_horiz</span>
+                <span class="mobile-nav__label">Activity</span>
+            </a>
+            <a href="send.html" class="mobile-nav__item" style="position:relative;">
+                <span class="material-symbols-outlined mobile-nav__icon" style="background:var(--accent);color:var(--bg-main);width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-top:-20px;box-shadow:0 4px 12px rgba(183,245,58,0.3);">send</span>
+            </a>
+            <a href="rewards.html" class="mobile-nav__item">
+                <span class="material-symbols-outlined mobile-nav__icon">emoji_events</span>
+                <span class="mobile-nav__label">Rewards</span>
+            </a>
+            <a href="settings.html" class="mobile-nav__item">
+                <span class="material-symbols-outlined mobile-nav__icon">settings</span>
+                <span class="mobile-nav__label">Settings</span>
+            </a>
+        </nav>
+    </div>
+
+    <script>
+        function copyAddress() {
+            const address = document.getElementById('addressText').textContent;
+            navigator.clipboard.writeText(address);
+            const feedback = document.getElementById('copyFeedback');
+            feedback.classList.add('receive-address__copy-feedback--visible');
+            setTimeout(() => {
+                feedback.classList.remove('receive-address__copy-feedback--visible');
+            }, 2000);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/>
+<title>Brand Backdrops</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<style>
+  html,body{margin:0;background:transparent;font-family:'Inter',system-ui}
+  :root{--lime:#dce87a;--ink:#0a0b0f;--card:#1a1d23;--line:#2e323c;--mute:#9aa1ac;--fg:#e6e8ec}
+
+  .card{
+    width:700px;padding:24px;box-sizing:border-box;color:var(--fg);position:relative;overflow:hidden;
+    background:linear-gradient(180deg,#1c1f25,#101318);border:1px solid var(--line);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.03)
+  }
+  .card::before{content:'';position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(rgba(46,50,60,.4) 1px,transparent 1px);background-size:22px 22px;opacity:.3}
+
+  .head{position:relative;display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;z-index:2}
+  .eyebrow{font:600 9px 'JetBrains Mono';letter-spacing:.28em;text-transform:uppercase;color:var(--mute);display:inline-flex;align-items:center;gap:9px}
+  .eyebrow .d{width:7px;height:7px;border-radius:9999px;background:var(--lime);box-shadow:0 0 0 3px rgba(220,232,122,.12),0 0 12px var(--lime);animation:dotPulse 2.4s ease-in-out infinite}
+  @keyframes dotPulse{0%,100%{box-shadow:0 0 0 3px rgba(220,232,122,.12),0 0 12px var(--lime)}50%{box-shadow:0 0 0 6px rgba(220,232,122,.05),0 0 20px var(--lime)}}
+  .eyebrow .sep{color:#4a4f5a;font-weight:400;letter-spacing:.1em}
+  .count{font:600 10px 'JetBrains Mono';color:var(--mute);display:inline-flex;align-items:center;gap:8px}
+  .count .dot{width:4px;height:4px;background:var(--mute);border-radius:9999px}
+
+  .row{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:12px;z-index:2}
+  .bg{position:relative;height:240px;border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.05);isolation:isolate}
+
+  .lab{position:absolute;top:12px;left:12px;z-index:5;font:600 9px 'JetBrains Mono';letter-spacing:.22em;text-transform:uppercase;color:var(--fg);padding:5px 10px;background:rgba(10,11,15,.6);border:1px solid rgba(255,255,255,.08);border-radius:9999px;backdrop-filter:blur(8px);display:inline-flex;align-items:center;gap:7px}
+  .lab .d{width:5px;height:5px;border-radius:9999px;background:var(--lime);box-shadow:0 0 8px var(--lime)}
+  .corner{position:absolute;z-index:5;width:14px;height:14px;border:1px solid rgba(220,232,122,.4)}
+  .c-tr{top:12px;right:12px;border-left:none;border-bottom:none}
+  .c-bl{bottom:12px;left:12px;border-right:none;border-top:none}
+
+  .foot{position:absolute;bottom:12px;right:12px;z-index:5;display:flex;align-items:center;gap:6px;font:600 9px 'JetBrains Mono';color:var(--mute)}
+  .foot .kv{padding:3px 7px;background:rgba(10,11,15,.6);border:1px solid rgba(255,255,255,.08);border-radius:4px;backdrop-filter:blur(8px)}
+  .foot .kv b{color:var(--lime);font-weight:600}
+
+  /* ─────────────  MARKETING — morphing signet + aurora  ───────────── */
+  .mk{background:linear-gradient(160deg,#1a1d23 0%,#0f1116 100%)}
+  .mk .aurora{position:absolute;inset:-40%;background:
+      radial-gradient(closest-side,rgba(220,232,122,.45),transparent 65%),
+      radial-gradient(closest-side,rgba(74,158,255,.25),transparent 60%);
+    background-position:20% 30%, 80% 70%;background-size:50% 50%,55% 55%;background-repeat:no-repeat;
+    filter:blur(40px);animation:auroraDrift 14s ease-in-out infinite}
+  @keyframes auroraDrift{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(6%,-4%) scale(1.1)}66%{transform:translate(-4%,5%) scale(.95)}}
+  .mk .grid{position:absolute;inset:0;background-image:
+      linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
+    background-size:28px 28px;mask-image:radial-gradient(ellipse at center,black 40%,transparent 85%)}
+  .mk .signet{position:absolute;left:50%;top:50%;width:116px;height:116px;transform:translate(-50%,-50%);filter:drop-shadow(0 0 22px rgba(220,232,122,.45))}
+  .mk .signet svg{width:100%;height:100%;overflow:visible}
+  .mk .ring-a{transform-origin:16px 16px;animation:spin 18s linear infinite}
+  .mk .ring-b{transform-origin:16px 16px;animation:spin 30s linear infinite reverse}
+  .mk .beam{transform-origin:16px 16px;animation:beamMorph 4s ease-in-out infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  @keyframes beamMorph{
+    0%,100%{transform:scaleY(1) rotate(0deg)}
+    25%{transform:scaleY(.5) rotate(0deg)}
+    50%{transform:scaleY(1.1) rotate(0deg)}
+    75%{transform:scaleY(.7) rotate(180deg)}
+  }
+  .mk .sat{position:absolute;width:8px;height:8px;background:var(--lime);border-radius:50%;box-shadow:0 0 10px var(--lime);top:50%;left:50%;margin:-4px 0 0 -4px;
+    animation:orbit 8s linear infinite}
+  .mk .sat:nth-child(2){width:5px;height:5px;margin:-2.5px 0 0 -2.5px;animation-duration:12s;animation-direction:reverse;background:#4a9eff;box-shadow:0 0 8px #4a9eff;opacity:.7}
+  .mk .sat:nth-child(3){width:3px;height:3px;margin:-1.5px 0 0 -1.5px;animation-duration:16s;opacity:.5}
+  @keyframes orbit{from{transform:rotate(0) translateX(80px) rotate(0)}to{transform:rotate(360deg) translateX(80px) rotate(-360deg)}}
+
+  /* ─────────────  BRIDGE — particle field + scanning signet  ───────────── */
+  .br{background:radial-gradient(ellipse at center,#13161b 0%,#0a0b0f 75%)}
+  .br .stars{position:absolute;inset:0;background-image:
+      radial-gradient(1px 1px at 14% 22%, rgba(255,255,255,.8), transparent 60%),
+      radial-gradient(1px 1px at 38% 68%, rgba(220,232,122,.9), transparent 60%),
+      radial-gradient(1px 1px at 72% 18%, rgba(255,255,255,.6), transparent 60%),
+      radial-gradient(1px 1px at 88% 82%, rgba(220,232,122,.7), transparent 60%),
+      radial-gradient(1px 1px at 55% 40%, rgba(255,255,255,.5), transparent 60%),
+      radial-gradient(1px 1px at 22% 80%, rgba(255,255,255,.7), transparent 60%),
+      radial-gradient(1px 1px at 92% 35%, rgba(220,232,122,.6), transparent 60%),
+      radial-gradient(1px 1px at 8% 55%, rgba(255,255,255,.55), transparent 60%);
+    animation:twinkle 3s ease-in-out infinite}
+  @keyframes twinkle{0%,100%{opacity:.7}50%{opacity:1}}
+  .br .core-glow{position:absolute;left:50%;top:50%;width:260px;height:260px;transform:translate(-50%,-50%);
+    background:radial-gradient(circle,rgba(220,232,122,.32) 0%,transparent 55%);filter:blur(20px);
+    animation:glowBreath 4s ease-in-out infinite}
+  @keyframes glowBreath{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.8}50%{transform:translate(-50%,-50%) scale(1.15);opacity:1}}
+
+  .br .node{position:absolute;left:50%;top:50%;width:100px;height:100px;transform:translate(-50%,-50%);filter:drop-shadow(0 0 14px rgba(220,232,122,.6))}
+  .br .node svg{width:100%;height:100%;overflow:visible}
+  .br .node .shell{transform-origin:16px 16px;animation:shellRot 12s linear infinite}
+  .br .node .shell-inner{transform-origin:16px 16px;animation:shellRot 18s linear infinite reverse}
+  .br .node .pulse-bar{transform-origin:16px 16px;animation:barPulse 1.6s ease-in-out infinite}
+  @keyframes shellRot{to{transform:rotate(360deg)}}
+  @keyframes barPulse{0%,100%{transform:scaleY(1);opacity:1}50%{transform:scaleY(.4);opacity:.7}}
+
+  .br .ray{position:absolute;left:50%;top:50%;width:160px;height:1px;background:linear-gradient(90deg,transparent,rgba(220,232,122,.6),transparent);transform-origin:0 50%;animation:raySweep 6s linear infinite}
+  .br .ray:nth-child(5){animation-delay:-2s;opacity:.5}
+  .br .ray:nth-child(6){animation-delay:-4s;opacity:.3}
+  @keyframes raySweep{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+
+  .br .scan{position:absolute;left:0;right:0;height:2px;top:42%;background:linear-gradient(90deg,transparent,rgba(220,232,122,.9),transparent);box-shadow:0 0 14px rgba(220,232,122,.6);animation:scan 3s linear infinite}
+  @keyframes scan{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+  .br .hair{position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(220,232,122,.5),transparent)}
+
+  .ticker{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);z-index:4;font:600 8px 'JetBrains Mono';color:rgba(220,232,122,.7);letter-spacing:.2em;white-space:nowrap;padding:3px 10px;background:rgba(10,11,15,.5);border:1px solid rgba(220,232,122,.2);border-radius:9999px;backdrop-filter:blur(6px)}
+</style></head>
+<body>
+<div class="card">
+  <div class="head">
+    <div class="eyebrow">
+      <span class="d"></span>Brand Backdrops · Surface Motifs
+      <span class="sep">/</span><span style="color:var(--lime)">animated</span>
+    </div>
+    <div class="count"><span class="dot"></span>2 backdrops<span class="dot"></span>marketing · bridge</div>
+  </div>
+
+  <div class="row">
+    <!-- MARKETING -->
+    <div class="bg mk">
+      <div class="aurora"></div>
+      <div class="grid"></div>
+      <div class="lab"><span class="d"></span>Marketing</div>
+      <span class="corner c-tr"></span><span class="corner c-bl"></span>
+
+      <div class="signet">
+        <svg viewBox="0 0 32 32">
+          <g transform="translate(16 16)">
+            <g class="ring-a"><rect x="-12" y="-12" width="24" height="24" fill="none" stroke="#dce87a" stroke-width="1.4" rx="5" transform="rotate(45)"/></g>
+            <g class="ring-b"><rect x="-12" y="-12" width="24" height="24" fill="none" stroke="#e6e8ec" stroke-width=".8" stroke-opacity=".25" rx="5" transform="rotate(12)"/></g>
+            <rect x="-2" y="-9" width="4" height="18" fill="#dce87a" rx="2" class="beam"/>
+          </g>
+        </svg>
+      </div>
+
+      <div class="sat"></div><div class="sat"></div><div class="sat"></div>
+
+      <div class="ticker">AURORA · MORPH · ORBIT</div>
+      <div class="foot"><span class="kv">grid·28</span><span class="kv"><b>★</b> pick</span></div>
+    </div>
+
+    <!-- BRIDGE -->
+    <div class="bg br">
+      <div class="hair"></div>
+      <div class="stars"></div>
+      <div class="core-glow"></div>
+      <div class="lab"><span class="d"></span>Bridge</div>
+      <span class="corner c-tr"></span><span class="corner c-bl"></span>
+
+      <div class="ray"></div><div class="ray"></div><div class="ray"></div>
+
+      <div class="node">
+        <svg viewBox="0 0 32 32">
+          <g transform="translate(16 16)">
+            <g class="shell"><rect x="-13" y="-13" width="26" height="26" fill="none" stroke="#dce87a" stroke-width="1.4" rx="6" transform="rotate(45)"/></g>
+            <g class="shell-inner"><rect x="-9" y="-9" width="18" height="18" fill="none" stroke="#dce87a" stroke-width="1" stroke-opacity=".5" rx="4" transform="rotate(25)"/></g>
+            <rect x="-2" y="-8" width="4" height="16" fill="#dce87a" rx="2" class="pulse-bar"/>
+          </g>
+        </svg>
+      </div>
+
+      <div class="scan"></div>
+      <div class="ticker">BRIDGE · SCAN · ROUTING</div>
+      <div class="foot"><span class="kv">particles</span><span class="kv">12 rays</span></div>
+    </div>
+  </div>
+</div>
+</body></html>

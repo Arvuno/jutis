@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Jutis Mobile App Design - Android Design Reference</title>
+    <meta name="description" content="Mobile-first design reference for Jutis wallet app on Android. Design system, screens, and UX patterns.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles/tokens.css">
+    <link rel="stylesheet" href="styles/base.css">
+
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
+    <style>
+        /* Index Page Styles */
+        .mobile-index {
+            min-height: 100vh;
+            background: var(--bg-main);
+            padding: var(--space-6) var(--space-4);
+            padding-top: calc(var(--space-6) + env(safe-area-inset-top, 0px));
+        }
+
+        .mobile-index__header {
+            text-align: center;
+            margin-bottom: var(--space-10);
+        }
+
+        .mobile-index__logo {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto var(--space-4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mobile-index__logo-mark {
+            position: relative;
+            width: 64px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mobile-index__logo-ring {
+            position: absolute;
+            border-radius: var(--radius-lg);
+        }
+
+        .mobile-index__logo-ring--outer {
+            width: 64px;
+            height: 64px;
+            border: 2px solid var(--accent);
+            transform: rotate(45deg) scale(0.9);
+        }
+
+        .mobile-index__logo-ring--inner {
+            width: 64px;
+            height: 64px;
+            border: 2px solid var(--fg-secondary);
+            transform: rotate(12deg);
+            opacity: 0.2;
+        }
+
+        .mobile-index__logo-bar {
+            width: 8px;
+            height: 28px;
+            background: var(--accent);
+            border-radius: 4px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .mobile-index__wordmark {
+            font-family: var(--font-display);
+            font-size: var(--text-xl);
+            font-weight: 800;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: var(--space-2);
+        }
+
+        .mobile-index__tagline {
+            color: var(--fg-secondary);
+            font-size: var(--text-base);
+        }
+
+        .mobile-index__badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            padding: var(--space-2) var(--space-4);
+            background: var(--accent-10);
+            border: 1px solid var(--accent-30);
+            border-radius: var(--radius-full);
+            color: var(--accent);
+            font-size: var(--text-sm);
+            font-weight: 600;
+            margin-top: var(--space-4);
+        }
+
+        .mobile-index__badge-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        /* Principles Grid */
+        .principles-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-4);
+            margin-bottom: var(--space-10);
+        }
+
+        @media (min-width: 640px) {
+            .principles-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .principle-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            padding: var(--space-5);
+        }
+
+        .principle-card__icon {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--accent-10);
+            border-radius: var(--radius-lg);
+            color: var(--accent);
+            font-size: 24px;
+            margin-bottom: var(--space-4);
+        }
+
+        .principle-card__title {
+            font-size: var(--text-lg);
+            font-weight: 700;
+            margin-bottom: var(--space-2);
+        }
+
+        .principle-card__desc {
+            font-size: var(--text-sm);
+            color: var(--fg-secondary);
+            line-height: var(--leading-relaxed);
+        }
+
+        /* Screen Grid */
+        .screen-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-4);
+            margin-bottom: var(--space-10);
+        }
+
+        @media (min-width: 768px) {
+            .screen-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .screen-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .screen-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            transition: all var(--duration-normal) var(--ease-out);
+        }
+
+        .screen-card:hover {
+            border-color: var(--accent-30);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .screen-card__preview {
+            aspect-ratio: 9/19;
+            background: var(--bg-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-4);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .screen-card__preview-frame {
+            width: 100%;
+            height: 100%;
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .screen-card__preview-topbar {
+            height: 44px;
+            background: var(--bg-overlay);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            padding: 0 var(--space-3);
+            gap: var(--space-3);
+        }
+
+        .screen-card__preview-topbar-title {
+            flex: 1;
+            height: 12px;
+            background: var(--fg-tertiary);
+            border-radius: 4px;
+        }
+
+        .screen-card__preview-content {
+            flex: 1;
+            padding: var(--space-3);
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-2);
+        }
+
+        .screen-card__preview-line {
+            height: 8px;
+            background: var(--border);
+            border-radius: 4px;
+        }
+
+        .screen-card__preview-line--accent {
+            background: var(--accent-20);
+        }
+
+        .screen-card__preview-line--wide {
+            width: 80%;
+        }
+
+        .screen-card__preview-line--short {
+            width: 50%;
+        }
+
+        .screen-card__info {
+            padding: var(--space-4);
+        }
+
+        .screen-card__name {
+            font-size: var(--text-base);
+            font-weight: 600;
+            margin-bottom: var(--space-1);
+        }
+
+        .screen-card__desc {
+            font-size: var(--text-sm);
+            color: var(--fg-secondary);
+        }
+
+        .screen-card__link {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-1);
+            color: var(--accent);
+            font-size: var(--text-sm);
+            font-weight: 500;
+            margin-top: var(--space-2);
+        }
+
+        /* Navigation Concept */
+        .nav-concept {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-2xl);
+            padding: var(--space-6);
+            margin-bottom: var(--space-10);
+        }
+
+        .nav-concept__title {
+            font-size: var(--text-xl);
+            font-weight: 700;
+            margin-bottom: var(--space-4);
+        }
+
+        .nav-concept__visual {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-4);
+        }
+
+        .nav-concept__item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-4);
+            padding: var(--space-3);
+            background: var(--bg-main);
+            border-radius: var(--radius-lg);
+        }
+
+        .nav-concept__icon {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--accent-10);
+            border-radius: var(--radius-md);
+            color: var(--accent);
+        }
+
+        .nav-concept__text {
+            flex: 1;
+        }
+
+        .nav-concept__label {
+            font-weight: 600;
+            margin-bottom: var(--space-1);
+        }
+
+        .nav-concept__desc {
+            font-size: var(--text-sm);
+            color: var(--fg-secondary);
+        }
+
+        /* Color Palette */
+        .color-palette {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: var(--space-3);
+            margin-bottom: var(--space-10);
+        }
+
+        .color-swatch {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+        }
+
+        .color-swatch__preview {
+            height: 64px;
+        }
+
+        .color-swatch__info {
+            padding: var(--space-3);
+        }
+
+        .color-swatch__name {
+            font-size: var(--text-sm);
+            font-weight: 600;
+        }
+
+        .color-swatch__value {
+            font-size: var(--text-xs);
+            color: var(--fg-secondary);
+            font-family: monospace;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: var(--space-8);
+            background: linear-gradient(135deg, var(--accent-10) 0%, var(--bg-card) 100%);
+            border: 1px solid var(--accent-20);
+            border-radius: var(--radius-2xl);
+        }
+
+        .cta-section__title {
+            font-size: var(--text-2xl);
+            font-weight: 700;
+            margin-bottom: var(--space-3);
+        }
+
+        .cta-section__desc {
+            color: var(--fg-secondary);
+            margin-bottom: var(--space-6);
+        }
+
+        .cta-section__buttons {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-3);
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 480px) {
+            .cta-section__buttons {
+                flex-direction: row;
+                max-width: none;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="mobile-index">
+        <!-- Header -->
+        <header class="mobile-index__header">
+            <div class="mobile-index__logo">
+                <div class="mobile-index__logo-mark">
+                    <div class="mobile-index__logo-ring mobile-index__logo-ring--outer"></div>
+                    <div class="mobile-index__logo-ring mobile-index__logo-ring--inner"></div>
+                    <div class="mobile-index__logo-bar"></div>
+                </div>
+            </div>
+            <p class="mobile-index__wordmark">JUTIS</p>
+            <p class="mobile-index__tagline">Mobile Design System for Android</p>
+            <div class="mobile-index__badge">
+                <span class="mobile-index__badge-dot"></span>
+                Design Reference v1.0
+            </div>
+        </header>
+
+        <!-- Design Principles -->
+        <section class="mobile-section">
+            <h2 class="mobile-section__title">Design Principles</h2>
+            <div class="principles-grid">
+                <div class="principle-card">
+                    <div class="principle-card__icon">
+                        <span class="material-symbols-outlined">touch_app</span>
+                    </div>
+                    <h3 class="principle-card__title">Touch-First</h3>
+                    <p class="principle-card__desc">Minimum 48px touch targets, generous spacing, thumb-friendly navigation zones.</p>
+                </div>
+                <div class="principle-card">
+                    <div class="principle-card__icon">
+                        <span class="material-symbols-outlined">light_mode</span>
+                    </div>
+                    <h3 class="principle-card__title">Spacious</h3>
+                    <p class="principle-card__desc">Not cramped. More whitespace than desktop. Content breathes on small screens.</p>
+                </div>
+                <div class="principle-card">
+                    <div class="principle-card__icon">
+                        <span class="material-symbols-outlined">smartphone</span>
+                    </div>
+                    <h3 class="principle-card__title">Native Feel</h3>
+                    <p class="principle-card__desc">Mobile-native patterns, not desktop shrunk. Use bottom navigation, sheets, gestures.</p>
+                </div>
+                <div class="principle-card">
+                    <div class="principle-card__icon">
+                        <span class="material-symbols-outlined">shield</span>
+                    </div>
+                    <h3 class="principle-card__title">Trust & Security</h3>
+                    <p class="principle-card__desc">Security visible and prominent. Backup flows are clear. Trust signals on every screen.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Color Palette -->
+        <section class="mobile-section">
+            <h2 class="mobile-section__title">Color Palette</h2>
+            <div class="color-palette">
+                <div class="color-swatch">
+                    <div class="color-swatch__preview" style="background: #B7F53A;"></div>
+                    <div class="color-swatch__info">
+                        <p class="color-swatch__name">Accent</p>
+                        <p class="color-swatch__value">#B7F53A</p>
+                    </div>
+                </div>
+                <div class="color-swatch">
+                    <div class="color-swatch__preview" style="background: #0D0F14;"></div>
+                    <div class="color-swatch__info">
+                        <p class="color-swatch__name">Background</p>
+                        <p class="color-swatch__value">#0D0F14</p>
+                    </div>
+                </div>
+                <div class="color-swatch">
+                    <div class="color-swatch__preview" style="background: #161920;"></div>
+                    <div class="color-swatch__info">
+                        <p class="color-swatch__name">Card</p>
+                        <p class="color-swatch__value">#161920</p>
+                    </div>
+                </div>
+                <div class="color-swatch">
+                    <div class="color-swatch__preview" style="background: #E6E8EC;"></div>
+                    <div class="color-swatch__info">
+                        <p class="color-swatch__name">Foreground</p>
+                        <p class="color-swatch__value">#E6E8EC</p>
+                    </div>
+                </div>
+                <div class="color-swatch">
+                    <div class="color-swatch__preview" style="background: #8B8F99;"></div>
+                    <div class="color-swatch__info">
+                        <p class="color-swatch__name">Secondary</p>
+                        <p class="color-swatch__value">#8B8F99</p>
+                    </div>
+                </div>
+                <div class="color-swatch">
+                    <div class="color-swatch__preview" style="background: #34D399;"></div>
+                    <div class="color-swatch__info">
+                        <p class="color-swatch__name">Success</p>
+                        <p class="color-swatch__value">#34D399</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Screen Screenshots -->
+        <section class="mobile-section">
+            <h2 class="mobile-section__title">Screen Reference</h2>
+            <div class="screen-grid">
+                <a href="onboarding.html" class="screen-card">
+                    <div class="screen-card__preview">
+                        <div class="screen-card__preview-frame">
+                            <div class="screen-card__preview-topbar"></div>
+                            <div class="screen-card__preview-content" style="align-items:center;justify-content:center;">
+                                <div class="screen-card__preview-line screen-card__preview-line--accent" style="width:80%;height:16px;"></div>
+                                <div class="screen-card__preview-line" style="width:60%;height:8px;"></div>
+                                <div style="height:32px;"></div>
+                                <div class="screen-card__preview-line" style="width:100%;height:48px;border-radius:24px;background:var(--accent-20);"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="screen-card__info">
+                        <p class="screen-card__name">Onboarding</p>
+                        <p class="screen-card__desc">Welcome, create/import, security setup</p>
+                        <span class="screen-card__link">View screen <span class="material-symbols-outlined" style="font-size:16px;">arrow_forward</span></span>
+                    </div>
+                </a>
+
+                <a href="wallet.html" class="screen-card">
+                    <div class="screen-card__preview">
+                        <div class="screen-card__preview-frame">
+                            <div class="screen-card__preview-topbar">
+                                <div style="width:24px;height:24px;background:var(--accent);border-radius:4px;"></div>
+                                <div class="screen-card__preview-topbar-title"></div>
+                                <div style="width:24px;height:24px;background:var(--border);border-radius:50%;"></div>
+                            </div>
+                            <div class="screen-card__preview-content">
+                                <div class="screen-card__preview-line screen-card__preview-line--accent" style="width:60%;height:12px;"></div>
+                                <div class="screen-card__preview-line screen-card__preview-line--short" style="height:24px;"></div>
+                                <div style="display:flex;gap:8px;margin-top:8px;">
+                                    <div style="flex:1;height:48px;background:var(--accent-10);border-radius:12px;"></div>
+                                    <div style="flex:1;height:48px;background:var(--border);border-radius:12px;"></div>
+                                    <div style="flex:1;height:48px;background:var(--border);border-radius:12px;"></div>
+                                    <div style="flex:1;height:48px;background:var(--border);border-radius:12px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="screen-card__info">
+                        <p class="screen-card__name">Wallet Home</p>
+                        <p class="screen-card__desc">Balance, assets, quick actions, activity</p>
+                        <span class="screen-card__link">View screen <span class="material-symbols-outlined" style="font-size:16px;">arrow_forward</span></span>
+                    </div>
+                </a>
+
+                <a href="send.html" class="screen-card">
+                    <div class="screen-card__preview">
+                        <div class="screen-card__preview-frame">
+                            <div class="screen-card__preview-topbar">
+                                <div style="width:24px;height:24px;background:var(--fg-tertiary);border-radius:4px;"></div>
+                                <div class="screen-card__preview-topbar-title" style="background:var(--accent);opacity:0.5;"></div>
+                            </div>
+                            <div class="screen-card__preview-content">
+                                <div class="screen-card__preview-line" style="width:40%;height:10px;"></div>
+                                <div style="height:48px;background:var(--bg-input);border-radius:12px;margin-top:8px;"></div>
+                                <div class="screen-card__preview-line" style="width:30%;height:10px;margin-top:16px;"></div>
+                                <div style="height:48px;background:var(--bg-input);border-radius:12px;margin-top:8px;"></div>
+                                <div style="height:48px;background:var(--accent-20);border-radius:24px;margin-top:16px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="screen-card__info">
+                        <p class="screen-card__name">Send</p>
+                        <p class="screen-card__desc">Recipient, amount, review, confirm</p>
+                        <span class="screen-card__link">View screen <span class="material-symbols-outlined" style="font-size:16px;">arrow_forward</span></span>
+                    </div>
+                </a>
+
+                <a href="receive.html" class="screen-card">
+                    <div class="screen-card__preview">
+                        <div class="screen-card__preview-frame">
+                            <div class="screen-card__preview-topbar"></div>
+                            <div class="screen-card__preview-content" style="align-items:center;gap:12px;">
+                                <div style="width:120px;height:120px;background:var(--border);border-radius:16px;display:flex;align-items:center;justify-content:center;">
+                                    <div style="width:80px;height:80px;background:var(--fg-tertiary);border-radius:8px;"></div>
+                                </div>
+                                <div class="screen-card__preview-line screen-card__preview-line--wide" style="height:32px;"></div>
+                                <div class="screen-card__preview-line screen-card__preview-line--short" style="height:32px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="screen-card__info">
+                        <p class="screen-card__name">Receive</p>
+                        <p class="screen-card__desc">QR code, address, copy, share</p>
+                        <span class="screen-card__link">View screen <span class="material-symbols-outlined" style="font-size:16px;">arrow_forward</span></span>
+                    </div>
+                </a>
+
+                <a href="activity.html" class="screen-card">
+                    <div class="screen-card__preview">
+                        <div class="screen-card__preview-frame">
+                            <div class="screen-card__preview-topbar"></div>
+                            <div class="screen-card__preview-content">
+                                <div style="display:flex;gap:8px;margin-bottom:12px;">
+                                    <div style="flex:1;height:32px;background:var(--accent-10);border-radius:16px;"></div>
+                                    <div style="flex:1;height:32px;background:var(--border);border-radius:16px;"></div>
+                                    <div style="flex:1;height:32px;background:var(--border);border-radius:16px;"></div>
+                                </div>
+                                <div style="height:48px;background:var(--bg-input);border-radius:12px;"></div>
+                                <div style="height:48px;background:var(--border);border-radius:12px;margin-top:8px;"></div>
+                                <div style="height:48px;background:var(--border);border-radius:12px;margin-top:8px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="screen-card__info">
+                        <p class="screen-card__name">Activity</p>
+                        <p class="screen-card__desc">Transactions, filters, status badges</p>
+                        <span class="screen-card__link">View screen <span class="material-symbols-outlined" style="font-size:16px;">arrow_forward</span></span>
+                    </div>
+                </a>
+
+                <a href="security.html" class="screen-card">
+                    <div class="screen-card__preview">
+                        <div class="screen-card__preview-frame">
+                            <div class="screen-card__preview-topbar"></div>
+                            <div class="screen-card__preview-content">
+                                <div style="height:80px;background:linear-gradient(135deg,var(--accent-20),var(--accent-10));border-radius:16px;margin-bottom:12px;display:flex;align-items:center;justify-content:center;">
+                                    <div style="text-align:center;">
+                                        <div style="font-size:24px;font-weight:700;color:var(--accent);">92</div>
+                                        <div style="font-size:10px;color:var(--fg-secondary);">SECURITY SCORE</div>
+                                    </div>
+                                </div>
+                                <div style="height:48px;background:var(--border);border-radius:12px;"></div>
+                                <div style="height:48px;background:var(--border);border-radius:12px;margin-top:8px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="screen-card__info">
+                        <p class="screen-card__name">Security</p>
+                        <p class="screen-card__desc">Score, backup, connected apps</p>
+                        <span class="screen-card__link">View screen <span class="material-symbols-outlined" style="font-size:16px;">arrow_forward</span></span>
+                    </div>
+                </a>
+
+                <a href="settings.html" class="screen-card">
+                    <div class="screen-card__preview">
+                        <div class="screen-card__preview-frame">
+                            <div class="screen-card__preview-topbar"></div>
+                            <div class="screen-card__preview-content">
+                                <div style="height:48px;background:var(--border);border-radius:12px;"></div>
+                                <div style="height:48px;background:var(--border);border-radius:12px;margin-top:8px;"></div>
+                                <div style="height:48px;background:var(--border);border-radius:12px;margin-top:8px;"></div>
+                                <div style="height:48px;background:var(--border);border-radius:12px;margin-top:8px;"></div>
+                                <div style="height:48px;background:var(--error);opacity:0.2;border-radius:12px;margin-top:16px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="screen-card__info">
+                        <p class="screen-card__name">Settings</p>
+                        <p class="screen-card__desc">Profile, network, notifications</p>
+                        <span class="screen-card__link">View screen <span class="material-symbols-outlined" style="font-size:16px;">arrow_forward</span></span>
+                    </div>
+                </a>
+
+                <a href="rewards.html" class="screen-card">
+                    <div class="screen-card__preview">
+                        <div class="screen-card__preview-frame">
+                            <div class="screen-card__preview-topbar"></div>
+                            <div class="screen-card__preview-content">
+                                <div style="height:80px;background:var(--accent-20);border-radius:16px;margin-bottom:12px;"></div>
+                                <div style="display:flex;gap:8px;">
+                                    <div style="flex:1;height:64px;background:var(--border);border-radius:12px;"></div>
+                                    <div style="flex:1;height:64px;background:var(--border);border-radius:12px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="screen-card__info">
+                        <p class="screen-card__name">Rewards</p>
+                        <p class="screen-card__desc">XP, rank, achievements, leaderboard</p>
+                        <span class="screen-card__link">View screen <span class="material-symbols-outlined" style="font-size:16px;">arrow_forward</span></span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Navigation Concept -->
+        <section class="mobile-section">
+            <h2 class="mobile-section__title">Navigation Architecture</h2>
+            <div class="nav-concept">
+                <div class="nav-concept__visual">
+                    <div class="nav-concept__item">
+                        <div class="nav-concept__icon">
+                            <span class="material-symbols-outlined">home</span>
+                        </div>
+                        <div class="nav-concept__text">
+                            <p class="nav-concept__label">Home (Default)</p>
+                            <p class="nav-concept__desc">Wallet balance, assets, quick actions, recent activity</p>
+                        </div>
+                    </div>
+                    <div class="nav-concept__item">
+                        <div class="nav-concept__icon">
+                            <span class="material-symbols-outlined">swap_horiz</span>
+                        </div>
+                        <div class="nav-concept__text">
+                            <p class="nav-concept__label">Activity</p>
+                            <p class="nav-concept__desc">Full transaction history, filters, search</p>
+                        </div>
+                    </div>
+                    <div class="nav-concept__item">
+                        <div class="nav-concept__icon">
+                            <span class="material-symbols-outlined">add_circle</span>
+                        </div>
+                        <div class="nav-concept__text">
+                            <p class="nav-concept__label">FAB - Send/Receive</p>
+                            <p class="nav-concept__desc">Floating action for primary actions</p>
+                        </div>
+                    </div>
+                    <div class="nav-concept__item">
+                        <div class="nav-concept__icon">
+                            <span class="material-symbols-outlined">emoji_events</span>
+                        </div>
+                        <div class="nav-concept__text">
+                            <p class="nav-concept__label">Rewards</p>
+                            <p class="nav-concept__desc">XP progress, achievements, leaderboard</p>
+                        </div>
+                    </div>
+                    <div class="nav-concept__item">
+                        <div class="nav-concept__icon">
+                            <span class="material-symbols-outlined">settings</span>
+                        </div>
+                        <div class="nav-concept__text">
+                            <p class="nav-concept__label">Settings</p>
+                            <p class="nav-concept__desc">Profile, security, preferences</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="cta-section">
+            <h2 class="cta-section__title">Ready to Build</h2>
+            <p class="cta-section__desc">All screens follow Jutis design language and are ready for Android implementation.</p>
+            <div class="cta-section__buttons">
+                <a href="wallet.html" class="mobile-btn mobile-btn--primary">
+                    <span class="material-symbols-outlined">preview</span>
+                    Preview Wallet
+                </a>
+                <a href="../docs/index.html" class="mobile-btn mobile-btn--secondary">
+                    <span class="material-symbols-outlined">menu_book</span>
+                    View Docs
+                </a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer style="text-align:center;padding:var(--space-8) 0;color:var(--fg-tertiary);font-size:var(--text-sm);">
+            Jutis Mobile Design System v1.0 — For Android Engineering Handoff
+        </footer>
+    </div>
+</body>
+</html>

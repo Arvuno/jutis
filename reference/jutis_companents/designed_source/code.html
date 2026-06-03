@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "bg-main": "#1a1d23",
+                        "card-bg": "#232730",
+                        "border-color": "#2e323c",
+                        "text-primary": "#e6e8ec",
+                        "text-secondary": "#9aa1ac",
+                        "accent": "#dce87a",
+                    },
+                    fontFamily: {
+                        "sans": ["Inter", "system-ui"],
+                        "display": ["Plus Jakarta Sans", "Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        @layer base {
+            body {
+                @apply bg-bg-main text-text-primary antialiased overflow-hidden;
+            }
+        }
+        .network-grid {
+            background-image: radial-gradient(var(--border-color) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        .abstract-shape {
+            @apply absolute border border-border-color opacity-20 pointer-events-none;
+        }
+        .shape-1 { width: 400px; height: 400px; transform: rotate(15deg); border-radius: 40px; top: -10%; right: -5%; }
+        .shape-2 { width: 300px; height: 300px; transform: rotate(-12deg); border-color: #dce87a; opacity: 0.1; bottom: 15%; left: 5%; }
+        .shape-3 { width: 600px; height: 600px; transform: rotate(45deg); border-radius: 100px; top: 20%; left: -10%; }
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center relative">
+<div class="fixed inset-0 network-grid opacity-30"></div>
+<div class="abstract-shape shape-1"></div>
+<div class="abstract-shape shape-2"></div>
+<div class="abstract-shape shape-3"></div>
+<div class="fixed top-[-10%] right-[-10%] w-[600px] h-[600px] bg-accent/5 rounded-full blur-[140px] pointer-events-none"></div>
+<div class="fixed bottom-[-10%] left-[-10%] w-[600px] h-[600px] bg-white/5 rounded-full blur-[140px] pointer-events-none"></div>
+<main class="relative z-10 w-full max-w-4xl px-6 flex flex-col items-center text-center">
+<div class="mb-16 floating">
+<div class="flex items-center justify-center mb-6">
+<div class="relative w-24 h-24 flex items-center justify-center">
+<div class="absolute inset-0 border-2 border-accent rounded-2xl rotate-45 scale-90"></div>
+<div class="absolute inset-0 border-2 border-text-primary/20 rounded-2xl rotate-12"></div>
+<div class="w-2 h-8 bg-accent rounded-full"></div>
+</div>
+</div>
+<h1 class="text-4xl font-display font-extrabold tracking-[0.25em] uppercase text-text-primary">
+                Jutis
+            </h1>
+<div class="w-12 h-0.5 bg-accent mx-auto mt-4 rounded-full"></div>
+</div>
+<div class="mb-20 max-w-xl">
+<h2 class="text-3xl md:text-5xl font-display font-medium tracking-tight leading-tight text-text-primary">
+                The essence of security, <br/>
+<span class="text-text-secondary">architected for Canton.</span>
+</h2>
+</div>
+<div class="group relative">
+<div class="absolute -inset-4 bg-accent/10 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition duration-500"></div>
+<a class="relative inline-flex items-center gap-4 px-10 py-5 bg-text-primary text-bg-main rounded-full font-bold text-lg hover:scale-105 active:scale-95 transition-all duration-300" href="#">
+                Download Jutis
+                <span class="material-symbols-outlined font-bold">arrow_outward</span>
+</a>
+</div>
+<div class="mt-32 flex items-center gap-8 opacity-40">
+<div class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-accent"></span>
+<span class="text-[10px] font-bold tracking-widest uppercase">Verified Node</span>
+</div>
+<div class="w-8 h-[1px] bg-border-color"></div>
+<div class="flex items-center gap-2">
+<span class="text-[10px] font-bold tracking-widest uppercase">Encryption Layer 1</span>
+</div>
+</div>
+</main>
+<div class="fixed top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-accent/20 to-transparent"></div>
+<div class="fixed bottom-12 left-1/2 -translate-x-1/2 flex gap-4 pointer-events-none opacity-20">
+<div class="w-2 h-2 rounded-full bg-accent"></div>
+<div class="w-2 h-2 rounded-full border border-accent"></div>
+<div class="w-2 h-2 rounded-full border border-accent"></div>
+</div>
+
+</body></html>

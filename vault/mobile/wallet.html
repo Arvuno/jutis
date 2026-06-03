@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Wallet - Jutis Mobile</title>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="stylesheet" href="styles/tokens.css">
+    <link rel="stylesheet" href="styles/base.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
+    <style>
+        .wallet-page {
+            min-height: 100vh;
+            min-height: 100dvh;
+            background: var(--bg-main);
+            display: flex;
+            flex-direction: column;
+            padding-top: env(safe-area-inset-top, 0px);
+            padding-bottom: env(safe-area-inset-bottom, 0px);
+        }
+
+        /* Top bar */
+        .wallet-topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--space-4);
+            height: var(--topbar-height);
+            background: var(--bg-overlay);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .wallet-topbar__left {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+        }
+
+        .wallet-topbar__logo {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .wallet-topbar__ring {
+            position: absolute;
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+        }
+
+        .wallet-topbar__ring--outer {
+            border: 1.5px solid var(--accent);
+            transform: rotate(45deg) scale(0.9);
+        }
+
+        .wallet-topbar__ring--inner {
+            border: 1.5px solid var(--fg-tertiary);
+            transform: rotate(12deg);
+            opacity: 0.3;
+        }
+
+        .wallet-topbar__bar {
+            width: 4px;
+            height: 14px;
+            background: var(--accent);
+            border-radius: 2px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .wallet-topbar__title {
+            font-size: var(--text-lg);
+            font-weight: 700;
+        }
+
+        .wallet-topbar__right {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+
+        .wallet-topbar__action {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--fg-secondary);
+            border-radius: var(--radius-md);
+            transition: all var(--duration-fast) var(--ease-out);
+        }
+
+        .wallet-topbar__action:hover {
+            background: var(--bg-card);
+            color: var(--fg-primary);
+        }
+
+        /* Content */
+        .wallet-content {
+            flex: 1;
+            padding: var(--space-4);
+            padding-bottom: calc(var(--nav-height) + var(--space-4) + env(safe-area-inset-bottom, 0px));
+            overflow-y: auto;
+        }
+
+        /* Balance Section */
+        .balance-card {
+            background: linear-gradient(135deg, var(--accent-10) 0%, var(--bg-card) 60%);
+            border: 1px solid var(--accent-20);
+            border-radius: var(--radius-2xl);
+            padding: var(--space-6);
+            margin-bottom: var(--space-5);
+        }
+
+        .balance-card__header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: var(--space-4);
+        }
+
+        .balance-card__label {
+            font-size: var(--text-sm);
+            color: var(--fg-secondary);
+            font-weight: 500;
+        }
+
+        .balance-card__badge {
+            display: flex;
+            align-items: center;
+            gap: var(--space-1);
+            padding: var(--space-1) var(--space-3);
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-full);
+        }
+
+        .balance-card__badge-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        .balance-card__badge-text {
+            font-size: var(--text-xs);
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        .balance-card__amount {
+            font-size: 40px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-1);
+        }
+
+        .balance-card__fiat {
+            font-size: var(--text-lg);
+            color: var(--fg-secondary);
+        }
+
+        .balance-card__actions {
+            display: flex;
+            gap: var(--space-3);
+            margin-top: var(--space-5);
+            padding-top: var(--space-5);
+            border-top: 1px solid var(--border);
+        }
+
+        .balance-card__action {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--space-2);
+            padding: var(--space-4);
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            transition: all var(--duration-fast) var(--ease-out);
+        }
+
+        .balance-card__action:hover {
+            border-color: var(--accent-30);
+            background: var(--bg-card-hover);
+        }
+
+        .balance-card__action-icon {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--accent-10);
+            border-radius: var(--radius-md);
+            color: var(--accent);
+            font-size: 22px;
+        }
+
+        .balance-card__action:hover .balance-card__action-icon {
+            background: var(--accent-20);
+        }
+
+        .balance-card__action-label {
+            font-size: var(--text-xs);
+            font-weight: 600;
+            color: var(--fg-secondary);
+        }
+
+        /* XP Card */
+        .xp-card {
+            display: flex;
+            align-items: center;
+            gap: var(--space-4);
+            padding: var(--space-4);
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            margin-bottom: var(--space-5);
+        }
+
+        .xp-card__icon {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--accent-20), var(--accent-10));
+            border-radius: var(--radius-lg);
+            color: var(--accent);
+            font-size: 24px;
+        }
+
+        .xp-card__info {
+            flex: 1;
+        }
+
+        .xp-card__title {
+            font-size: var(--text-sm);
+            font-weight: 600;
+            margin-bottom: var(--space-1);
+        }
+
+        .xp-card__progress {
+            height: 6px;
+            background: var(--border);
+            border-radius: var(--radius-full);
+            overflow: hidden;
+        }
+
+        .xp-card__progress-fill {
+            height: 100%;
+            width: 68%;
+            background: linear-gradient(90deg, var(--accent), var(--accent-50));
+            border-radius: var(--radius-full);
+        }
+
+        .xp-card__stats {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .xp-card__level {
+            font-size: var(--text-lg);
+            font-weight: 800;
+            color: var(--accent);
+        }
+
+        .xp-card__rank {
+            font-size: var(--text-xs);
+            color: var(--fg-tertiary);
+        }
+
+        /* Assets Section */
+        .assets-section {
+            margin-bottom: var(--space-6);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: var(--space-3);
+            padding: 0 var(--space-1);
+        }
+
+        .section-title {
+            font-size: var(--text-sm);
+            font-weight: 600;
+            color: var(--fg-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .section-action {
+            font-size: var(--text-sm);
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        .asset-list {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-2);
+        }
+
+        .asset-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-4);
+            padding: var(--space-4);
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            transition: all var(--duration-fast) var(--ease-out);
+        }
+
+        .asset-item:hover {
+            border-color: var(--accent-30);
+        }
+
+        .asset-item__icon {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--accent-10);
+            border-radius: var(--radius-md);
+            font-size: 20px;
+        }
+
+        .asset-item__icon--native {
+            background: linear-gradient(135deg, var(--accent-20), var(--accent-10));
+            color: var(--accent);
+        }
+
+        .asset-item__info {
+            flex: 1;
+        }
+
+        .asset-item__name {
+            font-size: var(--text-base);
+            font-weight: 600;
+            margin-bottom: var(--space-1);
+        }
+
+        .asset-item__symbol {
+            font-size: var(--text-sm);
+            color: var(--fg-secondary);
+        }
+
+        .asset-item__balance {
+            text-align: right;
+        }
+
+        .asset-item__amount {
+            font-size: var(--text-base);
+            font-weight: 600;
+            margin-bottom: var(--space-1);
+        }
+
+        .asset-item__fiat {
+            font-size: var(--text-sm);
+            color: var(--fg-secondary);
+        }
+
+        /* Activity Preview */
+        .activity-section {
+            margin-bottom: var(--space-4);
+        }
+
+        .activity-list {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-2);
+        }
+
+        .activity-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            padding: var(--space-3) var(--space-4);
+            background: var(--bg-card);
+            border-radius: var(--radius-md);
+        }
+
+        .activity-item__icon {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--radius-sm);
+            font-size: 18px;
+        }
+
+        .activity-item__icon--receive {
+            background: rgba(52, 211, 153, 0.15);
+            color: var(--success);
+        }
+
+        .activity-item__icon--send {
+            background: rgba(248, 113, 113, 0.15);
+            color: var(--error);
+        }
+
+        .activity-item__info {
+            flex: 1;
+        }
+
+        .activity-item__title {
+            font-size: var(--text-sm);
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .activity-item__time {
+            font-size: var(--text-xs);
+            color: var(--fg-tertiary);
+        }
+
+        .activity-item__amount {
+            font-size: var(--text-sm);
+            font-weight: 600;
+        }
+
+        .activity-item__amount--receive {
+            color: var(--success);
+        }
+
+        .activity-item__amount--send {
+            color: var(--error);
+        }
+
+        /* Bottom Nav */
+        .mobile-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: var(--nav-height);
+            background: var(--bg-overlay);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: 1px solid var(--border);
+            z-index: 100;
+            padding-bottom: env(safe-area-inset-bottom, 0px);
+        }
+
+        .mobile-nav__inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            height: 100%;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        .mobile-nav__item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-1);
+            padding: var(--space-2);
+            color: var(--fg-tertiary);
+            transition: color var(--duration-fast) var(--ease-out);
+            flex: 1;
+        }
+
+        .mobile-nav__item:hover,
+        .mobile-nav__item--active {
+            color: var(--accent);
+        }
+
+        .mobile-nav__icon {
+            font-size: 22px;
+        }
+
+        .mobile-nav__label {
+            font-size: var(--text-xs);
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <div class="wallet-page">
+        <!-- Top bar -->
+        <div class="wallet-topbar">
+            <div class="wallet-topbar__left">
+                <div class="wallet-topbar__logo">
+                    <div class="wallet-topbar__ring wallet-topbar__ring--outer"></div>
+                    <div class="wallet-topbar__ring wallet-topbar__ring--inner"></div>
+                    <div class="wallet-topbar__bar"></div>
+                </div>
+                <span class="wallet-topbar__title">Jutis</span>
+            </div>
+            <div class="wallet-topbar__right">
+                <a href="security.html" class="wallet-topbar__action">
+                    <span class="material-symbols-outlined">shield</span>
+                </a>
+                <a href="settings.html" class="wallet-topbar__action">
+                    <span class="material-symbols-outlined">settings</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div class="wallet-content">
+            <!-- Balance Card -->
+            <div class="balance-card">
+                <div class="balance-card__header">
+                    <span class="balance-card__label">Total Balance</span>
+                    <div class="balance-card__badge">
+                        <span class="balance-card__badge-dot"></span>
+                        <span class="balance-card__badge-text">Canton</span>
+                    </div>
+                </div>
+                <h1 class="balance-card__amount">8,247.32</h1>
+                <p class="balance-card__fiat">$12,451.18 USD</p>
+
+                <div class="balance-card__actions">
+                    <a href="send.html" class="balance-card__action">
+                        <div class="balance-card__action-icon">
+                            <span class="material-symbols-outlined">upload</span>
+                        </div>
+                        <span class="balance-card__action-label">Send</span>
+                    </a>
+                    <a href="receive.html" class="balance-card__action">
+                        <div class="balance-card__action-icon">
+                            <span class="material-symbols-outlined">download</span>
+                        </div>
+                        <span class="balance-card__action-label">Receive</span>
+                    </a>
+                    <a href="#" class="balance-card__action">
+                        <div class="balance-card__action-icon">
+                            <span class="material-symbols-outlined">swap_horiz</span>
+                        </div>
+                        <span class="balance-card__action-label">Swap</span>
+                    </a>
+                    <a href="rewards.html" class="balance-card__action">
+                        <div class="balance-card__action-icon">
+                            <span class="material-symbols-outlined">trophy</span>
+                        </div>
+                        <span class="balance-card__action-label">Rewards</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- XP Card -->
+            <a href="rewards.html" class="xp-card">
+                <div class="xp-card__icon">
+                    <span class="material-symbols-outlined">bolt</span>
+                </div>
+                <div class="xp-card__info">
+                    <p class="xp-card__title">Level 7 — Explorer</p>
+                    <div class="xp-card__progress">
+                        <div class="xp-card__progress-fill"></div>
+                    </div>
+                </div>
+                <div class="xp-card__stats">
+                    <span class="xp-card__level">2,847 XP</span>
+                    <span class="xp-card__rank">Rank #142</span>
+                </div>
+            </a>
+
+            <!-- Assets -->
+            <section class="assets-section">
+                <div class="section-header">
+                    <span class="section-title">Assets</span>
+                    <a href="#" class="section-action">See all</a>
+                </div>
+                <div class="asset-list">
+                    <div class="asset-item">
+                        <div class="asset-item__icon asset-item__icon--native">
+                            <span class="material-symbols-outlined">circle</span>
+                        </div>
+                        <div class="asset-item__info">
+                            <p class="asset-item__name">Canton</p>
+                            <p class="asset-item__symbol">CANTON</p>
+                        </div>
+                        <div class="asset-item__balance">
+                            <p class="asset-item__amount">8,247.32</p>
+                            <p class="asset-item__fiat">$12,341.18</p>
+                        </div>
+                    </div>
+                    <div class="asset-item">
+                        <div class="asset-item__icon">
+                            <span class="material-symbols-outlined">tether</span>
+                        </div>
+                        <div class="asset-item__info">
+                            <p class="asset-item__name">USD Tether</p>
+                            <p class="asset-item__symbol">USDT</p>
+                        </div>
+                        <div class="asset-item__balance">
+                            <p class="asset-item__amount">1,250.00</p>
+                            <p class="asset-item__fiat">$1,248.75</p>
+                        </div>
+                    </div>
+                    <div class="asset-item">
+                        <div class="asset-item__icon">
+                            <span class="material-symbols-outlined">workspace_premium</span>
+                        </div>
+                        <div class="asset-item__info">
+                            <p class="asset-item__name">Ethereum</p>
+                            <p class="asset-item__symbol">ETH</p>
+                        </div>
+                        <div class="asset-item__balance">
+                            <p class="asset-item__amount">0.2847</p>
+                            <p class="asset-item__fiat">$861.25</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Recent Activity -->
+            <section class="activity-section">
+                <div class="section-header">
+                    <span class="section-title">Recent Activity</span>
+                    <a href="activity.html" class="section-action">See all</a>
+                </div>
+                <div class="activity-list">
+                    <a href="activity.html" class="activity-item">
+                        <div class="activity-item__icon activity-item__icon--receive">
+                            <span class="material-symbols-outlined">download</span>
+                        </div>
+                        <div class="activity-item__info">
+                            <p class="activity-item__title">Received CANTON</p>
+                            <p class="activity-item__time">2 minutes ago</p>
+                        </div>
+                        <span class="activity-item__amount activity-item__amount--receive">+500.00</span>
+                    </a>
+                    <a href="activity.html" class="activity-item">
+                        <div class="activity-item__icon activity-item__icon--send">
+                            <span class="material-symbols-outlined">upload</span>
+                        </div>
+                        <div class="activity-item__info">
+                            <p class="activity-item__title">Sent USDT</p>
+                            <p class="activity-item__time">1 hour ago</p>
+                        </div>
+                        <span class="activity-item__amount activity-item__amount--send">-125.00</span>
+                    </a>
+                    <a href="activity.html" class="activity-item">
+                        <div class="activity-item__icon activity-item__icon--receive">
+                            <span class="material-symbols-outlined">bolt</span>
+                        </div>
+                        <div class="activity-item__info">
+                            <p class="activity-item__title">Reward Earned</p>
+                            <p class="activity-item__time">3 hours ago</p>
+                        </div>
+                        <span class="activity-item__amount activity-item__amount--receive">+50 XP</span>
+                    </a>
+                </div>
+            </section>
+        </div>
+
+        <!-- Bottom Nav -->
+        <nav class="mobile-nav">
+            <a href="wallet.html" class="mobile-nav__item mobile-nav__item--active">
+                <span class="material-symbols-outlined mobile-nav__icon">home</span>
+                <span class="mobile-nav__label">Home</span>
+            </a>
+            <a href="activity.html" class="mobile-nav__item">
+                <span class="material-symbols-outlined mobile-nav__icon">swap_horiz</span>
+                <span class="mobile-nav__label">Activity</span>
+            </a>
+            <a href="send.html" class="mobile-nav__item" style="position:relative;">
+                <span class="material-symbols-outlined mobile-nav__icon" style="background:var(--accent);color:var(--bg-main);width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-top:-20px;box-shadow:0 4px 12px rgba(183,245,58,0.3);">send</span>
+            </a>
+            <a href="rewards.html" class="mobile-nav__item">
+                <span class="material-symbols-outlined mobile-nav__icon">emoji_events</span>
+                <span class="mobile-nav__label">Rewards</span>
+            </a>
+            <a href="settings.html" class="mobile-nav__item">
+                <span class="material-symbols-outlined mobile-nav__icon">settings</span>
+                <span class="mobile-nav__label">Settings</span>
+            </a>
+        </nav>
+    </div>
+</body>
+</html>

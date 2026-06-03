@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta name="description" content="Jutis - The secure, non-custodial web extension wallet built for the Canton blockchain ecosystem. Manage your digital assets with bank-grade security."/>
+<meta name="keywords" content="Canton wallet, blockchain wallet, web extension, crypto wallet, DeFi, Canton blockchain, digital assets"/>
+<meta name="author" content="Jutis"/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://jutis.xyz/"/>
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://jutis.xyz/"/>
+<meta property="og:title" content="Jutis - Web Extension Wallet for Canton"/>
+<meta property="og:description" content="The secure, non-custodial web extension wallet built for the Canton blockchain ecosystem."/>
+<meta property="og:image" content="https://jutis.xyz/og-image.svg"/>
+<meta property="og:site_name" content="Jutis"/>
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:site" content="@jutiswallet"/>
+<meta name="twitter:url" content="https://jutis.xyz/"/>
+<meta name="twitter:title" content="Jutis - Web Extension Wallet for Canton"/>
+<meta name="twitter:description" content="The secure, non-custodial web extension wallet built for the Canton blockchain ecosystem."/>
+<meta name="twitter:image" content="https://jutis.xyz/og-image.svg"/>
+
+<title>Jutis - Web Extension Wallet for Canton</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script>
+tailwind.config = {
+    darkMode: "class",
+    theme: {
+        extend: {
+            colors: {
+                "bg-main": "#1a1d23",
+                "card-bg": "#232730",
+                "border-color": "#2e323c",
+                "text-primary": "#e6e8ec",
+                "text-secondary": "#9aa1ac",
+                "accent": "#dce87a",
+            },
+            fontFamily: {
+                "sans": ["Inter", "system-ui"],
+                "display": ["Plus Jakarta Sans", "Inter"]
+            }
+        },
+    },
+}
+</script>
+<style>
+body { background-color: #1a1d23; color: #e6e8ec; font-family: "Inter", system-ui; }
+.network-grid { background-image: radial-gradient(#2e323c 1px, transparent 1px); background-size: 40px 40px; }
+.abstract-shape { position: absolute; border: 1px solid #2e323c; opacity: 0.2; pointer-events: none; }
+.shape-1 { width: 40vw; max-width: 400px; height: 40vw; max-height: 400px; transform: rotate(15deg); border-radius: 40px; top: -10%; right: -5%; }
+.shape-2 { width: 30vw; max-width: 300px; height: 30vw; max-height: 300px; transform: rotate(-12deg); border-color: #dce87a; opacity: 0.1; bottom: 15%; left: 5%; }
+.shape-3 { width: 60vw; max-width: 600px; height: 60vw; max-height: 600px; transform: rotate(45deg); border-radius: 100px; top: 20%; left: -10%; }
+.floating { animation: float 6s ease-in-out infinite; }
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+</style>
+</head>
+<body class="min-h-screen flex items-center justify-center relative overflow-x-hidden">
+<!-- Background -->
+<div class="fixed inset-0 network-grid opacity-30"></div>
+<div class="abstract-shape shape-1"></div>
+<div class="abstract-shape shape-2"></div>
+<div class="abstract-shape shape-3"></div>
+<div class="fixed top-[-10%] right-[-10%] w-[80vw] max-w-[600px] h-[80vw] max-h-[600px] bg-[#dce87a]/5 rounded-full blur-[140px] pointer-events-none"></div>
+<div class="fixed bottom-[-10%] left-[-10%] w-[80vw] max-w-[600px] h-[80vw] max-h-[600px] bg-white/5 rounded-full blur-[140px] pointer-events-none"></div>
+
+<!-- Header -->
+<header class="fixed top-0 left-0 w-full z-50 px-6 py-4">
+    <nav class="max-w-7xl mx-auto flex items-center justify-between">
+        <a href="index.html" class="flex items-center gap-3 group">
+            <div class="relative w-10 h-10 flex items-center justify-center">
+                <div class="absolute inset-0 border-2 border-[#dce87a] rounded-xl rotate-45 scale-90 group-hover:rotate-45 group-hover:scale-100 transition-all duration-300"></div>
+                <div class="absolute inset-0 border-2 border-[#e6e8ec]/20 rounded-xl rotate-12"></div>
+                <div class="w-1.5 h-5 bg-[#dce87a] rounded-full"></div>
+            </div>
+            <span class="text-xl font-display font-bold tracking-[0.2em] uppercase">Jutis</span>
+        </a>
+        <div class="hidden md:flex items-center gap-8">
+            <a href="feature.html" class="text-sm font-medium text-[#9aa1ac] hover:text-[#e6e8ec] transition-colors">Feature</a>
+            <a href="bridge/index.html" class="text-sm font-medium text-[#9aa1ac] hover:text-[#e6e8ec] transition-colors">Bridge</a>
+            <a href="developers/index.html" class="text-sm font-medium text-[#9aa1ac] hover:text-[#e6e8ec] transition-colors">Developers</a>
+            <a href="docs/index.html" class="text-sm font-medium text-[#9aa1ac] hover:text-[#e6e8ec] transition-colors">Docs</a>
+            <a href="security.html" class="text-sm font-medium text-[#9aa1ac] hover:text-[#e6e8ec] transition-colors">Security</a>
+        </div>
+        <div class="flex items-center gap-4">
+            <a href="login.html" class="text-sm font-medium text-[#9aa1ac] hover:text-[#e6e8ec] transition-colors">Login</a>
+            <a href="signup.html" class="px-4 py-2 bg-[#e6e8ec] text-[#1a1d23] rounded-full text-sm font-bold hover:bg-[#dce87a] hover:text-[#1a1d23] transition-all">Sign Up</a>
+        </div>
+    </nav>
+</header>
+
+<main class="relative z-10 w-full max-w-4xl px-6 pt-32 pb-20 flex flex-col items-center text-center">
+    <div class="mb-16 floating">
+        <div class="flex items-center justify-center mb-6">
+            <div class="relative w-24 h-24 flex items-center justify-center">
+                <div class="absolute inset-0 border-2 border-[#dce87a] rounded-2xl rotate-45 scale-90"></div>
+                <div class="absolute inset-0 border-2 border-[#e6e8ec]/20 rounded-2xl rotate-12"></div>
+                <div class="w-2 h-8 bg-[#dce87a] rounded-full"></div>
+            </div>
+        </div>
+        <h1 class="text-4xl font-display font-extrabold tracking-[0.25em] uppercase text-[#e6e8ec]">Jutis</h1>
+        <div class="w-12 h-0.5 bg-[#dce87a] mx-auto mt-4 rounded-full"></div>
+    </div>
+
+    <div class="mb-20 max-w-xl">
+        <h2 class="text-3xl md:text-5xl font-display font-medium tracking-tight leading-tight text-[#e6e8ec]">
+            The essence of security, <br/>
+            <span class="text-[#9aa1ac]">architected for Canton.</span>
+        </h2>
+    </div>
+
+    <div class="group relative">
+        <div class="absolute -inset-4 bg-[#dce87a]/10 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition duration-500"></div>
+        <a class="relative inline-flex items-center gap-4 px-10 py-5 bg-[#e6e8ec] text-[#1a1d23] rounded-full font-bold text-lg hover:scale-105 active:scale-95 transition-all duration-300" href="dashboard/index.html">
+            Open Jutis
+            <span class="material-symbols-outlined font-bold">arrow_outward</span>
+        </a>
+    </div>
+
+    <!-- BETA Badge -->
+    <div class="mt-3">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-[#dce87a]/10 border border-[#dce87a]/20 rounded-full text-xs font-semibold text-[#dce87a] tracking-wider">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#dce87a] animate-pulse"></span>
+            BETA
+        </span>
+    </div>
+
+    <!-- Join Waitlist -->
+    <p class="mt-6 text-sm text-[#9aa1ac]">
+        or <a href="waitlist.html" class="text-[#dce87a] hover:underline font-medium">join the waitlist</a> for early access
+    </p>
+
+    <div class="mt-32 flex items-center gap-8 opacity-40">
+        <div class="flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#dce87a]"></span>
+            <span class="text-[10px] font-bold tracking-widest uppercase">Verified Node</span>
+        </div>
+        <div class="w-8 h-[1px] bg-[#2e323c]"></div>
+        <div class="flex items-center gap-2">
+            <span class="text-[10px] font-bold tracking-widest uppercase">Encryption Layer 1</span>
+        </div>
+    </div>
+</main>
+
+<div class="fixed top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#dce87a]/20 to-transparent"></div>
+<div class="fixed bottom-12 left-1/2 -translate-x-1/2 flex gap-4 pointer-events-none opacity-20">
+    <div class="w-2 h-2 rounded-full bg-[#dce87a]"></div>
+    <div class="w-2 h-2 rounded-full border border-[#dce87a]"></div>
+    <div class="w-2 h-2 rounded-full border border-[#dce87a]"></div>
+</div>
+</body>
+</html>

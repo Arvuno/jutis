@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/>
+<title>Iconography</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<style>
+  html,body{margin:0;background:transparent;font-family:'Inter',system-ui}
+  .card{
+    width:700px;padding:22px;box-sizing:border-box;color:#e6e8ec;position:relative;overflow:hidden;
+    background:linear-gradient(180deg,#1a1d23 0%,#13161b 100%);
+    border:1px solid #2e323c
+  }
+  .card::before{
+    content:'';position:absolute;inset:0;pointer-events:none;
+    background-image:radial-gradient(rgba(46,50,60,.4) 1px, transparent 1px);
+    background-size:22px 22px;opacity:.3
+  }
+  .head{position:relative;display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+  .eyebrow{font:700 9px 'Inter';letter-spacing:.28em;text-transform:uppercase;color:#9aa1ac;display:inline-flex;align-items:center;gap:8px}
+  .eyebrow .d{width:6px;height:6px;border-radius:9999px;background:#dce87a;box-shadow:0 0 10px #dce87a}
+  .count{font:500 10px 'JetBrains Mono';color:#9aa1ac;display:inline-flex;align-items:center;gap:6px}
+  .count .sub{padding:2px 6px;border:1px solid #2e323c;border-radius:4px;color:#dce87a}
+
+  .grid{position:relative;display:grid;grid-template-columns:repeat(8,1fr);gap:6px}
+  .ic{
+    position:relative;aspect-ratio:1;
+    background:linear-gradient(160deg,#232730,#1a1d23);
+    border:1px solid rgba(255,255,255,.04);
+    border-radius:12px;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
+    transition:all .2s;
+    overflow:hidden;
+  }
+  .ic::before{
+    content:'';position:absolute;inset:0;
+    background:radial-gradient(circle at 50% 20%, rgba(220,232,122,.08), transparent 60%);
+    opacity:0;transition:opacity .2s;
+  }
+  .ic.hot{border-color:rgba(220,232,122,.25)}
+  .ic.hot::before{opacity:1}
+  .ic span.material-symbols-outlined{font-size:22px;color:#dce87a;font-variation-settings:'wght' 400,'FILL' 0;position:relative}
+  .ic.hot span.material-symbols-outlined{font-variation-settings:'wght' 500,'FILL' 0}
+  .ic .nm{font:500 8px 'JetBrains Mono';color:#4a4f5a;letter-spacing:.02em;position:relative}
+  .ic.hot .nm{color:#9aa1ac}
+  .ic .num{position:absolute;top:3px;left:5px;font:500 7px 'JetBrains Mono';color:#4a4f5a;letter-spacing:.05em}
+</style></head>
+<body>
+<div class="card">
+  <div class="head">
+    <div class="eyebrow"><span class="d"></span>Iconography · Material Symbols Outlined</div>
+    <div class="count">16 · <span class="sub">wght 400</span></div>
+  </div>
+
+  <div class="grid">
+    <div class="ic hot"><span class="num">01</span><span class="material-symbols-outlined">dashboard</span><div class="nm">dashboard</div></div>
+    <div class="ic hot"><span class="num">02</span><span class="material-symbols-outlined">account_balance_wallet</span><div class="nm">wallet</div></div>
+    <div class="ic hot"><span class="num">03</span><span class="material-symbols-outlined">swap_horiz</span><div class="nm">swap</div></div>
+    <div class="ic"><span class="num">04</span><span class="material-symbols-outlined">history</span><div class="nm">history</div></div>
+    <div class="ic"><span class="num">05</span><span class="material-symbols-outlined">security</span><div class="nm">security</div></div>
+    <div class="ic"><span class="num">06</span><span class="material-symbols-outlined">settings</span><div class="nm">settings</div></div>
+    <div class="ic"><span class="num">07</span><span class="material-symbols-outlined">qr_code</span><div class="nm">qr</div></div>
+    <div class="ic hot"><span class="num">08</span><span class="material-symbols-outlined">bolt</span><div class="nm">bolt</div></div>
+    <div class="ic"><span class="num">09</span><span class="material-symbols-outlined">send</span><div class="nm">send</div></div>
+    <div class="ic"><span class="num">10</span><span class="material-symbols-outlined">arrow_outward</span><div class="nm">arrow_out</div></div>
+    <div class="ic"><span class="num">11</span><span class="material-symbols-outlined">arrow_upward</span><div class="nm">up</div></div>
+    <div class="ic"><span class="num">12</span><span class="material-symbols-outlined">arrow_downward</span><div class="nm">down</div></div>
+    <div class="ic"><span class="num">13</span><span class="material-symbols-outlined">notifications</span><div class="nm">notif</div></div>
+    <div class="ic"><span class="num">14</span><span class="material-symbols-outlined">menu</span><div class="nm">menu</div></div>
+    <div class="ic"><span class="num">15</span><span class="material-symbols-outlined">expand_more</span><div class="nm">expand</div></div>
+    <div class="ic hot"><span class="num">16</span><span class="material-symbols-outlined">check_circle</span><div class="nm">check</div></div>
+  </div>
+</div>
+</body></html>

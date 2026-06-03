@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Rewards - Jutis Bridge</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script>
+tailwind.config = {
+    darkMode: "class",
+    theme: {
+        extend: {
+            colors: {
+                "bg-main": "#1a1d23",
+                "card-bg": "#232730",
+                "border-color": "#2e323c",
+                "text-primary": "#e6e8ec",
+                "text-secondary": "#9aa1ac",
+                "accent": "#dce87a",
+            },
+            fontFamily: {
+                "sans": ["Inter", "system-ui"],
+                "display": ["Plus Jakarta Sans", "Inter"]
+            }
+        },
+    },
+}
+</script>
+<style>
+body { background-color: #0a0b0f; color: #e6e8ec; font-family: "Inter", system-ui; overflow: hidden; height: 100dvh; }
+.grid-bg { background-image: radial-gradient(#1a1d23 1px, transparent 1px); background-size: 50px 50px; }
+.cyber-border { border: 1px solid rgba(220, 232, 122, 0.1); }
+.cyber-glow { box-shadow: 0 0 30px rgba(220, 232, 122, 0.08); }
+.tier-card { transition: all 0.3s ease; }
+.tier-card:hover { transform: translateY(-2px); border-color: rgba(220, 232, 122, 0.3); }
+.stat-card { transition: all 0.3s ease; }
+.stat-card:hover { box-shadow: 0 0 40px rgba(220, 232, 122, 0.15); }
+</style>
+</head>
+<body class="min-h-screen">
+<div class="fixed inset-0 grid-bg opacity-30"></div>
+<div class="fixed top-0 right-0 w-[500px] h-[500px] bg-[#dce87a]/5 rounded-full blur-[150px] pointer-events-none"></div>
+
+<div class="relative z-10 h-[100dvh] flex flex-col">
+    <div class="h-[2px] bg-gradient-to-r from-transparent via-[#dce87a]/40 to-transparent"></div>
+
+    <main class="flex-1 px-4 sm:px-6 py-4 overflow-hidden flex flex-col">
+        <!-- Header -->
+        <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center gap-3">
+                <a href="../index.html" class="flex items-center gap-2 group">
+                    <div class="relative w-8 h-8 flex items-center justify-center">
+                        <div class="absolute inset-0 border-2 border-[#dce87a] rounded-lg rotate-45 scale-90"></div>
+                        <div class="w-1 h-4 bg-[#dce87a] rounded-full"></div>
+                    </div>
+                </a>
+                <span class="text-[#2e323c]">|</span>
+                <h1 class="text-lg font-display font-semibold">
+                    <span class="text-[#9aa1ac]">Bridge</span>
+                    <span class="text-[#dce87a]"> Rewards</span>
+                </h1>
+            </div>
+            <a href="index.html" class="px-4 py-2 bg-[#dce87a] text-[#0a0b0f] rounded-lg font-bold text-sm hover:opacity-90 transition-all">
+                Start Earning
+            </a>
+        </div>
+
+        <!-- Content -->
+        <div class="flex-1 flex flex-col justify-center max-w-4xl mx-auto w-full">
+            <!-- Stats -->
+            <div class="grid grid-cols-3 gap-3 mb-4">
+                <div class="stat-card p-4 bg-gradient-to-b from-[#181a21] to-[#0f1015] cyber-border rounded-xl text-center relative overflow-hidden">
+                    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-16 bg-[#dce87a]/10 rounded-full blur-[30px]"></div>
+                    <p class="relative text-2xl font-display font-bold text-[#dce87a]">$12,458</p>
+                    <p class="text-[10px] text-[#9aa1ac]">Total Rewards</p>
+                </div>
+                <div class="stat-card p-4 bg-[#181a21] cyber-border rounded-xl text-center">
+                    <p class="text-2xl font-display font-bold text-[#dce87a]">847</p>
+                    <p class="text-[10px] text-[#9aa1ac]">Total Swaps</p>
+                </div>
+                <div class="stat-card p-4 bg-[#181a21] cyber-border rounded-xl text-center">
+                    <p class="text-2xl font-display font-bold text-[#dce87a]">2.4%</p>
+                    <p class="text-[10px] text-[#9aa1ac]">Current APY</p>
+                </div>
+            </div>
+
+            <!-- Tiers -->
+            <div class="space-y-2">
+                <div class="tier-card flex items-center gap-4 p-3 bg-[#181a21] cyber-border rounded-xl">
+                    <div class="w-10 h-10 rounded-lg bg-[#9aa1ac]/20 flex items-center justify-center text-lg">🥉</div>
+                    <div class="flex-1">
+                        <h3 class="font-medium text-sm">Bronze Swapper</h3>
+                        <p class="text-xs text-[#9aa1ac]">0-100 swaps</p>
+                    </div>
+                    <span class="text-[#dce87a] font-semibold text-sm">+0.05%</span>
+                </div>
+                <div class="tier-card flex items-center gap-4 p-3 bg-[#181a21] cyber-border rounded-xl">
+                    <div class="w-10 h-10 rounded-lg bg-[#c0c0c0]/20 flex items-center justify-center text-lg">🥈</div>
+                    <div class="flex-1">
+                        <h3 class="font-medium text-sm">Silver Swapper</h3>
+                        <p class="text-xs text-[#9aa1ac]">100-500 swaps</p>
+                    </div>
+                    <span class="text-[#dce87a] font-semibold text-sm">+0.10%</span>
+                </div>
+                <div class="tier-card flex items-center gap-4 p-3 bg-[#181a21] cyber-border rounded-xl">
+                    <div class="w-10 h-10 rounded-lg bg-[#ffd700]/20 flex items-center justify-center text-lg">🥇</div>
+                    <div class="flex-1">
+                        <h3 class="font-medium text-sm">Gold Swapper</h3>
+                        <p class="text-xs text-[#9aa1ac]">500-1000 swaps</p>
+                    </div>
+                    <span class="text-[#dce87a] font-semibold text-sm">+0.20%</span>
+                </div>
+                <div class="tier-card flex items-center gap-4 p-3 bg-gradient-to-r from-[#dce87a]/10 to-[#181a21] cyber-border rounded-xl border-[#dce87a]/30">
+                    <div class="w-10 h-10 rounded-lg bg-[#dce87a]/20 flex items-center justify-center text-lg">💎</div>
+                    <div class="flex-1">
+                        <h3 class="font-medium text-sm text-[#dce87a]">Diamond Swapper</h3>
+                        <p class="text-xs text-[#9aa1ac]">1000+ swaps</p>
+                    </div>
+                    <span class="text-[#dce87a] font-semibold text-sm">+0.35%</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Nav -->
+        <div class="flex items-center justify-between py-3 text-xs text-[#9aa1ac] border-t border-[#2e323c]/30">
+            <div class="flex items-center gap-4">
+                <a href="index.html" class="hover:text-[#e6e8ec]">Bridge</a>
+                <a href="how-it-works.html" class="hover:text-[#e6e8ec]">How It Works</a>
+                <a href="rewards.html" class="text-[#dce87a]">Rewards</a>
+                <a href="rules.html" class="hover:text-[#e6e8ec]">Rules</a>
+            </div>
+            <p>© 2026 Jutis</p>
+        </div>
+    </main>
+</div>
+</body>
+</html>

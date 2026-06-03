@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Bridge - Jutis</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script>
+tailwind.config = {
+    darkMode: "class",
+    theme: {
+        extend: {
+            colors: {
+                "bg-main": "#1a1d23",
+                "card-bg": "#232730",
+                "border-color": "#2e323c",
+                "text-primary": "#e6e8ec",
+                "text-secondary": "#9aa1ac",
+                "accent": "#dce87a",
+            },
+            fontFamily: {
+                "sans": ["Inter", "system-ui"],
+                "display": ["Plus Jakarta Sans", "Inter"]
+            }
+        },
+    },
+}
+</script>
+<style>
+body { background-color: #0a0b0f; color: #e6e8ec; font-family: "Inter", system-ui; overflow: hidden; height: 100dvh; }
+.grid-bg { background-image: radial-gradient(#1a1d23 1px, transparent 1px); background-size: 50px 50px; }
+.cyber-glow { box-shadow: 0 0 40px rgba(220, 232, 122, 0.12), 0 0 80px rgba(220, 232, 122, 0.05); }
+.cyber-border { border: 1px solid rgba(220, 232, 122, 0.1); }
+.cyber-border:hover { border-color: rgba(220, 232, 122, 0.3); }
+.swap-arrow { transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.swap-arrow:hover { transform: rotate(180deg) scale(1.1); }
+.swap-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+.swap-card:hover { box-shadow: 0 0 50px rgba(220, 232, 122, 0.15); }
+.swap-btn { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+.swap-btn:hover { transform: scale(1.02); box-shadow: 0 0 30px rgba(220, 232, 122, 0.3); }
+.swap-btn:active { transform: scale(0.98); }
+.token-change { animation: tokenPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
+@keyframes tokenPop { 0% { transform: scale(0.8); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+.swap-success { animation: successPulse 0.6s ease-out; }
+@keyframes successPulse { 0% { transform: scale(1); } 50% { transform: scale(1.02); box-shadow: 0 0 60px rgba(220, 232, 122, 0.4); } 100% { transform: scale(1); } }
+.scan-line { position: relative; overflow: hidden; }
+.scan-line::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, rgba(220, 232, 122, 0.3), transparent); animation: scan 4s linear infinite; }
+@keyframes scan { 0% { top: 0; } 100% { top: 100%; } }
+.token-ripple { position: relative; overflow: hidden; }
+.token-ripple::before { content: ''; position: absolute; top: 50%; left: 50%; width: 0; height: 0; background: rgba(220, 232, 122, 0.2); border-radius: 50%; transform: translate(-50%, -50%); transition: width 0.6s, height 0.6s; }
+.token-ripple:active::before { width: 300px; height: 300px; }
+@keyframes pulse-glow { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
+.pulse-anim { animation: pulse-glow 2s ease-in-out infinite; }
+.history-item { transition: all 0.2s ease; }
+.history-item:hover { background: rgba(220, 232, 122, 0.05); transform: translateX(4px); }
+</style>
+</head>
+<body class="min-h-screen">
+<!-- Background Effects -->
+<div class="fixed inset-0 grid-bg opacity-30"></div>
+<div class="fixed top-0 right-0 w-[500px] h-[500px] bg-[#dce87a]/5 rounded-full blur-[150px] pointer-events-none"></div>
+<div class="fixed bottom-0 left-0 w-[500px] h-[500px] bg-[#4a9eff]/3 rounded-full blur-[150px] pointer-events-none"></div>
+
+<!-- Top Accent -->
+<div class="h-[2px] bg-gradient-to-r from-transparent via-[#dce87a]/40 to-transparent"></div>
+
+<!-- Main Content - Full Height -->
+<main class="relative z-10 h-[calc(100dvh-8px)] flex flex-col px-4 sm:px-6 py-4">
+    <!-- Header Row -->
+    <div class="flex items-center justify-between mb-4">
+        <div class="flex items-center gap-4">
+            <a href="../index.html" class="flex items-center gap-2 group">
+                <div class="relative w-8 h-8 flex items-center justify-center">
+                    <div class="absolute inset-0 border-2 border-[#dce87a] rounded-lg rotate-45 scale-90 group-hover:rotate-45 group-hover:scale-100 transition-all"></div>
+                    <div class="w-1 h-4 bg-[#dce87a] rounded-full"></div>
+                </div>
+                <span class="text-lg font-display font-bold tracking-[0.15em] uppercase hidden sm:block">Jutis</span>
+            </a>
+            <span class="text-[#2e323c]">|</span>
+            <h1 class="text-lg font-display font-semibold">
+                <span class="text-[#9aa1ac]">Canton</span>
+                <span class="text-[#dce87a]"> Bridge</span>
+            </h1>
+        </div>
+
+        <!-- Status -->
+        <div class="flex items-center gap-3">
+            <div class="hidden sm:flex items-center gap-2 px-3 py-1.5 bg-[#dce87a]/10 border border-[#dce87a]/20 rounded-full">
+                <span class="w-2 h-2 rounded-full bg-[#dce87a] pulse-anim"></span>
+                <span class="text-xs font-medium text-[#dce87a]">Live</span>
+            </div>
+            <div class="flex items-center gap-2 px-3 py-1.5 bg-[#232730] border border-[#2e323c] rounded-lg">
+                <div class="w-6 h-6 rounded-full bg-[#dce87a]/20 flex items-center justify-center">
+                    <span class="text-[10px] font-bold text-[#dce87a]">JD</span>
+                </div>
+                <span class="text-xs text-[#9aa1ac] hidden sm:inline">0x1a2b...3c4d</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Grid -->
+    <div class="flex-1 grid grid-cols-1 lg:grid-cols-3 gap-4 min-h-0">
+        <!-- Swap Card -->
+        <div class="lg:col-span-2 flex flex-col">
+            <div class="swap-card cyber-glow bg-gradient-to-b from-[#181a21] to-[#0f1015] cyber-border rounded-2xl p-4 sm:p-6 flex-1 flex flex-col scan-line relative">
+                <!-- Ambient top glow -->
+                <div class="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-20 bg-[#dce87a]/10 rounded-full blur-[40px] pointer-events-none"></div>
+
+                <div class="relative flex-1 flex flex-col justify-center">
+                    <!-- From Token -->
+                    <div class="mb-3">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-xs text-[#9aa1ac]">You Pay</span>
+                            <span class="text-xs text-[#9aa1ac]">Bal: <span class="text-[#dce87a]" id="fromBal">8,234.56</span></span>
+                        </div>
+                        <div class="flex items-center gap-3 p-3 sm:p-4 bg-[#0a0b0f]/50 border border-[#2e323c]/50 rounded-xl token-ripple">
+                            <button id="fromTokenBtn" class="flex items-center gap-2 px-3 py-2 bg-[#1a1d23] hover:bg-[#232730] border border-[#2e323c] rounded-lg transition-all">
+                                <div class="w-8 h-8 rounded-full bg-[#dce87a]/20 flex items-center justify-center">
+                                    <span class="font-bold text-[#dce87a] text-sm">C</span>
+                                </div>
+                                <span class="font-semibold" id="fromTokenSymbol">CANT</span>
+                                <span class="material-symbols-outlined text-[#9aa1ac] text-base">expand_more</span>
+                            </button>
+                            <input
+                                type="number"
+                                id="fromAmount"
+                                placeholder="0.0"
+                                class="flex-1 text-right text-2xl sm:text-3xl font-display font-bold bg-transparent outline-none placeholder-[#9aa1ac]/30"
+                            />
+                        </div>
+                    </div>
+
+                    <!-- Swap Button -->
+                    <div class="relative h-0 flex justify-center z-10 -my-2">
+                        <button id="swapTokens" class="w-12 h-12 sm:w-14 sm:h-14 bg-[#181a21] border-2 border-[#dce87a]/30 rounded-full flex items-center justify-center hover:border-[#dce87a] hover:bg-[#dce87a]/10 transition-all swap-arrow">
+                            <span class="material-symbols-outlined text-[#dce87a]">swap_vert</span>
+                        </button>
+                    </div>
+
+                    <!-- To Token -->
+                    <div class="mt-3">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-xs text-[#9aa1ac]">You Receive</span>
+                            <span class="text-xs text-[#9aa1ac]">Bal: <span class="text-[#4a9eff]" id="toBal">2,156.00</span></span>
+                        </div>
+                        <div class="flex items-center gap-3 p-3 sm:p-4 bg-[#0a0b0f]/50 border border-[#2e323c]/50 rounded-xl">
+                            <button id="toTokenBtn" class="flex items-center gap-2 px-3 py-2 bg-[#1a1d23] hover:bg-[#232730] border border-[#2e323c] rounded-lg transition-all">
+                                <div class="w-8 h-8 rounded-full bg-[#4a9eff]/20 flex items-center justify-center">
+                                    <span class="font-bold text-[#4a9eff] text-sm">$</span>
+                                </div>
+                                <span class="font-semibold" id="toTokenSymbol">USDC</span>
+                                <span class="material-symbols-outlined text-[#9aa1ac] text-base">expand_more</span>
+                            </button>
+                            <input
+                                type="number"
+                                id="toAmount"
+                                placeholder="0.0"
+                                readonly
+                                class="flex-1 text-right text-2xl sm:text-3xl font-display font-bold bg-transparent outline-none placeholder-[#9aa1ac]/30"
+                            />
+                        </div>
+                    </div>
+
+                    <!-- Details -->
+                    <div class="mt-4 p-3 bg-[#0a0b0f]/30 rounded-xl space-y-2">
+                        <div class="flex items-center justify-between text-xs">
+                            <span class="text-[#9aa1ac]">Rate</span>
+                            <span class="font-medium" id="exchangeRate">1 CANT = 0.023 USDC</span>
+                        </div>
+                        <div class="flex items-center justify-between text-xs">
+                            <span class="text-[#9aa1ac]">Fee (0.1%)</span>
+                            <span class="font-medium">~0.001 CANT</span>
+                        </div>
+                        <div class="flex items-center justify-between text-xs">
+                            <span class="text-[#9aa1ac]">Time</span>
+                            <span class="font-medium text-[#dce87a]">~3 sec</span>
+                        </div>
+                    </div>
+
+                    <!-- Swap Button -->
+                    <button id="swapBtn" class="swap-btn w-full mt-4 py-3 sm:py-4 bg-gradient-to-r from-[#dce87a] to-[#c8d96a] text-[#0a0b0f] rounded-xl font-bold flex items-center justify-center gap-2">
+                        <span class="material-symbols-outlined">bolt</span>
+                        <span>Swap Now</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="grid grid-cols-3 gap-2 mt-3">
+                <a href="how-it-works.html" class="p-2 sm:p-3 bg-[#181a21] cyber-border rounded-xl text-center hover:bg-[#1a1d23] transition-all">
+                    <span class="material-symbols-outlined text-[#dce87a] text-lg mb-1">help</span>
+                    <p class="text-[10px] sm:text-xs font-medium">How It Works</p>
+                </a>
+                <a href="rewards.html" class="p-2 sm:p-3 bg-[#181a21] cyber-border rounded-xl text-center hover:bg-[#1a1d23] transition-all">
+                    <span class="material-symbols-outlined text-[#dce87a] text-lg mb-1">stars</span>
+                    <p class="text-[10px] sm:text-xs font-medium">Rewards</p>
+                </a>
+                <a href="rules.html" class="p-2 sm:p-3 bg-[#181a21] cyber-border rounded-xl text-center hover:bg-[#1a1d23] transition-all">
+                    <span class="material-symbols-outlined text-[#dce87a] text-lg mb-1">gavel</span>
+                    <p class="text-[10px] sm:text-xs font-medium">Rules</p>
+                </a>
+            </div>
+        </div>
+
+        <!-- History Sidebar -->
+        <div class="hidden lg:flex flex-col bg-[#181a21] cyber-border rounded-2xl overflow-hidden">
+            <div class="p-4 border-b border-[#2e323c]/50 flex items-center justify-between">
+                <h3 class="font-semibold text-sm">Recent Activity</h3>
+                <span class="text-xs text-[#dce87a] hover:underline cursor-pointer">View All</span>
+            </div>
+
+            <div class="flex-1 overflow-y-auto divide-y divide-[#2e323c]/30">
+                <div class="history-item p-3">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-lg bg-[#dce87a]/10 flex items-center justify-center shrink-0">
+                            <span class="material-symbols-outlined text-[#dce87a] text-sm">swap_horiz</span>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <div class="flex items-center justify-between">
+                                <p class="text-xs font-medium truncate">CANT → USDC</p>
+                                <span class="text-xs text-green-400 font-medium">+$230.5</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <p class="text-[10px] text-[#9aa1ac]">-10,000 CANT</p>
+                                <p class="text-[10px] text-[#9aa1ac]">2m ago</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="history-item p-3">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-lg bg-[#627eea]/10 flex items-center justify-center shrink-0">
+                            <span class="material-symbols-outlined text-[#627eea] text-sm">swap_horiz</span>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <div class="flex items-center justify-between">
+                                <p class="text-xs font-medium truncate">WETH → CANT</p>
+                                <span class="text-xs text-green-400 font-medium">+$1,450</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <p class="text-[10px] text-[#9aa1ac]">-2.5 WETH</p>
+                                <p class="text-[10px] text-[#9aa1ac]">1h ago</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="history-item p-3">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-lg bg-[#f7931a]/10 flex items-center justify-center shrink-0">
+                            <span class="material-symbols-outlined text-[#f7931a] text-sm">swap_horiz</span>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <div class="flex items-center justify-between">
+                                <p class="text-xs font-medium truncate">WBTC → USDC</p>
+                                <span class="text-xs text-green-400 font-medium">+$1,200</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <p class="text-[10px] text-[#9aa1ac]">-0.05 WBTC</p>
+                                <p class="text-[10px] text-[#9aa1ac]">3h ago</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="history-item p-3">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-lg bg-[#dce87a]/10 flex items-center justify-center shrink-0">
+                            <span class="material-symbols-outlined text-[#dce87a] text-sm">schedule</span>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <div class="flex items-center justify-between">
+                                <p class="text-xs font-medium truncate">CANT → USDC</p>
+                                <span class="text-xs text-blue-400 font-medium">Pending</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <p class="text-[10px] text-[#9aa1ac]">-500 CANT</p>
+                                <p class="text-[10px] text-[#9aa1ac]">5m ago</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="history-item p-3">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-lg bg-[#4a9eff]/10 flex items-center justify-center shrink-0">
+                            <span class="material-symbols-outlined text-[#4a9eff] text-sm">swap_horiz</span>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <div class="flex items-center justify-between">
+                                <p class="text-xs font-medium truncate">USDC → CANT</p>
+                                <span class="text-xs text-green-400 font-medium">+$850</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <p class="text-[10px] text-[#9aa1ac]">-850 USDC</p>
+                                <p class="text-[10px] text-[#9aa1ac]">6h ago</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats -->
+            <div class="p-3 border-t border-[#2e323c]/50 bg-[#0f1015]/50">
+                <div class="grid grid-cols-2 gap-2 text-center">
+                    <div>
+                        <p class="text-sm font-display font-bold text-[#dce87a]">$48.2M</p>
+                        <p class="text-[10px] text-[#9aa1ac]">Volume 24h</p>
+                    </div>
+                    <div>
+                        <p class="text-sm font-display font-bold text-[#dce87a]">12.8K</p>
+                        <p class="text-[10px] text-[#9aa1ac]">Swaps 24h</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="flex items-center justify-between py-3 text-xs text-[#9aa1ac] border-t border-[#2e323c]/30 mt-3">
+        <div class="flex items-center gap-4">
+            <a href="how-it-works.html" class="hover:text-[#e6e8ec] transition-colors">How It Works</a>
+            <a href="rewards.html" class="hover:text-[#e6e8ec] transition-colors">Rewards</a>
+            <a href="rules.html" class="hover:text-[#e6e8ec] transition-colors">Rules</a>
+        </div>
+        <p>© 2026 Jutis</p>
+    </div>
+</main>
+
+<!-- Token Modal -->
+<div id="tokenModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
+    <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" onclick="closeModal()"></div>
+    <div class="relative w-full max-w-sm bg-[#181a21] cyber-border rounded-xl p-4 max-h-[60vh] overflow-y-auto">
+        <div class="flex items-center justify-between mb-4">
+            <h3 class="font-semibold">Select Token</h3>
+            <button onclick="closeModal()" class="p-1 hover:bg-[#2e323c] rounded-lg transition-colors">
+                <span class="material-symbols-outlined text-[#9aa1ac]">close</span>
+            </button>
+        </div>
+        <div class="space-y-1">
+            <button class="token-option w-full flex items-center gap-3 p-3 rounded-lg hover:bg-[#232730] transition-all" data-symbol="CANT" data-balance="8234.56">
+                <div class="w-10 h-10 rounded-full bg-[#dce87a]/20 flex items-center justify-center"><span class="font-bold text-[#dce87a]">C</span></div>
+                <div class="flex-1 text-left"><p class="font-semibold">CANT</p><p class="text-xs text-[#9aa1ac]">Canton Coin</p></div>
+                <span class="text-[#9aa1ac] text-sm">8,234.56</span>
+            </button>
+            <button class="token-option w-full flex items-center gap-3 p-3 rounded-lg hover:bg-[#232730] transition-all" data-symbol="USDC" data-balance="2156.00">
+                <div class="w-10 h-10 rounded-full bg-[#4a9eff]/20 flex items-center justify-center"><span class="font-bold text-[#4a9eff]">$</span></div>
+                <div class="flex-1 text-left"><p class="font-semibold">USDC</p><p class="text-xs text-[#9aa1ac]">USD Coin</p></div>
+                <span class="text-[#9aa1ac] text-sm">2,156.00</span>
+            </button>
+            <button class="token-option w-full flex items-center gap-3 p-3 rounded-lg hover:bg-[#232730] transition-all" data-symbol="WETH" data-balance="12.45">
+                <div class="w-10 h-10 rounded-full bg-[#627eea]/20 flex items-center justify-center"><span class="font-bold text-[#627eea]">Ξ</span></div>
+                <div class="flex-1 text-left"><p class="font-semibold">WETH</p><p class="text-xs text-[#9aa1ac]">Wrapped Ether</p></div>
+                <span class="text-[#9aa1ac] text-sm">12.45</span>
+            </button>
+            <button class="token-option w-full flex items-center gap-3 p-3 rounded-lg hover:bg-[#232730] transition-all" data-symbol="WBTC" data-balance="0.82">
+                <div class="w-10 h-10 rounded-full bg-[#f7931a]/20 flex items-center justify-center"><span class="font-bold text-[#f7931a]">₿</span></div>
+                <div class="flex-1 text-left"><p class="font-semibold">WBTC</p><p class="text-xs text-[#9aa1ac]">Wrapped Bitcoin</p></div>
+                <span class="text-[#9aa1ac] text-sm">0.82</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+const tokens = { CANT: { rate: 1 }, USDC: { rate: 0.023 }, WETH: { rate: 0.00042 }, WBTC: { rate: 0.0000085 } };
+let fromToken = 'CANT', toToken = 'USDC', selectingFrom = true;
+let fromBal = 8234.56, toBal = 2156.00;
+
+const fromAmount = document.getElementById('fromAmount');
+const toAmount = document.getElementById('toAmount');
+const tokenModal = document.getElementById('tokenModal');
+const swapBtn = document.getElementById('swapBtn');
+const swapCard = document.querySelector('.swap-card');
+
+function updateRates() {
+    const amt = parseFloat(fromAmount.value) || 0;
+    const result = amt * tokens[toToken].rate / tokens[fromToken].rate;
+    toAmount.value = result.toFixed(6);
+    document.getElementById('exchangeRate').textContent = `1 ${fromToken} = ${(tokens[toToken].rate / tokens[fromToken].rate).toFixed(6)} ${toToken}`;
+}
+
+fromAmount.addEventListener('input', updateRates);
+
+document.getElementById('fromTokenBtn').addEventListener('click', () => { selectingFrom = true; tokenModal.classList.remove('hidden'); });
+document.getElementById('toTokenBtn').addEventListener('click', () => { selectingFrom = false; tokenModal.classList.remove('hidden'); });
+
+function closeModal() { tokenModal.classList.add('hidden'); }
+
+document.querySelectorAll('.token-option').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const sym = btn.dataset.symbol, bal = parseFloat(btn.dataset.balance);
+        if (selectingFrom) {
+            fromToken = sym; fromBal = bal;
+            document.getElementById('fromTokenSymbol').textContent = sym;
+            document.getElementById('fromBal').textContent = bal.toLocaleString();
+            document.getElementById('fromTokenSymbol').parentElement.classList.add('token-change');
+        } else {
+            toToken = sym; toBal = bal;
+            document.getElementById('toTokenSymbol').textContent = sym;
+            document.getElementById('toBal').textContent = bal.toLocaleString();
+            document.getElementById('toTokenSymbol').parentElement.classList.add('token-change');
+        }
+        closeModal();
+        updateRates();
+    });
+});
+
+document.getElementById('swapTokens').addEventListener('click', () => {
+    [fromToken, toToken] = [toToken, fromToken];
+    [fromBal, toBal] = [toBal, fromBal];
+    const fromEl = document.getElementById('fromTokenSymbol');
+    const toEl = document.getElementById('toTokenSymbol');
+    fromEl.textContent = fromToken; fromEl.classList.add('token-change');
+    toEl.textContent = toToken; toEl.classList.add('token-change');
+    document.getElementById('fromBal').textContent = fromBal.toLocaleString();
+    document.getElementById('toBal').textContent = toBal.toLocaleString();
+    [fromAmount.value, toAmount.value] = [toAmount.value, fromAmount.value];
+    updateRates();
+});
+
+swapBtn.addEventListener('click', () => {
+    if (parseFloat(fromAmount.value) > 0) {
+        swapCard.classList.add('swap-success');
+        swapBtn.innerHTML = '<span class="material-symbols-outlined">check_circle</span><span>Swap Successful!</span>';
+        setTimeout(() => {
+            swapCard.classList.remove('swap-success');
+            swapBtn.innerHTML = '<span class="material-symbols-outlined">bolt</span><span>Swap Now</span>';
+        }, 2000);
+    }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Blog Editor — Jutis Admin</title>
+    <meta name="robots" content="noindex, nofollow">
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <meta property="og:title" content="Blog Editor — Jutis Admin">
+    <meta property="og:site_name" content="Jutis">
+
+    <link rel="stylesheet" href="../styles/tokens.css">
+    <link rel="stylesheet" href="../styles/base.css">
+    <link rel="stylesheet" href="../styles/layout.css">
+    <link rel="stylesheet" href="../styles/components.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+</head>
+
+<body class="page page--admin">
+
+    <div class="admin-sidebar">
+        <div class="sidebar-logo">
+            <a href="index.html" class="sidebar-logo__link">
+                <div class="sidebar-logo__mark" aria-hidden="true">
+                    <div class="sidebar-logo__ring sidebar-logo__ring--outer"></div>
+                    <div class="sidebar-logo__ring sidebar-logo__ring--inner"></div>
+                    <div class="sidebar-logo__bar"></div>
+                </div>
+                <span class="sidebar-logo__wordmark">Jutis</span>
+                <span class="sidebar-logo__badge">Admin</span>
+            </a>
+        </div>
+
+        <nav class="sidebar-nav">
+            <ul class="sidebar-nav__list">
+                <li><a href="index.html" class="sidebar-nav__item"><span class="material-symbols-outlined sidebar-nav__icon" aria-hidden="true">dashboard</span>Overview</a></li>
+                <li><a href="users.html" class="sidebar-nav__item"><span class="material-symbols-outlined sidebar-nav__icon" aria-hidden="true">group</span>Users</a></li>
+                <li><a href="site.html" class="sidebar-nav__item"><span class="material-symbols-outlined sidebar-nav__icon" aria-hidden="true">public</span>Site</a></li>
+                <li><a href="smtp.html" class="sidebar-nav__item"><span class="material-symbols-outlined sidebar-nav__icon" aria-hidden="true">mail</span>SMTP</a></li>
+                <li><a href="waitlist.html" class="sidebar-nav__item"><span class="material-symbols-outlined sidebar-nav__icon" aria-hidden="true">inbox</span>Waitlist</a></li>
+                <li><a href="assets.html" class="sidebar-nav__item"><span class="material-symbols-outlined sidebar-nav__icon" aria-hidden="true">account_balance_wallet</span>Assets</a></li>
+                <li><a href="support.html" class="sidebar-nav__item"><span class="material-symbols-outlined sidebar-nav__icon" aria-hidden="true">support_agent</span>Support</a></li>
+                <li><a href="partners.html" class="sidebar-nav__item"><span class="material-symbols-outlined sidebar-nav__icon" aria-hidden="true">handshake</span>Partners</a></li>
+                <li><a href="partner-applications.html" class="sidebar-nav__item"><span class="material-symbols-outlined sidebar-nav__icon" aria-hidden="true">how_to_reg</span>Partner Applications</a></li>
+                <li><a href="blog.html" class="sidebar-nav__item"><span class="material-symbols-outlined sidebar-nav__icon" aria-hidden="true">article</span>Blog</a></li>
+                <li><a href="settings.html" class="sidebar-nav__item"><span class="material-symbols-outlined sidebar-nav__icon" aria-hidden="true">settings</span>Settings</a></li>
+                <li><a href="audit-log.html" class="sidebar-nav__item"><span class="material-symbols-outlined sidebar-nav__icon" aria-hidden="true">history</span>Audit Log</a></li>
+            </ul>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="login.html" class="sidebar-nav__item sidebar-nav__item--logout">
+                <span class="material-symbols-outlined sidebar-nav__icon" aria-hidden="true">logout</span>
+                Logout
+            </a>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <header class="topbar">
+            <div class="topbar-left">
+                <a href="blog.html" class="back-link">
+                    <span class="material-symbols-outlined" aria-hidden="true">arrow_back</span>
+                    Blog
+                </a>
+                <h1 class="page-title">New Blog Post</h1>
+            </div>
+            <div class="topbar-right">
+                <button class="btn btn--ghost">Save Draft</button>
+                <button class="btn btn--accent">
+                    <span class="material-symbols-outlined" aria-hidden="true">send</span>
+                    Publish
+                </button>
+            </div>
+        </header>
+
+        <div class="content-area">
+            <div class="editor-grid">
+
+                <div class="editor-main">
+                    <div class="form-group">
+                        <input type="text" class="title-input" placeholder="Post title..." value="Getting Started with Wallet Connect on Jutis">
+                    </div>
+                    <div class="form-row-2col-editor">
+                        <div class="form-group">
+                            <label class="form-label">Slug</label>
+                            <input type="text" class="form-input mono" value="getting-started-wallet-connect">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Category</label>
+                            <select class="form-input">
+                                <option>Tutorials</option>
+                                <option>Product Updates</option>
+                                <option>Partner Stories</option>
+                                <option>Industry News</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Cover Image URL</label>
+                        <input type="url" class="form-input" placeholder="https://...">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Excerpt</label>
+                        <textarea class="form-input" rows="2" placeholder="Brief description shown in blog listings..." style="resize: vertical;">Step-by-step guide to connecting your first wallet, understanding gas fees, and making your first transaction on Jutis.</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Content</label>
+                        <div class="editor-content">
+                            <div class="editor-toolbar">
+                                <button class="editor-tool"><span class="material-symbols-outlined">format_bold</span></button>
+                                <button class="editor-tool"><span class="material-symbols-outlined">format_italic</span></button>
+                                <button class="editor-tool"><span class="material-symbols-outlined">format_underlined</span></button>
+                                <span class="toolbar-sep"></span>
+                                <button class="editor-tool"><span class="material-symbols-outlined">format_list_bulleted</span></button>
+                                <button class="editor-tool"><span class="material-symbols-outlined">format_list_numbered</span></button>
+                                <span class="toolbar-sep"></span>
+                                <button class="editor-tool"><span class="material-symbols-outlined">link</span></button>
+                                <button class="editor-tool"><span class="material-symbols-outlined">image</span></button>
+                                <button class="editor-tool"><span class="material-symbols-outlined">code</span></button>
+                            </div>
+                            <textarea class="editor-textarea" rows="20" placeholder="Start writing your post content here...">Before you can start earning XP and unlocking rewards on Jutis, you'll need to connect a cryptocurrency wallet. This guide walks you through the entire process — from choosing the right wallet to making your first on-chain interaction.
+
+## Why Do You Need a Wallet?
+
+Your Jutis wallet is your identity on the platform. It stores your rewards, tracks your XP, and determines your rank within the community. Unlike traditional accounts where you create a username and password, your wallet is your account — secured by cryptographic keys that only you control.
+
+## Supported Wallets
+
+Jutis supports the following wallet types:
+- MetaMask (Chrome, Firefox, Brave, Edge)
+- WalletConnect v2 (mobile and desktop)
+- Coinbase Wallet
+- Rabby
+- Any wallet supporting EIP-6963 standard
+
+## Step 1: Install MetaMask
+
+If you don't already have a wallet, we recommend starting with MetaMask. It's free, widely supported, and has an intuitive interface.
+
+1. Go to metamask.io and click Download
+2. Install the browser extension (Chrome, Firefox, or Brave)
+3. Create a new wallet and securely store your seed phrase
+4. Add the Ethereum mainnet network
+
+## Step 2: Connect to Jutis
+
+Once your wallet is set up, connecting it to Jutis takes less than a minute:
+
+1. Click the "Connect Wallet" button on the Jutis dashboard
+2. Select MetaMask from the list of available wallets
+3. Approve the connection request in your MetaMask popup
+4. Sign the message to confirm ownership (this is gas-free)
+
+That's it — your wallet is now connected and you're ready to start earning!
+
+## Understanding Gas Fees
+
+One common question is about gas fees. When you make transactions on Ethereum or other EVM-compatible chains, you'll pay a small gas fee. On Jutis:
+- Connecting your wallet: **Free** (signature only)
+- Claiming rewards: **Minimal** (covered by Jutis in most cases)
+- Withdrawing funds: **Network fee applies** (you control when to pay)
+</textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="editor-sidebar">
+                    <div class="card">
+                        <div class="card-header"><h2 class="card-title">Publish Settings</h2></div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label class="form-label">Status</label>
+                                <select class="form-input">
+                                    <option>Draft</option>
+                                    <option>Published</option>
+                                    <option>Scheduled</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Publish Date</label>
+                                <input type="datetime-local" class="form-input" value="2026-05-12T10:00">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Author</label>
+                                <input type="text" class="form-input" value="Jutis Team" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">URL Slug</label>
+                                <input type="text" class="form-input mono" value="getting-started-wallet-connect">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header"><h2 class="card-title">SEO</h2></div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label class="form-label">SEO Title</label>
+                                <input type="text" class="form-input" placeholder="Title for search engines (60 chars)" value="Getting Started with Wallet Connect on Jutis — Complete Guide">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">SEO Description</label>
+                                <textarea class="form-input" rows="3" placeholder="Meta description (160 chars)..." style="resize: vertical;">Learn how to connect your first crypto wallet to Jutis, understand gas fees, and start earning XP and rewards. Complete step-by-step guide for beginners.</textarea>
+                            </div>
+                            <div class="seo-preview">
+                                <div class="seo-preview__label">Google Preview:</div>
+                                <div class="seo-preview__result">
+                                    <div class="seo-preview__title">Getting Started with Wallet Connect on Jutis — Complete Guide</div>
+                                    <div class="seo-preview__url">jutis.xyz/blog/getting-started-wallet-connect</div>
+                                    <div class="seo-preview__desc">Learn how to connect your first crypto wallet to Jutis, understand gas fees, and start earning XP and rewards. Complete step-by-step guide for beginners.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header"><h2 class="card-title">Actions</h2></div>
+                        <div class="card-body">
+                            <div class="action-buttons-stack">
+                                <button class="btn btn--accent w-full">
+                                    <span class="material-symbols-outlined" aria-hidden="true">send</span>
+                                    Publish Now
+                                </button>
+                                <button class="btn btn--ghost w-full">
+                                    <span class="material-symbols-outlined" aria-hidden="true">schedule</span>
+                                    Schedule Post
+                                </button>
+                                <button class="btn btn--ghost w-full">
+                                    <span class="material-symbols-outlined" aria-hidden="true">save</span>
+                                    Save Draft
+                                </button>
+                                <button class="btn btn--ghost w-full">
+                                    <span class="material-symbols-outlined" aria-hidden="true">visibility</span>
+                                    Preview Post
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <style>
+    .admin-sidebar { position: fixed; top: 0; left: 0; width: 248px; height: 100vh; background: var(--bg-card); border-right: 1px solid var(--border); display: flex; flex-direction: column; z-index: 100; overflow-y: auto; }
+    .sidebar-logo { padding: var(--space-5) var(--space-4) var(--space-4); border-bottom: 1px solid var(--border); }
+    .sidebar-logo__link { display: flex; align-items: center; gap: var(--space-3); text-decoration: none; }
+    .sidebar-logo__mark { position: relative; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .sidebar-logo__ring { position: absolute; border-radius: 6px; border: 2px solid var(--accent); }
+    .sidebar-logo__ring--outer { inset: 0; transform: rotate(45deg) scale(0.9); }
+    .sidebar-logo__ring--inner { inset: 4px; border-color: rgba(230, 232, 236, 0.2); transform: rotate(12deg); }
+    .sidebar-logo__bar { position: relative; z-index: 1; width: 4px; height: 14px; background-color: var(--accent); border-radius: 2px; }
+    .sidebar-logo__wordmark { font-family: var(--font-display); font-weight: 700; font-size: var(--text-base); color: var(--fg-primary); }
+    .sidebar-logo__badge { margin-left: auto; padding: 2px 6px; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.2); border-radius: var(--radius-sm); font-size: 10px; font-weight: 700; color: #ef4444; text-transform: uppercase; letter-spacing: 0.05em; }
+    .sidebar-nav { flex: 1; padding: var(--space-3); }
+    .sidebar-nav__list { list-style: none; display: flex; flex-direction: column; gap: 2px; }
+    .sidebar-nav__item { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-2) var(--space-3); border-radius: var(--radius-md); color: var(--fg-secondary); text-decoration: none; font-size: var(--text-sm); font-weight: 500; transition: background-color var(--duration-fast) var(--ease-out), color var(--duration-fast) var(--ease-out); }
+    .sidebar-nav__item:hover { background: var(--bg-inset); color: var(--fg-primary); }
+    .sidebar-nav__icon { font-size: 20px; flex-shrink: 0; }
+    .sidebar-footer { padding: var(--space-3); border-top: 1px solid var(--border); }
+    .sidebar-nav__item--logout { color: var(--fg-muted); }
+    .sidebar-nav__item--logout:hover { color: #ef4444; background: rgba(239, 68, 68, 0.08); }
+
+    .main-content { margin-left: 248px; min-height: 100vh; display: flex; flex-direction: column; }
+    .topbar { position: sticky; top: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between; padding: var(--space-4) var(--space-8); background: var(--bg-main); border-bottom: 1px solid var(--border); backdrop-filter: blur(8px); }
+    .topbar-left { display: flex; flex-direction: column; gap: var(--space-1); }
+    .back-link { display: inline-flex; align-items: center; gap: var(--space-1); font-size: var(--text-sm); color: var(--fg-muted); text-decoration: none; margin-bottom: var(--space-1); }
+    .back-link:hover { color: var(--fg-primary); }
+    .back-link .material-symbols-outlined { font-size: 18px; }
+    .page-title { font-family: var(--font-display); font-weight: 700; font-size: var(--text-xl); color: var(--fg-primary); }
+    .topbar-right { display: flex; gap: var(--space-3); align-items: center; }
+
+    .content-area { flex: 1; padding: var(--space-8); }
+
+    .editor-grid { display: grid; grid-template-columns: 1fr 320px; gap: var(--space-6); align-items: start; }
+    .editor-main { display: flex; flex-direction: column; gap: var(--space-4); }
+    .editor-sidebar { display: flex; flex-direction: column; gap: var(--space-5); }
+
+    .title-input { width: 100%; padding: var(--space-4) 0; background: transparent; border: none; color: var(--fg-primary); font-family: var(--font-display); font-weight: 700; font-size: var(--text-2xl); border-bottom: 1px solid var(--border); }
+    .title-input:focus { outline: none; border-bottom-color: var(--accent-30); }
+    .title-input::placeholder { color: var(--fg-muted); }
+
+    .form-row-2col-editor { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); }
+    .form-group { display: flex; flex-direction: column; gap: var(--space-2); }
+    .form-label { font-size: var(--text-sm); font-weight: 500; }
+    .form-input { width: 100%; padding: var(--space-3) var(--space-4); background: var(--bg-main); border: 1px solid var(--border); border-radius: var(--radius-md); color: var(--fg-primary); font-size: var(--text-base); transition: border-color var(--duration-fast) var(--ease-out); }
+    .form-input:focus { outline: none; border-color: var(--accent-30); }
+    .form-input:disabled { opacity: 0.5; cursor: not-allowed; }
+    .mono { font-family: monospace; font-size: var(--text-sm); }
+
+    .editor-content { border: 1px solid var(--border); border-radius: var(--radius-md); overflow: hidden; }
+    .editor-toolbar { display: flex; align-items: center; gap: var(--space-1); padding: var(--space-2) var(--space-3); background: var(--bg-inset); border-bottom: 1px solid var(--border); }
+    .editor-tool { width: 30px; height: 30px; border-radius: var(--radius-sm); border: none; background: transparent; color: var(--fg-muted); cursor: pointer; display: flex; align-items: center; justify-content: center; }
+    .editor-tool:hover { background: var(--bg-card); color: var(--fg-primary); }
+    .editor-tool .material-symbols-outlined { font-size: 18px; }
+    .toolbar-sep { width: 1px; height: 20px; background: var(--border); margin: 0 var(--space-1); }
+    .editor-textarea { width: 100%; padding: var(--space-4); background: var(--bg-main); border: none; color: var(--fg-primary); font-size: var(--text-base); line-height: 1.7; resize: vertical; min-height: 400px; }
+    .editor-textarea:focus { outline: none; }
+    .editor-textarea::placeholder { color: var(--fg-muted); }
+
+    .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+    .card-header { padding: var(--space-4) var(--space-5); border-bottom: 1px solid var(--border); }
+    .card-title { font-weight: 600; font-size: var(--text-sm); }
+    .card-body { padding: var(--space-5); display: flex; flex-direction: column; gap: var(--space-4); }
+
+    .seo-preview { margin-top: var(--space-2); }
+    .seo-preview__label { font-size: var(--text-xs); color: var(--fg-muted); margin-bottom: var(--space-2); }
+    .seo-preview__result { padding: var(--space-4); background: var(--bg-main); border: 1px solid var(--border); border-radius: var(--radius-md); }
+    .seo-preview__title { font-size: var(--text-base); color: #1a0dab; font-weight: 500; margin-bottom: var(--space-1); }
+    .seo-preview__url { font-size: var(--text-xs); color: #006621; margin-bottom: var(--space-1); }
+    .seo-preview__desc { font-size: var(--text-sm); color: var(--fg-secondary); line-height: 1.5; }
+
+    .action-buttons-stack { display: flex; flex-direction: column; gap: var(--space-2); }
+
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2); padding: var(--space-2) var(--space-4); border-radius: var(--radius-md); font-size: var(--text-sm); font-weight: 600; cursor: pointer; border: none; transition: background-color var(--duration-fast) var(--ease-out); }
+    .btn--accent { background-color: var(--accent); color: var(--bg-main); }
+    .btn--accent:hover { background-color: var(--fg-primary); }
+    .btn--ghost { background: transparent; border: 1px solid var(--border); color: var(--fg-primary); }
+    .btn--ghost:hover { background: var(--bg-inset); }
+    .w-full { width: 100%; }
+    .btn .material-symbols-outlined { font-size: 18px; }
+
+    @media (max-width: 1100px) { .editor-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 768px) { .admin-sidebar { transform: translateX(-100%); } .main-content { margin-left: 0; } .content-area { padding: var(--space-4); } .form-row-2col-editor { grid-template-columns: 1fr; } }
+    </style>
+
+</body>
+</html>

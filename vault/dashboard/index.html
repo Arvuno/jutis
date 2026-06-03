@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Dashboard - Jutis</title>
+    <meta name="description" content="Jutis Wallet Dashboard — Manage your Canton assets, view balance, swap tokens, and track history.">
+    <meta name="robots" content="noindex">
+
+    <!-- Favicon (nested path) -->
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Dashboard - Jutis">
+    <meta property="og:description" content="Manage your Canton assets.">
+    <meta property="og:image" content="../og-image.svg">
+    <meta property="og:site_name" content="Jutis">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../styles/tokens.css">
+    <link rel="stylesheet" href="../styles/base.css">
+    <link rel="stylesheet" href="../styles/layout.css">
+    <link rel="stylesheet" href="../styles/components.css">
+
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+</head>
+
+<body class="page page--dashboard">
+
+    <!-- MOBILE HEADER (visible below lg) -->
+    <header class="dashboard-mobile-header">
+        <button id="menuToggle" class="dashboard-mobile-header__btn" aria-label="Open menu">
+            <span class="material-symbols-outlined" aria-hidden="true">menu</span>
+        </button>
+        <a href="../index.html" class="dashboard-mobile-header__logo">
+            <div class="dashboard-mobile-header__logo-mark" aria-hidden="true">
+                <div class="dashboard-mobile-header__logo-ring dashboard-mobile-header__logo-ring--outer"></div>
+                <div class="dashboard-mobile-header__logo-ring dashboard-mobile-header__logo-ring--inner"></div>
+                <div class="dashboard-mobile-header__logo-bar"></div>
+            </div>
+            <span class="dashboard-mobile-header__wordmark">Jutis</span>
+        </a>
+        <button class="dashboard-mobile-header__btn dashboard-mobile-header__btn--notif" aria-label="Notifications">
+            <span class="material-symbols-outlined" aria-hidden="true">notifications</span>
+            <span class="dashboard-mobile-header__notif-dot"></span>
+        </button>
+    </header>
+
+    <!-- SIDEBAR OVERLAY -->
+    <div id="sidebarOverlay" class="dashboard-sidebar__overlay" onclick="closeSidebar()"></div>
+
+    <!-- SIDEBAR -->
+    <aside id="sidebar" class="dashboard-sidebar">
+        <div class="dashboard-sidebar__brand">
+            <a href="../index.html" class="dashboard-sidebar__logo">
+                <div class="dashboard-sidebar__logo-mark" aria-hidden="true">
+                    <div class="dashboard-sidebar__logo-ring dashboard-sidebar__logo-ring--outer"></div>
+                    <div class="dashboard-sidebar__logo-ring dashboard-sidebar__logo-ring--inner"></div>
+                    <div class="dashboard-sidebar__logo-bar"></div>
+                </div>
+                <span class="dashboard-sidebar__wordmark">Jutis</span>
+            </a>
+        </div>
+
+        <nav class="dashboard-sidebar__nav" aria-label="Dashboard navigation">
+            <a href="index.html" class="dashboard-nav-item dashboard-nav-item--active" aria-current="page">
+                <span class="material-symbols-outlined" aria-hidden="true">dashboard</span>
+                <span>Dashboard</span>
+            </a>
+            <a href="wallet.html" class="dashboard-nav-item">
+                <span class="material-symbols-outlined" aria-hidden="true">account_balance_wallet</span>
+                <span>Wallet</span>
+            </a>
+            <a href="swap.html" class="dashboard-nav-item">
+                <span class="material-symbols-outlined" aria-hidden="true">swap_horiz</span>
+                <span>Swap</span>
+            </a>
+            <a href="history.html" class="dashboard-nav-item">
+                <span class="material-symbols-outlined" aria-hidden="true">history</span>
+                <span>History</span>
+            </a>
+            <a href="rewards.html" class="dashboard-nav-item">
+                <span class="material-symbols-outlined" aria-hidden="true">stars</span>
+                <span>Rewards</span>
+            </a>
+            <a href="leaderboard.html" class="dashboard-nav-item">
+                <span class="material-symbols-outlined" aria-hidden="true">leaderboard</span>
+                <span>Leaderboard</span>
+            </a>
+            <a href="security.html" class="dashboard-nav-item">
+                <span class="material-symbols-outlined" aria-hidden="true">security</span>
+                <span>Security</span>
+            </a>
+            <a href="settings.html" class="dashboard-nav-item">
+                <span class="material-symbols-outlined" aria-hidden="true">settings</span>
+                <span>Settings</span>
+            </a>
+        </nav>
+
+        <div class="dashboard-sidebar__footer">
+            <div class="dashboard-sidebar__user">
+                <div class="dashboard-sidebar__user-avatar">JD</div>
+                <div class="dashboard-sidebar__user-info">
+                    <p class="dashboard-sidebar__user-name">john.doe@email.com</p>
+                    <p class="dashboard-sidebar__user-status">2,840 XP · Rank #128</p>
+                </div>
+                <button class="dashboard-sidebar__logout" aria-label="Logout">
+                    <span class="material-symbols-outlined" aria-hidden="true">logout</span>
+                </button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="dashboard-main">
+        <!-- PAGE HEADER -->
+        <header class="dashboard-page-header">
+            <div class="dashboard-page-header__left">
+                <h1 class="dashboard-page-title">Dashboard</h1>
+                <p class="dashboard-page-subtitle">Welcome back, John</p>
+            </div>
+            <div class="dashboard-page-header__right">
+                <span class="dashboard-xp-badge hide-mobile">
+                    <span class="material-symbols-outlined" aria-hidden="true">stars</span>
+                    2,840 XP · Rank #128
+                </span>
+                <button class="btn btn--ghost btn--sm dashboard-notif-btn hide-mobile">
+                    <span class="material-symbols-outlined" aria-hidden="true">notifications</span>
+                    <span class="dashboard-notif-btn__dot"></span>
+                </button>
+                <a href="wallet.html" class="btn btn--accent btn--sm">
+                    <span class="material-symbols-outlined" aria-hidden="true">add</span>
+                    <span class="hide-mobile">Add Wallet</span>
+                </a>
+            </div>
+        </header>
+
+        <!-- ALERT BANNER -->
+        <div class="alert alert--warning">
+            <span class="material-symbols-outlined alert__icon" aria-hidden="true">warning</span>
+            <p class="alert__body">Your session will expire in 24 minutes. Save your work.</p>
+            <button class="alert__action">Extend</button>
+        </div>
+
+        <!-- BALANCE CARD -->
+        <div class="balance-widget balance-widget--large">
+            <div class="balance-widget__ambient" aria-hidden="true"></div>
+            <p class="balance-widget__label">Total Balance</p>
+            <p class="balance-widget__amount">$12,458.32</p>
+            <div class="balance-widget__tokens">
+                <div class="balance-widget__token">
+                    <span class="balance-widget__token-symbol">CANT</span>
+                    <span class="balance-widget__token-value">8,234.56</span>
+                </div>
+                <div class="balance-widget__token-divider"></div>
+                <div class="balance-widget__token">
+                    <span class="balance-widget__token-symbol">USDC</span>
+                    <span class="balance-widget__token-value">2,156.00</span>
+                </div>
+                <div class="balance-widget__token-divider"></div>
+                <div class="balance-widget__token">
+                    <span class="balance-widget__token-symbol">USD</span>
+                    <span class="balance-widget__token-value">$4,223.76</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- QUICK ACTIONS -->
+        <div class="quick-actions">
+            <button class="quick-action">
+                <span class="material-symbols-outlined" aria-hidden="true">send</span>
+                <span class="quick-action__label">Send</span>
+            </button>
+            <button class="quick-action">
+                <span class="material-symbols-outlined" aria-hidden="true">receive</span>
+                <span class="quick-action__label">Receive</span>
+            </button>
+            <a href="swap.html" class="quick-action">
+                <span class="material-symbols-outlined" aria-hidden="true">swap_horiz</span>
+                <span class="quick-action__label">Swap</span>
+            </a>
+            <button class="quick-action">
+                <span class="material-symbols-outlined" aria-hidden="true">qr_code</span>
+                <span class="quick-action__label">QR Pay</span>
+            </button>
+        </div>
+
+        <!-- TWO COLUMN GRID -->
+        <div class="dashboard-grid-2">
+
+            <!-- RECENT TRANSACTIONS -->
+            <div class="widget">
+                <div class="widget__header">
+                    <h3 class="widget__title">Recent Transactions</h3>
+                    <a href="history.html" class="widget__link">View All</a>
+                </div>
+                <div class="tx-list">
+                    <div class="tx-item">
+                        <div class="tx-item__icon">
+                            <span class="material-symbols-outlined" aria-hidden="true">arrow_upward</span>
+                        </div>
+                        <div class="tx-item__info">
+                            <p class="tx-item__title">Sent CANT</p>
+                            <p class="tx-item__meta">To: 0x1a2b...3c4d</p>
+                        </div>
+                        <div class="tx-item__amount">
+                            <p class="tx-item__value tx-item__value--negative">-125.00</p>
+                            <p class="tx-item__time">2 hours ago</p>
+                        </div>
+                    </div>
+                    <div class="tx-item">
+                        <div class="tx-item__icon">
+                            <span class="material-symbols-outlined" aria-hidden="true">arrow_downward</span>
+                        </div>
+                        <div class="tx-item__info">
+                            <p class="tx-item__title">Received CANT</p>
+                            <p class="tx-item__meta">From: 0x5e6f...7g8h</p>
+                        </div>
+                        <div class="tx-item__amount">
+                            <p class="tx-item__value tx-item__value--positive">+500.00</p>
+                            <p class="tx-item__time">5 hours ago</p>
+                        </div>
+                    </div>
+                    <div class="tx-item">
+                        <div class="tx-item__icon">
+                            <span class="material-symbols-outlined" aria-hidden="true">swap_horiz</span>
+                        </div>
+                        <div class="tx-item__info">
+                            <p class="tx-item__title">Swap USDT → CANT</p>
+                            <p class="tx-item__meta">Rate: 0.023</p>
+                        </div>
+                        <div class="tx-item__amount">
+                            <p class="tx-item__value">-1,000 USDT</p>
+                            <p class="tx-item__time">Yesterday</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- WALLET ADDRESSES -->
+            <div class="widget">
+                <div class="widget__header">
+                    <h3 class="widget__title">Wallet Addresses</h3>
+                    <button class="btn btn--icon btn--ghost btn--sm" aria-label="Add wallet">
+                        <span class="material-symbols-outlined" aria-hidden="true">add</span>
+                    </button>
+                </div>
+                <div class="wallet-card-list">
+                    <div class="wallet-card">
+                        <div class="wallet-card__header">
+                            <span class="wallet-card__name">Main Wallet</span>
+                            <span class="badge badge--active">
+                                <span class="badge__dot"></span>
+                                Active
+                            </span>
+                        </div>
+                        <p class="wallet-card__address">0x1a2b3c4d5e6f...9g0h1i2j</p>
+                        <div class="wallet-card__actions">
+                            <button class="wallet-card__btn">Copy</button>
+                            <button class="wallet-card__btn">QR</button>
+                        </div>
+                    </div>
+                    <div class="wallet-card">
+                        <div class="wallet-card__header">
+                            <span class="wallet-card__name">Trading Wallet</span>
+                            <span class="badge">Inactive</span>
+                        </div>
+                        <p class="wallet-card__address">0x3c4d5e6f7g8h...1i2j3k</p>
+                        <div class="wallet-card__actions">
+                            <button class="wallet-card__btn">Copy</button>
+                            <button class="wallet-card__btn">QR</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- REWARDS CARD -->
+            <div class="widget">
+                <div class="widget__header">
+                    <h3 class="widget__title">Your Progress</h3>
+                    <a href="rewards.html" class="widget__link">View Rewards</a>
+                </div>
+                <div class="overview-xp-card">
+                    <div class="overview-xp-card__main">
+                        <div class="overview-xp-card__xp">
+                            <span class="material-symbols-outlined" aria-hidden="true">stars</span>
+                            <span class="overview-xp-card__value">2,840 XP</span>
+                        </div>
+                        <p class="overview-xp-card__rank">Rank #128 · Silver III</p>
+                    </div>
+                    <div class="overview-xp-card__bar">
+                        <div class="overview-xp-card__fill" style="width: 59%;"></div>
+                        <span class="overview-xp-card__next">1,160 XP to Gold II</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LEADERBOARD CARD -->
+            <div class="widget">
+                <div class="widget__header">
+                    <h3 class="widget__title">Leaderboard</h3>
+                    <a href="leaderboard.html" class="widget__link">View All</a>
+                </div>
+                <div class="lb-preview-list">
+                    <div class="lb-preview-item">
+                        <span class="lb-preview-item__rank lb-preview-item__rank--gold">#1</span>
+                        <span class="lb-preview-item__name">ravi.venkatesh</span>
+                        <span class="lb-preview-item__xp">12,580 XP</span>
+                    </div>
+                    <div class="lb-preview-item">
+                        <span class="lb-preview-item__rank lb-preview-item__rank--silver">#2</span>
+                        <span class="lb-preview-item__name">maya.kincaid</span>
+                        <span class="lb-preview-item__xp">8,240 XP</span>
+                    </div>
+                    <div class="lb-preview-item">
+                        <span class="lb-preview-item__rank lb-preview-item__rank--bronze">#3</span>
+                        <span class="lb-preview-item__name">soren.zimmermann</span>
+                        <span class="lb-preview-item__xp">6,915 XP</span>
+                    </div>
+                    <div class="lb-preview-item lb-preview-item--you">
+                        <span class="lb-preview-item__rank">#128</span>
+                        <span class="lb-preview-item__name">john.doe@email.com</span>
+                        <span class="lb-preview-item__xp">2,840 XP</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- TOP ACCENT LINE -->
+    <div class="top-accent" aria-hidden="true"></div>
+
+    <script>
+    const sidebar = document.getElementById('sidebar');
+    const sidebarOverlay = document.getElementById('sidebarOverlay');
+    const menuToggle = document.getElementById('menuToggle');
+
+    function openSidebar() {
+        sidebar.classList.add('dashboard-sidebar--open');
+        sidebarOverlay.style.display = 'block';
+    }
+
+    function closeSidebar() {
+        sidebar.classList.remove('dashboard-sidebar--open');
+        sidebarOverlay.style.display = 'none';
+    }
+
+    menuToggle.addEventListener('click', openSidebar);
+    </script>
+
+    <style>
+    .dashboard-mobile-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: var(--space-3) var(--space-4);
+        background: var(--bg-card);
+        border-bottom: 1px solid var(--border);
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: var(--z-sticky);
+        height: 56px;
+    }
+
+    @media (min-width: 1024px) {
+        .dashboard-mobile-header { display: none; }
+    }
+
+    .dashboard-mobile-header__btn {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: var(--radius-md);
+        color: var(--fg-primary);
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        transition: background-color var(--duration-fast) var(--ease-out);
+    }
+
+    .dashboard-mobile-header__btn:hover {
+        background-color: var(--border);
+    }
+
+    .dashboard-mobile-header__logo {
+        display: flex;
+        align-items: center;
+        gap: var(--space-2);
+        text-decoration: none;
+    }
+
+    .dashboard-mobile-header__logo-mark {
+        position: relative;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .dashboard-mobile-header__logo-ring {
+        position: absolute;
+        border-radius: 6px;
+    }
+
+    .dashboard-mobile-header__logo-ring--outer {
+        inset: 0;
+        border: 2px solid var(--accent);
+        transform: rotate(45deg) scale(0.9);
+    }
+
+    .dashboard-mobile-header__logo-ring--inner {
+        inset: 4px;
+        border: 1.5px solid rgba(220, 232, 122, 0.35);
+        transform: rotate(12deg);
+        border-radius: 6px;
+    }
+
+    .dashboard-mobile-header__logo-bar {
+        width: 4px;
+        height: 16px;
+        background: var(--accent);
+        border-radius: 2px;
+        z-index: 1;
+    }
+
+    .dashboard-mobile-header__wordmark {
+        font-family: var(--font-display);
+        font-weight: 700;
+        letter-spacing: var(--tracking-wider);
+        text-transform: uppercase;
+        font-size: var(--text-lg);
+        color: var(--fg-primary);
+    }
+
+    .dashboard-mobile-header__notif-dot {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        width: 6px;
+        height: 6px;
+        background: var(--danger);
+        border-radius: 50%;
+    }
+
+    .dashboard-page-header {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-4);
+        margin-bottom: var(--space-6);
+    }
+
+    @media (min-width: 640px) {
+        .dashboard-page-header {
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+        }
+    }
+
+    .dashboard-page-title {
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: var(--text-2xl);
+        margin-bottom: var(--space-1);
+    }
+
+    .dashboard-page-subtitle {
+        color: var(--fg-secondary);
+    }
+
+    .dashboard-page-header__right {
+        display: flex;
+        align-items: center;
+        gap: var(--space-3);
+    }
+
+    .dashboard-notif-btn {
+        position: relative;
+    }
+
+    .dashboard-notif-btn__dot {
+        position: absolute;
+        top: 6px;
+        right: 6px;
+        width: 6px;
+        height: 6px;
+        background: var(--danger);
+        border-radius: 50%;
+    }
+
+    .balance-widget--large {
+        margin-bottom: var(--space-6);
+    }
+
+    .balance-widget__tokens {
+        display: flex;
+        align-items: center;
+        gap: var(--space-6);
+        flex-wrap: wrap;
+    }
+
+    .balance-widget__token-divider {
+        width: 1px;
+        height: 24px;
+        background: var(--border);
+    }
+
+    .dashboard-grid-2 {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: var(--space-6);
+    }
+
+    @media (min-width: 1024px) {
+        .dashboard-grid-2 {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    .dashboard-grid-3 {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: var(--space-5);
+    }
+
+    @media (min-width: 640px) {
+        .dashboard-grid-3 {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .dashboard-grid-3 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    .tx-list {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-3);
+    }
+
+    .wallet-card-list {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-4);
+    }
+
+    .badge--active {
+        background-color: var(--accent-10);
+        border-color: var(--accent-20);
+        color: var(--accent);
+    }
+
+    .alert--warning {
+        margin-bottom: var(--space-6);
+    }
+
+    .alert__action {
+        padding: var(--space-1) var(--space-3);
+        background: rgba(245, 158, 11, 0.2);
+        border-radius: var(--radius-md);
+        color: #fbbf24;
+        font-size: var(--text-sm);
+        font-weight: 500;
+        border: none;
+        cursor: pointer;
+        flex-shrink: 0;
+        transition: background-color var(--duration-fast) var(--ease-out);
+    }
+
+    .alert__action:hover {
+        background: rgba(245, 158, 11, 0.3);
+    }
+
+    .hide-mobile {
+        display: none;
+    }
+
+    @media (min-width: 640px) {
+        .hide-mobile {
+            display: inline-flex;
+        }
+    }
+
+    /* XP Overview Card */
+    .overview-xp-card {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-4);
+    }
+
+    .overview-xp-card__main { }
+
+    .overview-xp-card__xp {
+        display: flex;
+        align-items: center;
+        gap: var(--space-2);
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: var(--text-xl);
+        color: var(--accent);
+        margin-bottom: var(--space-1);
+    }
+
+    .overview-xp-card__xp .material-symbols-outlined {
+        font-size: 20px;
+    }
+
+    .overview-xp-card__rank {
+        font-size: var(--text-sm);
+        color: var(--fg-secondary);
+    }
+
+    .overview-xp-card__bar {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-1);
+    }
+
+    .overview-xp-card__fill {
+        height: 6px;
+        background: linear-gradient(90deg, var(--accent-30), var(--accent));
+        border-radius: 3px;
+    }
+
+    .overview-xp-card__next {
+        font-size: var(--text-xs);
+        color: var(--accent);
+        font-weight: 600;
+    }
+
+    /* Leaderboard Preview */
+    .lb-preview-list {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-2);
+    }
+
+    .lb-preview-item {
+        display: flex;
+        align-items: center;
+        gap: var(--space-3);
+        padding: var(--space-3);
+        background: var(--bg-main);
+        border-radius: var(--radius-md);
+        font-size: var(--text-sm);
+    }
+
+    .lb-preview-item--you {
+        background: var(--accent-10);
+        border: 1px solid var(--accent-20);
+    }
+
+    .lb-preview-item__rank {
+        font-weight: 700;
+        font-size: var(--text-sm);
+        color: var(--fg-secondary);
+        width: 28px;
+        flex-shrink: 0;
+    }
+
+    .lb-preview-item__rank--gold { color: #ffd700; }
+    .lb-preview-item__rank--silver { color: #c0c0c0; }
+    .lb-preview-item__rank--bronze { color: #cd7f32; }
+
+    .lb-preview-item__name {
+        flex: 1;
+        min-width: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .lb-preview-item__xp {
+        font-size: var(--text-xs);
+        color: var(--fg-secondary);
+        flex-shrink: 0;
+    }
+
+    .dashboard-xp-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-2);
+        padding: var(--space-1) var(--space-3);
+        background: var(--accent-10);
+        border: 1px solid var(--accent-20);
+        border-radius: var(--radius-pill);
+        font-size: var(--text-xs);
+        font-weight: 600;
+        color: var(--accent);
+        white-space: nowrap;
+    }
+
+    .dashboard-xp-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-2);
+        padding: var(--space-1) var(--space-3);
+        background: var(--accent-10);
+        border: 1px solid var(--accent-20);
+        border-radius: var(--radius-pill);
+        font-size: var(--text-xs);
+        font-weight: 600;
+        color: var(--accent);
+        white-space: nowrap;
+    }
+    </style>
+
+</body>
+</html>

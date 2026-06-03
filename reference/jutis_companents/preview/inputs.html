@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/>
+<title>Inputs</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<style>
+  html,body{margin:0;background:transparent;font-family:'Inter',system-ui}
+  .card{
+    width:700px;padding:22px;box-sizing:border-box;color:#e6e8ec;position:relative;overflow:hidden;
+    background:linear-gradient(180deg,#1a1d23 0%,#13161b 100%);
+    border:1px solid #2e323c
+  }
+  .card::before{
+    content:'';position:absolute;inset:0;pointer-events:none;
+    background-image:radial-gradient(rgba(46,50,60,.4) 1px, transparent 1px);
+    background-size:22px 22px;opacity:.3
+  }
+  .head{position:relative;display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+  .eyebrow{font:700 9px 'Inter';letter-spacing:.28em;text-transform:uppercase;color:#9aa1ac;display:inline-flex;align-items:center;gap:8px}
+  .eyebrow .d{width:6px;height:6px;border-radius:9999px;background:#dce87a;box-shadow:0 0 10px #dce87a}
+  .count{font:500 10px 'JetBrains Mono';color:#9aa1ac}
+
+  .grid{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+
+  .field-block label{
+    display:flex;align-items:center;justify-content:space-between;
+    font:500 11px 'Inter';color:#9aa1ac;margin-bottom:6px;letter-spacing:.03em
+  }
+  .field-block label .hint{font:500 9px 'JetBrains Mono';color:#4a4f5a;letter-spacing:.1em;text-transform:uppercase}
+
+  .field{
+    position:relative;display:flex;align-items:center;gap:10px;
+    padding:0 14px;height:44px;
+    background:linear-gradient(180deg,#1a1d23,#15171c);
+    border:1px solid #2e323c;border-radius:12px;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.02);
+    transition:border-color .2s
+  }
+  .field .ic{color:#4a4f5a;font-size:18px;flex-shrink:0}
+  .field input{
+    flex:1;background:transparent;border:0;outline:0;
+    font:400 14px 'Inter';color:#e6e8ec;padding:0;min-width:0
+  }
+  .field input::placeholder{color:#4a4f5a}
+  .field .trail{font:500 10px 'JetBrains Mono';color:#4a4f5a}
+
+  .field.focus{
+    border-color:rgba(220,232,122,.55);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.02), 0 0 0 4px rgba(220,232,122,.08), 0 0 20px rgba(220,232,122,.1)
+  }
+  .field.focus .ic{color:#dce87a}
+  .field.error{border-color:rgba(248,113,113,.45);box-shadow:0 0 0 4px rgba(248,113,113,.08)}
+  .field.error .ic{color:#f87171}
+
+  .help{font:400 11px 'Inter';margin-top:6px;color:#9aa1ac;display:flex;align-items:center;gap:6px}
+  .help.err{color:#f87171}
+  .help.ok{color:#dce87a}
+
+  .meter{display:flex;gap:3px;margin-top:10px}
+  .meter i{flex:1;height:3px;border-radius:2px;background:#2e323c}
+  .meter i.on{background:#dce87a;box-shadow:0 0 6px #dce87a}
+
+  .check{display:flex;align-items:center;gap:8px;font:400 12px 'Inter';color:#9aa1ac;margin-top:12px}
+  .cb{width:16px;height:16px;border-radius:5px;background:#dce87a;display:inline-flex;align-items:center;justify-content:center;color:#1a1d23;box-shadow:0 0 10px rgba(220,232,122,.3)}
+  .material-symbols-outlined{font-size:14px;font-weight:800}
+  .field .material-symbols-outlined{font-size:18px}
+</style></head>
+<body>
+<div class="card">
+  <div class="head">
+    <div class="eyebrow"><span class="d"></span>Inputs · States</div>
+    <div class="count">default · focus · valid</div>
+  </div>
+
+  <div class="grid">
+    <div class="field-block">
+      <label>Email <span class="hint">Required</span></label>
+      <div class="field">
+        <span class="material-symbols-outlined ic">mail</span>
+        <input placeholder="you@example.com" value="john@jutis.xyz"/>
+        <span class="material-symbols-outlined" style="color:#4ade80">check_circle</span>
+      </div>
+      <div class="help ok"><span class="material-symbols-outlined" style="font-size:12px">verified</span>Verified · 2FA enabled</div>
+      <div class="check"><span class="cb"><span class="material-symbols-outlined">check</span></span>Remember this device</div>
+    </div>
+
+    <div class="field-block">
+      <label>Password <span class="hint">Focus</span></label>
+      <div class="field focus">
+        <span class="material-symbols-outlined ic">lock</span>
+        <input type="password" value="•••••••••••"/>
+        <span class="trail">11/24</span>
+      </div>
+      <div class="meter"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
+      <div class="help">Strong · add a symbol for max strength</div>
+    </div>
+  </div>
+</div>
+</body></html>

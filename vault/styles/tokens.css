@@ -1,0 +1,314 @@
+
+/* -----------------------------------------------------------------------------
+   1. COLOR PALETTE
+   -------------------------------------------------------------------------- */
+
+:root {
+
+  /* ── Backgrounds ─────────────────────────────────────── */
+  --bg-void:        #0a0b0f;   /* Immersive deep black */
+  --bg-main:        #1a1d23;   /* Primary page background */
+  --bg-elevated:    #181a21;   /* Card on deep bg, cyber surfaces */
+  --bg-card:        #232730;   /* Default card / surface */
+  --bg-inset:       #1a1d23;   /* Inset surface within card */
+
+  /* ── Borders ─────────────────────────────────────────── */
+  --border:         #2e323c;   /* Hairline divider / card edge */
+  --border-subtle:  rgba(46, 50, 60, 0.5);  /* Soft border overlay */
+  --border-accent:  rgba(220, 232, 122, 0.3); /* Hover accent border */
+
+  /* ── Text ────────────────────────────────────────────── */
+  --fg-primary:    #e6e8ec;   /* Headings, primary body */
+  --fg-secondary:  #9aa1ac;   /* Meta, captions, labels */
+  --fg-muted:      rgba(154, 161, 172, 0.5); /* Disabled, placeholder */
+
+  /* ── Brand Accent — Jutis Lime ──────────────────────── */
+  --accent:        #dce87a;   /* Primary CTA, active states, highlights */
+  --accent-deep:   #c8d96a;   /* Darker lime for gradient pair */
+  --accent-10:     rgba(220, 232, 122, 0.10); /* Subtle tint bg */
+  --accent-20:     rgba(220, 232, 122, 0.20); /* Light tint bg */
+  --accent-30:     rgba(220, 232, 122, 0.30); /* Hover tint bg */
+  --accent-glow:   rgba(220, 232, 122, 0.12); /* Ambient glow color */
+
+  /* ── Chain / Token Colors ───────────────────────────── */
+  --token-cant:    #dce87a;   /* Canton — uses brand accent */
+  --token-usdc:    #4a9eff;   /* USDC — blue */
+  --token-eth:     #627eea;   /* Ethereum — purple */
+  --token-btc:     #f7931a;   /* Bitcoin — orange */
+
+  /* ── Semantic States ─────────────────────────────────── */
+  --success:       #4ade80;   /* green-400 — confirmation, positive */
+  --success-bg:    rgba(74, 222, 128, 0.10);
+  --success-border:rgba(74, 222, 128, 0.20);
+
+  --danger:        #f87171;   /* red-400 — error, destructive */
+  --danger-bg:     rgba(248, 113, 113, 0.10);
+  --danger-border: rgba(248, 113, 113, 0.30);
+
+  --warning:       #f59e0b;   /* amber-500 — caution, attention */
+  --warning-bg:    rgba(245, 158, 11, 0.10);
+  --warning-border:rgba(245, 158, 11, 0.30);
+
+  --info:          #4a9eff;   /* blue — informational */
+  --info-bg:       rgba(74, 158, 255, 0.10);
+  --info-border:   rgba(74, 158, 255, 0.20);
+
+  /* -----------------------------------------------------------------------------
+     2. TYPOGRAPHY
+     -------------------------------------------------------------------------- */
+
+  /* ── Font Families ──────────────────────────────────── */
+  --font-sans:     "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-display:  "Plus Jakarta Sans", "Inter", system-ui, sans-serif;
+  --font-mono:     "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --font-icon:     "Material Symbols Outlined";
+
+  /* ── Type Scale ─────────────────────────────────────── */
+  --text-xs:       12px;
+  --text-sm:       14px;
+  --text-base:     16px;
+  --text-lg:       18px;
+  --text-xl:       20px;
+  --text-2xl:      24px;
+  --text-3xl:      30px;
+  --text-4xl:      36px;
+  --text-5xl:      48px;
+
+  /* ── Tracking / Casing ──────────────────────────────── */
+  --tracking-tight:   -0.02em;  /* Large display headings */
+  --tracking-normal:   0em;      /* Body text */
+  --tracking-wide:     0.05em;   /* UI labels */
+  --tracking-wider:    0.10em;   /* Small wordmarks */
+  --tracking-widest:   0.15em;  /* JUTIS wordmark small */
+  --tracking-caps:     0.25em;   /* Hero JUTIS, ALL CAPS labels */
+
+  /* ── Line Heights ──────────────────────────────────── */
+  --leading-tight:   1.1;   /* Hero headlines */
+  --leading-snug:     1.25;  /* Card titles */
+  --leading-normal:   1.5;   /* Body text */
+  --leading-relaxed:  1.75;  /* Long-form content */
+
+  /* -----------------------------------------------------------------------------
+     3. SPACING SCALE
+     -------------------------------------------------------------------------- */
+  --space-1:   4px;
+  --space-2:   8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+
+  /* -----------------------------------------------------------------------------
+     4. BORDER RADIUS
+     -------------------------------------------------------------------------- */
+  --radius-xs:   4px;    /* Small tags, chips */
+  --radius-sm:   8px;    /* Token chips, small buttons */
+  --radius-md:  12px;   /* Inputs, medium buttons */
+  --radius-lg:   16px;   /* Cards, panels */
+  --radius-xl:   20px;   /* Large cards, modals */
+  --radius-2xl:  24px;   /* Hero cards */
+  --radius-pill: 9999px;  /* CTA buttons, badges, pills */
+
+  /* -----------------------------------------------------------------------------
+     5. SHADOWS
+     -------------------------------------------------------------------------- */
+  --shadow-sm:     0 1px 3px rgba(0, 0, 0, 0.16), 0 1px 2px rgba(0, 0, 0, 0.08);
+  --shadow-md:     0 4px 16px rgba(0, 0, 0, 0.20);
+  --shadow-lg:     0 16px 48px rgba(0, 0, 0, 0.24);
+  --shadow-xl:     0 24px 80px rgba(0, 0, 0, 0.32);
+
+  /* ── Brand Glows ───────────────────────────────────── */
+  --glow-accent:      0 0 20px rgba(220, 232, 122, 0.20), 0 0 60px rgba(220, 232, 122, 0.08);
+  --glow-accent-lg:   0 0 40px rgba(220, 232, 122, 0.12), 0 0 80px rgba(220, 232, 122, 0.05);
+  --glow-accent-hover:0 0 50px rgba(220, 232, 122, 0.25), 0 0 100px rgba(220, 232, 122, 0.10);
+  --glow-cta:         0 0 30px rgba(220, 232, 122, 0.30);
+
+  /* -----------------------------------------------------------------------------
+     6. Z-INDEX SCALE
+     -------------------------------------------------------------------------- */
+  --z-base:      0;
+  --z-dropdown:  10;
+  --z-sticky:    20;
+  --z-overlay:   30;
+  --z-modal:      40;
+  --z-toast:      50;
+  --z-tooltip:    60;
+
+  /* -----------------------------------------------------------------------------
+     7. TRANSITION / MOTION
+     -------------------------------------------------------------------------- */
+
+  /* ── Easing ─────────────────────────────────────────── */
+  --ease-out:       cubic-bezier(0.4, 0, 0.2, 1);      /* Standard */
+  --ease-in:        cubic-bezier(0.4, 0, 1, 1);      /* Enter */
+  --ease-in-out:    cubic-bezier(0.4, 0, 0.2, 1);    /* Both */
+  --ease-spring:    cubic-bezier(0.34, 1.56, 0.64, 1); /* Bouncy */
+  --ease-elastic:   cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Elastic */
+
+  /* ── Duration ──────────────────────────────────────── */
+  --duration-fast:   150ms;   /* Micro interactions */
+  --duration-base:   250ms;   /* Standard transitions */
+  --duration-slow:   400ms;   /* Page transitions, reveals */
+  --duration-slower: 600ms;   /* Hero animations */
+
+  /* -----------------------------------------------------------------------------
+     8. LAYOUT
+     -------------------------------------------------------------------------- */
+  --container-max:   1180px;
+  --container-narrow: 720px;
+  --sidebar-width:    256px;   /* 64 * 4 = 256px dashboard sidebar */
+  --header-height:    72px;   /* Approx 16 + 40 + 16 = 72px */
+}
+
+/* -----------------------------------------------------------------------------
+   9. DARK THEME (default)
+   -------------------------------------------------------------------------- */
+:root,
+[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+/* -----------------------------------------------------------------------------
+   10. TYPOGRAPHY CLASSES
+   -------------------------------------------------------------------------- */
+
+/* Wordmark — used for "JUTIS" branding, ALL CAPS, wide tracking */
+.wordmark {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--text-xl);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--fg-primary);
+}
+
+/* Display 1 — Hero headlines */
+.display-1 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(30px, 5vw, var(--text-5xl));
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  color: var(--fg-primary);
+}
+
+/* Display 2 — Section headlines */
+.display-2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--text-3xl);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  color: var(--fg-primary);
+}
+
+/* Heading 1 */
+.h1 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--text-2xl);
+  line-height: var(--leading-snug);
+  color: var(--fg-primary);
+}
+
+/* Heading 2 */
+.h2 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--text-xl);
+  line-height: var(--leading-snug);
+  color: var(--fg-primary);
+}
+
+/* Heading 3 — card titles */
+.h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--text-base);
+  line-height: var(--leading-snug);
+  color: var(--fg-primary);
+}
+
+/* Body text */
+.body {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  color: var(--fg-primary);
+}
+
+/* Body small */
+.body-sm {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+  color: var(--fg-secondary);
+}
+
+/* Meta — tiny captions */
+.meta {
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  color: var(--fg-secondary);
+}
+
+/* Eyebrow — ALL CAPS labels like "VERIFIED NODE" */
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--fg-secondary);
+}
+
+/* Monospace */
+.mono {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0;
+  color: var(--fg-secondary);
+}
+
+/* Amount — large balance numbers */
+.amount {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--text-4xl);
+  letter-spacing: var(--tracking-tight);
+  color: var(--fg-primary);
+}
+
+/* Accent link */
+.link-accent {
+  color: var(--accent);
+  text-decoration: none;
+  transition: opacity var(--duration-fast) var(--ease-out);
+}
+.link-accent:hover {
+  opacity: 0.8;
+}
+
+/* -----------------------------------------------------------------------------
+   11. BACKGROUND PATTERN CLASSES
+   -------------------------------------------------------------------------- */
+
+/* Dot grid background — homepage signature */
+.bg-grid {
+  background-image: radial-gradient(var(--border) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Deeper grid for inset areas */
+.bg-grid-dense {
+  background-image: radial-gradient(var(--border) 1px, transparent 1px);
+  background-size: 24px 24px;
+}

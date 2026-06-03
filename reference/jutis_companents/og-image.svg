@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1d23"></stop>
+      <stop offset="100%" style="stop-color:#232730"></stop>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="40" result="blur"></feGaussianBlur>
+      <feMerge>
+        <feMergeNode in="blur"></feMergeNode>
+        <feMergeNode in="SourceGraphic"></feMergeNode>
+      </feMerge>
+    </filter>
+  </defs>
+
+  
+  <rect width="1200" height="630" fill="url(#bg)"></rect>
+
+  
+  <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+    <circle cx="20" cy="20" r="1" fill="#2e323c" opacity="0.5"></circle>
+  </pattern>
+  <rect width="1200" height="630" fill="url(#grid)" opacity="0.3"></rect>
+
+  
+  <ellipse cx="950" cy="100" rx="300" ry="300" fill="#dce87a" opacity="0.05" filter="url(#glow)"></ellipse>
+  <ellipse cx="100" cy="600" rx="250" ry="250" fill="#e6e8ec" opacity="0.03" filter="url(#glow)"></ellipse>
+
+  
+  <g transform="translate(600, 240)">
+    <g transform="scale(4)">
+      <rect x="-20" y="-20" width="40" height="40" fill="none" stroke="#dce87a" stroke-width="2.5" rx="6" transform="rotate(45)"></rect>
+      <rect x="-20" y="-20" width="40" height="40" fill="none" stroke="#e6e8ec" stroke-width="1.5" stroke-opacity="0.25" rx="6" transform="rotate(12)"></rect>
+      <rect x="-3" y="-14" width="6" height="28" fill="#dce87a" rx="3"></rect>
+    </g>
+  </g>
+
+  
+  <text x="600" y="360" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="48" font-weight="800" letter-spacing="0.2em" fill="#e6e8ec">JUTIS</text>
+
+  
+  <text x="600" y="420" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="24" fill="#9aa1ac">Web Extension Wallet for Canton</text>
+
+  
+  <rect x="570" y="445" width="60" height="3" fill="#dce87a" rx="1.5"></rect>
+
+  
+  <g transform="translate(340, 500)">
+    <rect x="0" y="0" width="120" height="36" rx="18" fill="#dce87a" fill-opacity="0.1" stroke="#dce87a" stroke-opacity="0.3"></rect>
+    <text x="60" y="23" text-anchor="middle" font-family="system-ui" font-size="13" font-weight="600" fill="#dce87a">SECURE</text>
+  </g>
+  <g transform="translate(480, 500)">
+    <rect x="0" y="0" width="120" height="36" rx="18" fill="#dce87a" fill-opacity="0.1" stroke="#dce87a" stroke-opacity="0.3"></rect>
+    <text x="60" y="23" text-anchor="middle" font-family="system-ui" font-size="13" font-weight="600" fill="#dce87a">FAST</text>
+  </g>
+  <g transform="translate(620, 500)">
+    <rect x="0" y="0" width="140" height="36" rx="18" fill="#dce87a" fill-opacity="0.1" stroke="#dce87a" stroke-opacity="0.3"></rect>
+    <text x="70" y="23" text-anchor="middle" font-family="system-ui" font-size="13" font-weight="600" fill="#dce87a">CANTON</text>
+  </g>
+  <g transform="translate(780, 500)">
+    <rect x="0" y="0" width="120" height="36" rx="18" fill="#dce87a" fill-opacity="0.1" stroke="#dce87a" stroke-opacity="0.3"></rect>
+    <text x="60" y="23" text-anchor="middle" font-family="system-ui" font-size="13" font-weight="600" fill="#dce87a">NON-CUSTODIAL</text>
+  </g>
+</svg>

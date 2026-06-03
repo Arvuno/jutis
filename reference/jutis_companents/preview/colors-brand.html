@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/>
+<title>Brand Colors</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<style>
+  html,body{margin:0;background:transparent;font-family:'Inter',system-ui}
+  .card{
+    width:700px;padding:22px;box-sizing:border-box;color:#e6e8ec;position:relative;overflow:hidden;
+    background:
+      radial-gradient(circle at 15% -10%, rgba(220,232,122,.12), transparent 40%),
+      linear-gradient(180deg,#1a1d23 0%,#12141a 100%);
+    border:1px solid #2e323c;
+  }
+  .card::before{
+    content:'';position:absolute;inset:0;pointer-events:none;
+    background:repeating-linear-gradient(90deg, rgba(46,50,60,.4) 0 1px, transparent 1px 64px);
+    opacity:.4
+  }
+  .head{position:relative;display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+  .eyebrow{font:700 9px 'Inter';letter-spacing:.28em;text-transform:uppercase;color:#9aa1ac;display:inline-flex;align-items:center;gap:8px}
+  .eyebrow .d{width:6px;height:6px;border-radius:9999px;background:#dce87a;box-shadow:0 0 10px #dce87a}
+  .count{font:500 10px 'JetBrains Mono';color:#9aa1ac;display:inline-flex;align-items:center;gap:6px}
+
+  .layout{position:relative;display:grid;grid-template-columns:260px 1fr;gap:12px}
+
+  /* Hero primary */
+  .hero{
+    position:relative;border-radius:20px;padding:20px;overflow:hidden;
+    background:
+      radial-gradient(circle at 85% 15%, #f0f79a 0%, #dce87a 45%, #c8d96a 100%);
+    color:#1a1d23;
+    box-shadow:0 20px 50px -20px rgba(220,232,122,.35), inset 0 0 0 1px rgba(255,255,255,.25)
+  }
+  .hero .rings{position:absolute;right:-20px;bottom:-30px;width:180px;height:180px;opacity:.25}
+  .hero .rings div{position:absolute;inset:0;border:1.5px solid #1a1d23;border-radius:32px;transform:rotate(45deg)}
+  .hero .rings div:nth-child(2){inset:16px;transform:rotate(30deg)}
+  .hero .rings div:nth-child(3){inset:32px;transform:rotate(15deg)}
+  .hero .role{font:700 9px 'Inter';letter-spacing:.3em;text-transform:uppercase;opacity:.65;position:relative}
+  .hero .name{font:800 32px 'Plus Jakarta Sans';letter-spacing:-.015em;line-height:1;margin:10px 0 4px;position:relative}
+  .hero .hex{font:500 11px 'JetBrains Mono';opacity:.8;position:relative}
+  .hero .meta{position:relative;margin-top:16px;display:flex;flex-direction:column;gap:6px}
+  .hero .meta .kv{display:flex;justify-content:space-between;font:500 10px 'JetBrains Mono';opacity:.75;border-top:1px solid rgba(26,29,35,.18);padding-top:6px}
+  .hero .meta .kv:first-child{border-top:none;padding-top:0}
+
+  /* Supporting grid */
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(3,1fr);gap:8px}
+  .sw{
+    position:relative;border-radius:12px;padding:10px 12px;
+    background:linear-gradient(160deg,#232730 0%,#1a1d23 100%);
+    border:1px solid rgba(255,255,255,.04);
+    display:flex;align-items:center;gap:10px;
+    overflow:hidden;
+  }
+  .sw .swatch{width:28px;height:28px;border-radius:8px;flex-shrink:0;box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}
+  .sw .col{flex:1;min-width:0}
+  .sw .nm{font:700 11px 'Plus Jakarta Sans';color:#e6e8ec;letter-spacing:.02em;line-height:1.1}
+  .sw .hex{font:500 9px 'JetBrains Mono';color:#9aa1ac;margin-top:1px}
+  .sw .tag{font:500 8px 'JetBrains Mono';color:#4a4f5a;letter-spacing:.1em;text-transform:uppercase}
+</style></head>
+<body>
+<div class="card">
+  <div class="head">
+    <div class="eyebrow"><span class="d"></span>Core Palette · v2026</div>
+    <div class="count"><span style="width:6px;height:6px;background:#dce87a;border-radius:9999px"></span>oklch · WCAG AA</div>
+  </div>
+
+  <div class="layout">
+    <div class="hero">
+      <div class="rings"><div></div><div></div><div></div></div>
+      <div class="role">Primary · Accent</div>
+      <div class="name">JUTIS<br/>LIME</div>
+      <div class="hex">#dce87a</div>
+      <div class="meta">
+        <div class="kv"><span>oklch</span><span>.91 .15 110</span></div>
+        <div class="kv"><span>rgb</span><span>220 232 122</span></div>
+        <div class="kv"><span>usage</span><span>CTA · focus · live</span></div>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="sw">
+        <div class="swatch" style="background:linear-gradient(160deg,#c8d96a,#a9bf52)"></div>
+        <div class="col"><div class="nm">Deep Accent</div><div class="hex">#c8d96a</div></div>
+        <div class="tag">02</div>
+      </div>
+      <div class="sw">
+        <div class="swatch" style="background:linear-gradient(160deg,#f0f2f5,#e6e8ec)"></div>
+        <div class="col"><div class="nm">Snow · FG</div><div class="hex">#e6e8ec</div></div>
+        <div class="tag">03</div>
+      </div>
+      <div class="sw">
+        <div class="swatch" style="background:linear-gradient(160deg,#a8afba,#9aa1ac)"></div>
+        <div class="col"><div class="nm">Mist · FG 2</div><div class="hex">#9aa1ac</div></div>
+        <div class="tag">04</div>
+      </div>
+      <div class="sw">
+        <div class="swatch" style="background:linear-gradient(160deg,#363b46,#2e323c)"></div>
+        <div class="col"><div class="nm">Hairline</div><div class="hex">#2e323c</div></div>
+        <div class="tag">05</div>
+      </div>
+      <div class="sw">
+        <div class="swatch" style="background:linear-gradient(160deg,#2a2e38,#232730)"></div>
+        <div class="col"><div class="nm">Card BG</div><div class="hex">#232730</div></div>
+        <div class="tag">06</div>
+      </div>
+      <div class="sw">
+        <div class="swatch" style="background:linear-gradient(160deg,#1a1d23,#0a0b0f)"></div>
+        <div class="col"><div class="nm">Void</div><div class="hex">#0a0b0f</div></div>
+        <div class="tag">07</div>
+      </div>
+    </div>
+  </div>
+</div>
+</body></html>

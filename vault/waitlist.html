@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Join Waitlist - Jutis</title>
+    <meta name="description" content="Join the Jutis waitlist for early access to the Canton-native web extension wallet. Priority onboarding for early members.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Join Waitlist - Jutis">
+    <meta property="og:description" content="Join the waitlist for early access to Jutis.">
+    <meta property="og:image" content="og-image.svg">
+    <meta property="og:site_name" content="Jutis">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles/tokens.css">
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/layout.css">
+    <link rel="stylesheet" href="styles/components.css">
+
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+</head>
+
+<body class="page page--atmosphere page--centered">
+
+    <!-- BACKGROUND ATMOSPHERE -->
+    <div class="bg-grid" aria-hidden="true" style="position:fixed;inset:0;pointer-events:none;opacity:0.3;z-index:0;"></div>
+    <div class="atmosphere-orb atmosphere-orb--lime" aria-hidden="true"></div>
+    <div class="atmosphere-orb atmosphere-orb--white" aria-hidden="true"></div>
+
+    <!-- HEADER -->
+    <header class="site-header">
+        <div class="site-header__inner">
+            <a href="index.html" class="site-header__logo" aria-label="Jutis home">
+                <div class="site-header__logo-mark" aria-hidden="true">
+                    <div class="site-header__logo-ring site-header__logo-ring--outer"></div>
+                    <div class="site-header__logo-ring site-header__logo-ring--inner"></div>
+                    <div class="site-header__logo-bar"></div>
+                </div>
+                <span class="site-header__wordmark">Jutis</span>
+            </a>
+            <nav class="site-header__nav" aria-label="Primary navigation">
+                <a href="feature.html">Features</a>
+                <a href="security.html">Security</a>
+                <a href="developers/index.html">Developers</a>
+                <a href="docs/index.html">Docs</a>
+                <a href="blog/index.html">Blog</a>
+                <a href="partner/index.html">Partner</a>
+            </nav>
+            <div class="site-header__actions">
+                <a href="login.html" class="site-header__login">Login</a>
+                <a href="signup.html" class="btn-signup">Get Started</a>
+            </div>
+        </div>
+    </header>
+    <div class="site-header__top-accent" aria-hidden="true"></div>
+
+    <!-- MAIN CONTENT -->
+    <main class="page-content page-content--centered" style="padding-top:72px; position:relative; z-index:1; min-height:100vh; display:flex; align-items:center; justify-content:center; flex-direction:column;">
+
+        <!-- BETA BADGE -->
+        <span class="badge" style="margin-bottom: var(--space-8);">
+            <span class="badge__dot badge__dot--pulse"></span>
+            Early Access
+        </span>
+
+        <!-- LOGO MARK -->
+        <div class="waitlist-logo" aria-hidden="true" style="margin-bottom: var(--space-8); animation: float 6s ease-in-out infinite;">
+            <div class="waitlist-logo__mark">
+                <div class="waitlist-logo__ring waitlist-logo__ring--outer"></div>
+                <div class="waitlist-logo__ring waitlist-logo__ring--inner"></div>
+                <div class="waitlist-logo__bar"></div>
+            </div>
+            <p class="waitlist-logo__wordmark">JUTIS</p>
+            <div class="waitlist-logo__divider"></div>
+        </div>
+
+        <!-- HEADLINE -->
+        <div class="waitlist-headline" style="text-align: center; margin-bottom: var(--space-12); max-width: 560px;">
+            <h1 class="waitlist-title" style="font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin-bottom: var(--space-4);">
+                Be the First to Experience<br/>
+                <span style="color: var(--accent);">Canton Native Wallet</span>
+            </h1>
+            <p class="waitlist-subtitle" style="font-size: var(--text-lg); color: var(--fg-secondary);">
+                Join the waitlist and get early access to Jutis. Priority onboarding for early members.
+            </p>
+        </div>
+
+        <!-- WAITLIST FORM -->
+        <div class="waitlist-form-wrapper" style="width: 100%; max-width: 520px; margin-bottom: var(--space-8);">
+            <form class="waitlist-form" id="waitlistForm" style="background: var(--bg-secondary); border: 1px solid var(--border); border-radius: var(--radius-xl); padding: var(--space-2); display: flex; gap: var(--space-2); flex-wrap: wrap;">
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Enter your email address"
+                    required
+                    class="waitlist-input"
+                    style="flex: 1; min-width: 200px; padding: var(--space-4) var(--space-5); background: var(--bg-main); border: 1px solid var(--border); border-radius: var(--radius-lg); color: var(--fg-primary); font-size: var(--text-base); outline: none; transition: border-color var(--duration-fast) var(--ease-out);"
+                >
+                <button
+                    type="submit"
+                    class="btn btn--accent btn--lg"
+                    style="white-space: nowrap;"
+                >
+                    Join Waitlist
+                    <span class="material-symbols-outlined" aria-hidden="true" style="font-size: 18px;">arrow_forward</span>
+                </button>
+            </form>
+            <p class="waitlist-disclaimer" style="text-align: center; font-size: var(--text-sm); color: var(--fg-secondary); margin-top: var(--space-4);">
+                No spam. We'll only email you about Jutis updates.
+            </p>
+        </div>
+
+        <!-- SUCCESS MESSAGE (hidden) -->
+        <div class="waitlist-success" id="successMessage" style="display: none; text-align: center; margin-bottom: var(--space-8);">
+            <div class="waitlist-success__icon" style="width: 64px; height: 64px; background: var(--accent-10); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-4);">
+                <span class="material-symbols-outlined" style="color: var(--accent); font-size: 32px;">check_circle</span>
+            </div>
+            <h3 class="waitlist-success__title" style="font-family: var(--font-display); font-size: var(--text-xl); font-weight: 700; margin-bottom: var(--space-2);">You're on the list!</h3>
+            <p class="waitlist-success__text" style="color: var(--fg-secondary);">We'll notify you when Jutis is ready.</p>
+        </div>
+
+        <!-- STATS -->
+        <div class="waitlist-stats" style="display: flex; gap: var(--space-12); align-items: center; margin-bottom: var(--space-16); opacity: 0.6;">
+            <div class="waitlist-stat" style="text-align: center;">
+                <p class="waitlist-stat__value" style="font-family: var(--font-display); font-size: var(--text-2xl); font-weight: 700; color: var(--accent);">2,847</p>
+                <p class="waitlist-stat__label" style="font-size: var(--text-xs); color: var(--fg-secondary); text-transform: uppercase; letter-spacing: var(--tracking-caps);">Waiting</p>
+            </div>
+            <div class="waitlist-stat__divider" style="width: 1px; height: 40px; background: var(--border);"></div>
+            <div class="waitlist-stat" style="text-align: center;">
+                <p class="waitlist-stat__value" style="font-family: var(--font-display); font-size: var(--text-2xl); font-weight: 700; color: var(--accent);">Q2 2026</p>
+                <p class="waitlist-stat__label" style="font-size: var(--text-xs); color: var(--fg-secondary); text-transform: uppercase; letter-spacing: var(--tracking-caps);">Target Launch</p>
+            </div>
+        </div>
+
+        <!-- FEATURES PREVIEW -->
+        <div class="waitlist-features" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6); max-width: 480px; text-align: center;">
+            <div class="waitlist-feature">
+                <div class="waitlist-feature__icon" style="width: 48px; height: 48px; background: var(--accent-10); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-3);">
+                    <span class="material-symbols-outlined" style="color: var(--accent);">lock</span>
+                </div>
+                <p class="waitlist-feature__title" style="font-size: var(--text-sm); font-weight: 600;">Secure</p>
+                <p class="waitlist-feature__desc" style="font-size: var(--text-xs); color: var(--fg-secondary);">Bank-grade security</p>
+            </div>
+            <div class="waitlist-feature">
+                <div class="waitlist-feature__icon" style="width: 48px; height: 48px; background: var(--accent-10); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-3);">
+                    <span class="material-symbols-outlined" style="color: var(--accent);">speed</span>
+                </div>
+                <p class="waitlist-feature__title" style="font-size: var(--text-sm); font-weight: 600;">Fast</p>
+                <p class="waitlist-feature__desc" style="font-size: var(--text-xs); color: var(--fg-secondary);">Instant transactions</p>
+            </div>
+            <div class="waitlist-feature">
+                <div class="waitlist-feature__icon" style="width: 48px; height: 48px; background: var(--accent-10); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-3);">
+                    <span class="material-symbols-outlined" style="color: var(--accent);"> Canton </span>
+                </div>
+                <p class="waitlist-feature__title" style="font-size: var(--text-sm); font-weight: 600;">Canton Native</p>
+                <p class="waitlist-feature__desc" style="font-size: var(--text-xs); color: var(--fg-secondary);">Built for Canton</p>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- TOP ACCENT LINE -->
+    <div class="top-accent" aria-hidden="true"></div>
+
+    <!-- BOTTOM DECORATIVE DOTS -->
+    <div class="bottom-dots" aria-hidden="true" style="bottom: 48px;">
+        <div class="bottom-dots__item bottom-dots__item--filled"></div>
+        <div class="bottom-dots__item bottom-dots__item--outline"></div>
+        <div class="bottom-dots__item bottom-dots__item--outline"></div>
+    </div>
+
+    <script>
+    document.getElementById('waitlistForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        var email = document.getElementById('email').value;
+        console.log('Waitlist signup:', email);
+        this.style.display = 'none';
+        document.getElementById('successMessage').style.display = 'block';
+    });
+    </script>
+
+    <style>
+    @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-20px); }
+    }
+    .waitlist-logo { display: flex; flex-direction: column; align-items: center; gap: var(--space-4); }
+    .waitlist-logo__mark {
+        width: 80px; height: 80px;
+        display: flex; align-items: center; justify-content: center;
+        position: relative;
+    }
+    .waitlist-logo__ring {
+        position: absolute;
+        border-radius: var(--radius-lg);
+    }
+    .waitlist-logo__ring--outer {
+        width: 80px; height: 80px;
+        border: 2px solid var(--accent);
+        transform: rotate(45deg) scale(0.9);
+    }
+    .waitlist-logo__ring--inner {
+        width: 80px; height: 80px;
+        border: 2px solid var(--fg-secondary);
+        transform: rotate(12deg);
+        opacity: 0.2;
+    }
+    .waitlist-logo__bar {
+        width: 8px; height: 32px;
+        background: var(--accent);
+        border-radius: 99px;
+        position: relative; z-index: 1;
+    }
+    .waitlist-logo__wordmark {
+        font-family: var(--font-display);
+        font-size: var(--text-xl);
+        font-weight: 800;
+        letter-spacing: var(--tracking-wide);
+        text-transform: uppercase;
+    }
+    .waitlist-logo__divider {
+        width: 48px; height: 2px;
+        background: var(--accent);
+        border-radius: 99px;
+    }
+    .waitlist-input:focus {
+        border-color: var(--accent-30);
+    }
+    </style>
+
+</body>
+</html>

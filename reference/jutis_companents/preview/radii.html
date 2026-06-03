@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/>
+<title>Radii & Spacing</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<style>
+  html,body{margin:0;background:transparent;font-family:'Inter',system-ui}
+  .card{
+    width:700px;padding:22px;box-sizing:border-box;color:#e6e8ec;position:relative;overflow:hidden;
+    background:linear-gradient(180deg,#1a1d23 0%,#13161b 100%);
+    border:1px solid #2e323c;
+  }
+  .card::before{
+    content:'';position:absolute;inset:0;pointer-events:none;
+    background-image:radial-gradient(rgba(46,50,60,.5) 1px, transparent 1px);
+    background-size:22px 22px;opacity:.3
+  }
+  .head{position:relative;display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+  .eyebrow{font:700 9px 'Inter';letter-spacing:.28em;text-transform:uppercase;color:#9aa1ac;display:inline-flex;align-items:center;gap:8px}
+  .eyebrow .d{width:6px;height:6px;border-radius:9999px;background:#dce87a;box-shadow:0 0 10px #dce87a}
+  .count{font:500 10px 'JetBrains Mono';color:#9aa1ac}
+
+  .row{position:relative;display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+  .r{
+    position:relative;background:linear-gradient(160deg,#232730,#1a1d23);
+    border:1px solid rgba(255,255,255,.04);height:120px;overflow:hidden;
+    display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:12px 10px;
+  }
+  .r .shape{
+    position:absolute;top:14px;left:50%;transform:translateX(-50%);
+    width:52px;height:52px;
+    background:linear-gradient(160deg,rgba(220,232,122,.18),rgba(220,232,122,.08));
+    border:1.5px solid rgba(220,232,122,.45);
+    box-shadow:inset 0 0 0 1px rgba(220,232,122,.1);
+  }
+  .r .corner{
+    position:absolute;top:14px;left:50%;transform:translateX(-50%);
+    width:52px;height:52px;pointer-events:none;
+  }
+  .r .corner::before,.r .corner::after{
+    content:'';position:absolute;width:12px;height:12px;border:1px dashed rgba(220,232,122,.55);
+  }
+  .r .corner::before{top:-4px;left:-4px;border-right:none;border-bottom:none}
+  .r .corner::after{bottom:-4px;right:-4px;border-left:none;border-top:none}
+  .r .nm{font:700 11px 'Plus Jakarta Sans';color:#e6e8ec;letter-spacing:.01em}
+  .r .px{font:500 10px 'JetBrains Mono';color:#9aa1ac;margin-top:2px}
+  .r .tag{position:absolute;top:6px;left:8px;font:500 8px 'JetBrains Mono';color:#4a4f5a;letter-spacing:.1em}
+</style></head>
+<body>
+<div class="card">
+  <div class="head">
+    <div class="eyebrow"><span class="d"></span>Border Radii · Scale</div>
+    <div class="count">5 · 4px → ∞</div>
+  </div>
+  <div class="row">
+    <div class="r"><span class="tag">01</span><div class="shape" style="border-radius:4px"></div><div class="corner" style="border-radius:4px"></div><div class="nm">xs</div><div class="px">4px</div></div>
+    <div class="r"><span class="tag">02</span><div class="shape" style="border-radius:8px"></div><div class="corner" style="border-radius:8px"></div><div class="nm">sm</div><div class="px">8px</div></div>
+    <div class="r"><span class="tag">03</span><div class="shape" style="border-radius:12px"></div><div class="corner" style="border-radius:12px"></div><div class="nm">md</div><div class="px">12px</div></div>
+    <div class="r"><span class="tag">04</span><div class="shape" style="border-radius:16px"></div><div class="corner" style="border-radius:16px"></div><div class="nm">lg · 2xl</div><div class="px">16px</div></div>
+    <div class="r"><span class="tag">05</span><div class="shape" style="border-radius:9999px"></div><div class="corner" style="border-radius:9999px"></div><div class="nm">pill</div><div class="px">∞</div></div>
+  </div>
+</div>
+</body></html>

@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Withdrawals — Jutis Partner</title>
+    <meta name="description" content="Manage your partner withdrawals.">
+    <meta name="robots" content="noindex">
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Withdrawals — Jutis Partner">
+    <meta property="og:image" content="../og-image.svg">
+    <meta property="og:site_name" content="Jutis">
+
+    <link rel="stylesheet" href="../styles/tokens.css">
+    <link rel="stylesheet" href="../styles/base.css">
+    <link rel="stylesheet" href="../styles/components.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+</head>
+
+<body class="page page--dashboard">
+
+    <div class="partner-sidebar" id="sidebar">
+        <div class="sidebar-logo">
+            <a href="index.html" class="sidebar-logo__link">
+                <div class="sidebar-logo__mark" aria-hidden="true">
+                    <div class="sidebar-logo__ring sidebar-logo__ring--outer"></div>
+                    <div class="sidebar-logo__ring sidebar-logo__ring--inner"></div>
+                    <div class="sidebar-logo__bar"></div>
+                </div>
+                <span class="sidebar-logo__wordmark">Jutis</span>
+            </a>
+        </div>
+
+        <nav class="sidebar-nav">
+            <ul class="sidebar-nav__list">
+                <li><a href="dashboard.html" class="sidebar-nav__item">
+                    <span class="material-symbols-outlined sidebar-nav__icon" aria-hidden="true">dashboard</span>
+                    Dashboard
+                </a></li>
+                <li><a href="links.html" class="sidebar-nav__item">
+                    <span class="material-symbols-outlined sidebar-nav__icon" aria-hidden="true">link</span>
+                    Links
+                </a></li>
+                <li><a href="users.html" class="sidebar-nav__item">
+                    <span class="material-symbols-outlined sidebar-nav__icon" aria-hidden="true">group</span>
+                    Users
+                </a></li>
+                <li><a href="withdrawals.html" class="sidebar-nav__item sidebar-nav__item--active">
+                    <span class="material-symbols-outlined sidebar-nav__icon" aria-hidden="true">payments</span>
+                    Withdrawals
+                </a></li>
+                <li><a href="support.html" class="sidebar-nav__item">
+                    <span class="material-symbols-outlined sidebar-nav__icon" aria-hidden="true">support</span>
+                    Support
+                </a></li>
+                <li><a href="settings.html" class="sidebar-nav__item">
+                    <span class="material-symbols-outlined sidebar-nav__icon" aria-hidden="true">settings</span>
+                    Settings
+                </a></li>
+            </ul>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="login.html" class="sidebar-nav__item sidebar-nav__item--logout">
+                <span class="material-symbols-outlined sidebar-nav__icon" aria-hidden="true">logout</span>
+                Logout
+            </a>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <header class="topbar">
+            <div class="topbar-left">
+                <h1 class="page-title">Withdrawals</h1>
+                <p class="page-subtitle">Manage your earnings and withdrawal requests</p>
+            </div>
+            <div class="topbar-right">
+                <div class="partner-badge">
+                    <span class="material-symbols-outlined" aria-hidden="true">workspace_premium</span>
+                    Partner Portal
+                </div>
+            </div>
+        </header>
+
+        <div class="content-area">
+
+            <div class="stats-row stats-row--3">
+                <div class="stat-card">
+                    <div class="stat-card__label">Available Balance</div>
+                    <div class="stat-card__value">$847.50</div>
+                    <div class="stat-card__sub">Ready to withdraw</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card__label">Pending</div>
+                    <div class="stat-card__value">$120.00</div>
+                    <div class="stat-card__sub">1 request in review</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card__label">Total Paid</div>
+                    <div class="stat-card__value">$2,430.00</div>
+                    <div class="stat-card__sub">All time withdrawals</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Request Withdrawal</h2>
+                </div>
+                <div class="card-body">
+                    <div class="withdrawal-form">
+                        <div class="withdrawal-amount-display">
+                            <span class="withdrawal-currency">$</span>
+                            <span class="withdrawal-amount">847.50</span>
+                            <span class="withdrawal-max">available</span>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="withdrawAmount">Amount (USD)</label>
+                            <input type="number" id="withdrawAmount" class="form-input" placeholder="Enter amount" value="847.50" min="10" max="847.50" step="0.01">
+                            <span class="form-hint">Minimum withdrawal: $10.00</span>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="withdrawMethod">Payout Method</label>
+                            <select id="withdrawMethod" class="form-input">
+                                <option>Canton Wallet — 0x7a3f...9e2b</option>
+                            </select>
+                        </div>
+                        <button class="btn btn--accent w-full">
+                            <span class="material-symbols-outlined" aria-hidden="true">send</span>
+                            Request Withdrawal
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Withdrawal History</h2>
+                </div>
+                <div class="table-wrapper">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Amount</th>
+                                <th>Method</th>
+                                <th>Status</th>
+                                <th>Reference</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>May 8, 2026</td>
+                                <td class="amount-cell">$340.00</td>
+                                <td>Canton Wallet</td>
+                                <td><span class="badge badge--green">Paid</span></td>
+                                <td class="mono">wd_9f3k2m</td>
+                            </tr>
+                            <tr>
+                                <td>Apr 24, 2026</td>
+                                <td class="amount-cell">$210.00</td>
+                                <td>Canton Wallet</td>
+                                <td><span class="badge badge--green">Paid</span></td>
+                                <td class="mono">wd_7x1p8n</td>
+                            </tr>
+                            <tr>
+                                <td>Apr 10, 2026</td>
+                                <td class="amount-cell">$500.00</td>
+                                <td>Canton Wallet</td>
+                                <td><span class="badge badge--green">Paid</span></td>
+                                <td class="mono">wd_5t7q3l</td>
+                            </tr>
+                            <tr>
+                                <td>Mar 28, 2026</td>
+                                <td class="amount-cell">$180.00</td>
+                                <td>Canton Wallet</td>
+                                <td><span class="badge badge--green">Paid</span></td>
+                                <td class="mono">wd_2w8e6k</td>
+                            </tr>
+                            <tr>
+                                <td>Mar 14, 2026</td>
+                                <td class="amount-cell">$1,200.00</td>
+                                <td>Canton Wallet</td>
+                                <td><span class="badge badge--green">Paid</span></td>
+                                <td class="mono">wd_1a4d9j</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Pending Request</h2>
+                </div>
+                <div class="card-body">
+                    <div class="pending-notice">
+                        <div class="pending-notice__left">
+                            <span class="material-symbols-outlined pending-notice__icon" aria-hidden="true">schedule</span>
+                            <div>
+                                <div class="pending-notice__title">$120.00 — Pending Review</div>
+                                <div class="pending-notice__sub">Requested May 9, 2026 · wd_pending_3m7r</div>
+                            </div>
+                        </div>
+                        <span class="badge badge--yellow">In Review</span>
+                    </div>
+                    <p class="text-sm text-secondary" style="margin-top: var(--space-3);">
+                        Withdrawals are typically processed within 2–3 business days. You'll receive an email once your request is approved and the funds are sent.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <style>
+    .partner-sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 240px;
+        height: 100vh;
+        background: var(--bg-card);
+        border-right: 1px solid var(--border);
+        display: flex;
+        flex-direction: column;
+        z-index: 100;
+        overflow-y: auto;
+    }
+
+    .sidebar-logo {
+        padding: var(--space-5) var(--space-5) var(--space-4);
+        border-bottom: 1px solid var(--border);
+    }
+
+    .sidebar-logo__link {
+        display: flex;
+        align-items: center;
+        gap: var(--space-3);
+        text-decoration: none;
+    }
+
+    .sidebar-logo__mark {
+        position: relative;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    .sidebar-logo__ring {
+        position: absolute;
+        border-radius: 6px;
+        border: 2px solid var(--accent);
+    }
+
+    .sidebar-logo__ring--outer {
+        inset: 0;
+        transform: rotate(45deg) scale(0.9);
+    }
+
+    .sidebar-logo__ring--inner {
+        inset: 4px;
+        border-color: rgba(230, 232, 236, 0.2);
+        transform: rotate(12deg);
+    }
+
+    .sidebar-logo__bar {
+        position: relative;
+        z-index: 1;
+        width: 4px;
+        height: 14px;
+        background-color: var(--accent);
+        border-radius: 2px;
+    }
+
+    .sidebar-logo__wordmark {
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: var(--text-lg);
+        color: var(--fg-primary);
+    }
+
+    .sidebar-nav {
+        flex: 1;
+        padding: var(--space-4) var(--space-3);
+    }
+
+    .sidebar-nav__list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-1);
+    }
+
+    .sidebar-nav__item {
+        display: flex;
+        align-items: center;
+        gap: var(--space-3);
+        padding: var(--space-3) var(--space-3);
+        border-radius: var(--radius-md);
+        color: var(--fg-secondary);
+        text-decoration: none;
+        font-size: var(--text-sm);
+        font-weight: 500;
+        transition: background-color var(--duration-fast) var(--ease-out),
+                    color var(--duration-fast) var(--ease-out);
+    }
+
+    .sidebar-nav__item:hover {
+        background: var(--bg-inset);
+        color: var(--fg-primary);
+    }
+
+    .sidebar-nav__item--active {
+        background: var(--accent-10);
+        color: var(--accent);
+    }
+
+    .sidebar-nav__item--active:hover {
+        background: var(--accent-10);
+        color: var(--accent);
+    }
+
+    .sidebar-nav__icon {
+        font-size: 20px;
+        flex-shrink: 0;
+    }
+
+    .sidebar-footer {
+        padding: var(--space-4) var(--space-3);
+        border-top: 1px solid var(--border);
+    }
+
+    .sidebar-nav__item--logout {
+        color: var(--fg-muted);
+    }
+
+    .sidebar-nav__item--logout:hover {
+        color: #ef4444;
+        background: rgba(239, 68, 68, 0.08);
+    }
+
+    .main-content {
+        margin-left: 240px;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: var(--space-4) var(--space-8);
+        background: var(--bg-main);
+        border-bottom: 1px solid var(--border);
+        backdrop-filter: blur(8px);
+    }
+
+    .topbar-left {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-1);
+    }
+
+    .page-title {
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: var(--text-xl);
+        color: var(--fg-primary);
+    }
+
+    .page-subtitle {
+        font-size: var(--text-sm);
+        color: var(--fg-secondary);
+    }
+
+    .partner-badge {
+        display: flex;
+        align-items: center;
+        gap: var(--space-2);
+        padding: var(--space-2) var(--space-3);
+        background: var(--accent-10);
+        border: 1px solid var(--accent-20);
+        border-radius: var(--radius-pill);
+        font-size: var(--text-xs);
+        font-weight: 600;
+        color: var(--accent);
+    }
+
+    .partner-badge .material-symbols-outlined {
+        font-size: 16px;
+    }
+
+    .content-area {
+        flex: 1;
+        padding: var(--space-8);
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-6);
+        max-width: 1000px;
+    }
+
+    .stats-row {
+        display: grid;
+        gap: var(--space-4);
+    }
+
+    .stats-row--3 {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .stat-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        padding: var(--space-5);
+    }
+
+    .stat-card__label {
+        font-size: var(--text-xs);
+        font-weight: 600;
+        color: var(--fg-secondary);
+        text-transform: uppercase;
+        letter-spacing: var(--tracking-wide);
+        margin-bottom: var(--space-2);
+    }
+
+    .stat-card__value {
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: var(--text-2xl);
+        color: var(--fg-primary);
+        margin-bottom: var(--space-1);
+    }
+
+    .stat-card__sub {
+        font-size: var(--text-xs);
+        color: var(--fg-muted);
+    }
+
+    .card {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+    }
+
+    .card-header {
+        padding: var(--space-5) var(--space-6);
+        border-bottom: 1px solid var(--border);
+    }
+
+    .card-title {
+        font-weight: 600;
+        font-size: var(--text-base);
+    }
+
+    .card-body {
+        padding: var(--space-6);
+    }
+
+    .withdrawal-form {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-5);
+    }
+
+    .withdrawal-amount-display {
+        display: flex;
+        align-items: baseline;
+        gap: var(--space-2);
+        justify-content: center;
+        padding: var(--space-6);
+        background: var(--bg-inset);
+        border-radius: var(--radius-md);
+        border: 1px solid var(--border);
+    }
+
+    .withdrawal-currency {
+        font-size: var(--text-2xl);
+        font-weight: 600;
+        color: var(--fg-secondary);
+    }
+
+    .withdrawal-amount {
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: 48px;
+        color: var(--fg-primary);
+        line-height: 1;
+    }
+
+    .withdrawal-max {
+        font-size: var(--text-sm);
+        color: var(--fg-muted);
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-2);
+    }
+
+    .form-label {
+        font-size: var(--text-sm);
+        font-weight: 500;
+    }
+
+    .form-input {
+        width: 100%;
+        padding: var(--space-3) var(--space-4);
+        background-color: var(--bg-main);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-md);
+        color: var(--fg-primary);
+        font-size: var(--text-base);
+        transition: border-color var(--duration-fast) var(--ease-out);
+    }
+
+    .form-input:focus {
+        outline: none;
+        border-color: var(--accent-30);
+    }
+
+    .form-hint {
+        font-size: var(--text-xs);
+        color: var(--fg-muted);
+    }
+
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: var(--space-2);
+        padding: var(--space-3) var(--space-5);
+        border-radius: var(--radius-md);
+        font-size: var(--text-sm);
+        font-weight: 600;
+        cursor: pointer;
+        border: none;
+        transition: background-color var(--duration-fast) var(--ease-out);
+    }
+
+    .btn--accent {
+        background-color: var(--accent);
+        color: var(--bg-main);
+    }
+
+    .btn--accent:hover {
+        background-color: var(--fg-primary);
+    }
+
+    .btn .material-symbols-outlined {
+        font-size: 18px;
+    }
+
+    .w-full { width: 100%; }
+
+    .table-wrapper {
+        overflow-x: auto;
+    }
+
+    .data-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: var(--text-sm);
+    }
+
+    .data-table th {
+        padding: var(--space-3) var(--space-4);
+        text-align: left;
+        font-size: var(--text-xs);
+        font-weight: 600;
+        color: var(--fg-secondary);
+        text-transform: uppercase;
+        letter-spacing: var(--tracking-wide);
+        border-bottom: 1px solid var(--border);
+        white-space: nowrap;
+    }
+
+    .data-table td {
+        padding: var(--space-4);
+        border-bottom: 1px solid var(--border);
+        color: var(--fg-primary);
+        vertical-align: middle;
+    }
+
+    .data-table tbody tr:last-child td {
+        border-bottom: none;
+    }
+
+    .data-table tbody tr:hover {
+        background: var(--bg-inset);
+    }
+
+    .amount-cell {
+        font-weight: 600;
+        color: var(--fg-primary);
+    }
+
+    .mono {
+        font-family: monospace;
+        font-size: var(--text-xs);
+        color: var(--fg-muted);
+    }
+
+    .badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 2px var(--space-2);
+        border-radius: var(--radius-pill);
+        font-size: var(--text-xs);
+        font-weight: 600;
+    }
+
+    .badge--green {
+        background: rgba(34, 197, 94, 0.1);
+        color: #22c55e;
+    }
+
+    .badge--yellow {
+        background: rgba(234, 179, 8, 0.1);
+        color: #eab308;
+    }
+
+    .pending-notice {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: var(--space-4);
+        background: rgba(234, 179, 8, 0.06);
+        border: 1px solid rgba(234, 179, 8, 0.2);
+        border-radius: var(--radius-md);
+    }
+
+    .pending-notice__left {
+        display: flex;
+        align-items: center;
+        gap: var(--space-3);
+    }
+
+    .pending-notice__icon {
+        font-size: 24px;
+        color: #eab308;
+    }
+
+    .pending-notice__title {
+        font-weight: 600;
+        font-size: var(--text-sm);
+    }
+
+    .pending-notice__sub {
+        font-size: var(--text-xs);
+        color: var(--fg-muted);
+        margin-top: 2px;
+    }
+
+    .text-sm { font-size: var(--text-sm); }
+    .text-secondary { color: var(--fg-secondary); }
+    </style>
+
+</body>
+</html>

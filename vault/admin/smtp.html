@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>SMTP — Jutis Admin</title>
+    <meta name="robots" content="noindex, nofollow">
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <meta property="og:title" content="SMTP — Jutis Admin">
+    <meta property="og:site_name" content="Jutis">
+
+    <link rel="stylesheet" href="../styles/tokens.css">
+    <link rel="stylesheet" href="../styles/base.css">
+    <link rel="stylesheet" href="../styles/layout.css">
+    <link rel="stylesheet" href="../styles/components.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+</head>
+
+<body class="page page--admin">
+
+    <div class="admin-sidebar">
+        <div class="sidebar-logo">
+            <a href="index.html" class="sidebar-logo__link">
+                <div class="sidebar-logo__mark" aria-hidden="true">
+                    <div class="sidebar-logo__ring sidebar-logo__ring--outer"></div>
+                    <div class="sidebar-logo__ring sidebar-logo__ring--inner"></div>
+                    <div class="sidebar-logo__bar"></div>
+                </div>
+                <span class="sidebar-logo__wordmark">Jutis</span>
+                <span class="sidebar-logo__badge">Admin</span>
+            </a>
+        </div>
+
+        <nav class="sidebar-nav">
+            <ul class="sidebar-nav__list">
+                <li><a href="index.html" class="sidebar-nav__item"><span class="material-symbols-outlined sidebar-nav__icon" aria-hidden="true">dashboard</span>Overview</a></li>
+                <li><a href="users.html" class="sidebar-nav__item"><span class="material-symbols-outlined sidebar-nav__icon" aria-hidden="true">group</span>Users</a></li>
+                <li><a href="site.html" class="sidebar-nav__item"><span class="material-symbols-outlined sidebar-nav__icon" aria-hidden="true">public</span>Site</a></li>
+                <li><a href="smtp.html" class="sidebar-nav__item sidebar-nav__item--active"><span class="material-symbols-outlined sidebar-nav__icon" aria-hidden="true">mail</span>SMTP</a></li>
+                <li><a href="waitlist.html" class="sidebar-nav__item"><span class="material-symbols-outlined sidebar-nav__icon" aria-hidden="true">inbox</span>Waitlist</a></li>
+                <li><a href="assets.html" class="sidebar-nav__item"><span class="material-symbols-outlined sidebar-nav__icon" aria-hidden="true">account_balance_wallet</span>Assets</a></li>
+                <li><a href="support.html" class="sidebar-nav__item"><span class="material-symbols-outlined sidebar-nav__icon" aria-hidden="true">support_agent</span>Support</a></li>
+                <li><a href="partners.html" class="sidebar-nav__item"><span class="material-symbols-outlined sidebar-nav__icon" aria-hidden="true">handshake</span>Partners</a></li>
+                <li><a href="partner-applications.html" class="sidebar-nav__item"><span class="material-symbols-outlined sidebar-nav__icon" aria-hidden="true">how_to_reg</span>Partner Applications</a></li>
+                <li><a href="blog.html" class="sidebar-nav__item"><span class="material-symbols-outlined sidebar-nav__icon" aria-hidden="true">article</span>Blog</a></li>
+                <li><a href="settings.html" class="sidebar-nav__item"><span class="material-symbols-outlined sidebar-nav__icon" aria-hidden="true">settings</span>Settings</a></li>
+                <li><a href="audit-log.html" class="sidebar-nav__item"><span class="material-symbols-outlined sidebar-nav__icon" aria-hidden="true">history</span>Audit Log</a></li>
+            </ul>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="login.html" class="sidebar-nav__item sidebar-nav__item--logout">
+                <span class="material-symbols-outlined sidebar-nav__icon" aria-hidden="true">logout</span>
+                Logout
+            </a>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <header class="topbar">
+            <div class="topbar-left">
+                <h1 class="page-title">SMTP / Email</h1>
+                <p class="page-subtitle">Configure outgoing email delivery</p>
+            </div>
+            <div class="topbar-right">
+                <div class="admin-badge">
+                    <span class="material-symbols-outlined" aria-hidden="true">admin_panel_settings</span>
+                    Admin Panel
+                </div>
+            </div>
+        </header>
+
+        <div class="content-area">
+            <div class="smtp-grid">
+                <div class="smtp-main">
+                    <div class="card">
+                        <div class="card-header"><h2 class="card-title">SMTP Configuration</h2></div>
+                        <div class="card-body">
+                            <form class="smtp-form" onsubmit="return false;">
+                                <div class="form-row-2col">
+                                    <div class="form-group">
+                                        <label class="form-label">Provider</label>
+                                        <select class="form-input">
+                                            <option>Resend (Recommended)</option>
+                                            <option>SendGrid</option>
+                                            <option>Mailgun</option>
+                                            <option>AWS SES</option>
+                                            <option>Postmark</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Region / Data Center</label>
+                                        <select class="form-input">
+                                            <option>US-East (Virginia)</option>
+                                            <option>EU-West (Ireland)</option>
+                                            <option>AP-South (Singapore)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-row-2col">
+                                    <div class="form-group">
+                                        <label class="form-label">SMTP Host</label>
+                                        <input type="text" class="form-input mono" value="smtp.resend.io" placeholder="smtp.provider.com">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Port</label>
+                                        <input type="number" class="form-input" value="587" placeholder="587">
+                                    </div>
+                                </div>
+                                <div class="form-row-2col">
+                                    <div class="form-group">
+                                        <label class="form-label">Username / API Key</label>
+                                        <input type="text" class="form-input mono" value="resend_8xK2mN..." placeholder="Your API key or username">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Password / API Secret</label>
+                                        <input type="password" class="form-input mono" value="••••••••••••••••" placeholder="Leave blank to keep current">
+                                    </div>
+                                </div>
+                                <div class="form-row-2col">
+                                    <div class="form-group">
+                                        <label class="form-label">Sender Name</label>
+                                        <input type="text" class="form-input" value="Jutis" placeholder="Your brand name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Sender Email</label>
+                                        <input type="email" class="form-input" value="noreply@jutis.xyz" placeholder="noreply@yourdomain.com">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Reply-To Address</label>
+                                    <input type="email" class="form-input" value="support@jutis.xyz" placeholder="support@yourdomain.com">
+                                </div>
+                                <div class="form-actions">
+                                    <button class="btn btn--accent">Save SMTP Settings</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header"><h2 class="card-title">Test Email</h2></div>
+                        <div class="card-body">
+                            <div class="test-email-form">
+                                <div class="form-group">
+                                    <label class="form-label">Recipient Email</label>
+                                    <input type="email" class="form-input" placeholder="test@example.com">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Subject</label>
+                                    <input type="text" class="form-input" value="Jutis SMTP Test — Admin Panel" placeholder="Email subject">
+                                </div>
+                                <button class="btn btn--accent">
+                                    <span class="material-symbols-outlined" aria-hidden="true">send</span>
+                                    Send Test Email
+                                </button>
+                            </div>
+                            <div class="test-result">
+                                <div class="test-result__item">
+                                    <span class="material-symbols-outlined" aria-hidden="true">check_circle</span>
+                                    Connection: OK
+                                </div>
+                                <div class="test-result__item">
+                                    <span class="material-symbols-outlined" aria-hidden="true">check_circle</span>
+                                    Auth: OK
+                                </div>
+                                <div class="test-result__item">
+                                    <span class="material-symbols-outlined" aria-hidden="true">schedule</span>
+                                    Last test: May 10, 2026 at 09:14
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="smtp-sidebar">
+                    <div class="card">
+                        <div class="card-header"><h2 class="card-title">Delivery Status</h2></div>
+                        <div class="card-body">
+                            <div class="delivery-stats">
+                                <div class="delivery-stat">
+                                    <div class="delivery-stat__value">99.2%</div>
+                                    <div class="delivery-stat__label">Delivered</div>
+                                    <div class="delivery-stat__bar"><div class="delivery-stat__fill" style="width: 99.2%;"></div></div>
+                                </div>
+                                <div class="delivery-stat">
+                                    <div class="delivery-stat__value">0.6%</div>
+                                    <div class="delivery-stat__label">Bounced</div>
+                                    <div class="delivery-stat__bar"><div class="delivery-stat__fill" style="width: 0.6%; background: var(--accent);"></div></div>
+                                </div>
+                                <div class="delivery-stat">
+                                    <div class="delivery-stat__value">0.2%</div>
+                                    <div class="delivery-stat__label">Failed</div>
+                                    <div class="delivery-stat__bar"><div class="delivery-stat__fill" style="width: 0.2%; background: #ef4444;"></div></div>
+                                </div>
+                            </div>
+                            <div class="delivery-summary">
+                                <div class="delivery-summary__item">
+                                    <span class="material-symbols-outlined" aria-hidden="true">email</span>
+                                    <span>48,203 sent (30d)</span>
+                                </div>
+                                <div class="delivery-summary__item">
+                                    <span class="material-symbols-outlined" aria-hidden="true">open_in_new</span>
+                                    <span>42,918 opened (89%)</span>
+                                </div>
+                                <div class="delivery-summary__item">
+                                    <span class="material-symbols-outlined" aria-hidden="true">click</span>
+                                    <span>8,742 clicked (18%)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header"><h2 class="card-title">Recent Email Logs</h2></div>
+                        <div class="card-body" style="padding: 0;">
+                            <div class="email-log-list">
+                                <div class="email-log-item">
+                                    <div class="email-log-item__info">
+                                        <div class="email-log-item__to">marco.klein@proton.me</div>
+                                        <div class="email-log-item__sub">Welcome to Jutis! · May 11, 2026 08:32</div>
+                                    </div>
+                                    <span class="badge badge--green">Delivered</span>
+                                </div>
+                                <div class="email-log-item">
+                                    <div class="email-log-item__info">
+                                        <div class="email-log-item__to">alex@techreviewhub.io</div>
+                                        <div class="email-log-item__sub">Partner Reward Approved · May 11, 2026 07:15</div>
+                                    </div>
+                                    <span class="badge badge--green">Delivered</span>
+                                </div>
+                                <div class="email-log-item">
+                                    <div class="email-log-item__info">
+                                        <div class="email-log-item__to">sara.j@outlook.com</div>
+                                        <div class="email-log-item__sub">Jutis Waitlist Invite · May 10, 2026 16:44</div>
+                                    </div>
+                                    <span class="badge badge--yellow">Bounced</span>
+                                </div>
+                                <div class="email-log-item">
+                                    <div class="email-log-item__info">
+                                        <div class="email-log-item__to">david@fastmail.com</div>
+                                        <div class="email-log-item__sub">XP Level Up: Silver II · May 10, 2026 12:08</div>
+                                    </div>
+                                    <span class="badge badge--green">Delivered</span>
+                                </div>
+                                <div class="email-log-item">
+                                    <div class="email-log-item__info">
+                                        <div class="email-log-item__to">petra.o@gmail.com</div>
+                                        <div class="email-log-item__sub">Withdrawal Processed · May 9, 2026 22:33</div>
+                                    </div>
+                                    <span class="badge badge--green">Delivered</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header"><h2 class="card-title">Email Templates</h2></div>
+                        <div class="card-body" style="padding: 0;">
+                            <div class="template-list">
+                                <div class="template-item">Welcome Email <span class="badge badge--blue">Active</span></div>
+                                <div class="template-item">Password Reset <span class="badge badge--blue">Active</span></div>
+                                <div class="template-item">Partner Approval <span class="badge badge--blue">Active</span></div>
+                                <div class="template-item">Reward Notification <span class="badge badge--blue">Active</span></div>
+                                <div class="template-item">Withdrawal Confirmation <span class="badge badge--blue">Active</span></div>
+                                <div class="template-item">Waitlist Invite <span class="badge badge--blue">Active</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+    .admin-sidebar { position: fixed; top: 0; left: 0; width: 248px; height: 100vh; background: var(--bg-card); border-right: 1px solid var(--border); display: flex; flex-direction: column; z-index: 100; overflow-y: auto; }
+    .sidebar-logo { padding: var(--space-5) var(--space-4) var(--space-4); border-bottom: 1px solid var(--border); }
+    .sidebar-logo__link { display: flex; align-items: center; gap: var(--space-3); text-decoration: none; }
+    .sidebar-logo__mark { position: relative; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .sidebar-logo__ring { position: absolute; border-radius: 6px; border: 2px solid var(--accent); }
+    .sidebar-logo__ring--outer { inset: 0; transform: rotate(45deg) scale(0.9); }
+    .sidebar-logo__ring--inner { inset: 4px; border-color: rgba(230, 232, 236, 0.2); transform: rotate(12deg); }
+    .sidebar-logo__bar { position: relative; z-index: 1; width: 4px; height: 14px; background-color: var(--accent); border-radius: 2px; }
+    .sidebar-logo__wordmark { font-family: var(--font-display); font-weight: 700; font-size: var(--text-base); color: var(--fg-primary); }
+    .sidebar-logo__badge { margin-left: auto; padding: 2px 6px; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.2); border-radius: var(--radius-sm); font-size: 10px; font-weight: 700; color: #ef4444; text-transform: uppercase; letter-spacing: 0.05em; }
+    .sidebar-nav { flex: 1; padding: var(--space-3); }
+    .sidebar-nav__list { list-style: none; display: flex; flex-direction: column; gap: 2px; }
+    .sidebar-nav__item { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-2) var(--space-3); border-radius: var(--radius-md); color: var(--fg-secondary); text-decoration: none; font-size: var(--text-sm); font-weight: 500; transition: background-color var(--duration-fast) var(--ease-out), color var(--duration-fast) var(--ease-out); }
+    .sidebar-nav__item:hover { background: var(--bg-inset); color: var(--fg-primary); }
+    .sidebar-nav__item--active { background: rgba(183, 245, 58, 0.08); color: var(--accent); }
+    .sidebar-nav__icon { font-size: 20px; flex-shrink: 0; }
+    .sidebar-footer { padding: var(--space-3); border-top: 1px solid var(--border); }
+    .sidebar-nav__item--logout { color: var(--fg-muted); }
+    .sidebar-nav__item--logout:hover { color: #ef4444; background: rgba(239, 68, 68, 0.08); }
+
+    .main-content { margin-left: 248px; min-height: 100vh; display: flex; flex-direction: column; }
+    .topbar { position: sticky; top: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between; padding: var(--space-4) var(--space-8); background: var(--bg-main); border-bottom: 1px solid var(--border); backdrop-filter: blur(8px); }
+    .topbar-left { display: flex; flex-direction: column; gap: var(--space-1); }
+    .page-title { font-family: var(--font-display); font-weight: 700; font-size: var(--text-xl); color: var(--fg-primary); }
+    .page-subtitle { font-size: var(--text-sm); color: var(--fg-secondary); }
+    .admin-badge { display: flex; align-items: center; gap: var(--space-2); padding: var(--space-2) var(--space-3); background: rgba(239, 68, 68, 0.08); border: 1px solid rgba(239, 68, 68, 0.15); border-radius: var(--radius-pill); font-size: var(--text-xs); font-weight: 600; color: #ef4444; }
+    .admin-badge .material-symbols-outlined { font-size: 16px; }
+
+    .content-area { flex: 1; padding: var(--space-8); }
+    .smtp-grid { display: grid; grid-template-columns: 1fr 340px; gap: var(--space-6); align-items: start; }
+    .smtp-main { display: flex; flex-direction: column; gap: var(--space-5); }
+    .smtp-sidebar { display: flex; flex-direction: column; gap: var(--space-5); }
+
+    .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+    .card-header { padding: var(--space-5) var(--space-6); border-bottom: 1px solid var(--border); }
+    .card-title { font-weight: 600; font-size: var(--text-base); }
+    .card-body { padding: var(--space-6); }
+
+    .smtp-form { display: flex; flex-direction: column; gap: var(--space-5); }
+    .form-row-2col { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); }
+    .form-group { display: flex; flex-direction: column; gap: var(--space-2); }
+    .form-label { font-size: var(--text-sm); font-weight: 500; }
+    .form-input { width: 100%; padding: var(--space-3) var(--space-4); background: var(--bg-main); border: 1px solid var(--border); border-radius: var(--radius-md); color: var(--fg-primary); font-size: var(--text-base); transition: border-color var(--duration-fast) var(--ease-out); }
+    .form-input:focus { outline: none; border-color: var(--accent-30); }
+    .mono { font-family: monospace; font-size: var(--text-sm); }
+    .form-actions { display: flex; justify-content: flex-end; }
+
+    .test-email-form { display: flex; flex-direction: column; gap: var(--space-4); }
+    .test-result { margin-top: var(--space-4); display: flex; flex-direction: column; gap: var(--space-2); }
+    .test-result__item { display: flex; align-items: center; gap: var(--space-2); font-size: var(--text-sm); color: var(--fg-secondary); }
+    .test-result__item .material-symbols-outlined { font-size: 18px; color: #22c55e; }
+
+    .delivery-stats { display: flex; flex-direction: column; gap: var(--space-4); margin-bottom: var(--space-5); }
+    .delivery-stat { display: flex; flex-direction: column; gap: var(--space-1); }
+    .delivery-stat__value { font-family: var(--font-display); font-weight: 700; font-size: var(--text-xl); }
+    .delivery-stat__label { font-size: var(--text-xs); color: var(--fg-muted); }
+    .delivery-stat__bar { height: 4px; background: var(--bg-inset); border-radius: 2px; overflow: hidden; }
+    .delivery-stat__fill { height: 100%; background: rgba(34, 197, 94, 0.4); border-radius: 2px; }
+
+    .delivery-summary { display: flex; flex-direction: column; gap: var(--space-2); }
+    .delivery-summary__item { display: flex; align-items: center; gap: var(--space-2); font-size: var(--text-sm); color: var(--fg-secondary); }
+    .delivery-summary__item .material-symbols-outlined { font-size: 18px; color: var(--fg-muted); }
+
+    .email-log-list { display: flex; flex-direction: column; }
+    .email-log-item { display: flex; align-items: center; justify-content: space-between; padding: var(--space-3) var(--space-5); border-bottom: 1px solid var(--border); }
+    .email-log-item:last-child { border-bottom: none; }
+    .email-log-item__to { font-size: var(--text-sm); font-weight: 500; }
+    .email-log-item__sub { font-size: var(--text-xs); color: var(--fg-muted); margin-top: 2px; }
+
+    .template-list { display: flex; flex-direction: column; }
+    .template-item { display: flex; align-items: center; justify-content: space-between; padding: var(--space-3) var(--space-5); border-bottom: 1px solid var(--border); font-size: var(--text-sm); }
+    .template-item:last-child { border-bottom: none; }
+
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2); padding: var(--space-2) var(--space-4); border-radius: var(--radius-md); font-size: var(--text-sm); font-weight: 600; cursor: pointer; border: none; transition: background-color var(--duration-fast) var(--ease-out); }
+    .btn--accent { background-color: var(--accent); color: var(--bg-main); }
+    .btn--accent:hover { background-color: var(--fg-primary); }
+    .btn .material-symbols-outlined { font-size: 18px; }
+
+    .badge { display: inline-flex; align-items: center; padding: 2px var(--space-2); border-radius: var(--radius-pill); font-size: var(--text-xs); font-weight: 600; }
+    .badge--green { background: rgba(34, 197, 94, 0.1); color: #22c55e; }
+    .badge--yellow { background: rgba(234, 179, 8, 0.1); color: #eab308; }
+    .badge--blue { background: rgba(59, 130, 246, 0.1); color: #3b82f6; }
+
+    @media (max-width: 1100px) { .smtp-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 768px) { .admin-sidebar { transform: translateX(-100%); } .main-content { margin-left: 0; } .content-area { padding: var(--space-4); } .form-row-2col { grid-template-columns: 1fr; } }
+    </style>
+
+</body>
+</html>

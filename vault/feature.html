@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Features - Jutis</title>
+    <meta name="description" content="Explore Jutis features: non-custodial security, Canton native integration, multi-chain support, and developer-friendly APIs.">
+
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Features - Jutis">
+    <meta property="og:description" content="Non-custodial. Canton native. Developer ready.">
+    <meta property="og:image" content="og-image.svg">
+    <meta property="og:site_name" content="Jutis">
+
+    <link rel="stylesheet" href="styles/tokens.css">
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/layout.css">
+    <link rel="stylesheet" href="styles/components.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+</head>
+
+<body class="page page--atmosphere">
+
+    <div class="bg-grid" aria-hidden="true" style="position:fixed;inset:0;pointer-events:none;opacity:0.3;z-index:0;"></div>
+    <div class="atmosphere-orb atmosphere-orb--lime" aria-hidden="true"></div>
+    <div class="atmosphere-orb atmosphere-orb--white" aria-hidden="true"></div>
+
+    <header class="site-header">
+        <div class="site-header__inner">
+            <a href="index.html" class="site-header__logo" aria-label="Jutis home">
+                <div class="site-header__logo-mark" aria-hidden="true">
+                    <div class="site-header__logo-ring site-header__logo-ring--outer"></div>
+                    <div class="site-header__logo-ring site-header__logo-ring--inner"></div>
+                    <div class="site-header__logo-bar"></div>
+                </div>
+                <span class="site-header__wordmark">Jutis</span>
+            </a>
+            <nav class="site-header__nav" aria-label="Primary navigation">
+                <a href="feature.html" aria-current="page">Features</a>
+                <a href="security.html">Security</a>
+                <a href="developers/index.html">Developers</a>
+                <a href="docs/index.html">Docs</a>
+                <a href="blog/index.html">Blog</a>
+                <a href="partner/index.html">Partner</a>
+            </nav>
+            <div class="site-header__actions">
+                <a href="login.html" class="site-header__login">Login</a>
+                <a href="signup.html" class="btn-signup">Get Started</a>
+            </div>
+        </div>
+    </header>
+    <div class="site-header__top-accent" aria-hidden="true"></div>
+
+    <main class="page-content" style="padding-top:72px; position:relative; z-index:1;">
+
+        <!-- HERO: Extension-centric -->
+        <section class="hero" style="padding: 100px 0 80px;">
+            <div class="container">
+                <div class="hero__split">
+                    <div class="hero__text">
+                        <span class="badge" style="margin-bottom: 24px;">
+                            <span class="badge__dot badge__dot--pulse"></span>
+                            Web Extension
+                        </span>
+                        <h1 class="hero__title hero__title--display" style="margin-bottom: 24px;">One wallet layer for Canton-ready apps</h1>
+                        <p class="hero__subtitle" style="margin-bottom: 32px; max-width: 480px;">Jutis lives in your browser. Connect to Canton apps with a single click. Review every transaction before it signs. Never hand over your keys.</p>
+                        <div class="cta-pair">
+                            <a href="signup.html" class="btn btn--primary btn--lg">Get Started</a>
+                            <a href="waitlist.html" class="btn btn--ghost btn--lg">Try Wallet</a>
+                        </div>
+                    </div>
+                    <div class="hero__visual" aria-hidden="true">
+                        <div class="wallet-mockup">
+                            <div class="wallet-mockup__bar">
+                                <div class="wallet-mockup__dot"></div>
+                                <div class="wallet-mockup__dot"></div>
+                                <div class="wallet-mockup__dot"></div>
+                            </div>
+                            <div class="wallet-mockup__content">
+                                <div class="wallet-mockup__network">
+                                    <span class="wallet-mockup__net-dot"></span>
+                                    Canton Network
+                                </div>
+                                <div class="wallet-mockup__balance">1,247.83</div>
+                                <div class="wallet-mockup__token">CANT</div>
+                                <div class="wallet-mockup__actions">
+                                    <div class="wallet-mockup__action">Send</div>
+                                    <div class="wallet-mockup__action">Swap</div>
+                                    <div class="wallet-mockup__action">Receive</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FEATURE OVERVIEW: 3-pillar layout -->
+        <section style="padding: 0 0 120px;">
+            <div class="container">
+                <div style="text-align:center; margin-bottom: 64px;">
+                    <h2 class="section-heading">Everything your wallet should do</h2>
+                    <p class="section-subheading">Built around three principles: visibility, control, and simplicity.</p>
+                </div>
+                <div class="pillars-grid">
+                    <div class="pillar">
+                        <div class="pillar__icon">
+                            <span class="material-symbols-outlined" aria-hidden="true">visibility</span>
+                        </div>
+                        <h3 class="pillar__title">Account Visibility</h3>
+                        <p class="pillar__desc">Every asset, every transaction, every approval — in plain sight. Real-time portfolio view, activity history, and token balances in one dashboard.</p>
+                    </div>
+                    <div class="pillar pillar--accent">
+                        <div class="pillar__icon">
+                            <span class="material-symbols-outlined" aria-hidden="true">approval_delegation</span>
+                        </div>
+                        <h3 class="pillar__title">User Approval First</h3>
+                        <p class="pillar__desc">No transaction signs without you. No app gets access without your explicit permission. Keys never leave your browser.</p>
+                    </div>
+                    <div class="pillar">
+                        <div class="pillar__icon">
+                            <span class="material-symbols-outlined" aria-hidden="true">bolt</span>
+                        </div>
+                        <h3 class="pillar__title">Canton-Native Speed</h3>
+                        <p class="pillar__desc">Purpose-built for the Canton ecosystem. Low latency, high throughput, and minimal fees — right from the extension.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- WALLET EXPERIENCE: Alternating feature rows -->
+        <section style="padding: 0 0 100px;">
+
+            <!-- Row 1: Wallet Dashboard -->
+            <div class="feature-row">
+                <div class="feature-row__content">
+                    <span class="feature-row__label">Wallet Dashboard</span>
+                    <h2 class="feature-row__title">Your complete financial hub</h2>
+                    <p class="feature-row__desc">A single view of everything that matters: Canton balance, recent activity, pending approvals, and reward progress — all without navigating away.</p>
+                    <ul class="feature-row__list">
+                        <li>
+                            <span class="material-symbols-outlined feature-row__check" aria-hidden="true">check_circle</span>
+                            Real-time balance updates
+                        </li>
+                        <li>
+                            <span class="material-symbols-outlined feature-row__check" aria-hidden="true">check_circle</span>
+                            Multi-token support
+                        </li>
+                        <li>
+                            <span class="material-symbols-outlined feature-row__check" aria-hidden="true">check_circle</span>
+                            One-click access to full history
+                        </li>
+                    </ul>
+                </div>
+                <div class="feature-row__preview" aria-hidden="true">
+                    <div class="preview-card">
+                        <div class="preview-card__header">
+                            <span class="preview-card__net">
+                                <span class="preview-card__net-dot"></span>Canton
+                            </span>
+                        </div>
+                        <div class="preview-card__balance">1,247.83</div>
+                        <div class="preview-card__token">CANT</div>
+                        <div class="preview-card__actions">
+                            <span class="preview-card__act">Send</span>
+                            <span class="preview-card__act">Swap</span>
+                            <span class="preview-card__act">Receive</span>
+                        </div>
+                    </div>
+                    <div class="preview-card preview-card--secondary">
+                        <div class="preview-card__label">Recent Activity</div>
+                        <div class="preview-card__tx">
+                            <div class="preview-card__tx-icon preview-card__tx-icon--in"></div>
+                            <div>
+                                <div class="preview-card__tx-label">Received</div>
+                                <div class="preview-card__tx-amount">+120.00 CANT</div>
+                            </div>
+                            <div class="preview-card__tx-time">2h ago</div>
+                        </div>
+                        <div class="preview-card__tx">
+                            <div class="preview-card__tx-icon preview-card__tx-icon--swap"></div>
+                            <div>
+                                <div class="preview-card__tx-label">Swap</div>
+                                <div class="preview-card__tx-amount">USDC → ETH</div>
+                            </div>
+                            <div class="preview-card__tx-time">5h ago</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Row 2: App Connection -->
+            <div class="feature-row feature-row--reverse">
+                <div class="feature-row__content">
+                    <span class="feature-row__label">App Connection</span>
+                    <h2 class="feature-row__title">Connect to apps in seconds</h2>
+                    <p class="feature-row__desc">Connecting your wallet to a Canton app should take one click. Review the site, approve the connection, done. Revoke anytime from the permissions panel.</p>
+                    <ul class="feature-row__list">
+                        <li>
+                            <span class="material-symbols-outlined feature-row__check" aria-hidden="true">check_circle</span>
+                            One-click connect flow
+                        </li>
+                        <li>
+                            <span class="material-symbols-outlined feature-row__check" aria-hidden="true">check_circle</span>
+                            Permission scope clearly shown
+                        </li>
+                        <li>
+                            <span class="material-symbols-outlined feature-row__check" aria-hidden="true">check_circle</span>
+                            Revoke connections instantly
+                        </li>
+                    </ul>
+                </div>
+                <div class="feature-row__preview" aria-hidden="true">
+                    <div class="connect-flow">
+                        <div class="connect-step connect-step--done">
+                            <div class="connect-step__icon">
+                                <span class="material-symbols-outlined" aria-hidden="true">account_balance_wallet</span>
+                            </div>
+                            <div class="connect-step__info">
+                                <div class="connect-step__label">Your Wallet</div>
+                                <div class="connect-step__value">0x7a3B...f9C2</div>
+                            </div>
+                        </div>
+                        <div class="connect-step connect-step--active">
+                            <div class="connect-step__icon">
+                                <span class="material-symbols-outlined" aria-hidden="true">handshake</span>
+                            </div>
+                            <div class="connect-step__info">
+                                <div class="connect-step__label">Connecting to</div>
+                                <div class="connect-step__value">CantonSwap.app</div>
+                            </div>
+                        </div>
+                        <div class="connect-step">
+                            <div class="connect-step__icon">
+                                <span class="material-symbols-outlined" aria-hidden="true">check</span>
+                            </div>
+                            <div class="connect-step__info">
+                                <div class="connect-step__label">Ready to transact</div>
+                                <div class="connect-step__value">Approval pending</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Row 3: Transaction Review -->
+            <div class="feature-row">
+                <div class="feature-row__content">
+                    <span class="feature-row__label">Transaction Review</span>
+                    <h2 class="feature-row__title">Every detail before you sign</h2>
+                    <p class="feature-row__desc">Before any transaction goes through, Jutis shows you the full picture: destination address, token amounts, gas estimate, and contract interaction. No blind signing.</p>
+                    <ul class="feature-row__list">
+                        <li>
+                            <span class="material-symbols-outlined feature-row__check" aria-hidden="true">check_circle</span>
+                            Address and domain clearly shown
+                        </li>
+                        <li>
+                            <span class="material-symbols-outlined feature-row__check" aria-hidden="true">check_circle</span>
+                            Gas and fee breakdown
+                        </li>
+                        <li>
+                            <span class="material-symbols-outlined feature-row__check" aria-hidden="true">check_circle</span>
+                            Token approval visibility
+                        </li>
+                    </ul>
+                </div>
+                <div class="feature-row__preview" aria-hidden="true">
+                    <div class="tx-review-card">
+                        <div class="tx-review-card__header">
+                            <span class="material-symbols-outlined" aria-hidden="true">send</span>
+                            Sending
+                        </div>
+                        <div class="tx-review-card__amount">
+                            <div class="tx-review-card__token">ETH</div>
+                            <div class="tx-review-card__value">0.025</div>
+                        </div>
+                        <div class="tx-review-card__row">
+                            <span>To</span>
+                            <span class="tx-review-card__addr">0x8f3A...2bD1</span>
+                        </div>
+                        <div class="tx-review-card__row">
+                            <span>Network fee</span>
+                            <span>~$1.24</span>
+                        </div>
+                        <div class="tx-review-card__row tx-review-card__row--highlight">
+                            <span>Total</span>
+                            <span>0.02624 ETH</span>
+                        </div>
+                        <div class="tx-review-card__warning">
+                            <span class="material-symbols-outlined" aria-hidden="true">info</span>
+                            Always verify the recipient address
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Row 4: Swap & Transfer UX -->
+            <div class="feature-row feature-row--reverse">
+                <div class="feature-row__content">
+                    <span class="feature-row__label">Swap &amp; Transfer</span>
+                    <h2 class="feature-row__title">Token exchange without leaving context</h2>
+                    <p class="feature-row__desc">Swap Canton tokens directly in the extension. Competitive rates, transparent fees, and a clear confirmation step before every trade executes.</p>
+                    <ul class="feature-row__list">
+                        <li>
+                            <span class="material-symbols-outlined feature-row__check" aria-hidden="true">check_circle</span>
+                            In-extension token swap
+                        </li>
+                        <li>
+                            <span class="material-symbols-outlined feature-row__check" aria-hidden="true">check_circle</span>
+                            Rate and fee shown upfront
+                        </li>
+                        <li>
+                            <span class="material-symbols-outlined feature-row__check" aria-hidden="true">check_circle</span>
+                            Transfer history in activity log
+                        </li>
+                    </ul>
+                </div>
+                <div class="feature-row__preview" aria-hidden="true">
+                    <div class="swap-card">
+                        <div class="swap-card__header">Token Swap</div>
+                        <div class="swap-card__from">
+                            <div class="swap-card__token-label">You pay</div>
+                            <div class="swap-card__token-row">
+                                <span class="swap-card__token-name">USDC</span>
+                                <span class="swap-card__token-val">500</span>
+                            </div>
+                        </div>
+                        <div class="swap-card__divider">
+                            <span class="material-symbols-outlined" aria-hidden="true">arrow_downward</span>
+                        </div>
+                        <div class="swap-card__to">
+                            <div class="swap-card__token-label">You receive</div>
+                            <div class="swap-card__token-row">
+                                <span class="swap-card__token-name">CANT</span>
+                                <span class="swap-card__token-val">~412.80</span>
+                            </div>
+                        </div>
+                        <div class="swap-card__rate">Rate: 1 USDC ≈ 0.8256 CANT</div>
+                        <div class="swap-card__btn">Review Swap</div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- DASHBOARD PREVIEW: Full-width with XP and rewards mention -->
+        <section style="padding: 0 0 120px;">
+            <div class="container">
+                <div class="dashboard-banner">
+                    <div class="dashboard-banner__text">
+                        <span class="dashboard-banner__label">Activity &amp; Rewards</span>
+                        <h2 class="dashboard-banner__title">Track your progress, earn as you go</h2>
+                        <p class="dashboard-banner__desc">Jutis is designed to reward real engagement. Earn XP for wallet activity, level up your rank, and track rewards — all visible in the same dashboard you use every day.</p>
+                        <a href="waitlist.html" class="btn btn--primary">Open Dashboard</a>
+                    </div>
+                    <div class="dashboard-banner__stats" aria-hidden="true">
+                        <div class="stat-card">
+                            <div class="stat-card__label">XP Balance</div>
+                            <div class="stat-card__value">8,420</div>
+                            <div class="stat-card__delta">+340 this week</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-card__label">Rank</div>
+                            <div class="stat-card__value">Silver</div>
+                            <div class="stat-card__delta">2,580 XP to Gold</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-card__label">Leaderboard</div>
+                            <div class="stat-card__value">#142</div>
+                            <div class="stat-card__delta">Top 8%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DEVELOPER READY: Split layout -->
+        <section style="padding: 0 0 120px;">
+            <div class="container">
+                <div class="dev-split">
+                    <div class="dev-split__text">
+                        <span class="badge" style="margin-bottom: 16px;">
+                            <span class="badge__dot badge__dot--pulse"></span>
+                            Developer Ready
+                        </span>
+                        <h2 class="section-heading" style="text-align:left;">Build apps that users trust</h2>
+                        <p class="section-subheading" style="text-align:left; margin-bottom: 32px;">Jutis is designed as a wallet UI layer — extensions and interfaces that app developers can integrate against. Clear APIs, predictable behavior, and a security-first connection model.</p>
+                        <a href="developers/index.html" class="btn btn--ghost">View Developer Docs</a>
+                    </div>
+                    <div class="dev-split__code" aria-hidden="true">
+                        <div class="code-block">
+                            <div class="code-block__header">
+                                <span class="code-block__lang">JavaScript</span>
+                                <span class="code-block__copy">
+                                    <span class="material-symbols-outlined" aria-hidden="true">content_copy</span>
+                                </span>
+                            </div>
+                            <pre class="code-block__body">// Connect to Jutis wallet
+const provider = window.jutis;
+
+// Request account access
+const accounts = await provider.request({{
+  method: 'eth_requestAccounts',
+}});
+
+// Check connected network
+const chainId = await provider.request({{
+  method: 'eth_chainId',
+}});
+
+console.log('Connected:', accounts[0]);</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA SECTION -->
+        <section style="padding: 80px 0; text-align: center;">
+            <div class="container container--narrow">
+                <h2 style="font-family: var(--font-display); font-size: var(--text-display); font-weight: 700; margin-bottom: 24px;">Ready to get started?</h2>
+                <p style="color: var(--fg-secondary); margin-bottom: 40px; font-size: var(--text-lg);">Join thousands of users who've taken control of their Canton assets.</p>
+                <div class="cta-pair" style="justify-content: center;">
+                    <a href="signup.html" class="btn btn--primary btn--lg">Create Wallet</a>
+                    <a href="developers/index.html" class="btn btn--ghost btn--lg">Developer Docs</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="site-footer__inner">
+            <div class="site-footer__brand">
+                <a href="index.html" class="site-footer__logo">
+                    <div class="site-footer__logo-mark" aria-hidden="true">
+                        <div class="site-footer__logo-ring site-footer__logo-ring--outer"></div>
+                        <div class="site-footer__logo-ring site-footer__logo-ring--inner"></div>
+                        <div class="site-footer__logo-bar"></div>
+                    </div>
+                    <span class="site-footer__wordmark">Jutis</span>
+                </a>
+                <p class="site-footer__tagline">Premium wallet for the Canton ecosystem</p>
+            </div>
+            <nav class="site-footer__links" aria-label="Footer navigation">
+                <div class="site-footer__col">
+                    <span class="site-footer__col-head">Product</span>
+                    <a href="feature.html">Features</a>
+                    <a href="security.html">Security</a>
+                    <a href="waitlist.html">Wallet</a>
+                    <a href="waitlist.html">Early Access</a>
+                </div>
+                <div class="site-footer__col">
+                    <span class="site-footer__col-head">Developers</span>
+                    <a href="developers/index.html">Overview</a>
+                    <a href="developers/quick-start.html">Quick Start</a>
+                    <a href="developers/api-reference.html">API Reference</a>
+                    <a href="developers/tutorials.html">Tutorials</a>
+                </div>
+                <div class="site-footer__col">
+                    <span class="site-footer__col-head">Resources</span>
+                    <a href="docs/index.html">Documentation</a>
+                    <a href="docs/getting-started/installation.html">Installation</a>
+                    <a href="docs/guides/send-receive.html">Guides</a>
+                </div>
+                <div class="site-footer__col">
+                    <span class="site-footer__col-head">Legal</span>
+                    <a href="legal/privacy-policy.html">Privacy Policy</a>
+                    <a href="legal/terms-of-service.html">Terms of Service</a>
+                    <a href="legal/cookie-policy.html">Cookie Policy</a>
+                </div>
+            </nav>
+            <div class="site-footer__bottom">
+                <p class="site-footer__copy">© 2026 Jutis. All rights reserved.</p>
+                <div class="site-footer__trust">
+                    <span class="site-footer__trust-badge"><span class="site-footer__trust-dot"></span>SOC 2 Compliant</span>
+                    <span class="site-footer__trust-badge"><span class="site-footer__trust-dot"></span>Pen Tested</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="bottom-dots" aria-hidden="true">
+        <div class="bottom-dots__item bottom-dots__item--filled"></div>
+        <div class="bottom-dots__item bottom-dots__item--outline"></div>
+        <div class="bottom-dots__item bottom-dots__item--outline"></div>
+    </div>
+
+    <style>
+    .hero__split { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .hero__text { display: flex; flex-direction: column; }
+    .hero__visual { display: flex; justify-content: center; }
+
+    .wallet-mockup { width: 280px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-xl); overflow: hidden; box-shadow: 0 24px 48px rgba(0,0,0,0.4); }
+    .wallet-mockup__bar { display: flex; gap: 6px; padding: 10px 14px; background: var(--bg-inset); border-bottom: 1px solid var(--border); }
+    .wallet-mockup__dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border); }
+    .wallet-mockup__content { padding: 20px; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+    .wallet-mockup__network { display: flex; align-items: center; gap: 6px; font-size: 10px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 0.05em; }
+    .wallet-mockup__net-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+    .wallet-mockup__balance { font-family: var(--font-display); font-size: 28px; font-weight: 700; color: var(--fg-primary); line-height: 1; }
+    .wallet-mockup__token { font-size: 12px; color: var(--fg-muted); font-weight: 500; }
+    .wallet-mockup__actions { display: flex; gap: 8px; margin-top: 8px; }
+    .wallet-mockup__action { padding: 6px 14px; background: var(--bg-inset); border: 1px solid var(--border); border-radius: var(--radius-md); font-size: 11px; font-weight: 600; color: var(--fg-secondary); }
+
+.pillars-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+    .pillar { padding: 32px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-xl); }
+    .pillar--accent { border-color: rgba(183, 245, 58, 0.25); background: linear-gradient(135deg, rgba(183, 245, 58, 0.04) 0%, var(--bg-card) 60%); }
+    .pillar__icon { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; background: rgba(183, 245, 58, 0.08); border-radius: var(--radius-lg); margin-bottom: 20px; }
+    .pillar__icon .material-symbols-outlined { font-size: 24px; color: var(--accent); }
+    .pillar__title { font-family: var(--font-display); font-weight: 700; font-size: var(--text-lg); margin-bottom: 12px; }
+    .pillar__desc { font-size: var(--text-sm); color: var(--fg-secondary); line-height: 1.7; }
+
+    .feature-row { max-width: 1100px; margin: 0 auto 100px; padding: 0 32px; display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    .feature-row--reverse { direction: rtl; }
+    .feature-row--reverse > * { direction: ltr; }
+    .feature-row__label { display: inline-block; font-size: 10px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 12px; }
+    .feature-row__title { font-family: var(--font-display); font-weight: 700; font-size: clamp(var(--text-xl), 3vw, 28px); margin-bottom: 16px; line-height: 1.2; }
+    .feature-row__desc { font-size: var(--text-base); color: var(--fg-secondary); line-height: 1.7; margin-bottom: 24px; }
+    .feature-row__list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .feature-row__list li { display: flex; align-items: center; gap: 10px; font-size: var(--text-sm); color: var(--fg-secondary); }
+    .feature-row__check { font-size: 18px; color: var(--accent); flex-shrink: 0; }
+
+    .preview-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-xl); padding: 24px; }
+    .preview-card--secondary { margin-top: 12px; }
+    .preview-card__header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+    .preview-card__net { display: flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 600; color: var(--fg-secondary); text-transform: uppercase; letter-spacing: 0.05em; }
+    .preview-card__net-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+    .preview-card__balance { font-family: var(--font-display); font-size: 32px; font-weight: 700; color: var(--fg-primary); line-height: 1; }
+    .preview-card__token { font-size: 12px; color: var(--fg-muted); margin-bottom: 20px; }
+    .preview-card__actions { display: flex; gap: 8px; }
+    .preview-card__act { flex: 1; padding: 8px; background: var(--bg-inset); border: 1px solid var(--border); border-radius: var(--radius-md); font-size: 11px; font-weight: 600; color: var(--fg-secondary); text-align: center; }
+    .preview-card__label { font-size: 10px; font-weight: 700; color: var(--fg-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px; }
+    .preview-card__tx { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--border); }
+    .preview-card__tx:last-child { border-bottom: none; }
+    .preview-card__tx-icon { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+    .preview-card__tx-icon--in { background: rgba(183, 245, 58, 0.12); color: var(--accent); }
+    .preview-card__tx-icon--swap { background: rgba(59, 130, 246, 0.12); color: #3b82f6; }
+    .preview-card__tx-icon .material-symbols-outlined { font-size: 14px; }
+    .preview-card__tx-label { font-size: 11px; color: var(--fg-secondary); font-weight: 500; }
+    .preview-card__tx-amount { font-size: 12px; color: var(--fg-primary); font-weight: 600; }
+    .preview-card__tx-time { margin-left: auto; font-size: 10px; color: var(--fg-muted); }
+
+    .connect-flow { display: flex; flex-direction: column; gap: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-xl); overflow: hidden; }
+    .connect-step { display: flex; align-items: center; gap: 16px; padding: 20px 24px; border-bottom: 1px solid var(--border); }
+    .connect-step:last-child { border-bottom: none; }
+    .connect-step__icon { width: 40px; height: 40px; border-radius: 50%; background: var(--bg-inset); display: flex; align-items: center; justify-content: center; color: var(--fg-muted); flex-shrink: 0; }
+    .connect-step__icon .material-symbols-outlined { font-size: 18px; }
+    .connect-step--done .connect-step__icon { background: rgba(183, 245, 58, 0.1); color: var(--accent); }
+    .connect-step--active .connect-step__icon { background: rgba(183, 245, 58, 0.2); color: var(--accent); border: 2px solid var(--accent); }
+    .connect-step__label { font-size: 11px; color: var(--fg-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 2px; }
+    .connect-step__value { font-size: var(--text-sm); font-weight: 600; color: var(--fg-primary); }
+
+    .tx-review-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-xl); overflow: hidden; max-width: 300px; }
+    .tx-review-card__header { display: flex; align-items: center; gap: 8px; padding: 16px 20px; background: var(--bg-inset); border-bottom: 1px solid var(--border); font-size: var(--text-sm); font-weight: 600; color: var(--fg-secondary); }
+    .tx-review-card__header .material-symbols-outlined { font-size: 16px; color: var(--fg-muted); }
+    .tx-review-card__amount { display: flex; align-items: baseline; justify-content: center; gap: 8px; padding: 20px; border-bottom: 1px solid var(--border); }
+    .tx-review-card__token { font-size: var(--text-lg); font-weight: 700; color: var(--fg-primary); }
+    .tx-review-card__value { font-family: var(--font-display); font-size: 28px; font-weight: 700; color: var(--fg-primary); }
+    .tx-review-card__row { display: flex; align-items: center; justify-content: space-between; padding: 12px 20px; border-bottom: 1px solid var(--border); font-size: var(--text-sm); color: var(--fg-muted); }
+    .tx-review-card__row:last-child { border-bottom: none; }
+    .tx-review-card__row--highlight { background: rgba(183, 245, 58, 0.04); color: var(--fg-primary); font-weight: 600; }
+    .tx-review-card__addr { font-family: monospace; font-size: var(--text-xs); color: var(--fg-secondary); }
+    .tx-review-card__warning { display: flex; align-items: center; gap: 8px; padding: 12px 20px; background: rgba(59, 130, 246, 0.06); font-size: 11px; color: #3b82f6; }
+    .tx-review-card__warning .material-symbols-outlined { font-size: 14px; flex-shrink: 0; }
+
+    .swap-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-xl); overflow: hidden; max-width: 300px; }
+    .swap-card__header { padding: 14px 20px; background: var(--bg-inset); border-bottom: 1px solid var(--border); font-size: var(--text-sm); font-weight: 600; color: var(--fg-secondary); }
+    .swap-card__from, .swap-card__to { padding: 16px 20px; }
+    .swap-card__token-label { font-size: 10px; color: var(--fg-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
+    .swap-card__token-row { display: flex; align-items: center; justify-content: space-between; }
+    .swap-card__token-name { font-size: var(--text-sm); font-weight: 700; color: var(--fg-primary); }
+    .swap-card__token-val { font-family: var(--font-display); font-size: 20px; font-weight: 700; color: var(--fg-primary); }
+    .swap-card__divider { display: flex; align-items: center; justify-content: center; padding: 4px 20px; }
+    .swap-card__divider .material-symbols-outlined { font-size: 18px; color: var(--fg-muted); }
+    .swap-card__rate { padding: 0 20px 16px; font-size: 11px; color: var(--fg-muted); text-align: center; }
+    .swap-card__btn { margin: 0 16px 16px; padding: 12px; background: var(--accent); color: var(--bg-main); border-radius: var(--radius-md); font-size: var(--text-sm); font-weight: 700; text-align: center; cursor: pointer; }
+
+    .dashboard-banner { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; padding: 64px; background: linear-gradient(135deg, rgba(183, 245, 58, 0.04) 0%, var(--bg-card) 60%); border: 1px solid rgba(183, 245, 58, 0.15); border-radius: var(--radius-2xl); }
+    .dashboard-banner__label { display: inline-block; font-size: 10px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 12px; }
+    .dashboard-banner__title { font-family: var(--font-display); font-weight: 700; font-size: clamp(var(--text-xl), 3vw, 28px); margin-bottom: 16px; line-height: 1.2; }
+    .dashboard-banner__desc { font-size: var(--text-sm); color: var(--fg-secondary); line-height: 1.7; margin-bottom: 24px; }
+    .dashboard-banner__stats { display: flex; flex-direction: column; gap: 16px; }
+    .stat-card { display: flex; align-items: center; gap: 16px; padding: 20px 24px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); }
+    .stat-card__label { font-size: 11px; color: var(--fg-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+    .stat-card__value { font-family: var(--font-display); font-size: var(--text-xl); font-weight: 700; color: var(--fg-primary); margin-left: auto; margin-right: 12px; }
+    .stat-card__delta { font-size: var(--text-xs); color: var(--fg-muted); white-space: nowrap; }
+
+    .dev-split { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    .dev-split__text { display: flex; flex-direction: column; }
+
+    .code-block { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-xl); overflow: hidden; }
+    .code-block__header { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: var(--bg-inset); border-bottom: 1px solid var(--border); }
+    .code-block__lang { font-size: 11px; font-weight: 600; color: var(--fg-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+    .code-block__copy { color: var(--fg-muted); cursor: pointer; }
+    .code-block__copy .material-symbols-outlined { font-size: 16px; }
+    .code-block__body { padding: 20px; font-family: monospace; font-size: var(--text-sm); color: var(--fg-secondary); line-height: 1.7; margin: 0; overflow-x: auto; }
+
+    .section-heading { font-family: var(--font-display); font-weight: 700; font-size: clamp(var(--text-xl), 3vw, 32px); text-align: center; margin-bottom: 12px; }
+    .section-subheading { font-size: var(--text-base); color: var(--fg-secondary); text-align: center; max-width: 560px; margin: 0 auto 0; line-height: 1.6; }
+
+    @media (max-width: 900px) {
+        .hero__split { grid-template-columns: 1fr; gap: 40px; }
+        .hero__visual { order: -1; }
+        .pillars-grid { grid-template-columns: 1fr; }
+        .feature-row { grid-template-columns: 1fr; gap: 40px; padding: 0 20px; }
+        .feature-row--reverse { direction: ltr; }
+        .dashboard-banner { grid-template-columns: 1fr; gap: 40px; }
+        .dev-split { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+        .site-header__nav { display: none; }
+        .dashboard-banner { padding: 32px 24px; }
+        .dashboard-banner__stats { gap: 12px; }
+        .stat-card { flex-wrap: wrap; padding: 16px; }
+    }
+    </style>
+
+</body>
+</html>

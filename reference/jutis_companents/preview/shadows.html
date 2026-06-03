@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/>
+<title>Shadows & Glows</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<style>
+  html,body{margin:0;background:transparent;font-family:'Inter',system-ui}
+  .card{
+    width:700px;padding:26px;box-sizing:border-box;color:#e6e8ec;position:relative;overflow:hidden;
+    background:
+      radial-gradient(circle at 50% 120%, rgba(220,232,122,.08), transparent 50%),
+      linear-gradient(180deg,#0a0b0f 0%,#05060a 100%);
+    border:1px solid #2e323c;
+  }
+  .card::before{
+    content:'';position:absolute;inset:0;pointer-events:none;
+    background-image:radial-gradient(rgba(46,50,60,.4) 1px, transparent 1px);
+    background-size:22px 22px;opacity:.4
+  }
+  .head{position:relative;display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+  .eyebrow{font:700 9px 'Inter';letter-spacing:.28em;text-transform:uppercase;color:#9aa1ac;display:inline-flex;align-items:center;gap:8px}
+  .eyebrow .d{width:6px;height:6px;border-radius:9999px;background:#dce87a;box-shadow:0 0 10px #dce87a}
+  .count{font:500 10px 'JetBrains Mono';color:#9aa1ac}
+
+  .row{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .wrap{position:relative;padding:8px}
+  .cyl{
+    position:relative;border-radius:16px;height:130px;
+    background:linear-gradient(180deg,#181a21,#0f1015);
+    border:1px solid rgba(220,232,122,.18);
+    padding:14px;display:flex;flex-direction:column;justify-content:space-between
+  }
+  .cyl .lab{font:700 9px 'Inter';letter-spacing:.2em;text-transform:uppercase;color:#dce87a}
+  .cyl .nm{font:800 15px 'Plus Jakarta Sans';color:#e6e8ec;letter-spacing:-.01em}
+  .cyl .px{font:500 9px 'JetBrains Mono';color:#9aa1ac;margin-top:2px;line-height:1.4}
+  .cyl .spec{display:flex;align-items:center;justify-content:space-between;margin-top:6px}
+  .cyl .tag{font:500 8px 'JetBrains Mono';color:#4a4f5a;letter-spacing:.15em}
+
+  .a{box-shadow:0 0 40px rgba(220,232,122,.12), 0 0 80px rgba(220,232,122,.05)}
+  .b{box-shadow:0 0 50px rgba(220,232,122,.20)}
+  .c{box-shadow:0 0 30px rgba(220,232,122,.30)}
+
+  /* ambient rings to show spread visually */
+  .ring{position:absolute;inset:0;border-radius:20px;pointer-events:none}
+  .ring.r1{box-shadow:0 0 0 1px rgba(220,232,122,.05), 0 0 0 12px rgba(220,232,122,.02)}
+  .ring.r2{box-shadow:0 0 0 1px rgba(220,232,122,.08), 0 0 0 10px rgba(220,232,122,.04)}
+  .ring.r3{box-shadow:0 0 0 1px rgba(220,232,122,.15), 0 0 0 8px rgba(220,232,122,.06)}
+</style></head>
+<body>
+<div class="card">
+  <div class="head">
+    <div class="eyebrow"><span class="d"></span>Cyber Glow System</div>
+    <div class="count">3 · ambient → focus → CTA</div>
+  </div>
+  <div class="row">
+    <div class="wrap">
+      <div class="cyl a">
+        <div>
+          <div class="lab">Ambient</div>
+          <div class="spec"><div class="nm">Cyber</div><div class="tag">01</div></div>
+        </div>
+        <div>
+          <div class="px">0 0 40px / 12%</div>
+          <div class="px">0 0 80px / 5%</div>
+        </div>
+      </div>
+      <div class="ring r1"></div>
+    </div>
+
+    <div class="wrap">
+      <div class="cyl b">
+        <div>
+          <div class="lab">Hover · Focus</div>
+          <div class="spec"><div class="nm">Cyber↑</div><div class="tag">02</div></div>
+        </div>
+        <div>
+          <div class="px">0 0 50px / 20%</div>
+        </div>
+      </div>
+      <div class="ring r2"></div>
+    </div>
+
+    <div class="wrap">
+      <div class="cyl c">
+        <div>
+          <div class="lab">CTA · Active</div>
+          <div class="spec"><div class="nm">CTA Glow</div><div class="tag">03</div></div>
+        </div>
+        <div>
+          <div class="px">0 0 30px / 30%</div>
+        </div>
+      </div>
+      <div class="ring r3"></div>
+    </div>
+  </div>
+</div>
+</body></html>

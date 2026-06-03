@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Users — Jutis Admin</title>
+    <meta name="robots" content="noindex, nofollow">
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <meta property="og:title" content="Users — Jutis Admin">
+    <meta property="og:site_name" content="Jutis">
+
+    <link rel="stylesheet" href="../styles/tokens.css">
+    <link rel="stylesheet" href="../styles/base.css">
+    <link rel="stylesheet" href="../styles/layout.css">
+    <link rel="stylesheet" href="../styles/components.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+</head>
+
+<body class="page page--admin">
+
+    <div class="admin-sidebar" id="sidebar">
+        <div class="sidebar-logo">
+            <a href="index.html" class="sidebar-logo__link">
+                <div class="sidebar-logo__mark" aria-hidden="true">
+                    <div class="sidebar-logo__ring sidebar-logo__ring--outer"></div>
+                    <div class="sidebar-logo__ring sidebar-logo__ring--inner"></div>
+                    <div class="sidebar-logo__bar"></div>
+                </div>
+                <span class="sidebar-logo__wordmark">Jutis</span>
+                <span class="sidebar-logo__badge">Admin</span>
+            </a>
+        </div>
+
+        <nav class="sidebar-nav">
+            <ul class="sidebar-nav__list">
+                <li><a href="index.html" class="sidebar-nav__item">
+                    <span class="material-symbols-outlined sidebar-nav__icon" aria-hidden="true">dashboard</span>
+                    Overview
+                </a></li>
+                <li><a href="users.html" class="sidebar-nav__item sidebar-nav__item--active">
+                    <span class="material-symbols-outlined sidebar-nav__icon" aria-hidden="true">group</span>
+                    Users
+                </a></li>
+                <li><a href="site.html" class="sidebar-nav__item">
+                    <span class="material-symbols-outlined sidebar-nav__icon" aria-hidden="true">public</span>
+                    Site
+                </a></li>
+                <li><a href="smtp.html" class="sidebar-nav__item">
+                    <span class="material-symbols-outlined sidebar-nav__icon" aria-hidden="true">mail</span>
+                    SMTP
+                </a></li>
+                <li><a href="waitlist.html" class="sidebar-nav__item">
+                    <span class="material-symbols-outlined sidebar-nav__icon" aria-hidden="true">inbox</span>
+                    Waitlist
+                </a></li>
+                <li><a href="assets.html" class="sidebar-nav__item">
+                    <span class="material-symbols-outlined sidebar-nav__icon" aria-hidden="true">account_balance_wallet</span>
+                    Assets
+                </a></li>
+                <li><a href="support.html" class="sidebar-nav__item">
+                    <span class="material-symbols-outlined sidebar-nav__icon" aria-hidden="true">support_agent</span>
+                    Support
+                </a></li>
+                <li><a href="partners.html" class="sidebar-nav__item">
+                    <span class="material-symbols-outlined sidebar-nav__icon" aria-hidden="true">handshake</span>
+                    Partners
+                </a></li>
+                <li><a href="partner-applications.html" class="sidebar-nav__item">
+                    <span class="material-symbols-outlined sidebar-nav__icon" aria-hidden="true">how_to_reg</span>
+                    Partner Applications
+                </a></li>
+                <li><a href="blog.html" class="sidebar-nav__item">
+                    <span class="material-symbols-outlined sidebar-nav__icon" aria-hidden="true">article</span>
+                    Blog
+                </a></li>
+                <li><a href="settings.html" class="sidebar-nav__item">
+                    <span class="material-symbols-outlined sidebar-nav__icon" aria-hidden="true">settings</span>
+                    Settings
+                </a></li>
+                <li><a href="audit-log.html" class="sidebar-nav__item">
+                    <span class="material-symbols-outlined sidebar-nav__icon" aria-hidden="true">history</span>
+                    Audit Log
+                </a></li>
+            </ul>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="login.html" class="sidebar-nav__item sidebar-nav__item--logout">
+                <span class="material-symbols-outlined sidebar-nav__icon" aria-hidden="true">logout</span>
+                Logout
+            </a>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <header class="topbar">
+            <div class="topbar-left">
+                <h1 class="page-title">Users</h1>
+                <p class="page-subtitle">12,847 total registered users</p>
+            </div>
+            <div class="topbar-right">
+                <div class="admin-badge">
+                    <span class="material-symbols-outlined" aria-hidden="true">admin_panel_settings</span>
+                    Admin Panel
+                </div>
+            </div>
+        </header>
+
+        <div class="content-area">
+
+            <div class="content-layout">
+                <div class="content-main">
+
+                    <div class="toolbar">
+                        <div class="search-box">
+                            <span class="material-symbols-outlined search-icon" aria-hidden="true">search</span>
+                            <input type="text" class="search-input" placeholder="Search users by name, email, or wallet address...">
+                        </div>
+                        <div class="toolbar-filters">
+                            <select class="form-select">
+                                <option>All Status</option>
+                                <option>Active</option>
+                                <option>Suspended</option>
+                                <option>Pending Verification</option>
+                            </select>
+                            <select class="form-select">
+                                <option>All Sources</option>
+                                <option>Direct Signup</option>
+                                <option>Partner Referral</option>
+                                <option>Waitlist Invite</option>
+                                <option>Campaign</option>
+                            </select>
+                            <button class="btn btn--ghost">
+                                <span class="material-symbols-outlined" aria-hidden="true">download</span>
+                                Export
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="table-wrapper">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>User</th>
+                                        <th>Status</th>
+                                        <th>Wallet</th>
+                                        <th>XP / Rank</th>
+                                        <th>Source</th>
+                                        <th>Joined</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="clickable-row" data-user-id="1">
+                                        <td>
+                                            <div class="user-cell">
+                                                <div class="user-avatar">MK</div>
+                                                <div>
+                                                    <div class="user-name">Marco Klein</div>
+                                                    <div class="user-email">marco.klein@proton.me</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge badge--green">Active</span></td>
+                                        <td><span class="badge badge--purple">Connected</span></td>
+                                        <td>
+                                            <div class="xp-cell">
+                                                <span class="xp-value">8,420</span>
+                                                <span class="xp-rank">Gold III</span>
+                                            </div>
+                                        </td>
+                                        <td>Direct Signup</td>
+                                        <td>Apr 3, 2026</td>
+                                        <td>
+                                            <div class="action-buttons">
+                                                <button class="action-btn" title="View">
+                                                    <span class="material-symbols-outlined" aria-hidden="true">visibility</span>
+                                                </button>
+                                                <button class="action-btn" title="Suspend">
+                                                    <span class="material-symbols-outlined" aria-hidden="true">block</span>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="clickable-row" data-user-id="2">
+                                        <td>
+                                            <div class="user-cell">
+                                                <div class="user-avatar user-avatar--partner">TR</div>
+                                                <div>
+                                                    <div class="user-name">TechReview Hub</div>
+                                                    <div class="user-email">alex@techreviewhub.io</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge badge--green">Active</span></td>
+                                        <td><span class="badge badge--purple">Connected</span></td>
+                                        <td>
+                                            <div class="xp-cell">
+                                                <span class="xp-value">21,300</span>
+                                                <span class="xp-rank">Platinum I</span>
+                                            </div>
+                                        </td>
+                                        <td>Partner Account</td>
+                                        <td>Feb 14, 2026</td>
+                                        <td>
+                                            <div class="action-buttons">
+                                                <button class="action-btn" title="View">
+                                                    <span class="material-symbols-outlined" aria-hidden="true">visibility</span>
+                                                </button>
+                                                <button class="action-btn" title="Suspend">
+                                                    <span class="material-symbols-outlined" aria-hidden="true">block</span>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="clickable-row" data-user-id="3">
+                                        <td>
+                                            <div class="user-cell">
+                                                <div class="user-avatar">SJ</div>
+                                                <div>
+                                                    <div class="user-name">Sara Jensen</div>
+                                                    <div class="user-email">sara.j@outlook.com</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge badge--yellow">Pending</span></td>
+                                        <td><span class="badge badge--gray">Not Created</span></td>
+                                        <td>
+                                            <div class="xp-cell">
+                                                <span class="xp-value">0</span>
+                                                <span class="xp-rank">—</span>
+                                            </div>
+                                        </td>
+                                        <td>Waitlist Invite</td>
+                                        <td>May 8, 2026</td>
+                                        <td>
+                                            <div class="action-buttons">
+                                                <button class="action-btn" title="View">
+                                                    <span class="material-symbols-outlined" aria-hidden="true">visibility</span>
+                                                </button>
+                                                <button class="action-btn" title="Resend Invite">
+                                                    <span class="material-symbols-outlined" aria-hidden="true">send</span>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="clickable-row" data-user-id="4">
+                                        <td>
+                                            <div class="user-cell">
+                                                <div class="user-avatar">DL</div>
+                                                <div>
+                                                    <div class="user-name">David Liang</div>
+                                                    <div class="user-email">david@fastmail.com</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge badge--green">Active</span></td>
+                                        <td><span class="badge badge--purple">Connected</span></td>
+                                        <td>
+                                            <div class="xp-cell">
+                                                <span class="xp-value">3,150</span>
+                                                <span class="xp-rank">Silver II</span>
+                                            </div>
+                                        </td>
+                                        <td>Partner Referral</td>
+                                        <td>Mar 22, 2026</td>
+                                        <td>
+                                            <div class="action-buttons">
+                                                <button class="action-btn" title="View">
+                                                    <span class="material-symbols-outlined" aria-hidden="true">visibility</span>
+                                                </button>
+                                                <button class="action-btn" title="Suspend">
+                                                    <span class="material-symbols-outlined" aria-hidden="true">block</span>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="clickable-row" data-user-id="5">
+                                        <td>
+                                            <div class="user-cell">
+                                                <div class="user-avatar">PO</div>
+                                                <div>
+                                                    <div class="user-name">Petra O.</div>
+                                                    <div class="user-email">petra.o@gmail.com</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge badge--red">Suspended</span></td>
+                                        <td><span class="badge badge--gray">Disconnected</span></td>
+                                        <td>
+                                            <div class="xp-cell">
+                                                <span class="xp-value">500</span>
+                                                <span class="xp-rank">Bronze I</span>
+                                            </div>
+                                        </td>
+                                        <td>Direct Signup</td>
+                                        <td>Jan 11, 2026</td>
+                                        <td>
+                                            <div class="action-buttons">
+                                                <button class="action-btn" title="View">
+                                                    <span class="material-symbols-outlined" aria-hidden="true">visibility</span>
+                                                </button>
+                                                <button class="action-btn" title="Reinstate">
+                                                    <span class="material-symbols-outlined" aria-hidden="true">restore</span>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="table-footer">
+                            <span class="table-info">Showing 1–5 of 12,847 users</span>
+                            <div class="pagination">
+                                <button class="pagination-btn" disabled>←</button>
+                                <button class="pagination-btn pagination-btn--active">1</button>
+                                <button class="pagination-btn">2</button>
+                                <button class="pagination-btn">3</button>
+                                <span class="pagination-ellipsis">...</span>
+                                <button class="pagination-btn">2569</button>
+                                <button class="pagination-btn">→</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <aside class="content-panel" id="userPanel">
+                    <div class="panel-header">
+                        <h3 class="panel-title">User Details</h3>
+                        <button class="panel-close" onclick="closeUserPanel()">
+                            <span class="material-symbols-outlined" aria-hidden="true">close</span>
+                        </button>
+                    </div>
+                    <div class="panel-body">
+
+                        <div class="panel-user-header">
+                            <div class="user-avatar user-avatar--lg">MK</div>
+                            <div>
+                                <div class="panel-user-name">Marco Klein</div>
+                                <div class="panel-user-email">marco.klein@proton.me</div>
+                                <span class="badge badge--green">Active</span>
+                            </div>
+                        </div>
+
+                        <div class="panel-section">
+                            <div class="panel-section-title">Account</div>
+                            <div class="panel-row">
+                                <span class="panel-label">User ID</span>
+                                <span class="panel-value mono">user_8471</span>
+                            </div>
+                            <div class="panel-row">
+                                <span class="panel-label">Joined</span>
+                                <span class="panel-value">April 3, 2026</span>
+                            </div>
+                            <div class="panel-row">
+                                <span class="panel-label">Source</span>
+                                <span class="panel-value">Direct Signup</span>
+                            </div>
+                            <div class="panel-row">
+                                <span class="panel-label">Status</span>
+                                <span class="badge badge--green">Active</span>
+                            </div>
+                        </div>
+
+                        <div class="panel-section">
+                            <div class="panel-section-title">Wallet</div>
+                            <div class="panel-row">
+                                <span class="panel-label">Address</span>
+                                <span class="panel-value mono" style="font-size: var(--text-xs);">0x8a3f...2b9e</span>
+                            </div>
+                            <div class="panel-row">
+                                <span class="panel-label">Status</span>
+                                <span class="badge badge--purple">Connected</span>
+                            </div>
+                            <div class="panel-row">
+                                <span class="panel-label">Balance</span>
+                                <span class="panel-value">~$1,243.50</span>
+                            </div>
+                        </div>
+
+                        <div class="panel-section">
+                            <div class="panel-section-title">Engagement</div>
+                            <div class="panel-row">
+                                <span class="panel-label">XP / Rank</span>
+                                <span class="panel-value">8,420 · Gold III</span>
+                            </div>
+                            <div class="panel-row">
+                                <span class="panel-label">Transactions</span>
+                                <span class="panel-value">47</span>
+                            </div>
+                            <div class="panel-row">
+                                <span class="panel-label">Last Active</span>
+                                <span class="panel-value">May 10, 2026</span>
+                            </div>
+                        </div>
+
+                        <div class="panel-section">
+                            <div class="panel-section-title">Actions</div>
+                            <div class="panel-actions">
+                                <button class="btn btn--accent w-full">View Full Profile</button>
+                                <button class="btn btn--ghost w-full">Send Message</button>
+                                <button class="btn btn--danger-outline w-full">Suspend Account</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </aside>
+            </div>
+
+        </div>
+    </div>
+
+    <style>
+    .admin-sidebar {
+        position: fixed; top: 0; left: 0; width: 248px; height: 100vh;
+        background: var(--bg-card); border-right: 1px solid var(--border);
+        display: flex; flex-direction: column; z-index: 100; overflow-y: auto;
+    }
+
+    .sidebar-logo { padding: var(--space-5) var(--space-4) var(--space-4); border-bottom: 1px solid var(--border); }
+    .sidebar-logo__link { display: flex; align-items: center; gap: var(--space-3); text-decoration: none; }
+    .sidebar-logo__mark { position: relative; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .sidebar-logo__ring { position: absolute; border-radius: 6px; border: 2px solid var(--accent); }
+    .sidebar-logo__ring--outer { inset: 0; transform: rotate(45deg) scale(0.9); }
+    .sidebar-logo__ring--inner { inset: 4px; border-color: rgba(230, 232, 236, 0.2); transform: rotate(12deg); }
+    .sidebar-logo__bar { position: relative; z-index: 1; width: 4px; height: 14px; background-color: var(--accent); border-radius: 2px; }
+    .sidebar-logo__wordmark { font-family: var(--font-display); font-weight: 700; font-size: var(--text-base); color: var(--fg-primary); }
+    .sidebar-logo__badge { margin-left: auto; padding: 2px 6px; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.2); border-radius: var(--radius-sm); font-size: 10px; font-weight: 700; color: #ef4444; text-transform: uppercase; letter-spacing: 0.05em; }
+
+    .sidebar-nav { flex: 1; padding: var(--space-3); }
+    .sidebar-nav__list { list-style: none; display: flex; flex-direction: column; gap: 2px; }
+    .sidebar-nav__item { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-2) var(--space-3); border-radius: var(--radius-md); color: var(--fg-secondary); text-decoration: none; font-size: var(--text-sm); font-weight: 500; transition: background-color var(--duration-fast) var(--ease-out), color var(--duration-fast) var(--ease-out); }
+    .sidebar-nav__item:hover { background: var(--bg-inset); color: var(--fg-primary); }
+    .sidebar-nav__item--active { background: rgba(183, 245, 58, 0.08); color: var(--accent); }
+    .sidebar-nav__icon { font-size: 20px; flex-shrink: 0; }
+    .sidebar-footer { padding: var(--space-3); border-top: 1px solid var(--border); }
+    .sidebar-nav__item--logout { color: var(--fg-muted); }
+    .sidebar-nav__item--logout:hover { color: #ef4444; background: rgba(239, 68, 68, 0.08); }
+
+    .main-content { margin-left: 248px; min-height: 100vh; display: flex; flex-direction: column; }
+    .topbar { position: sticky; top: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between; padding: var(--space-4) var(--space-8); background: var(--bg-main); border-bottom: 1px solid var(--border); backdrop-filter: blur(8px); }
+    .topbar-left { display: flex; flex-direction: column; gap: var(--space-1); }
+    .page-title { font-family: var(--font-display); font-weight: 700; font-size: var(--text-xl); color: var(--fg-primary); }
+    .page-subtitle { font-size: var(--text-sm); color: var(--fg-secondary); }
+    .admin-badge { display: flex; align-items: center; gap: var(--space-2); padding: var(--space-2) var(--space-3); background: rgba(239, 68, 68, 0.08); border: 1px solid rgba(239, 68, 68, 0.15); border-radius: var(--radius-pill); font-size: var(--text-xs); font-weight: 600; color: #ef4444; }
+    .admin-badge .material-symbols-outlined { font-size: 16px; }
+
+    .content-area { flex: 1; padding: var(--space-6) var(--space-8); }
+
+    .content-layout { display: grid; grid-template-columns: 1fr 380px; gap: var(--space-6); align-items: start; }
+
+    .toolbar { display: flex; align-items: center; gap: var(--space-4); margin-bottom: var(--space-5); flex-wrap: wrap; }
+    .search-box { position: relative; flex: 1; min-width: 280px; }
+    .search-icon { position: absolute; left: var(--space-3); top: 50%; transform: translateY(-50%); font-size: 20px; color: var(--fg-muted); }
+    .search-input { width: 100%; padding: var(--space-3) var(--space-4) var(--space-3) 40px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); color: var(--fg-primary); font-size: var(--text-sm); }
+    .search-input:focus { outline: none; border-color: var(--accent-30); }
+    .toolbar-filters { display: flex; align-items: center; gap: var(--space-3); }
+
+    .form-select { padding: var(--space-2) var(--space-3); background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); color: var(--fg-primary); font-size: var(--text-sm); cursor: pointer; }
+    .form-select:focus { outline: none; border-color: var(--accent-30); }
+
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2); padding: var(--space-2) var(--space-4); border-radius: var(--radius-md); font-size: var(--text-sm); font-weight: 600; cursor: pointer; border: none; transition: background-color var(--duration-fast) var(--ease-out); }
+    .btn--accent { background-color: var(--accent); color: var(--bg-main); }
+    .btn--accent:hover { background-color: var(--fg-primary); }
+    .btn--ghost { background: transparent; border: 1px solid var(--border); color: var(--fg-primary); }
+    .btn--ghost:hover { background: var(--bg-inset); }
+    .btn--danger-outline { background: transparent; border: 1px solid rgba(239, 68, 68, 0.4); color: #ef4444; }
+    .btn--danger-outline:hover { background: rgba(239, 68, 68, 0.08); }
+    .btn .material-symbols-outlined { font-size: 18px; }
+    .w-full { width: 100%; }
+
+    .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+
+    .table-wrapper { overflow-x: auto; }
+    .data-table { width: 100%; border-collapse: collapse; font-size: var(--text-sm); }
+    .data-table th { padding: var(--space-3) var(--space-4); text-align: left; font-size: var(--text-xs); font-weight: 600; color: var(--fg-secondary); text-transform: uppercase; letter-spacing: var(--tracking-wide); border-bottom: 1px solid var(--border); white-space: nowrap; }
+    .data-table td { padding: var(--space-4); border-bottom: 1px solid var(--border); color: var(--fg-primary); vertical-align: middle; }
+    .data-table tbody tr:last-child td { border-bottom: none; }
+    .data-table tbody tr:hover { background: var(--bg-inset); cursor: pointer; }
+
+    .clickable-row:hover { background: var(--bg-inset); }
+
+    .user-cell { display: flex; align-items: center; gap: var(--space-3); }
+    .user-avatar { width: 36px; height: 36px; border-radius: 50%; background: rgba(183, 245, 58, 0.15); color: var(--accent); font-size: var(--text-xs); font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .user-avatar--partner { background: rgba(59, 130, 246, 0.15); color: #3b82f6; }
+    .user-avatar--lg { width: 48px; height: 48px; font-size: var(--text-base); }
+    .user-name { font-weight: 600; font-size: var(--text-sm); }
+    .user-email { font-size: var(--text-xs); color: var(--fg-muted); }
+
+    .xp-cell { display: flex; flex-direction: column; gap: 2px; }
+    .xp-value { font-weight: 600; font-size: var(--text-sm); }
+    .xp-rank { font-size: var(--text-xs); color: var(--fg-muted); }
+
+    .action-buttons { display: flex; gap: var(--space-1); }
+    .action-btn { width: 30px; height: 30px; border-radius: var(--radius-sm); border: none; background: transparent; color: var(--fg-muted); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background-color var(--duration-fast) var(--ease-out), color var(--duration-fast) var(--ease-out); }
+    .action-btn:hover { background: var(--bg-inset); color: var(--fg-primary); }
+    .action-btn .material-symbols-outlined { font-size: 18px; }
+
+    .table-footer { display: flex; align-items: center; justify-content: space-between; padding: var(--space-4) var(--space-5); border-top: 1px solid var(--border); }
+    .table-info { font-size: var(--text-sm); color: var(--fg-muted); }
+    .pagination { display: flex; align-items: center; gap: var(--space-1); }
+    .pagination-btn { min-width: 32px; height: 32px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: transparent; color: var(--fg-secondary); font-size: var(--text-sm); cursor: pointer; display: flex; align-items: center; justify-content: center; }
+    .pagination-btn:hover:not(:disabled) { background: var(--bg-inset); }
+    .pagination-btn--active { background: var(--accent); border-color: var(--accent); color: var(--bg-main); font-weight: 600; }
+    .pagination-ellipsis { padding: 0 var(--space-2); color: var(--fg-muted); font-size: var(--text-sm); }
+
+    .content-panel { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; position: sticky; top: var(--space-6); }
+    .panel-header { display: flex; align-items: center; justify-content: space-between; padding: var(--space-4) var(--space-5); border-bottom: 1px solid var(--border); }
+    .panel-title { font-weight: 600; font-size: var(--text-base); }
+    .panel-close { width: 28px; height: 28px; border-radius: var(--radius-sm); border: none; background: transparent; color: var(--fg-muted); cursor: pointer; display: flex; align-items: center; justify-content: center; }
+    .panel-close:hover { background: var(--bg-inset); color: var(--fg-primary); }
+    .panel-close .material-symbols-outlined { font-size: 18px; }
+
+    .panel-body { padding: var(--space-5); display: flex; flex-direction: column; gap: var(--space-5); }
+    .panel-user-header { display: flex; align-items: center; gap: var(--space-4); }
+    .panel-user-name { font-weight: 700; font-size: var(--text-lg); margin-bottom: var(--space-1); }
+    .panel-user-email { font-size: var(--text-sm); color: var(--fg-muted); margin-bottom: var(--space-2); }
+
+    .panel-section { display: flex; flex-direction: column; gap: var(--space-2); }
+    .panel-section-title { font-size: var(--text-xs); font-weight: 700; color: var(--fg-secondary); text-transform: uppercase; letter-spacing: var(--tracking-wide); margin-bottom: var(--space-1); }
+    .panel-row { display: flex; justify-content: space-between; align-items: center; }
+    .panel-label { font-size: var(--text-sm); color: var(--fg-secondary); }
+    .panel-value { font-size: var(--text-sm); font-weight: 500; }
+    .panel-value.mono { font-family: monospace; font-size: var(--text-xs); }
+
+    .panel-actions { display: flex; flex-direction: column; gap: var(--space-2); margin-top: var(--space-2); }
+
+    .badge { display: inline-flex; align-items: center; padding: 2px var(--space-2); border-radius: var(--radius-pill); font-size: var(--text-xs); font-weight: 600; }
+    .badge--green { background: rgba(34, 197, 94, 0.1); color: #22c55e; }
+    .badge--yellow { background: rgba(234, 179, 8, 0.1); color: #eab308; }
+    .badge--red { background: rgba(239, 68, 68, 0.1); color: #ef4444; }
+    .badge--purple { background: rgba(168, 85, 247, 0.1); color: #a855f7; }
+    .badge--gray { background: rgba(156, 163, 175, 0.1); color: #9ca3af; }
+    .badge--blue { background: rgba(59, 130, 246, 0.1); color: #3b82f6; }
+
+    @media (max-width: 1200px) {
+        .content-layout { grid-template-columns: 1fr; }
+        .content-panel { position: static; }
+    }
+
+    @media (max-width: 768px) {
+        .admin-sidebar { transform: translateX(-100%); transition: transform var(--duration-normal) var(--ease-out); }
+        .main-content { margin-left: 0; }
+        .content-area { padding: var(--space-4); }
+        .toolbar { flex-direction: column; align-items: stretch; }
+        .search-box { min-width: auto; }
+        .toolbar-filters { flex-wrap: wrap; }
+    }
+    </style>
+
+</body>
+</html>

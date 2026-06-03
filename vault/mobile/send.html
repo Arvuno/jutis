@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Send - Jutis Mobile</title>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="stylesheet" href="styles/tokens.css">
+    <link rel="stylesheet" href="styles/base.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
+    <style>
+        .send-page {
+            min-height: 100vh;
+            min-height: 100dvh;
+            background: var(--bg-main);
+            display: flex;
+            flex-direction: column;
+            padding-top: env(safe-area-inset-top, 0px);
+            padding-bottom: env(safe-area-inset-bottom, 0px);
+        }
+
+        /* Top bar */
+        .send-topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--space-4);
+            height: var(--topbar-height);
+            background: var(--bg-overlay);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .send-topbar__back {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--fg-secondary);
+            border-radius: var(--radius-md);
+        }
+
+        .send-topbar__title {
+            font-size: var(--text-lg);
+            font-weight: 600;
+        }
+
+        .send-topbar__scan {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            border-radius: var(--radius-md);
+        }
+
+        /* Content */
+        .send-content {
+            flex: 1;
+            padding: var(--space-4);
+            overflow-y: auto;
+        }
+
+        /* Recipient Input */
+        .send-field {
+            margin-bottom: var(--space-5);
+        }
+
+        .send-field__label {
+            font-size: var(--text-sm);
+            font-weight: 600;
+            color: var(--fg-secondary);
+            margin-bottom: var(--space-2);
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+
+        .send-field__input-wrap {
+            position: relative;
+        }
+
+        .send-field__input {
+            width: 100%;
+            padding: var(--space-4);
+            padding-left: 52px;
+            background: var(--bg-input);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            font-size: var(--text-base);
+            color: var(--fg-primary);
+            transition: border-color var(--duration-fast) var(--ease-out);
+        }
+
+        .send-field__input:focus {
+            border-color: var(--accent-50);
+            outline: none;
+        }
+
+        .send-field__input::placeholder {
+            color: var(--fg-tertiary);
+        }
+
+        .send-field__icon {
+            position: absolute;
+            left: var(--space-4);
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--fg-tertiary);
+        }
+
+        .send-field__paste {
+            position: absolute;
+            right: var(--space-3);
+            top: 50%;
+            transform: translateY(-50%);
+            padding: var(--space-2);
+            color: var(--accent);
+            font-size: var(--text-xs);
+            font-weight: 600;
+            background: var(--accent-10);
+            border-radius: var(--radius-sm);
+        }
+
+        /* Asset Selector */
+        .send-asset {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            padding: var(--space-4);
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--space-5);
+        }
+
+        .send-asset__icon {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--accent-10);
+            border-radius: var(--radius-md);
+            color: var(--accent);
+        }
+
+        .send-asset__info {
+            flex: 1;
+        }
+
+        .send-asset__name {
+            font-size: var(--text-base);
+            font-weight: 600;
+        }
+
+        .send-asset__balance {
+            font-size: var(--text-sm);
+            color: var(--fg-secondary);
+        }
+
+        .send-asset__selector {
+            color: var(--fg-secondary);
+        }
+
+        /* Amount Input */
+        .send-amount {
+            text-align: center;
+            padding: var(--space-6) 0;
+            margin-bottom: var(--space-5);
+        }
+
+        .send-amount__input {
+            width: 100%;
+            font-size: 40px;
+            font-weight: 800;
+            text-align: center;
+            background: transparent;
+            border: none;
+            color: var(--fg-primary);
+            outline: none;
+        }
+
+        .send-amount__input::placeholder {
+            color: var(--fg-tertiary);
+        }
+
+        .send-amount__fiat {
+            font-size: var(--text-lg);
+            color: var(--fg-secondary);
+            margin-top: var(--space-2);
+        }
+
+        .send-amount__max {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-1);
+            padding: var(--space-1) var(--space-3);
+            background: var(--accent-10);
+            border: 1px solid var(--accent-30);
+            border-radius: var(--radius-full);
+            color: var(--accent);
+            font-size: var(--text-xs);
+            font-weight: 600;
+            margin-top: var(--space-3);
+        }
+
+        /* Review Card */
+        .send-review {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            padding: var(--space-5);
+            margin-bottom: var(--space-5);
+        }
+
+        .send-review__title {
+            font-size: var(--text-sm);
+            font-weight: 600;
+            color: var(--fg-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: var(--space-4);
+        }
+
+        .send-review__row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--space-3) 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .send-review__row:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .send-review__label {
+            font-size: var(--text-sm);
+            color: var(--fg-secondary);
+        }
+
+        .send-review__value {
+            font-size: var(--text-sm);
+            font-weight: 600;
+        }
+
+        .send-review__value--highlight {
+            color: var(--accent);
+        }
+
+        /* Warning */
+        .send-warning {
+            display: flex;
+            gap: var(--space-3);
+            padding: var(--space-4);
+            background: rgba(251, 191, 36, 0.08);
+            border: 1px solid rgba(251, 191, 36, 0.2);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--space-5);
+        }
+
+        .send-warning__icon {
+            color: var(--warning);
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .send-warning__text {
+            font-size: var(--text-sm);
+            color: var(--fg-secondary);
+            line-height: var(--leading-relaxed);
+        }
+
+        .send-warning__text strong {
+            color: var(--fg-primary);
+        }
+
+        /* CTA */
+        .send-cta {
+            padding: var(--space-4);
+            padding-bottom: calc(var(--space-4) + env(safe-area-inset-bottom, 0px));
+        }
+
+        .send-cta__btn {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-2);
+            padding: var(--space-5);
+            background: var(--accent);
+            color: var(--bg-main);
+            border-radius: var(--radius-lg);
+            font-size: var(--text-lg);
+            font-weight: 700;
+            transition: all var(--duration-fast) var(--ease-out);
+        }
+
+        .send-cta__btn:hover {
+            background: #c8e63a;
+            box-shadow: 0 0 24px rgba(183, 245, 58, 0.3);
+        }
+
+        .send-cta__btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .send-cta__btn--secondary {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: var(--fg-primary);
+            margin-top: var(--space-3);
+        }
+
+        .send-cta__btn--secondary:hover {
+            border-color: var(--accent-30);
+        }
+    </style>
+</head>
+<body>
+    <div class="send-page">
+        <!-- Top bar -->
+        <div class="send-topbar">
+            <a href="wallet.html" class="send-topbar__back">
+                <span class="material-symbols-outlined">arrow_back</span>
+            </a>
+            <span class="send-topbar__title">Send</span>
+            <a href="#" class="send-topbar__scan">
+                <span class="material-symbols-outlined">qr_code_scanner</span>
+            </a>
+        </div>
+
+        <!-- Content -->
+        <div class="send-content">
+            <!-- Recipient -->
+            <div class="send-field">
+                <label class="send-field__label">
+                    <span class="material-symbols-outlined" style="font-size:16px;">person</span>
+                    Recipient
+                </label>
+                <div class="send-field__input-wrap">
+                    <span class="send-field__icon material-symbols-outlined">account_balance_wallet</span>
+                    <input type="text" class="send-field__input" placeholder="Enter address or domain">
+                    <button class="send-field__paste">Paste</button>
+                </div>
+            </div>
+
+            <!-- Asset Selector -->
+            <div class="send-asset">
+                <div class="send-asset__icon">
+                    <span class="material-symbols-outlined">circle</span>
+                </div>
+                <div class="send-asset__info">
+                    <p class="send-asset__name">Canton</p>
+                    <p class="send-asset__balance">Balance: 8,247.32 CANTON</p>
+                </div>
+                <span class="material-symbols-outlined send-asset__selector">expand_more</span>
+            </div>
+
+            <!-- Amount -->
+            <div class="send-amount">
+                <input type="number" class="send-amount__input" placeholder="0.00" id="amountInput">
+                <p class="send-amount__fiat">≈ $0.00 USD</p>
+                <button class="send-amount__max">
+                    <span class="material-symbols-outlined" style="font-size:14px;">keyboard_double_arrow_right</span>
+                    MAX
+                </button>
+            </div>
+
+            <!-- Review Card -->
+            <div class="send-review">
+                <p class="send-review__title">Transaction Review</p>
+                <div class="send-review__row">
+                    <span class="send-review__label">Amount</span>
+                    <span class="send-review__value" id="reviewAmount">0.00 CANTON</span>
+                </div>
+                <div class="send-review__row">
+                    <span class="send-review__label">Estimated Fee</span>
+                    <span class="send-review__value">~0.001 CANTON</span>
+                </div>
+                <div class="send-review__row">
+                    <span class="send-review__label">Network</span>
+                    <span class="send-review__value send-review__value--highlight">Canton</span>
+                </div>
+            </div>
+
+            <!-- Warning -->
+            <div class="send-warning">
+                <span class="material-symbols-outlined send-warning__icon">info</span>
+                <p class="send-warning__text">
+                    <strong>Always verify the recipient address.</strong> Blockchain transactions are irreversible. Never send to addresses you don't trust.
+                </p>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="send-cta">
+            <button class="send-cta__btn" disabled id="continueBtn">
+                Continue
+                <span class="material-symbols-outlined">arrow_forward</span>
+            </button>
+            <a href="wallet.html" class="send-cta__btn send-cta__btn--secondary">
+                Cancel
+            </a>
+        </div>
+    </div>
+
+    <script>
+        const amountInput = document.getElementById('amountInput');
+        const continueBtn = document.getElementById('continueBtn');
+        const reviewAmount = document.getElementById('reviewAmount');
+
+        amountInput.addEventListener('input', function() {
+            const value = this.value || '0.00';
+            reviewAmount.textContent = value + ' CANTON';
+            continueBtn.disabled = !this.value || parseFloat(this.value) <= 0;
+        });
+    </script>
+</body>
+</html>

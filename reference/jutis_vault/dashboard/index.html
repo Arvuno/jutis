@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta name="description" content="Jutis Dashboard - Manage your Canton assets, view balance, swap tokens, and track transaction history."/>
+<meta name="robots" content="noindex"/>
+<link rel="canonical" href="https://jutis.xyz/dashboard/"/>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg"/>
+<title>Dashboard - Jutis</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script>
+tailwind.config = {
+    darkMode: "class",
+    theme: {
+        extend: {
+            colors: {
+                "bg-main": "#1a1d23",
+                "card-bg": "#232730",
+                "border-color": "#2e323c",
+                "text-primary": "#e6e8ec",
+                "text-secondary": "#9aa1ac",
+                "accent": "#dce87a",
+            },
+            fontFamily: {
+                "sans": ["Inter", "system-ui"],
+                "display": ["Plus Jakarta Sans", "Inter"]
+            }
+        },
+    },
+}
+</script>
+<style>
+body { background-color: #1a1d23; color: #e6e8ec; font-family: "Inter", system-ui; }
+.network-grid { background-image: radial-gradient(#2e323c 1px, transparent 1px); background-size: 40px 40px; }
+.sidebar-open { transform: translateX(0); }
+.sidebar-closed { transform: translateX(-100%); }
+@media (min-width: 1024px) { .sidebar-closed { transform: translateX(0); } }
+</style>
+</head>
+<body class="min-h-screen">
+<!-- Mobile Header -->
+<header class="lg:hidden fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 py-3 bg-[#232730] border-b border-[#2e323c]">
+    <button id="menuToggle" class="p-2 hover:bg-[#2e323c] rounded-lg transition-colors">
+        <span class="material-symbols-outlined text-[#e6e8ec]">menu</span>
+    </button>
+    <a href="../index.html" class="flex items-center gap-2">
+        <div class="relative w-8 h-8 flex items-center justify-center">
+            <div class="absolute inset-0 border-2 border-[#dce87a] rounded-lg rotate-45 scale-90"></div>
+            <div class="w-1 h-4 bg-[#dce87a] rounded-full"></div>
+        </div>
+        <span class="text-lg font-display font-bold tracking-[0.15em] uppercase">Jutis</span>
+    </a>
+    <button id="mobileNotif" class="p-2 hover:bg-[#2e323c] rounded-lg transition-colors relative">
+        <span class="material-symbols-outlined text-[#9aa1ac]">notifications</span>
+        <span class="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+    </button>
+</header>
+
+<!-- Sidebar Overlay -->
+<div id="sidebarOverlay" class="fixed inset-0 bg-black/50 z-40 hidden lg:hidden" onclick="closeSidebar()"></div>
+
+<!-- Sidebar -->
+<aside id="sidebar" class="fixed left-0 top-0 h-full w-64 bg-[#232730] border-r border-[#2e323c] z-40 flex flex-col sidebar-closed lg:sidebar-open transition-transform duration-300">
+    <div class="p-6">
+        <a href="../index.html" class="flex items-center gap-3">
+            <div class="relative w-10 h-10 flex items-center justify-center">
+                <div class="absolute inset-0 border-2 border-[#dce87a] rounded-xl rotate-45 scale-90"></div>
+                <div class="absolute inset-0 border-2 border-[#e6e8ec]/20 rounded-xl rotate-12"></div>
+                <div class="w-1.5 h-5 bg-[#dce87a] rounded-full"></div>
+            </div>
+            <span class="text-xl font-display font-bold tracking-[0.2em] uppercase">Jutis</span>
+        </a>
+    </div>
+
+    <nav class="flex-1 px-4 space-y-2">
+        <a href="index.html" class="flex items-center gap-3 px-4 py-3 rounded-xl bg-[#dce87a]/10 text-[#dce87a]">
+            <span class="material-symbols-outlined">dashboard</span>
+            <span class="font-medium">Dashboard</span>
+            <span class="ml-auto px-2 py-0.5 bg-[#dce87a] text-[#1a1d23] text-[10px] font-bold rounded-full">NOW ON</span>
+        </a>
+        <a href="wallet.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-[#9aa1ac] hover:bg-[#2e323c] hover:text-[#e6e8ec] transition-colors">
+            <span class="material-symbols-outlined">account_balance_wallet</span>
+            <span class="font-medium">Wallet</span>
+        </a>
+        <a href="swap.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-[#9aa1ac] hover:bg-[#2e323c] hover:text-[#e6e8ec] transition-colors">
+            <span class="material-symbols-outlined">swap_horiz</span>
+            <span class="font-medium">Swap</span>
+        </a>
+        <a href="history.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-[#9aa1ac] hover:bg-[#2e323c] hover:text-[#e6e8ec] transition-colors">
+            <span class="material-symbols-outlined">history</span>
+            <span class="font-medium">History</span>
+        </a>
+        <a href="security.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-[#9aa1ac] hover:bg-[#2e323c] hover:text-[#e6e8ec] transition-colors">
+            <span class="material-symbols-outlined">security</span>
+            <span class="font-medium">Security</span>
+        </a>
+        <a href="settings.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-[#9aa1ac] hover:bg-[#2e323c] hover:text-[#e6e8ec] transition-colors">
+            <span class="material-symbols-outlined">settings</span>
+            <span class="font-medium">Settings</span>
+        </a>
+    </nav>
+
+    <div class="p-4 border-t border-[#2e323c]">
+        <div class="flex items-center gap-3 px-4 py-3">
+            <div class="w-10 h-10 rounded-full bg-[#dce87a]/20 flex items-center justify-center">
+                <span class="text-[#dce87a] font-bold">JD</span>
+            </div>
+            <div class="flex-1 min-w-0">
+                <p class="font-medium text-sm truncate">john.doe@email.com</p>
+                <p class="text-xs text-[#9aa1ac]">Connected</p>
+            </div>
+            <button class="p-2 hover:bg-[#2e323c] rounded-lg transition-colors">
+                <span class="material-symbols-outlined text-[#9aa1ac]">logout</span>
+            </button>
+        </div>
+    </div>
+</aside>
+
+<!-- Main Content -->
+<main class="lg:ml-64 min-h-screen p-4 lg:p-8 pt-20 lg:pt-8">
+    <!-- Header -->
+    <header class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+        <div>
+            <h1 class="text-2xl font-display font-bold">Dashboard</h1>
+            <p class="text-[#9aa1ac]">Welcome back, John</p>
+        </div>
+        <div class="flex items-center gap-3">
+            <button class="hidden lg:flex relative p-3 bg-[#232730] border border-[#2e323c] rounded-xl hover:border-[#dce87a]/30 transition-colors">
+                <span class="material-symbols-outlined text-[#9aa1ac]">notifications</span>
+                <span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full"></span>
+            </button>
+            <button class="flex items-center gap-2 px-4 py-2 bg-[#dce87a] text-[#1a1d23] rounded-full font-bold text-sm hover:bg-[#e6e8ec] transition-colors">
+                <span class="material-symbols-outlined text-base">add</span>
+                <span class="hidden sm:inline">Add Wallet</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Alert Banner -->
+    <div class="mb-6 p-4 bg-amber-500/10 border border-amber-500/30 rounded-xl flex items-center gap-4">
+        <span class="material-symbols-outlined text-amber-500">warning</span>
+        <p class="text-sm text-amber-200 flex-1">Your session will expire in 24 minutes. Save your work.</p>
+        <button class="px-3 py-1 bg-amber-500/20 hover:bg-amber-500/30 rounded-lg text-amber-200 text-sm font-medium transition-colors">Extend</button>
+    </div>
+
+    <!-- Balance Card -->
+    <div class="bg-gradient-to-br from-[#232730] to-[#1a1d23] border border-[#2e323c] rounded-2xl p-6 lg:p-8 mb-6 lg:mb-8 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-64 h-64 bg-[#dce87a]/5 rounded-full blur-[80px] pointer-events-none"></div>
+        <div class="relative">
+            <p class="text-[#9aa1ac] text-sm mb-2">Total Balance</p>
+            <h2 class="text-3xl lg:text-4xl font-display font-bold mb-4 lg:mb-6">$12,458.32</h2>
+            <div class="flex items-center gap-4 lg:gap-6 overflow-x-auto">
+                <div>
+                    <p class="text-xs text-[#9aa1ac] mb-1">CANT</p>
+                    <p class="font-semibold">8,234.56</p>
+                </div>
+                <div class="w-px h-8 bg-[#2e323c]"></div>
+                <div>
+                    <p class="text-xs text-[#9aa1ac] mb-1">USDC</p>
+                    <p class="font-semibold">2,156.00</p>
+                </div>
+                <div class="w-px h-8 bg-[#2e323c]"></div>
+                <div>
+                    <p class="text-xs text-[#9aa1ac] mb-1">USD</p>
+                    <p class="font-semibold">$4,223.76</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4 mb-6 lg:mb-8">
+        <button class="p-4 bg-[#232730] border border-[#2e323c] rounded-xl hover:border-[#dce87a]/30 transition-colors flex flex-col items-center gap-2">
+            <span class="material-symbols-outlined text-[#dce87a]">send</span>
+            <span class="text-sm font-medium">Send</span>
+        </button>
+        <button class="p-4 bg-[#232730] border border-[#2e323c] rounded-xl hover:border-[#dce87a]/30 transition-colors flex flex-col items-center gap-2">
+            <span class="material-symbols-outlined text-[#dce87a]">receive</span>
+            <span class="text-sm font-medium">Receive</span>
+        </button>
+        <button class="p-4 bg-[#232730] border border-[#2e323c] rounded-xl hover:border-[#dce87a]/30 transition-colors flex flex-col items-center gap-2">
+            <span class="material-symbols-outlined text-[#dce87a]">swap_horiz</span>
+            <span class="text-sm font-medium">Swap</span>
+        </button>
+        <button class="p-4 bg-[#232730] border border-[#2e323c] rounded-xl hover:border-[#dce87a]/30 transition-colors flex flex-col items-center gap-2">
+            <span class="material-symbols-outlined text-[#dce87a]">qr_code</span>
+            <span class="text-sm font-medium">QR Pay</span>
+        </button>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <!-- Recent Transactions -->
+        <div class="bg-[#232730] border border-[#2e323c] rounded-2xl p-6">
+            <div class="flex items-center justify-between mb-6">
+                <h3 class="font-display font-semibold">Recent Transactions</h3>
+                <a href="history.html" class="text-sm text-[#dce87a] hover:underline">View All</a>
+            </div>
+            <div class="space-y-3 lg:space-y-4">
+                <div class="flex items-center gap-3 lg:gap-4 p-3 rounded-xl hover:bg-[#1a1d23] transition-colors">
+                    <div class="w-10 h-10 rounded-full bg-[#dce87a]/10 flex items-center justify-center shrink-0">
+                        <span class="material-symbols-outlined text-[#dce87a] text-sm">arrow_upward</span>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <p class="font-medium text-sm truncate">Sent CANT</p>
+                        <p class="text-xs text-[#9aa1ac] truncate">To: 0x1a2b...3c4d</p>
+                    </div>
+                    <div class="text-right shrink-0">
+                        <p class="font-medium text-sm text-red-400">-125.00</p>
+                        <p class="text-xs text-[#9aa1ac]">2 hours ago</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3 lg:gap-4 p-3 rounded-xl hover:bg-[#1a1d23] transition-colors">
+                    <div class="w-10 h-10 rounded-full bg-[#dce87a]/10 flex items-center justify-center shrink-0">
+                        <span class="material-symbols-outlined text-[#dce87a] text-sm">arrow_downward</span>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <p class="font-medium text-sm truncate">Received CANT</p>
+                        <p class="text-xs text-[#9aa1ac] truncate">From: 0x5e6f...7g8h</p>
+                    </div>
+                    <div class="text-right shrink-0">
+                        <p class="font-medium text-sm text-green-400">+500.00</p>
+                        <p class="text-xs text-[#9aa1ac]">5 hours ago</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3 lg:gap-4 p-3 rounded-xl hover:bg-[#1a1d23] transition-colors">
+                    <div class="w-10 h-10 rounded-full bg-[#dce87a]/10 flex items-center justify-center shrink-0">
+                        <span class="material-symbols-outlined text-[#dce87a] text-sm">swap_horiz</span>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <p class="font-medium text-sm truncate">Swap USDT → CANT</p>
+                        <p class="text-xs text-[#9aa1ac]">Rate: 0.023</p>
+                    </div>
+                    <div class="text-right shrink-0">
+                        <p class="font-medium text-sm">-1,000 USDT</p>
+                        <p class="text-xs text-[#9aa1ac]">Yesterday</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Wallet Addresses -->
+        <div class="bg-[#232730] border border-[#2e323c] rounded-2xl p-6">
+            <div class="flex items-center justify-between mb-6">
+                <h3 class="font-display font-semibold">Wallet Addresses</h3>
+                <button class="p-2 hover:bg-[#1a1d23] rounded-lg transition-colors">
+                    <span class="material-symbols-outlined text-[#9aa1ac] text-sm">add</span>
+                </button>
+            </div>
+            <div class="space-y-3 lg:space-y-4">
+                <div class="p-4 bg-[#1a1d23] rounded-xl">
+                    <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                        <span class="text-sm font-medium">Main Wallet</span>
+                        <span class="px-2 py-1 bg-[#dce87a]/10 text-[#dce87a] text-xs rounded-full flex items-center gap-1">
+                            <span class="w-1.5 h-1.5 rounded-full bg-[#dce87a]"></span>
+                            Active
+                        </span>
+                    </div>
+                    <p class="text-xs text-[#9aa1ac] font-mono mb-3 truncate">0x1a2b3c4d5e6f...9g0h1i2j</p>
+                    <div class="flex gap-2">
+                        <button class="flex-1 py-2 bg-[#2e323c] rounded-lg text-xs font-medium hover:bg-[#dce87a]/10 transition-colors">Copy</button>
+                        <button class="flex-1 py-2 bg-[#2e323c] rounded-lg text-xs font-medium hover:bg-[#dce87a]/10 transition-colors">QR</button>
+                    </div>
+                </div>
+                <div class="p-4 bg-[#1a1d23] rounded-xl">
+                    <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                        <span class="text-sm font-medium">Trading Wallet</span>
+                        <span class="px-2 py-1 bg-[#2e323c] text-[#9aa1ac] text-xs rounded-full">Inactive</span>
+                    </div>
+                    <p class="text-xs text-[#9aa1ac] font-mono mb-3 truncate">0x3c4d5e6f7g8h...1i2j3k</p>
+                    <div class="flex gap-2">
+                        <button class="flex-1 py-2 bg-[#2e323c] rounded-lg text-xs font-medium hover:bg-[#dce87a]/10 transition-colors">Copy</button>
+                        <button class="flex-1 py-2 bg-[#2e323c] rounded-lg text-xs font-medium hover:bg-[#dce87a]/10 transition-colors">QR</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<div class="fixed top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#dce87a]/20 to-transparent pointer-events-none"></div>
+
+<script>
+const sidebar = document.getElementById('sidebar');
+const sidebarOverlay = document.getElementById('sidebarOverlay');
+const menuToggle = document.getElementById('menuToggle');
+
+function openSidebar() {
+    sidebar.classList.remove('sidebar-closed');
+    sidebar.classList.add('sidebar-open');
+    sidebarOverlay.classList.remove('hidden');
+}
+
+function closeSidebar() {
+    sidebar.classList.remove('sidebar-open');
+    sidebar.classList.add('sidebar-closed');
+    sidebarOverlay.classList.add('hidden');
+}
+
+menuToggle.addEventListener('click', openSidebar);
+</script>
+</body>
+</html>

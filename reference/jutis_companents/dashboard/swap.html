@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta name="description" content="Jutis Swap - Trade tokens seamlessly on Canton."/>
+<meta name="robots" content="noindex"/>
+<link rel="canonical" href="https://jutis.xyz/dashboard/swap.html"/>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg"/>
+<title>Swap - Jutis</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script>
+tailwind.config = {
+    darkMode: "class",
+    theme: {
+        extend: {
+            colors: {
+                "bg-main": "#1a1d23",
+                "card-bg": "#232730",
+                "border-color": "#2e323c",
+                "text-primary": "#e6e8ec",
+                "text-secondary": "#9aa1ac",
+                "accent": "#dce87a",
+            },
+            fontFamily: {
+                "sans": ["Inter", "system-ui"],
+                "display": ["Plus Jakarta Sans", "Inter"]
+            }
+        },
+    },
+}
+</script>
+<style>
+body { background-color: #1a1d23; color: #e6e8ec; font-family: "Inter", system-ui; }
+.sidebar-open { transform: translateX(0); }
+.sidebar-closed { transform: translateX(-100%); }
+@media (min-width: 1024px) { .sidebar-closed { transform: translateX(0); } }
+.swap-arrow { transition: transform 0.3s ease; }
+.swap-arrow:hover { transform: rotate(180deg); }
+</style>
+</head>
+<body class="min-h-screen">
+<!-- Mobile Header -->
+<header class="lg:hidden fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 py-3 bg-[#232730] border-b border-[#2e323c]">
+    <button id="menuToggle" class="p-2 hover:bg-[#2e323c] rounded-lg transition-colors">
+        <span class="material-symbols-outlined text-[#e6e8ec]">menu</span>
+    </button>
+    <a href="../index.html" class="flex items-center gap-2">
+        <div class="relative w-8 h-8 flex items-center justify-center">
+            <div class="absolute inset-0 border-2 border-[#dce87a] rounded-lg rotate-45 scale-90"></div>
+            <div class="w-1 h-4 bg-[#dce87a] rounded-full"></div>
+        </div>
+        <span class="text-lg font-display font-bold tracking-[0.15em] uppercase">Jutis</span>
+    </a>
+    <button class="p-2 hover:bg-[#2e323c] rounded-lg transition-colors relative">
+        <span class="material-symbols-outlined text-[#9aa1ac]">notifications</span>
+        <span class="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+    </button>
+</header>
+
+<!-- Sidebar Overlay -->
+<div id="sidebarOverlay" class="fixed inset-0 bg-black/50 z-40 hidden lg:hidden" onclick="closeSidebar()"></div>
+
+<!-- Sidebar -->
+<aside id="sidebar" class="fixed left-0 top-0 h-full w-64 bg-[#232730] border-r border-[#2e323c] z-40 flex flex-col sidebar-closed lg:sidebar-open transition-transform duration-300">
+    <div class="p-6">
+        <a href="../index.html" class="flex items-center gap-3">
+            <div class="relative w-10 h-10 flex items-center justify-center">
+                <div class="absolute inset-0 border-2 border-[#dce87a] rounded-xl rotate-45 scale-90"></div>
+                <div class="absolute inset-0 border-2 border-[#e6e8ec]/20 rounded-xl rotate-12"></div>
+                <div class="w-1.5 h-5 bg-[#dce87a] rounded-full"></div>
+            </div>
+            <span class="text-xl font-display font-bold tracking-[0.2em] uppercase">Jutis</span>
+        </a>
+    </div>
+
+    <nav class="flex-1 px-4 space-y-2">
+        <a href="index.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-[#9aa1ac] hover:bg-[#2e323c] hover:text-[#e6e8ec] transition-colors">
+            <span class="material-symbols-outlined">dashboard</span>
+            <span class="font-medium">Dashboard</span>
+        </a>
+        <a href="wallet.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-[#9aa1ac] hover:bg-[#2e323c] hover:text-[#e6e8ec] transition-colors">
+            <span class="material-symbols-outlined">account_balance_wallet</span>
+            <span class="font-medium">Wallet</span>
+        </a>
+        <a href="swap.html" class="flex items-center gap-3 px-4 py-3 rounded-xl bg-[#dce87a]/10 text-[#dce87a]">
+            <span class="material-symbols-outlined">swap_horiz</span>
+            <span class="font-medium">Swap</span>
+            <span class="ml-auto px-2 py-0.5 bg-[#dce87a] text-[#1a1d23] text-[10px] font-bold rounded-full">NOW ON</span>
+        </a>
+        <a href="history.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-[#9aa1ac] hover:bg-[#2e323c] hover:text-[#e6e8ec] transition-colors">
+            <span class="material-symbols-outlined">history</span>
+            <span class="font-medium">History</span>
+        </a>
+        <a href="security.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-[#9aa1ac] hover:bg-[#2e323c] hover:text-[#e6e8ec] transition-colors">
+            <span class="material-symbols-outlined">security</span>
+            <span class="font-medium">Security</span>
+        </a>
+        <a href="settings.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-[#9aa1ac] hover:bg-[#2e323c] hover:text-[#e6e8ec] transition-colors">
+            <span class="material-symbols-outlined">settings</span>
+            <span class="font-medium">Settings</span>
+        </a>
+    </nav>
+
+    <div class="p-4 border-t border-[#2e323c]">
+        <div class="flex items-center gap-3 px-4 py-3">
+            <div class="w-10 h-10 rounded-full bg-[#dce87a]/20 flex items-center justify-center">
+                <span class="text-[#dce87a] font-bold">JD</span>
+            </div>
+            <div class="flex-1 min-w-0">
+                <p class="font-medium text-sm truncate">john.doe@email.com</p>
+                <p class="text-xs text-[#9aa1ac]">Connected</p>
+            </div>
+            <button class="p-2 hover:bg-[#2e323c] rounded-lg transition-colors">
+                <span class="material-symbols-outlined text-[#9aa1ac]">logout</span>
+            </button>
+        </div>
+    </div>
+</aside>
+
+<!-- Main Content -->
+<main class="lg:ml-64 min-h-screen p-4 lg:p-8 pt-20 lg:pt-8">
+    <header class="mb-8">
+        <h1 class="text-2xl font-display font-bold">Swap</h1>
+        <p class="text-[#9aa1ac]">Exchange tokens seamlessly</p>
+    </header>
+
+    <!-- Alert -->
+    <div class="mb-6 p-4 bg-green-500/10 border border-green-500/30 rounded-xl flex items-center gap-4">
+        <span class="material-symbols-outlined text-green-500">check_circle</span>
+        <p class="text-sm text-green-200 flex-1">Connected to Canton Network</p>
+    </div>
+
+    <div class="max-w-lg mx-auto">
+        <!-- Swap Card -->
+        <div class="bg-[#232730] border border-[#2e323c] rounded-2xl p-6 relative">
+            <!-- From Token -->
+            <div class="mb-2">
+                <label class="block text-sm text-[#9aa1ac] mb-3">From</label>
+                <div class="flex items-center gap-4 p-4 bg-[#1a1d23] border border-[#2e323c] rounded-xl">
+                    <button id="fromTokenBtn" class="flex items-center gap-2 px-3 py-2 bg-[#2e323c] rounded-lg hover:bg-[#dce87a]/10 transition-colors">
+                        <div class="w-8 h-8 rounded-full bg-[#dce87a]/20 flex items-center justify-center">
+                            <span class="text-sm font-bold text-[#dce87a]">C</span>
+                        </div>
+                        <span class="font-semibold" id="fromTokenSymbol">CANT</span>
+                        <span class="material-symbols-outlined text-[#9aa1ac] text-sm">expand_more</span>
+                    </button>
+                    <input
+                        type="number"
+                        id="fromAmount"
+                        placeholder="0.0"
+                        class="flex-1 text-right text-2xl font-display font-bold bg-transparent outline-none placeholder-[#9aa1ac]/50"
+                    />
+                </div>
+                <div class="flex justify-between mt-2 text-sm text-[#9aa1ac]">
+                    <span>Balance: <span id="fromBalance">8,234.56</span></span>
+                    <button class="text-[#dce87a] hover:underline" id="maxFrom">Max</button>
+                </div>
+            </div>
+
+            <!-- Swap Button -->
+            <div class="relative h-0 flex justify-center z-10">
+                <button id="swapTokens" class="absolute -top-5 w-12 h-12 bg-[#232730] border-2 border-[#2e323c] rounded-full flex items-center justify-center hover:border-[#dce87a] hover:bg-[#dce87a]/10 transition-all swap-arrow">
+                    <span class="material-symbols-outlined text-[#dce87a]">swap_vert</span>
+                </button>
+            </div>
+
+            <!-- To Token -->
+            <div class="mt-2">
+                <label class="block text-sm text-[#9aa1ac] mb-3">To</label>
+                <div class="flex items-center gap-4 p-4 bg-[#1a1d23] border border-[#2e323c] rounded-xl">
+                    <button id="toTokenBtn" class="flex items-center gap-2 px-3 py-2 bg-[#2e323c] rounded-lg hover:bg-[#dce87a]/10 transition-colors">
+                        <div class="w-8 h-8 rounded-full bg-[#4a9eff]/20 flex items-center justify-center">
+                            <span class="text-sm font-bold text-[#4a9eff]">$</span>
+                        </div>
+                        <span class="font-semibold" id="toTokenSymbol">USDC</span>
+                        <span class="material-symbols-outlined text-[#9aa1ac] text-sm">expand_more</span>
+                    </button>
+                    <input
+                        type="number"
+                        id="toAmount"
+                        placeholder="0.0"
+                        readonly
+                        class="flex-1 text-right text-2xl font-display font-bold bg-transparent outline-none placeholder-[#9aa1ac]/50"
+                    />
+                </div>
+                <div class="flex justify-between mt-2 text-sm text-[#9aa1ac]">
+                    <span>Balance: <span id="toBalance">2,156.00</span></span>
+                    <span class="text-green-400">Available</span>
+                </div>
+            </div>
+
+            <!-- Swap Details -->
+            <div class="mt-6 p-4 bg-[#1a1d23]/50 rounded-xl space-y-3">
+                <div class="flex items-center justify-between text-sm">
+                    <span class="text-[#9aa1ac]">Rate</span>
+                    <span id="exchangeRate" class="font-medium">1 CANT = 0.023 USDC</span>
+                </div>
+                <div class="flex items-center justify-between text-sm">
+                    <span class="text-[#9aa1ac]">Fee (0.1%)</span>
+                    <span id="swapFee" class="font-medium">~0.00 CANT</span>
+                </div>
+                <div class="flex items-center justify-between text-sm">
+                    <span class="text-[#9aa1ac]">Estimated time</span>
+                    <span class="font-medium">~3 sec</span>
+                </div>
+            </div>
+
+            <!-- Action Button -->
+            <button id="swapBtn" class="w-full mt-6 py-4 bg-[#dce87a] text-[#1a1d23] rounded-xl font-bold text-lg hover:bg-[#e6e8ec] transition-all flex items-center justify-center gap-2">
+                <span class="material-symbols-outlined">swap_horiz</span>
+                <span>Swap</span>
+            </button>
+        </div>
+
+        <!-- Token Selector Modal -->
+        <div id="tokenModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
+            <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" id="modalOverlay"></div>
+            <div class="relative w-full max-w-sm bg-[#232730] border border-[#2e323c] rounded-2xl p-6 max-h-[80vh] overflow-y-auto">
+                <div class="flex items-center justify-between mb-6">
+                    <h3 class="text-lg font-display font-bold">Select Token</h3>
+                    <button id="closeModal" class="p-2 hover:bg-[#2e323c] rounded-lg transition-colors">
+                        <span class="material-symbols-outlined text-[#9aa1ac]">close</span>
+                    </button>
+                </div>
+                <div class="space-y-2">
+                    <button class="token-option w-full flex items-center gap-4 p-3 rounded-xl hover:bg-[#2e323c] transition-colors" data-symbol="CANT" data-balance="8234.56">
+                        <div class="w-10 h-10 rounded-full bg-[#dce87a]/20 flex items-center justify-center">
+                            <span class="font-bold text-[#dce87a]">C</span>
+                        </div>
+                        <div class="flex-1 text-left">
+                            <p class="font-semibold">CANT</p>
+                            <p class="text-sm text-[#9aa1ac]">Canton Coin</p>
+                        </div>
+                        <span class="text-[#9aa1ac]">8,234.56</span>
+                    </button>
+                    <button class="token-option w-full flex items-center gap-4 p-3 rounded-xl hover:bg-[#2e323c] transition-colors" data-symbol="USDC" data-balance="2156.00">
+                        <div class="w-10 h-10 rounded-full bg-[#4a9eff]/20 flex items-center justify-center">
+                            <span class="font-bold text-[#4a9eff]">$</span>
+                        </div>
+                        <div class="flex-1 text-left">
+                            <p class="font-semibold">USDC</p>
+                            <p class="text-sm text-[#9aa1ac]">USD Coin</p>
+                        </div>
+                        <span class="text-[#9aa1ac]">2,156.00</span>
+                    </button>
+                    <button class="token-option w-full flex items-center gap-4 p-3 rounded-xl hover:bg-[#2e323c] transition-colors" data-symbol="WETH" data-balance="12.45">
+                        <div class="w-10 h-10 rounded-full bg-[#627eea]/20 flex items-center justify-center">
+                            <span class="font-bold text-[#627eea]">Ξ</span>
+                        </div>
+                        <div class="flex-1 text-left">
+                            <p class="font-semibold">WETH</p>
+                            <p class="text-sm text-[#9aa1ac]">Wrapped Ether</p>
+                        </div>
+                        <span class="text-[#9aa1ac]">12.45</span>
+                    </button>
+                    <button class="token-option w-full flex items-center gap-4 p-3 rounded-xl hover:bg-[#2e323c] transition-colors" data-symbol="WBTC" data-balance="0.82">
+                        <div class="w-10 h-10 rounded-full bg-[#f7931a]/20 flex items-center justify-center">
+                            <span class="font-bold text-[#f7931a]">₿</span>
+                        </div>
+                        <div class="flex-1 text-left">
+                            <p class="font-semibold">WBTC</p>
+                            <p class="text-sm text-[#9aa1ac]">Wrapped Bitcoin</p>
+                        </div>
+                        <span class="text-[#9aa1ac]">0.82</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<div class="fixed top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#dce87a]/20 to-transparent pointer-events-none"></div>
+
+<script>
+const tokens = {
+    CANT: { rate: 1, color: '#dce87a' },
+    USDC: { rate: 0.023, color: '#4a9eff' },
+    WETH: { rate: 0.00042, color: '#627eea' },
+    WBTC: { rate: 0.0000085, color: '#f7931a' }
+};
+
+let fromToken = 'CANT';
+let toToken = 'USDC';
+let selectingFrom = true;
+let fromBalance = 8234.56;
+let toBalance = 2156.00;
+
+const fromTokenBtn = document.getElementById('fromTokenBtn');
+const toTokenBtn = document.getElementById('toTokenBtn');
+const fromAmount = document.getElementById('fromAmount');
+const toAmount = document.getElementById('toAmount');
+const tokenModal = document.getElementById('tokenModal');
+const closeModal = document.getElementById('closeModal');
+const modalOverlay = document.getElementById('modalOverlay');
+const swapTokensBtn = document.getElementById('swapTokens');
+
+function updateRates() {
+    const amount = parseFloat(fromAmount.value) || 0;
+    const result = amount * tokens[toToken].rate / tokens[fromToken].rate;
+    toAmount.value = result.toFixed(6);
+    document.getElementById('exchangeRate').textContent =
+        `1 ${fromToken} = ${(tokens[toToken].rate / tokens[fromToken].rate).toFixed(6)} ${toToken}`;
+    document.getElementById('swapFee').textContent = `~${(amount * 0.001).toFixed(4)} ${fromToken}`;
+}
+
+fromAmount.addEventListener('input', updateRates);
+
+fromTokenBtn.addEventListener('click', () => {
+    selectingFrom = true;
+    tokenModal.classList.remove('hidden');
+});
+
+toTokenBtn.addEventListener('click', () => {
+    selectingFrom = false;
+    tokenModal.classList.remove('hidden');
+});
+
+closeModal.addEventListener('click', () => tokenModal.classList.add('hidden'));
+modalOverlay.addEventListener('click', () => tokenModal.classList.add('hidden'));
+
+document.querySelectorAll('.token-option').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const symbol = btn.dataset.symbol;
+        const balance = parseFloat(btn.dataset.balance);
+        if (selectingFrom) {
+            fromToken = symbol;
+            fromBalance = balance;
+            document.getElementById('fromTokenSymbol').textContent = symbol;
+            document.getElementById('fromBalance').textContent = balance.toLocaleString();
+        } else {
+            toToken = symbol;
+            toBalance = balance;
+            document.getElementById('toTokenSymbol').textContent = symbol;
+            document.getElementById('toBalance').textContent = balance.toLocaleString();
+        }
+        tokenModal.classList.add('hidden');
+        updateRates();
+    });
+});
+
+swapTokensBtn.addEventListener('click', () => {
+    const temp = fromToken;
+    fromToken = toToken;
+    toToken = temp;
+    const tempBalance = fromBalance;
+    fromBalance = toBalance;
+    toBalance = tempBalance;
+    document.getElementById('fromTokenSymbol').textContent = fromToken;
+    document.getElementById('toTokenSymbol').textContent = toToken;
+    document.getElementById('fromBalance').textContent = fromBalance.toLocaleString();
+    document.getElementById('toBalance').textContent = toBalance.toLocaleString();
+    const tempAmount = fromAmount.value;
+    fromAmount.value = toAmount.value;
+    toAmount.value = tempAmount;
+    updateRates();
+});
+
+document.getElementById('maxFrom').addEventListener('click', () => {
+    fromAmount.value = fromBalance;
+    updateRates();
+});
+
+document.getElementById('swapBtn').addEventListener('click', () => {
+    const amount = parseFloat(fromAmount.value);
+    if (amount > 0 && amount <= fromBalance) {
+        alert(`Swapping ${amount} ${fromToken} to ${toToken}`);
+    }
+});
+
+const sidebar = document.getElementById('sidebar');
+const sidebarOverlay = document.getElementById('sidebarOverlay');
+const menuToggle = document.getElementById('menuToggle');
+
+function openSidebar() {
+    sidebar.classList.remove('sidebar-closed');
+    sidebar.classList.add('sidebar-open');
+    sidebarOverlay.classList.remove('hidden');
+}
+
+function closeSidebar() {
+    sidebar.classList.remove('sidebar-open');
+    sidebar.classList.add('sidebar-closed');
+    sidebarOverlay.classList.add('hidden');
+}
+
+menuToggle.addEventListener('click', openSidebar);
+</script>
+</body>
+</html>

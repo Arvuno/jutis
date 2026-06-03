@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Swap - Jutis</title>
+    <meta name="description" content="Jutis Wallet — Exchange tokens seamlessly on Canton.">
+    <meta name="robots" content="noindex">
+
+    <!-- Favicon (nested path) -->
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Swap - Jutis">
+    <meta property="og:description" content="Exchange tokens seamlessly.">
+    <meta property="og:image" content="../og-image.svg">
+    <meta property="og:site_name" content="Jutis">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../styles/tokens.css">
+    <link rel="stylesheet" href="../styles/base.css">
+    <link rel="stylesheet" href="../styles/layout.css">
+    <link rel="stylesheet" href="../styles/components.css">
+
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+</head>
+
+<body class="page page--dashboard">
+
+    <!-- MOBILE HEADER -->
+    <header class="dashboard-mobile-header">
+        <button id="menuToggle" class="dashboard-mobile-header__btn" aria-label="Open menu">
+            <span class="material-symbols-outlined" aria-hidden="true">menu</span>
+        </button>
+        <a href="../index.html" class="dashboard-mobile-header__logo">
+            <div class="dashboard-mobile-header__logo-mark" aria-hidden="true">
+                <div class="dashboard-mobile-header__logo-ring dashboard-mobile-header__logo-ring--outer"></div>
+                <div class="dashboard-mobile-header__logo-ring dashboard-mobile-header__logo-ring--inner"></div>
+                <div class="dashboard-mobile-header__logo-bar"></div>
+            </div>
+            <span class="dashboard-mobile-header__wordmark">Jutis</span>
+        </a>
+        <button class="dashboard-mobile-header__btn dashboard-mobile-header__btn--notif" aria-label="Notifications">
+            <span class="material-symbols-outlined" aria-hidden="true">notifications</span>
+            <span class="dashboard-mobile-header__notif-dot"></span>
+        </button>
+    </header>
+
+    <!-- SIDEBAR OVERLAY -->
+    <div id="sidebarOverlay" class="dashboard-sidebar__overlay" onclick="closeSidebar()"></div>
+
+    <!-- SIDEBAR -->
+    <aside id="sidebar" class="dashboard-sidebar">
+        <div class="dashboard-sidebar__brand">
+            <a href="../index.html" class="dashboard-sidebar__logo">
+                <div class="dashboard-sidebar__logo-mark" aria-hidden="true">
+                    <div class="dashboard-sidebar__logo-ring dashboard-sidebar__logo-ring--outer"></div>
+                    <div class="dashboard-sidebar__logo-ring dashboard-sidebar__logo-ring--inner"></div>
+                    <div class="dashboard-sidebar__logo-bar"></div>
+                </div>
+                <span class="dashboard-sidebar__wordmark">Jutis</span>
+            </a>
+        </div>
+
+        <nav class="dashboard-sidebar__nav" aria-label="Dashboard navigation">
+            <a href="index.html" class="dashboard-nav-item">
+                <span class="material-symbols-outlined" aria-hidden="true">dashboard</span>
+                <span>Dashboard</span>
+            </a>
+            <a href="wallet.html" class="dashboard-nav-item">
+                <span class="material-symbols-outlined" aria-hidden="true">account_balance_wallet</span>
+                <span>Wallet</span>
+            </a>
+            <a href="swap.html" class="dashboard-nav-item dashboard-nav-item--active" aria-current="page">
+                <span class="material-symbols-outlined" aria-hidden="true">swap_horiz</span>
+                <span>Swap</span>
+            </a>
+            <a href="history.html" class="dashboard-nav-item">
+                <span class="material-symbols-outlined" aria-hidden="true">history</span>
+                <span>History</span>
+            </a>
+            <a href="rewards.html" class="dashboard-nav-item">
+                <span class="material-symbols-outlined" aria-hidden="true">stars</span>
+                <span>Rewards</span>
+            </a>
+            <a href="leaderboard.html" class="dashboard-nav-item">
+                <span class="material-symbols-outlined" aria-hidden="true">leaderboard</span>
+                <span>Leaderboard</span>
+            </a>
+            <a href="security.html" class="dashboard-nav-item">
+                <span class="material-symbols-outlined" aria-hidden="true">security</span>
+                <span>Security</span>
+            </a>
+            <a href="settings.html" class="dashboard-nav-item">
+                <span class="material-symbols-outlined" aria-hidden="true">settings</span>
+                <span>Settings</span>
+            </a>
+        </nav>
+
+        <div class="dashboard-sidebar__footer">
+            <div class="dashboard-sidebar__user">
+                <div class="dashboard-sidebar__user-avatar">JD</div>
+                <div class="dashboard-sidebar__user-info">
+                    <p class="dashboard-sidebar__user-name">john.doe@email.com</p>
+                    <p class="dashboard-sidebar__user-status">2,840 XP · Rank #128</p>
+                </div>
+                <button class="dashboard-sidebar__logout" aria-label="Logout">
+                    <span class="material-symbols-outlined" aria-hidden="true">logout</span>
+                </button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="dashboard-main">
+        <header class="dashboard-page-header">
+            <div class="dashboard-page-header__left">
+                <h1 class="dashboard-page-title">Swap</h1>
+                <p class="dashboard-page-subtitle">Exchange tokens seamlessly</p>
+            </div>
+            <span class="dashboard-xp-badge hide-mobile">
+                <span class="material-symbols-outlined" aria-hidden="true">stars</span>
+                2,840 XP · Rank #128
+            </span>
+        </header>
+
+        <!-- NETWORK ALERT -->
+        <div class="alert alert--success" style="margin-bottom: var(--space-6);">
+            <span class="material-symbols-outlined alert__icon" aria-hidden="true">check_circle</span>
+            <p class="alert__body">Connected to Canton Network</p>
+        </div>
+
+        <!-- SWAP FORM -->
+        <div class="swap-card">
+            <!-- FROM TOKEN -->
+            <div class="swap-field">
+                <label class="swap-field__label">From</label>
+                <div class="swap-field__input-row">
+                    <button id="fromTokenBtn" class="swap-token-btn">
+                        <div class="swap-token-btn__icon swap-token-btn__icon--cant">C</div>
+                        <span class="swap-token-btn__symbol" id="fromTokenSymbol">CANT</span>
+                        <span class="material-symbols-outlined swap-token-btn__chevron" aria-hidden="true">expand_more</span>
+                    </button>
+                    <input
+                        type="number"
+                        id="fromAmount"
+                        class="swap-field__amount"
+                        placeholder="0.0"
+                        step="any"
+                    />
+                </div>
+                <div class="swap-field__footer">
+                    <span class="swap-field__balance">Balance: <span id="fromBalance">8,234.56</span></span>
+                    <button class="swap-field__max" id="maxFrom">Max</button>
+                </div>
+            </div>
+
+            <!-- SWAP ARROW BUTTON -->
+            <div class="swap-toggle-row">
+                <button id="swapTokens" class="swap-toggle-btn" aria-label="Swap tokens">
+                    <span class="material-symbols-outlined" aria-hidden="true">swap_vert</span>
+                </button>
+            </div>
+
+            <!-- TO TOKEN -->
+            <div class="swap-field">
+                <label class="swap-field__label">To</label>
+                <div class="swap-field__input-row">
+                    <button id="toTokenBtn" class="swap-token-btn">
+                        <div class="swap-token-btn__icon swap-token-btn__icon--usdc">$</div>
+                        <span class="swap-token-btn__symbol" id="toTokenSymbol">USDC</span>
+                        <span class="material-symbols-outlined swap-token-btn__chevron" aria-hidden="true">expand_more</span>
+                    </button>
+                    <input
+                        type="number"
+                        id="toAmount"
+                        class="swap-field__amount"
+                        placeholder="0.0"
+                        readonly
+                        step="any"
+                    />
+                </div>
+                <div class="swap-field__footer">
+                    <span class="swap-field__balance">Balance: <span id="toBalance">2,156.00</span></span>
+                    <span class="swap-field__available">Available</span>
+                </div>
+            </div>
+
+            <!-- SWAP DETAILS -->
+            <div class="swap-details">
+                <div class="swap-details__row">
+                    <span class="swap-details__label">Rate</span>
+                    <span class="swap-details__value" id="exchangeRate">1 CANT = 0.023 USDC</span>
+                </div>
+                <div class="swap-details__row">
+                    <span class="swap-details__label">Fee (0.1%)</span>
+                    <span class="swap-details__value" id="swapFee">~0.00 CANT</span>
+                </div>
+                <div class="swap-details__row">
+                    <span class="swap-details__label">Estimated time</span>
+                    <span class="swap-details__value">~3 sec</span>
+                </div>
+            </div>
+
+            <!-- SWAP BUTTON -->
+            <button id="swapBtn" class="btn btn--accent btn--lg swap-submit">
+                <span class="material-symbols-outlined" aria-hidden="true">swap_horiz</span>
+                <span>Swap</span>
+            </button>
+        </div>
+
+        <!-- TOKEN SELECTOR MODAL -->
+        <div id="tokenModal" class="token-modal" style="display: none;">
+            <div class="token-modal__backdrop" id="modalOverlay"></div>
+            <div class="token-modal__panel">
+                <div class="token-modal__header">
+                    <h3 class="token-modal__title">Select Token</h3>
+                    <button id="closeModal" class="btn btn--icon btn--ghost" aria-label="Close">
+                        <span class="material-symbols-outlined" aria-hidden="true">close</span>
+                    </button>
+                </div>
+                <div class="token-modal__list">
+                    <button class="token-option" data-symbol="CANT" data-balance="8234.56">
+                        <div class="token-option__icon token-option__icon--cant">C</div>
+                        <div class="token-option__info">
+                            <p class="token-option__name">CANT</p>
+                            <p class="token-option__desc">Canton Coin</p>
+                        </div>
+                        <span class="token-option__balance">8,234.56</span>
+                    </button>
+                    <button class="token-option" data-symbol="USDC" data-balance="2156.00">
+                        <div class="token-option__icon token-option__icon--usdc">$</div>
+                        <div class="token-option__info">
+                            <p class="token-option__name">USDC</p>
+                            <p class="token-option__desc">USD Coin</p>
+                        </div>
+                        <span class="token-option__balance">2,156.00</span>
+                    </button>
+                    <button class="token-option" data-symbol="WETH" data-balance="12.45">
+                        <div class="token-option__icon token-option__icon--weth">Ξ</div>
+                        <div class="token-option__info">
+                            <p class="token-option__name">WETH</p>
+                            <p class="token-option__desc">Wrapped Ether</p>
+                        </div>
+                        <span class="token-option__balance">12.45</span>
+                    </button>
+                    <button class="token-option" data-symbol="WBTC" data-balance="0.82">
+                        <div class="token-option__icon token-option__icon--wbtc">₿</div>
+                        <div class="token-option__info">
+                            <p class="token-option__name">WBTC</p>
+                            <p class="token-option__desc">Wrapped Bitcoin</p>
+                        </div>
+                        <span class="token-option__balance">0.82</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- TOP ACCENT LINE -->
+    <div class="top-accent" aria-hidden="true"></div>
+
+    <script>
+    const tokens = {
+        CANT: { rate: 1, color: '#dce87a' },
+        USDC: { rate: 0.023, color: '#4a9eff' },
+        WETH: { rate: 0.00042, color: '#627eea' },
+        WBTC: { rate: 0.0000085, color: '#f7931a' }
+    };
+
+    let fromToken = 'CANT';
+    let toToken = 'USDC';
+    let selectingFrom = true;
+    let fromBalance = 8234.56;
+    let toBalance = 2156.00;
+
+    const fromTokenBtn = document.getElementById('fromTokenBtn');
+    const toTokenBtn = document.getElementById('toTokenBtn');
+    const fromAmount = document.getElementById('fromAmount');
+    const toAmount = document.getElementById('toAmount');
+    const tokenModal = document.getElementById('tokenModal');
+    const closeModal = document.getElementById('closeModal');
+    const modalOverlay = document.getElementById('modalOverlay');
+    const swapTokensBtn = document.getElementById('swapTokens');
+
+    function updateRates() {
+        const amount = parseFloat(fromAmount.value) || 0;
+        const result = amount * tokens[toToken].rate / tokens[fromToken].rate;
+        toAmount.value = result.toFixed(6);
+        document.getElementById('exchangeRate').textContent =
+            `1 ${fromToken} = ${(tokens[toToken].rate / tokens[fromToken].rate).toFixed(6)} ${toToken}`;
+        document.getElementById('swapFee').textContent = `~${(amount * 0.001).toFixed(4)} ${fromToken}`;
+    }
+
+    fromAmount.addEventListener('input', updateRates);
+
+    fromTokenBtn.addEventListener('click', () => {
+        selectingFrom = true;
+        tokenModal.style.display = 'flex';
+    });
+
+    toTokenBtn.addEventListener('click', () => {
+        selectingFrom = false;
+        tokenModal.style.display = 'flex';
+    });
+
+    closeModal.addEventListener('click', () => tokenModal.style.display = 'none');
+    modalOverlay.addEventListener('click', () => tokenModal.style.display = 'none');
+
+    document.querySelectorAll('.token-option').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const symbol = btn.dataset.symbol;
+            const balance = parseFloat(btn.dataset.balance);
+            if (selectingFrom) {
+                fromToken = symbol;
+                fromBalance = balance;
+                document.getElementById('fromTokenSymbol').textContent = symbol;
+                document.getElementById('fromBalance').textContent = balance.toLocaleString();
+            } else {
+                toToken = symbol;
+                toBalance = balance;
+                document.getElementById('toTokenSymbol').textContent = symbol;
+                document.getElementById('toBalance').textContent = balance.toLocaleString();
+            }
+            tokenModal.style.display = 'none';
+            updateRates();
+        });
+    });
+
+    swapTokensBtn.addEventListener('click', () => {
+        const temp = fromToken;
+        fromToken = toToken;
+        toToken = temp;
+        const tempBalance = fromBalance;
+        fromBalance = toBalance;
+        toBalance = tempBalance;
+        document.getElementById('fromTokenSymbol').textContent = fromToken;
+        document.getElementById('toTokenSymbol').textContent = toToken;
+        document.getElementById('fromBalance').textContent = fromBalance.toLocaleString();
+        document.getElementById('toBalance').textContent = toBalance.toLocaleString();
+        const tempAmount = fromAmount.value;
+        fromAmount.value = toAmount.value;
+        toAmount.value = tempAmount;
+        updateRates();
+    });
+
+    document.getElementById('maxFrom').addEventListener('click', () => {
+        fromAmount.value = fromBalance;
+        updateRates();
+    });
+
+    document.getElementById('swapBtn').addEventListener('click', () => {
+        const amount = parseFloat(fromAmount.value);
+        if (amount > 0 && amount <= fromBalance) {
+            alert(`Swapping ${amount} ${fromToken} to ${toToken}`);
+        }
+    });
+
+    const sidebar = document.getElementById('sidebar');
+    const sidebarOverlay = document.getElementById('sidebarOverlay');
+    const menuToggle = document.getElementById('menuToggle');
+
+    function openSidebar() {
+        sidebar.classList.add('dashboard-sidebar--open');
+        sidebarOverlay.style.display = 'block';
+    }
+
+    function closeSidebar() {
+        sidebar.classList.remove('dashboard-sidebar--open');
+        sidebarOverlay.style.display = 'none';
+    }
+
+    menuToggle.addEventListener('click', openSidebar);
+    </script>
+
+    <style>
+    .dashboard-mobile-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: var(--space-3) var(--space-4);
+        background: var(--bg-card);
+        border-bottom: 1px solid var(--border);
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: var(--z-sticky);
+        height: 56px;
+    }
+
+    @media (min-width: 1024px) {
+        .dashboard-mobile-header { display: none; }
+    }
+
+    .dashboard-mobile-header__btn {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: var(--radius-md);
+        color: var(--fg-primary);
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        transition: background-color var(--duration-fast) var(--ease-out);
+    }
+
+    .dashboard-mobile-header__btn:hover {
+        background-color: var(--border);
+    }
+
+    .dashboard-mobile-header__logo {
+        display: flex;
+        align-items: center;
+        gap: var(--space-2);
+        text-decoration: none;
+    }
+
+    .dashboard-mobile-header__logo-mark {
+        position: relative;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .dashboard-mobile-header__logo-ring {
+        position: absolute;
+        border-radius: 6px;
+    }
+
+    .dashboard-mobile-header__logo-ring--outer {
+        inset: 0;
+        border: 2px solid var(--accent);
+        transform: rotate(45deg) scale(0.9);
+    }
+
+    .dashboard-mobile-header__logo-ring--inner {
+        inset: 4px;
+        border: 1.5px solid rgba(220, 232, 122, 0.35);
+        transform: rotate(12deg);
+        border-radius: 6px;
+    }
+
+    .dashboard-mobile-header__logo-bar {
+        width: 4px;
+        height: 16px;
+        background: var(--accent);
+        border-radius: 2px;
+        z-index: 1;
+    }
+
+    .dashboard-mobile-header__wordmark {
+        font-family: var(--font-display);
+        font-weight: 700;
+        letter-spacing: var(--tracking-wider);
+        text-transform: uppercase;
+        font-size: var(--text-lg);
+        color: var(--fg-primary);
+    }
+
+    .dashboard-mobile-header__notif-dot {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        width: 6px;
+        height: 6px;
+        background: var(--danger);
+        border-radius: 50%;
+    }
+
+    .dashboard-page-header {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-4);
+        margin-bottom: var(--space-6);
+    }
+
+    @media (min-width: 640px) {
+        .dashboard-page-header {
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+        }
+    }
+
+    .dashboard-page-title {
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: var(--text-2xl);
+        margin-bottom: var(--space-1);
+    }
+
+    .dashboard-page-subtitle {
+        color: var(--fg-secondary);
+    }
+
+    .dashboard-xp-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-2);
+        padding: var(--space-1) var(--space-3);
+        background: var(--accent-10);
+        border: 1px solid var(--accent-20);
+        border-radius: var(--radius-pill);
+        font-size: var(--text-xs);
+        font-weight: 600;
+        color: var(--accent);
+        white-space: nowrap;
+    }
+
+    .swap-card {
+        max-width: 520px;
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-xl);
+        padding: var(--space-6);
+    }
+
+    .swap-field {
+        margin-bottom: var(--space-2);
+    }
+
+    .swap-field__label {
+        display: block;
+        font-size: var(--text-sm);
+        color: var(--fg-secondary);
+        margin-bottom: var(--space-3);
+    }
+
+    .swap-field__input-row {
+        display: flex;
+        align-items: center;
+        gap: var(--space-4);
+        padding: var(--space-4);
+        background: var(--bg-main);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+    }
+
+    .swap-token-btn {
+        display: flex;
+        align-items: center;
+        gap: var(--space-2);
+        padding: var(--space-2) var(--space-3);
+        background: var(--border);
+        border: none;
+        border-radius: var(--radius-md);
+        cursor: pointer;
+        transition: background-color var(--duration-fast) var(--ease-out);
+    }
+
+    .swap-token-btn:hover {
+        background: var(--accent-10);
+    }
+
+    .swap-token-btn__icon {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: var(--text-xs);
+        font-weight: 700;
+    }
+
+    .swap-token-btn__icon--cant { background: var(--accent-20); color: var(--accent); }
+    .swap-token-btn__icon--usdc { background: rgba(74, 158, 255, 0.2); color: #4a9eff; }
+
+    .swap-token-btn__symbol {
+        font-weight: 600;
+        font-size: var(--text-sm);
+    }
+
+    .swap-token-btn__chevron {
+        font-size: 18px;
+        color: var(--fg-secondary);
+    }
+
+    .swap-field__amount {
+        flex: 1;
+        text-align: right;
+        font-family: var(--font-display);
+        font-size: var(--text-2xl);
+        font-weight: 700;
+        background: transparent;
+        border: none;
+        outline: none;
+        color: var(--fg-primary);
+        min-width: 0;
+    }
+
+    .swap-field__amount::placeholder {
+        color: var(--fg-muted);
+    }
+
+    .swap-field__footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: var(--space-2);
+        font-size: var(--text-sm);
+    }
+
+    .swap-field__balance {
+        color: var(--fg-secondary);
+    }
+
+    .swap-field__max {
+        background: none;
+        border: none;
+        color: var(--accent);
+        font-size: var(--text-sm);
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+    .swap-field__max:hover {
+        text-decoration: underline;
+    }
+
+    .swap-field__available {
+        color: var(--success);
+        font-size: var(--text-sm);
+    }
+
+    .swap-toggle-row {
+        display: flex;
+        justify-content: center;
+        margin: -8px 0;
+        position: relative;
+        z-index: 1;
+    }
+
+    .swap-toggle-btn {
+        width: 48px;
+        height: 48px;
+        background: var(--bg-card);
+        border: 2px solid var(--border);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: border-color var(--duration-fast) var(--ease-out),
+                    background-color var(--duration-fast) var(--ease-out);
+        color: var(--accent);
+    }
+
+    .swap-toggle-btn:hover {
+        border-color: var(--accent);
+        background: var(--accent-10);
+    }
+
+    .swap-details {
+        margin-top: var(--space-6);
+        padding: var(--space-4);
+        background: var(--bg-inset);
+        border-radius: var(--radius-lg);
+    }
+
+    .swap-details__row {
+        display: flex;
+        justify-content: space-between;
+        font-size: var(--text-sm);
+        padding: var(--space-1) 0;
+    }
+
+    .swap-details__label {
+        color: var(--fg-secondary);
+    }
+
+    .swap-details__value {
+        font-weight: 500;
+    }
+
+    .swap-submit {
+        width: 100%;
+        margin-top: var(--space-6);
+    }
+
+    /* Token Modal */
+    .token-modal {
+        position: fixed;
+        inset: 0;
+        z-index: 50;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: var(--space-4);
+    }
+
+    .token-modal__backdrop {
+        position: absolute;
+        inset: 0;
+        background: rgba(0,0,0,0.6);
+        backdrop-filter: blur(4px);
+    }
+
+    .token-modal__panel {
+        position: relative;
+        width: 100%;
+        max-width: 400px;
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-xl);
+        padding: var(--space-6);
+        max-height: 80vh;
+        overflow-y: auto;
+    }
+
+    .token-modal__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: var(--space-6);
+    }
+
+    .token-modal__title {
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: var(--text-lg);
+    }
+
+    .token-modal__list {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-2);
+    }
+
+    .token-option {
+        display: flex;
+        align-items: center;
+        gap: var(--space-4);
+        padding: var(--space-3);
+        background: transparent;
+        border: none;
+        border-radius: var(--radius-lg);
+        cursor: pointer;
+        text-align: left;
+        width: 100%;
+        transition: background-color var(--duration-fast) var(--ease-out);
+    }
+
+    .token-option:hover {
+        background: var(--border);
+    }
+
+    .token-option__icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: var(--text-sm);
+        flex-shrink: 0;
+    }
+
+    .token-option__icon--cant { background: var(--accent-20); color: var(--accent); }
+    .token-option__icon--usdc { background: rgba(74, 158, 255, 0.2); color: #4a9eff; }
+    .token-option__icon--weth { background: rgba(98, 126, 234, 0.2); color: #627eea; }
+    .token-option__icon--wbtc { background: rgba(247, 147, 26, 0.2); color: #f7931a; }
+
+    .token-option__info { flex: 1; }
+    .token-option__name { font-weight: 600; font-size: var(--text-sm); }
+    .token-option__desc { font-size: var(--text-xs); color: var(--fg-secondary); }
+    .token-option__balance { color: var(--fg-secondary); font-size: var(--text-sm); }
+
+    .alert--success {
+        background-color: var(--success-bg);
+        border-color: var(--success-border);
+        color: var(--success);
+    }
+    </style>
+
+</body>
+</html>

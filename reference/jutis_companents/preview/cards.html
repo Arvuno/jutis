@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/>
+<title>Cards</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<style>
+  html,body{margin:0;background:transparent;font-family:'Inter',system-ui}
+  .card-w{
+    width:700px;padding:22px;box-sizing:border-box;color:#e6e8ec;position:relative;overflow:hidden;
+    background:linear-gradient(180deg,#1a1d23 0%,#13161b 100%);
+    border:1px solid #2e323c
+  }
+  .card-w::before{
+    content:'';position:absolute;inset:0;pointer-events:none;
+    background-image:radial-gradient(rgba(46,50,60,.4) 1px, transparent 1px);
+    background-size:22px 22px;opacity:.3
+  }
+  .head{position:relative;display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+  .eyebrow{font:700 9px 'Inter';letter-spacing:.28em;text-transform:uppercase;color:#9aa1ac;display:inline-flex;align-items:center;gap:8px}
+  .eyebrow .d{width:6px;height:6px;border-radius:9999px;background:#dce87a;box-shadow:0 0 10px #dce87a}
+  .count{font:500 10px 'JetBrains Mono';color:#9aa1ac}
+
+  .grid{position:relative;display:grid;grid-template-columns:1fr 1.25fr;gap:12px}
+  .c{position:relative;border-radius:16px;padding:18px;overflow:hidden}
+  .flat{background:linear-gradient(160deg,#232730,#1a1d23);border:1px solid #2e323c}
+  .hero{
+    background:
+      radial-gradient(circle at 85% 15%, rgba(220,232,122,.25) 0%, transparent 55%),
+      linear-gradient(160deg,#2a2e38,#1a1d23);
+    border:1px solid rgba(220,232,122,.18);
+    box-shadow:0 0 40px rgba(220,232,122,.08), inset 0 1px 0 rgba(255,255,255,.04)
+  }
+  .hero::after{
+    content:'';position:absolute;right:-60px;top:-60px;width:160px;height:160px;
+    border:1px solid rgba(220,232,122,.2);border-radius:32px;transform:rotate(45deg);opacity:.5
+  }
+  .hero::before{
+    content:'';position:absolute;right:-20px;top:-20px;width:120px;height:120px;
+    background:radial-gradient(circle,rgba(220,232,122,.3),transparent 60%);filter:blur(28px)
+  }
+
+  .tag{
+    position:absolute;top:12px;right:12px;font:500 8px 'JetBrains Mono';color:#4a4f5a;letter-spacing:.15em;text-transform:uppercase
+  }
+
+  .flat .h-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+  .flat .title{font:700 14px 'Plus Jakarta Sans';color:#e6e8ec;display:flex;align-items:center;gap:8px}
+  .flat .title .ico{width:24px;height:24px;border-radius:8px;background:rgba(220,232,122,.12);display:flex;align-items:center;justify-content:center;color:#dce87a;font-size:14px}
+  .flat .meta{font:400 11px 'Inter';color:#9aa1ac;line-height:1.55}
+  .flat .specs{display:flex;gap:8px;margin-top:12px;padding-top:12px;border-top:1px dashed #2e323c}
+  .flat .specs .kv{font:500 9px 'JetBrains Mono';color:#4a4f5a;letter-spacing:.05em}
+  .flat .specs .kv b{color:#9aa1ac;font-weight:500}
+  .flat .chip{font:700 9px 'Inter';letter-spacing:.15em;text-transform:uppercase;padding:3px 9px;border-radius:9999px;background:rgba(74,222,128,.10);color:#4ade80;border:1px solid rgba(74,222,128,.25);display:inline-flex;align-items:center;gap:5px}
+  .flat .chip .dot{width:5px;height:5px;border-radius:9999px;background:currentColor}
+
+  .hero .lab{font:500 11px 'Inter';color:#9aa1ac;margin-bottom:6px;display:flex;align-items:center;gap:6px;position:relative}
+  .hero .lab .live{display:inline-flex;align-items:center;gap:4px;font:700 9px 'Inter';letter-spacing:.2em;text-transform:uppercase;color:#dce87a;padding:2px 8px;background:rgba(220,232,122,.1);border:1px solid rgba(220,232,122,.25);border-radius:9999px;margin-left:auto}
+  .hero .live .d{width:5px;height:5px;border-radius:9999px;background:currentColor}
+  .hero .amt{font:700 34px 'Plus Jakarta Sans';letter-spacing:-.025em;line-height:1;position:relative;display:flex;align-items:baseline;gap:2px}
+  .hero .amt .cur{font-size:16px;color:#9aa1ac;font-weight:600}
+  .hero .amt .dec{color:#9aa1ac;font-weight:500}
+  .hero .row{display:flex;align-items:center;gap:10px;margin-top:12px;position:relative}
+  .hero .delta{font:500 11px 'JetBrains Mono';color:#4ade80;display:inline-flex;align-items:center;gap:4px}
+  .hero .sub{font:400 11px 'Inter';color:#9aa1ac}
+  .hero .spark{display:flex;align-items:flex-end;gap:2px;height:16px;margin-left:auto}
+  .hero .spark i{width:3px;background:#dce87a;border-radius:1px;opacity:.6}
+</style></head>
+<body>
+<div class="card-w">
+  <div class="head">
+    <div class="eyebrow"><span class="d"></span>Cards · Surface Patterns</div>
+    <div class="count">2 · flat · hero</div>
+  </div>
+
+  <div class="grid">
+    <div class="c flat">
+      <span class="tag">01 · flat</span>
+      <div class="h-row">
+        <div class="title"><span class="ico">◇</span>Default Card</div>
+      </div>
+      <div class="meta">Surface #232730 · hairline #2e323c · radius 16px. The workhorse container.</div>
+      <div class="specs">
+        <div class="kv"><b>bg</b> #232730</div>
+        <div class="kv"><b>r</b> 16</div>
+        <div class="kv"><b>bd</b> 1px</div>
+      </div>
+      <div style="margin-top:10px"><span class="chip"><span class="dot"></span>Active</span></div>
+    </div>
+
+    <div class="c hero">
+      <span class="tag" style="color:#9aa1ac">02 · hero</span>
+      <div class="lab">Total Balance · USD<span class="live"><span class="d"></span>Live</span></div>
+      <div class="amt"><span class="cur">$</span>12,458<span class="dec">.32</span></div>
+      <div class="row">
+        <div class="delta">▲ +2.4% · 24h</div>
+        <div class="sub">across 4 tokens</div>
+        <div class="spark">
+          <i style="height:30%"></i><i style="height:45%"></i><i style="height:38%"></i><i style="height:60%"></i><i style="height:55%"></i><i style="height:70%"></i><i style="height:85%"></i><i style="height:80%"></i><i style="height:95%"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body></html>

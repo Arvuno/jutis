@@ -1,0 +1,154 @@
+<!-- ==========================================================================
+   Jutis Page Layout Shell
+   vault/components/layout.html
+
+   USAGE:
+   - Copy this entire HTML structure into each new page.
+   - For root pages (index.html, feature.html, etc.):
+     * CSS paths: styles/tokens.css, styles/base.css, styles/layout.css, styles/components.css
+     * Header: include header.html as-is (links use root-relative hrefs)
+     * Footer: include footer.html as-is
+     * "Go to Dashboard" link: href="dashboard/index.html"
+   - For pages in subdirectories (dashboard/, developers/, docs/):
+     * CSS paths: ../styles/tokens.css, etc.
+     * Header hrefs: prefix with ../ (e.g., href="../index.html")
+     * Footer hrefs: prefix with ../
+     * "Go to Dashboard" (from developers): href="../dashboard/index.html"
+
+   PATH SUMMARY:
+   Root pages:
+     <link rel="stylesheet" href="styles/tokens.css">
+     <a href="index.html">, <a href="dashboard/index.html">
+   Nested pages:
+     <link rel="stylesheet" href="../styles/tokens.css">
+     <a href="../index.html">, <a href="../dashboard/index.html">
+   ========================================================================== -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Jutis — Page Title</title>
+    <meta name="description" content="Page description.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Jutis — Page Title">
+    <meta property="og:description" content="Page description.">
+    <meta property="og:image" content="og-image.svg">
+    <meta property="og:site_name" content="Jutis">
+
+    <!-- CSS — all four files required in order -->
+    <link rel="stylesheet" href="styles/tokens.css">
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/layout.css">
+    <link rel="stylesheet" href="styles/components.css">
+
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+</head>
+
+<body class="page page--atmosphere">
+
+    <!-- BACKGROUND ATMOSPHERE — abstract shapes and orbs -->
+    <div class="bg-grid" aria-hidden="true" style="position:fixed;inset:0;pointer-events:none;opacity:0.3;z-index:0;"></div>
+    <div class="atmosphere-orb atmosphere-orb--lime" aria-hidden="true"></div>
+    <div class="atmosphere-orb atmosphere-orb--white" aria-hidden="true"></div>
+
+    <!-- HEADER — copy from components/header.html -->
+    <header class="site-header">
+        <div class="site-header__inner">
+            <a href="index.html" class="site-header__logo" aria-label="Jutis home">
+                <div class="site-header__logo-mark" aria-hidden="true">
+                    <div class="site-header__logo-ring site-header__logo-ring--outer"></div>
+                    <div class="site-header__logo-ring site-header__logo-ring--inner"></div>
+                    <div class="site-header__logo-bar"></div>
+                </div>
+                <span class="site-header__wordmark">Jutis</span>
+            </a>
+            <nav class="site-header__nav" aria-label="Primary navigation">
+                <a href="feature.html">Features</a>
+                <a href="security.html">Security</a>
+                <a href="developers/index.html">Developers</a>
+                <a href="docs/index.html">Docs</a>
+                <a href="dashboard/index.html">Wallet</a>
+            </nav>
+            <div class="site-header__actions">
+                <a href="login.html" class="site-header__login">Login</a>
+                <a href="signup.html" class="btn-signup">Get Started</a>
+            </div>
+        </div>
+    </header>
+    <div class="site-header__top-accent" aria-hidden="true"></div>
+
+    <!-- MAIN CONTENT — replace this comment with page content -->
+    <main class="page-content" style="padding-top:72px; position:relative; z-index:1;">
+        <!-- Page content goes here -->
+
+    </main>
+
+    <!-- FOOTER — copy from components/footer.html -->
+    <footer class="site-footer">
+        <div class="site-footer__inner">
+            <div class="site-footer__brand">
+                <a href="index.html" class="site-footer__logo">
+                    <div class="site-footer__logo-mark" aria-hidden="true">
+                        <div class="site-footer__logo-ring site-footer__logo-ring--outer"></div>
+                        <div class="site-footer__logo-ring site-footer__logo-ring--inner"></div>
+                        <div class="site-footer__logo-bar"></div>
+                    </div>
+                    <span class="site-footer__wordmark">Jutis</span>
+                </a>
+                <p class="site-footer__tagline">Premium wallet for the Canton ecosystem</p>
+            </div>
+            <nav class="site-footer__links" aria-label="Footer navigation">
+                <div class="site-footer__col">
+                    <span class="site-footer__col-head">Product</span>
+                    <a href="feature.html">Features</a>
+                    <a href="security.html">Security</a>
+                    <a href="dashboard/index.html">Wallet</a>
+                    <a href="waitlist.html">Early Access</a>
+                </div>
+                <div class="site-footer__col">
+                    <span class="site-footer__col-head">Developers</span>
+                    <a href="developers/index.html">Overview</a>
+                    <a href="developers/quick-start.html">Quick Start</a>
+                    <a href="developers/api-reference.html">API Reference</a>
+                    <a href="developers/tutorials.html">Tutorials</a>
+                </div>
+                <div class="site-footer__col">
+                    <span class="site-footer__col-head">Resources</span>
+                    <a href="docs/index.html">Documentation</a>
+                    <a href="docs/getting-started/installation.html">Installation</a>
+                    <a href="docs/guides/send-receive.html">Guides</a>
+                </div>
+                <div class="site-footer__col">
+                    <span class="site-footer__col-head">Legal</span>
+                    <a href="legal/privacy-policy.html">Privacy Policy</a>
+                    <a href="legal/terms-of-service.html">Terms of Service</a>
+                    <a href="legal/cookie-policy.html">Cookie Policy</a>
+                </div>
+            </nav>
+            <div class="site-footer__bottom">
+                <p class="site-footer__copy">© 2026 Jutis. All rights reserved.</p>
+                <div class="site-footer__trust">
+                    <span class="site-footer__trust-badge"><span class="site-footer__trust-dot"></span>SOC 2 Compliant</span>
+                    <span class="site-footer__trust-badge"><span class="site-footer__trust-dot"></span>Pen Tested</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- BOTTOM DECORATIVE DOTS -->
+    <div class="bottom-dots" aria-hidden="true">
+        <div class="bottom-dots__item bottom-dots__item--filled"></div>
+        <div class="bottom-dots__item bottom-dots__item--outline"></div>
+        <div class="bottom-dots__item bottom-dots__item--outline"></div>
+    </div>
+
+</body>
+</html>

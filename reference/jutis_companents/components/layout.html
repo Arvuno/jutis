@@ -1,0 +1,57 @@
+<!-- Shared Header/Nav - Copy this to each page -->
+<header class="fixed top-0 left-0 w-full z-50 px-6 py-4">
+    <nav class="max-w-7xl mx-auto flex items-center justify-between">
+        <a href="index.html" class="flex items-center gap-3 group">
+            <div class="relative w-10 h-10 flex items-center justify-center">
+                <div class="absolute inset-0 border-2 border-accent rounded-xl rotate-45 scale-90 group-hover:rotate-45 group-hover:scale-100 transition-all duration-300"></div>
+                <div class="absolute inset-0 border-2 border-text-primary/20 rounded-xl rotate-12"></div>
+                <div class="w-1.5 h-5 bg-accent rounded-full"></div>
+            </div>
+            <span class="text-xl font-display font-bold tracking-[0.2em] uppercase">Jutis</span>
+        </a>
+        <div class="hidden md:flex items-center gap-8">
+            <a href="feature.html" class="text-sm font-medium text-text-secondary hover:text-text-primary transition-colors">Feature</a>
+            <a href="developers.html" class="text-sm font-medium text-text-secondary hover:text-text-primary transition-colors">Developers</a>
+            <a href="docs.html" class="text-sm font-medium text-text-secondary hover:text-text-primary transition-colors">Docs</a>
+            <a href="security.html" class="text-sm font-medium text-text-secondary hover:text-text-primary transition-colors">Security</a>
+        </div>
+        <div class="flex items-center gap-4">
+            <a href="login.html" class="text-sm font-medium text-text-secondary hover:text-text-primary transition-colors">Login</a>
+            <a href="signup.html" class="px-4 py-2 bg-text-primary text-bg-main rounded-full text-sm font-bold hover:bg-accent hover:text-bg-main transition-all">Sign Up</a>
+        </div>
+    </nav>
+</header>
+
+<!-- Background Effects -->
+<div class="fixed inset-0 network-grid opacity-30"></div>
+<div class="abstract-shape shape-1"></div>
+<div class="abstract-shape shape-2"></div>
+<div class="abstract-shape shape-3"></div>
+<div class="fixed top-[-10%] right-[-10%] w-[600px] h-[600px] bg-accent/5 rounded-full blur-[140px] pointer-events-none"></div>
+<div class="fixed bottom-[-10%] left-[-10%] w-[600px] h-[600px] bg-white/5 rounded-full blur-[140px] pointer-events-none"></div>
+
+<!-- Top Accent Line -->
+<div class="fixed top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-accent/20 to-transparent"></div>
+
+<!-- Bottom Dots -->
+<div class="fixed bottom-12 left-1/2 -translate-x-1/2 flex gap-4 pointer-events-none opacity-20">
+    <div class="w-2 h-2 rounded-full bg-accent"></div>
+    <div class="w-2 h-2 rounded-full border border-accent"></div>
+    <div class="w-2 h-2 rounded-full border border-accent"></div>
+</div>
+
+<style>
+.network-grid {
+    background-image: radial-gradient(var(--border-color) 1px, transparent 1px);
+    background-size: 40px 40px;
+}
+.abstract-shape {
+    position: absolute;
+    border: 1px solid var(--border-color);
+    opacity: 0.2;
+    pointer-events: none;
+}
+.shape-1 { width: 400px; height: 400px; transform: rotate(15deg); border-radius: 40px; top: -10%; right: -5%; }
+.shape-2 { width: 300px; height: 300px; transform: rotate(-12deg); border-color: var(--accent); opacity: 0.1; bottom: 15%; left: 5%; }
+.shape-3 { width: 600px; height: 600px; transform: rotate(45deg); border-radius: 100px; top: 20%; left: -10%; }
+</style>

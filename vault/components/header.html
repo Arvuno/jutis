@@ -1,0 +1,220 @@
+<!-- ==========================================================================
+   Jutis Public Header Component
+   vault/components/header.html
+
+   USAGE:
+   - Copy this entire <header> block into every page.
+   - Adjust the `href` values based on the page's directory depth:
+     * Root pages (index.html, feature.html, security.html, login.html, signup.html):
+       href="index.html", href="feature.html", etc.
+     * Pages in subdirectories (dashboard/, developers/, docs/):
+       href="../index.html", href="../feature.html", etc.
+   - The "Wallet" link in the nav leads to dashboard/index.html.
+   - The "Get Started" button leads to signup.html.
+
+   IMPORTANT: This header must appear on ALL public pages including
+   developers/ and docs/ pages. Do NOT use a different header for those.
+   ========================================================================== -->
+
+<link rel="stylesheet" href="../styles/tokens.css">
+<link rel="stylesheet" href="../styles/base.css">
+<link rel="stylesheet" href="../styles/layout.css">
+<link rel="stylesheet" href="../styles/components.css">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
+<!-- Jutis Public Header -->
+<header class="site-header" role="banner">
+    <div class="site-header__inner">
+
+        <!-- Logo / Brand -->
+        <a href="index.html" class="site-header__logo" aria-label="Jutis home">
+            <div class="site-header__logo-mark" aria-hidden="true">
+                <div class="site-header__logo-ring site-header__logo-ring--outer"></div>
+                <div class="site-header__logo-ring site-header__logo-ring--inner"></div>
+                <div class="site-header__logo-bar"></div>
+            </div>
+            <span class="site-header__wordmark">Jutis</span>
+        </a>
+
+        <!-- Primary Navigation -->
+        <nav class="site-header__nav" role="navigation" aria-label="Primary navigation">
+            <a href="feature.html">Features</a>
+            <a href="security.html">Security</a>
+            <a href="developers/index.html">Developers</a>
+            <a href="docs/index.html">Docs</a>
+            <a href="../blog/index.html">Blog</a>
+            <a href="../partner/index.html">Partner</a>
+        </nav>
+
+        <!-- Auth Actions -->
+        <div class="site-header__actions">
+            <a href="login.html" class="site-header__login">Login</a>
+            <a href="signup.html" class="btn btn-signup">Get Started</a>
+        </div>
+
+    </div>
+</header>
+
+<!-- Top accent line (brand fingerprint) -->
+<div class="site-header__top-accent" aria-hidden="true"></div>
+
+<style>
+/* Extend layout.css header styles if needed — uses tokens already */
+
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 20;
+    padding: 16px 24px;
+    height: 72px;
+    background-color: rgba(26, 29, 35, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+}
+
+.site-header__inner {
+    max-width: 1180px;
+    margin-inline: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    height: 100%;
+}
+
+.site-header__logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+    text-decoration: none;
+}
+
+.site-header__logo-mark {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.site-header__logo-ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 8px;
+}
+
+.site-header__logo-ring--outer {
+    border: 2px solid var(--accent);
+    transform: rotate(45deg) scale(0.9);
+}
+
+.site-header__logo-ring--inner {
+    border: 1.5px solid rgba(230, 232, 236, 0.2);
+    transform: rotate(12deg);
+}
+
+.site-header__logo-bar {
+    position: relative;
+    z-index: 1;
+    width: 6px;
+    height: 20px;
+    background-color: var(--accent);
+    border-radius: 3px;
+}
+
+.site-header__wordmark {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-size: 20px;
+    color: var(--fg-primary);
+}
+
+.site-header__nav {
+    display: none;
+    align-items: center;
+    gap: 32px;
+}
+
+@media (min-width: 768px) {
+    .site-header__nav {
+        display: flex;
+    }
+}
+
+.site-header__nav a {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--fg-secondary);
+    text-decoration: none;
+    transition: color 150ms ease;
+    padding-block: 4px;
+}
+
+.site-header__nav a:hover {
+    color: var(--fg-primary);
+}
+
+.site-header__nav a[aria-current="page"] {
+    color: var(--accent);
+}
+
+.site-header__actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-shrink: 0;
+}
+
+.site-header__login {
+    display: none;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--fg-secondary);
+    text-decoration: none;
+    transition: color 150ms ease;
+}
+
+@media (min-width: 480px) {
+    .site-header__login { display: block; }
+}
+
+.site-header__login:hover {
+    color: var(--fg-primary);
+}
+
+.btn-signup {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 20px;
+    background-color: var(--fg-primary);
+    color: var(--bg-main);
+    border-radius: 9999px;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background-color 150ms ease, color 150ms ease;
+}
+
+.btn-signup:hover {
+    background-color: var(--accent);
+    color: var(--bg-main);
+}
+
+.site-header__top-accent {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent-20), transparent);
+    pointer-events: none;
+    z-index: 21;
+}
+</style>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Rules - Jutis Bridge</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script>
+tailwind.config = {
+    darkMode: "class",
+    theme: {
+        extend: {
+            colors: {
+                "bg-main": "#1a1d23",
+                "card-bg": "#232730",
+                "border-color": "#2e323c",
+                "text-primary": "#e6e8ec",
+                "text-secondary": "#9aa1ac",
+                "accent": "#dce87a",
+            },
+            fontFamily: {
+                "sans": ["Inter", "system-ui"],
+                "display": ["Plus Jakarta Sans", "Inter"]
+            }
+        },
+    },
+}
+</script>
+<style>
+body { background-color: #0a0b0f; color: #e6e8ec; font-family: "Inter", system-ui; overflow: hidden; height: 100dvh; }
+.grid-bg { background-image: radial-gradient(#1a1d23 1px, transparent 1px); background-size: 50px 50px; }
+.cyber-border { border: 1px solid rgba(220, 232, 122, 0.1); }
+.cyber-glow { box-shadow: 0 0 30px rgba(220, 232, 122, 0.08); }
+.rule-card { transition: all 0.3s ease; }
+.rule-card:hover { transform: translateY(-2px); border-color: rgba(220, 232, 122, 0.3); }
+.token-badge { transition: all 0.2s ease; }
+.token-badge:hover { transform: scale(1.05); }
+</style>
+</head>
+<body class="min-h-screen">
+<div class="fixed inset-0 grid-bg opacity-30"></div>
+<div class="fixed top-0 right-0 w-[500px] h-[500px] bg-[#dce87a]/5 rounded-full blur-[150px] pointer-events-none"></div>
+
+<div class="relative z-10 h-[100dvh] flex flex-col">
+    <div class="h-[2px] bg-gradient-to-r from-transparent via-[#dce87a]/40 to-transparent"></div>
+
+    <main class="flex-1 px-4 sm:px-6 py-4 overflow-hidden flex flex-col">
+        <!-- Header -->
+        <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center gap-3">
+                <a href="../index.html" class="flex items-center gap-2 group">
+                    <div class="relative w-8 h-8 flex items-center justify-center">
+                        <div class="absolute inset-0 border-2 border-[#dce87a] rounded-lg rotate-45 scale-90"></div>
+                        <div class="w-1 h-4 bg-[#dce87a] rounded-full"></div>
+                    </div>
+                </a>
+                <span class="text-[#2e323c]">|</span>
+                <h1 class="text-lg font-display font-semibold">
+                    <span class="text-[#9aa1ac]">Bridge</span>
+                    <span class="text-[#dce87a]"> Rules</span>
+                </h1>
+            </div>
+            <a href="index.html" class="px-4 py-2 bg-[#dce87a] text-[#0a0b0f] rounded-lg font-bold text-sm hover:opacity-90 transition-all">
+                Start Swap
+            </a>
+        </div>
+
+        <!-- Content -->
+        <div class="flex-1 flex flex-col justify-center max-w-4xl mx-auto w-full">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- General Rules -->
+                <div class="rule-card p-5 bg-[#181a21] cyber-border cyber-glow rounded-xl">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-lg bg-[#dce87a]/10 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-[#dce87a]">gavel</span>
+                        </div>
+                        <h2 class="font-semibold">General Rules</h2>
+                    </div>
+                    <ul class="space-y-2">
+                        <li class="flex items-start gap-2 text-xs">
+                            <span class="material-symbols-outlined text-[#dce87a] text-sm">check_circle</span>
+                            <span class="text-[#9aa1ac]">Min: 1 CANT, Max: 1,000,000 CANT</span>
+                        </li>
+                        <li class="flex items-start gap-2 text-xs">
+                            <span class="material-symbols-outlined text-[#dce87a] text-sm">check_circle</span>
+                            <span class="text-[#9aa1ac]">Protocol fee: 0.1%</span>
+                        </li>
+                        <li class="flex items-start gap-2 text-xs">
+                            <span class="material-symbols-outlined text-[#dce87a] text-sm">check_circle</span>
+                            <span class="text-[#9aa1ac]">All swaps final & irreversible</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Supported Tokens -->
+                <div class="rule-card p-5 bg-[#181a21] cyber-border cyber-glow rounded-xl">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-lg bg-[#dce87a]/10 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-[#dce87a]">toll</span>
+                        </div>
+                        <h2 class="font-semibold">Supported Tokens</h2>
+                    </div>
+                    <div class="grid grid-cols-4 gap-2">
+                        <div class="token-badge p-2 bg-[#0f1015] rounded-lg text-center">
+                            <div class="w-8 h-8 rounded-full bg-[#dce87a]/20 flex items-center justify-center mx-auto mb-1"><span class="font-bold text-[#dce87a] text-xs">C</span></div>
+                            <p class="text-[10px] font-medium">CANT</p>
+                        </div>
+                        <div class="token-badge p-2 bg-[#0f1015] rounded-lg text-center">
+                            <div class="w-8 h-8 rounded-full bg-[#4a9eff]/20 flex items-center justify-center mx-auto mb-1"><span class="font-bold text-[#4a9eff] text-xs">$</span></div>
+                            <p class="text-[10px] font-medium">USDC</p>
+                        </div>
+                        <div class="token-badge p-2 bg-[#0f1015] rounded-lg text-center">
+                            <div class="w-8 h-8 rounded-full bg-[#627eea]/20 flex items-center justify-center mx-auto mb-1"><span class="font-bold text-[#627eea] text-xs">Ξ</span></div>
+                            <p class="text-[10px] font-medium">WETH</p>
+                        </div>
+                        <div class="token-badge p-2 bg-[#0f1015] rounded-lg text-center">
+                            <div class="w-8 h-8 rounded-full bg-[#f7931a]/20 flex items-center justify-center mx-auto mb-1"><span class="font-bold text-[#f7931a] text-xs">₿</span></div>
+                            <p class="text-[10px] font-medium">WBTC</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Risk Disclosure -->
+                <div class="rule-card p-5 bg-[#181a21] border-red-500/20 rounded-xl md:col-span-2">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-lg bg-red-500/10 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-red-400">warning</span>
+                        </div>
+                        <h2 class="font-semibold">Risk Disclosure</h2>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <div class="flex items-start gap-2 text-xs">
+                            <span class="material-symbols-outlined text-red-400 text-sm">info</span>
+                            <span class="text-[#9aa1ac]">Slippage up to 0.5%</span>
+                        </div>
+                        <div class="flex items-start gap-2 text-xs">
+                            <span class="material-symbols-outlined text-red-400 text-sm">info</span>
+                            <span class="text-[#9aa1ac]">Network congestion may delay</span>
+                        </div>
+                        <div class="flex items-start gap-2 text-xs">
+                            <span class="material-symbols-outlined text-red-400 text-sm">info</span>
+                            <span class="text-[#9aa1ac]">Verify recipient addresses</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Nav -->
+        <div class="flex items-center justify-between py-3 text-xs text-[#9aa1ac] border-t border-[#2e323c]/30">
+            <div class="flex items-center gap-4">
+                <a href="index.html" class="hover:text-[#e6e8ec]">Bridge</a>
+                <a href="how-it-works.html" class="hover:text-[#e6e8ec]">How It Works</a>
+                <a href="rewards.html" class="hover:text-[#e6e8ec]">Rewards</a>
+                <a href="rules.html" class="text-[#dce87a]">Rules</a>
+            </div>
+            <p>© 2026 Jutis</p>
+        </div>
+    </main>
+</div>
+</body>
+</html>

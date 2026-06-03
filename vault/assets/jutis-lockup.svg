@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 60">
+  <g transform="translate(30, 30)">
+    <rect x="-18" y="-18" width="36" height="36" fill="none" stroke="#dce87a" stroke-width="2" rx="6" transform="rotate(45)"></rect>
+    <rect x="-18" y="-18" width="36" height="36" fill="none" stroke="#e6e8ec" stroke-width="1.5" stroke-opacity="0.25" rx="6" transform="rotate(12)"></rect>
+    <rect x="-2.5" y="-12" width="5" height="24" fill="#dce87a" rx="2.5"></rect>
+  </g>
+  <text x="76" y="40" font-family="Plus Jakarta Sans, system-ui" font-size="26" font-weight="800" letter-spacing="5" fill="#e6e8ec">JUTIS</text>
+</svg>

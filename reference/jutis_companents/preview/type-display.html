@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/>
+<title>Type — Display</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<style>
+  html,body{margin:0;background:transparent;font-family:'Inter',system-ui}
+  :root{--lime:#dce87a;--card:#1a1d23;--line:#2e323c;--mute:#9aa1ac;--fg:#e6e8ec}
+
+  .card{
+    width:700px;padding:24px;box-sizing:border-box;color:var(--fg);position:relative;overflow:hidden;
+    background:
+      radial-gradient(1000px 260px at 110% -8%, rgba(220,232,122,.14), transparent 60%),
+      linear-gradient(180deg,#1c1f25,#101318);
+    border:1px solid var(--line);box-shadow:inset 0 1px 0 rgba(255,255,255,.03)
+  }
+  .card::before{content:'';position:absolute;inset:0;pointer-events:none;background-image:
+      linear-gradient(to right, rgba(255,255,255,.02) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,.02) 1px, transparent 1px);
+    background-size:40px 40px;
+    mask-image:radial-gradient(ellipse at center,black 40%,transparent 90%)}
+
+  .head{position:relative;display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;z-index:2}
+  .eyebrow{font:600 9px 'JetBrains Mono';letter-spacing:.28em;text-transform:uppercase;color:var(--mute);display:inline-flex;align-items:center;gap:9px}
+  .eyebrow .d{width:7px;height:7px;border-radius:9999px;background:var(--lime);box-shadow:0 0 0 3px rgba(220,232,122,.12),0 0 12px var(--lime);animation:pulse 2.4s ease-in-out infinite}
+  @keyframes pulse{0%,100%{box-shadow:0 0 0 3px rgba(220,232,122,.12),0 0 12px var(--lime)}50%{box-shadow:0 0 0 6px rgba(220,232,122,.05),0 0 20px var(--lime)}}
+  .eyebrow .sep{color:#4a4f5a;font-weight:400;letter-spacing:.1em}
+  .count{font:600 10px 'JetBrains Mono';color:var(--mute);display:inline-flex;align-items:center;gap:8px}
+  .count .dot{width:4px;height:4px;background:var(--mute);border-radius:9999px}
+
+  .stack{position:relative;display:flex;flex-direction:column;gap:2px;z-index:2}
+  .spec{position:relative;padding:18px 4px;border-bottom:1px dashed rgba(255,255,255,.06);display:grid;grid-template-columns:72px 1fr auto;align-items:center;gap:18px;transition:background .3s}
+  .spec:hover{background:rgba(220,232,122,.03)}
+  .spec:last-child{border-bottom:none}
+
+  .idx{font:600 9px 'JetBrains Mono';color:var(--mute);letter-spacing:.18em;display:flex;flex-direction:column;gap:3px}
+  .idx .n{display:flex;align-items:center;gap:6px;color:var(--lime)}
+  .idx .n::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--lime);box-shadow:0 0 6px var(--lime)}
+  .idx .role{color:#5a5f6a;font-size:8px;letter-spacing:.2em}
+
+  .tag{font:600 9px 'JetBrains Mono';color:var(--mute);padding:5px 9px;border:1px solid var(--line);border-radius:6px;background:rgba(10,11,15,.5);white-space:nowrap;display:flex;flex-direction:column;gap:2px;align-items:flex-end}
+  .tag b{color:var(--fg);font-weight:600;letter-spacing:.05em}
+  .tag i{font-style:normal;color:#4a4f5a;font-size:8px;letter-spacing:.15em}
+
+  /* 01 — animated wordmark */
+  .word-wrap{display:flex;align-items:center;gap:16px}
+  .signet{position:relative;width:60px;height:60px;flex-shrink:0;filter:drop-shadow(0 0 16px rgba(220,232,122,.4))}
+  .signet svg{width:100%;height:100%;overflow:visible}
+  .signet .ring-a{transform-origin:16px 16px;animation:spin 14s linear infinite}
+  .signet .ring-b{transform-origin:16px 16px;animation:spin 22s linear infinite reverse}
+  .signet .bar{animation:barFlick 3s ease-in-out infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  @keyframes barFlick{0%,100%{opacity:1}50%{opacity:.75}}
+
+  .wordmark{position:relative;font:800 52px 'Plus Jakarta Sans';letter-spacing:.22em;line-height:1;background:linear-gradient(180deg,#f0f2f5 0%,#e6e8ec 55%,#9aa1ac 100%);-webkit-background-clip:text;background-clip:text;color:transparent;white-space:nowrap}
+  .wordmark .g{color:var(--lime);-webkit-text-fill-color:var(--lime);text-shadow:0 0 28px rgba(220,232,122,.5);animation:gFlicker 4s ease-in-out infinite}
+  @keyframes gFlicker{0%,92%,100%{opacity:1}94%{opacity:.4}96%{opacity:1}98%{opacity:.7}}
+  .wordmark::after{content:'';position:absolute;top:0;left:-10%;right:-10%;bottom:0;background:linear-gradient(100deg,transparent 35%,rgba(255,255,255,.4) 50%,transparent 65%);mix-blend-mode:overlay;animation:sheen 5s ease-in-out infinite;-webkit-mask:linear-gradient(#000,#000);mask:linear-gradient(#000,#000)}
+  @keyframes sheen{0%{transform:translateX(-60%)}60%,100%{transform:translateX(60%)}}
+
+  /* 02 — display 1 with typewriter accent */
+  .d1-wrap{position:relative}
+  .d1{font:500 30px/1.15 'Plus Jakarta Sans';letter-spacing:-.025em;color:var(--fg);max-width:460px}
+  .d1 em{font-style:normal;color:var(--lime);font-weight:700;position:relative;display:inline-block}
+  .d1 em::after{content:'';position:absolute;left:0;right:0;bottom:-4px;height:2px;background:var(--lime);box-shadow:0 0 10px var(--lime);transform-origin:left;animation:underlineSweep 3s ease-in-out infinite}
+  @keyframes underlineSweep{0%,100%{transform:scaleX(0);opacity:0}30%,70%{transform:scaleX(1);opacity:1}}
+  .d1 span.mute{color:var(--mute)}
+  .d1 .caret{display:inline-block;width:3px;height:26px;background:var(--lime);vertical-align:-5px;margin-left:4px;animation:blink 1s steps(1) infinite;box-shadow:0 0 8px var(--lime)}
+  @keyframes blink{50%{opacity:0}}
+  .rule{width:48px;height:2px;background:linear-gradient(90deg,var(--lime),transparent);border-radius:1px;margin-top:10px;position:relative;overflow:hidden}
+  .rule::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.8),transparent);animation:ruleShine 2.4s ease-in-out infinite}
+  @keyframes ruleShine{0%{transform:translateX(-100%)}100%{transform:translateX(200%)}}
+
+  /* 03 — display 2 + live chip */
+  .d2row{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+  .d2{font:700 22px 'Plus Jakarta Sans';letter-spacing:-.015em;color:var(--fg);position:relative}
+  .d2::before{content:'';position:absolute;left:-14px;top:6px;width:4px;height:14px;background:var(--lime);border-radius:1px;box-shadow:0 0 6px var(--lime);animation:barBeat 1.4s ease-in-out infinite}
+  @keyframes barBeat{0%,100%{transform:scaleY(1)}50%{transform:scaleY(.4)}}
+  .chip{font:600 10px 'JetBrains Mono';color:#4a9eff;padding:4px 9px 4px 22px;border:1px solid rgba(74,158,255,.3);border-radius:9999px;background:rgba(74,158,255,.08);position:relative;letter-spacing:.1em;text-transform:uppercase}
+  .chip::before{content:'';position:absolute;left:9px;top:50%;width:6px;height:6px;margin-top:-3px;border-radius:50%;background:#4a9eff;box-shadow:0 0 0 0 rgba(74,158,255,.8);animation:ping 1.6s ease-out infinite}
+  @keyframes ping{0%{box-shadow:0 0 0 0 rgba(74,158,255,.8)}100%{box-shadow:0 0 0 8px rgba(74,158,255,0)}}
+  .sub2{font:500 10px 'JetBrains Mono';color:var(--mute);margin-top:6px;letter-spacing:.05em;display:flex;align-items:center;gap:6px}
+  .sub2 .mono{color:var(--fg);padding:2px 6px;background:rgba(10,11,15,.5);border:1px solid var(--line);border-radius:4px}
+</style></head>
+<body>
+<div class="card">
+  <div class="head">
+    <div class="eyebrow">
+      <span class="d"></span>Display Typography · Plus Jakarta Sans
+      <span class="sep">/</span><span style="color:var(--lime)">3 roles</span>
+    </div>
+    <div class="count"><span class="dot"></span>22–52px<span class="dot"></span>live preview</div>
+  </div>
+
+  <div class="stack">
+    <!-- 01 -->
+    <div class="spec">
+      <div class="idx"><span class="n">01</span><span class="role">WORDMARK</span></div>
+      <div class="word-wrap">
+        <div class="signet">
+          <svg viewBox="0 0 32 32">
+            <g transform="translate(16 16)">
+              <g class="ring-a"><rect x="-11" y="-11" width="22" height="22" fill="none" stroke="#dce87a" stroke-width="1.6" rx="5" transform="rotate(45)"/></g>
+              <g class="ring-b"><rect x="-11" y="-11" width="22" height="22" fill="none" stroke="#e6e8ec" stroke-width=".9" stroke-opacity=".2" rx="5" transform="rotate(12)"/></g>
+              <rect x="-2" y="-8" width="4" height="16" fill="#dce87a" rx="2" class="bar"/>
+            </g>
+          </svg>
+        </div>
+        <div class="wordmark">JUT<span class="g">I</span>S</div>
+      </div>
+      <div class="tag"><b>800</b><i>52 · .22em</i></div>
+    </div>
+
+    <!-- 02 -->
+    <div class="spec">
+      <div class="idx"><span class="n">02</span><span class="role">DISPLAY 1</span></div>
+      <div class="d1-wrap">
+        <div class="d1">The essence of <em>security</em>,<br/><span class="mute">architected for Canton.</span><span class="caret"></span></div>
+        <div class="rule"></div>
+      </div>
+      <div class="tag"><b>500</b><i>30 · −.025em</i></div>
+    </div>
+
+    <!-- 03 -->
+    <div class="spec">
+      <div class="idx"><span class="n">03</span><span class="role">DISPLAY 2</span></div>
+      <div>
+        <div class="d2row" style="padding-left:14px">
+          <div class="d2">Recent Transactions</div>
+          <div class="chip">live</div>
+        </div>
+        <div class="sub2" style="padding-left:14px">streaming<span class="mono">0.4s</span>cadence</div>
+      </div>
+      <div class="tag"><b>700</b><i>22 · −.015em</i></div>
+    </div>
+  </div>
+</div>
+</body></html>

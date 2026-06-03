@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Wallet Architecture - Jutis Docs</title>
+<link rel="icon" type="image/svg+xml" href="../../favicon.svg"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script>tailwind.config = { darkMode: "class", theme: { extend: { colors: { "bg-main": "#1a1d23", "card-bg": "#232730", "border-color": "#2e323c", "text-primary": "#e6e8ec", "text-secondary": "#9aa1ac", "accent": "#dce87a", }, fontFamily: { "sans": ["Inter", "system-ui"], "display": ["Plus Jakarta Sans", "Inter"] } } } }</script>
+<style>body { background-color: #1a1d23; color: #e6e8ec; font-family: "Inter", system-ui; }</style>
+</head>
+<body class="min-h-screen">
+<header class="fixed top-0 left-0 right-0 z-50 px-6 py-4">
+    <a href="../../index.html" class="inline-flex items-center gap-3 group"><div class="relative w-10 h-10 flex items-center justify-center"><div class="absolute inset-0 border-2 border-[#dce87a] rounded-xl rotate-45 scale-90"></div><div class="w-1.5 h-5 bg-[#dce87a] rounded-full"></div></div><span class="text-xl font-display font-bold tracking-[0.2em] uppercase">Jutis</span></a>
+</header>
+<main class="pt-24 px-6 pb-12 max-w-4xl mx-auto">
+    <p class="text-[#dce87a] text-sm mb-2"><a href="../index.html" class="hover:underline">Docs</a> / Core Concepts / Wallet Architecture</p>
+    <h1 class="text-4xl font-display font-bold mb-8">Wallet Architecture</h1>
+    <div class="space-y-6">
+        <div class="bg-[#232730] border border-[#2e323c] rounded-2xl p-8">
+            <h2 class="text-xl font-semibold mb-4">Non-Custodial Design</h2>
+            <p class="text-[#9aa1ac] mb-4">Jutis is a non-custodial wallet, meaning your private keys never leave your device. Only you have access to your funds.</p>
+            <ul class="space-y-2 text-[#9aa1ac]">
+                <li class="flex items-start gap-2"><span class="material-symbols-outlined text-[#dce87a] text-sm">check_circle</span> Private keys encrypted locally</li>
+                <li class="flex items-start gap-2"><span class="material-symbols-outlined text-[#dce87a] text-sm">check_circle</span> Seed phrase generated on device</li>
+                <li class="flex items-start gap-2"><span class="material-symbols-outlined text-[#dce87a] text-sm">check_circle</span> No server holds your keys</li>
+            </ul>
+        </div>
+        <div class="bg-[#232730] border border-[#2e323c] rounded-2xl p-8">
+            <h2 class="text-xl font-semibold mb-4">Multi-Chain Support</h2>
+            <p class="text-[#9aa1ac]">Jutis supports the Canton network and connected blockchains, allowing you to manage all your assets in one place.</p>
+        </div>
+    </div>
+</main>
+<footer class="border-t border-[#2e323c]/50 px-6 py-6 text-center text-sm text-[#9aa1ac]">
+    <a href="../index.html" class="text-[#dce87a] hover:underline">← Back to Documentation</a>
+</footer>
+</body>
+</html>

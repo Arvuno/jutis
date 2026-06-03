@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Security - Jutis Mobile</title>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="stylesheet" href="styles/tokens.css">
+    <link rel="stylesheet" href="styles/base.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
+    <style>
+        .security-page {
+            min-height: 100vh;
+            min-height: 100dvh;
+            background: var(--bg-main);
+            display: flex;
+            flex-direction: column;
+            padding-top: env(safe-area-inset-top, 0px);
+            padding-bottom: env(safe-area-inset-bottom, 0px);
+        }
+
+        /* Top bar */
+        .security-topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--space-4);
+            height: var(--topbar-height);
+            background: var(--bg-overlay);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .security-topbar__back {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--fg-secondary);
+            border-radius: var(--radius-md);
+        }
+
+        .security-topbar__title {
+            font-size: var(--text-lg);
+            font-weight: 600;
+        }
+
+        .security-topbar__action {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--fg-secondary);
+            border-radius: var(--radius-md);
+        }
+
+        /* Content */
+        .security-content {
+            flex: 1;
+            padding: var(--space-4);
+            padding-bottom: calc(var(--nav-height) + var(--space-4) + env(safe-area-inset-bottom, 0px));
+            overflow-y: auto;
+        }
+
+        /* Score Card */
+        .security-score {
+            background: linear-gradient(135deg, var(--accent-20) 0%, var(--accent-10) 100%);
+            border: 1px solid var(--accent-30);
+            border-radius: var(--radius-2xl);
+            padding: var(--space-6);
+            text-align: center;
+            margin-bottom: var(--space-5);
+        }
+
+        .security-score__icon {
+            width: 64px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--accent-10);
+            border-radius: 50%;
+            color: var(--accent);
+            margin: 0 auto var(--space-4);
+            font-size: 32px;
+        }
+
+        .security-score__value {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--accent);
+            line-height: 1;
+            margin-bottom: var(--space-2);
+        }
+
+        .security-score__label {
+            font-size: var(--text-sm);
+            color: var(--fg-secondary);
+            margin-bottom: var(--space-4);
+        }
+
+        .security-score__bar {
+            height: 8px;
+            background: var(--bg-card);
+            border-radius: var(--radius-full);
+            overflow: hidden;
+            margin-bottom: var(--space-4);
+        }
+
+        .security-score__bar-fill {
+            height: 100%;
+            width: 92%;
+            background: linear-gradient(90deg, var(--accent), var(--accent-50));
+            border-radius: var(--radius-full);
+        }
+
+        .security-score__details {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-6);
+        }
+
+        .security-score__detail {
+            text-align: center;
+        }
+
+        .security-score__detail-value {
+            font-size: var(--text-lg);
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .security-score__detail-label {
+            font-size: var(--text-xs);
+            color: var(--fg-tertiary);
+        }
+
+        /* Section */
+        .security-section {
+            margin-bottom: var(--space-5);
+        }
+
+        .security-section__title {
+            font-size: var(--text-sm);
+            font-weight: 600;
+            color: var(--fg-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: var(--space-3);
+            padding: 0 var(--space-1);
+        }
+
+        /* Status Card */
+        .status-card {
+            display: flex;
+            align-items: center;
+            gap: var(--space-4);
+            padding: var(--space-4);
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            margin-bottom: var(--space-3);
+        }
+
+        .status-card__icon {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--radius-lg);
+            font-size: 22px;
+            flex-shrink: 0;
+        }
+
+        .status-card__icon--success {
+            background: rgba(52, 211, 153, 0.15);
+            color: var(--success);
+        }
+
+        .status-card__icon--warning {
+            background: rgba(251, 191, 36, 0.15);
+            color: var(--warning);
+        }
+
+        .status-card__icon--error {
+            background: rgba(248, 113, 113, 0.15);
+            color: var(--error);
+        }
+
+        .status-card__info {
+            flex: 1;
+        }
+
+        .status-card__title {
+            font-size: var(--text-base);
+            font-weight: 600;
+            margin-bottom: var(--space-1);
+        }
+
+        .status-card__desc {
+            font-size: var(--text-sm);
+            color: var(--fg-secondary);
+        }
+
+        .status-card__action {
+            padding: var(--space-2) var(--space-4);
+            background: var(--bg-input);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            font-size: var(--text-sm);
+            font-weight: 500;
+            color: var(--fg-primary);
+        }
+
+        .status-card__badge {
+            padding: var(--space-1) var(--space-3);
+            border-radius: var(--radius-full);
+            font-size: var(--text-xs);
+            font-weight: 600;
+        }
+
+        .status-card__badge--success {
+            background: rgba(52, 211, 153, 0.15);
+            color: var(--success);
+        }
+
+        .status-card__badge--warning {
+            background: rgba(251, 191, 36, 0.15);
+            color: var(--warning);
+        }
+
+        /* Connected Apps */
+        .connected-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-4);
+            padding: var(--space-4);
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--space-2);
+        }
+
+        .connected-item__icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-input);
+            border-radius: var(--radius-md);
+            color: var(--fg-secondary);
+            font-size: 20px;
+        }
+
+        .connected-item__info {
+            flex: 1;
+        }
+
+        .connected-item__name {
+            font-size: var(--text-sm);
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .connected-item__permissions {
+            font-size: var(--text-xs);
+            color: var(--fg-tertiary);
+        }
+
+        .connected-item__action {
+            color: var(--error);
+            font-size: var(--text-sm);
+            font-weight: 500;
+        }
+
+        /* Approvals */
+        .approval-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--space-4);
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--space-2);
+        }
+
+        .approval-item__info {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+        }
+
+        .approval-item__icon {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--accent-10);
+            border-radius: var(--radius-sm);
+            color: var(--accent);
+            font-size: 18px;
+        }
+
+        .approval-item__name {
+            font-size: var(--text-sm);
+            font-weight: 500;
+        }
+
+        /* Toggle */
+        .toggle {
+            position: relative;
+            width: 52px;
+            height: 28px;
+            background: var(--border);
+            border-radius: var(--radius-full);
+            cursor: pointer;
+            transition: background var(--duration-fast) var(--ease-out);
+        }
+
+        .toggle--active {
+            background: var(--accent);
+        }
+
+        .toggle__knob {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 24px;
+            height: 24px;
+            background: white;
+            border-radius: 50%;
+            transition: transform var(--duration-fast) var(--ease-out);
+        }
+
+        .toggle--active .toggle__knob {
+            transform: translateX(24px);
+        }
+
+        /* Bottom Nav */
+        .mobile-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: var(--nav-height);
+            background: var(--bg-overlay);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: 1px solid var(--border);
+            z-index: 100;
+            padding-bottom: env(safe-area-inset-bottom, 0px);
+        }
+
+        .mobile-nav__inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            height: 100%;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        .mobile-nav__item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-1);
+            padding: var(--space-2);
+            color: var(--fg-tertiary);
+            flex: 1;
+        }
+
+        .mobile-nav__item--active {
+            color: var(--accent);
+        }
+
+        .mobile-nav__icon {
+            font-size: 22px;
+        }
+
+        .mobile-nav__label {
+            font-size: var(--text-xs);
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <div class="security-page">
+        <!-- Top bar -->
+        <div class="security-topbar">
+            <a href="wallet.html" class="security-topbar__back">
+                <span class="material-symbols-outlined">arrow_back</span>
+            </a>
+            <span class="security-topbar__title">Security</span>
+            <button class="security-topbar__action">
+                <span class="material-symbols-outlined">help</span>
+            </button>
+        </div>
+
+        <!-- Content -->
+        <div class="security-content">
+            <!-- Score Card -->
+            <div class="security-score">
+                <div class="security-score__icon">
+                    <span class="material-symbols-outlined">shield</span>
+                </div>
+                <div class="security-score__value">92</div>
+                <div class="security-score__label">Security Score</div>
+                <div class="security-score__bar">
+                    <div class="security-score__bar-fill"></div>
+                </div>
+                <div class="security-score__details">
+                    <div class="security-score__detail">
+                        <div class="security-score__detail-value">3/5</div>
+                        <div class="security-score__detail-label">Backed Up</div>
+                    </div>
+                    <div class="security-score__detail">
+                        <div class="security-score__detail-value">2FA</div>
+                        <div class="security-score__detail-label">Enabled</div>
+                    </div>
+                    <div class="security-score__detail">
+                        <div class="security-score__detail-value">3</div>
+                        <div class="security-score__detail-label">Connected</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Backup Status -->
+            <section class="security-section">
+                <h2 class="security-section__title">Backup Status</h2>
+                <div class="status-card">
+                    <div class="status-card__icon status-card__icon--success">
+                        <span class="material-symbols-outlined">key</span>
+                    </div>
+                    <div class="status-card__info">
+                        <p class="status-card__title">Recovery Phrase</p>
+                        <p class="status-card__desc">Verified and backed up</p>
+                    </div>
+                    <span class="status-card__badge status-card__badge--success">Secured</span>
+                </div>
+                <div class="status-card">
+                    <div class="status-card__icon status-card__icon--warning">
+                        <span class="material-symbols-outlined">cloud</span>
+                    </div>
+                    <div class="status-card__info">
+                        <p class="status-card__title">Cloud Backup</p>
+                        <p class="status-card__desc">Not configured</p>
+                    </div>
+                    <button class="status-card__action">Set Up</button>
+                </div>
+                <div class="status-card">
+                    <div class="status-card__icon status-card__icon--success">
+                        <span class="material-symbols-outlined">lock</span>
+                    </div>
+                    <div class="status-card__info">
+                        <p class="status-card__title">App Lock</p>
+                        <p class="status-card__desc">Biometric + PIN enabled</p>
+                    </div>
+                    <span class="status-card__badge status-card__badge--success">On</span>
+                </div>
+            </section>
+
+            <!-- Connected Apps -->
+            <section class="security-section">
+                <h2 class="security-section__title">Connected Apps</h2>
+                <div class="connected-item">
+                    <div class="connected-item__icon">
+                        <span class="material-symbols-outlined">grid_view</span>
+                    </div>
+                    <div class="connected-item__info">
+                        <p class="connected-item__name">DeFi Swap</p>
+                        <p class="connected-item__permissions">Sign transactions, view balance</p>
+                    </div>
+                    <button class="connected-item__action">Remove</button>
+                </div>
+                <div class="connected-item">
+                    <div class="connected-item__icon">
+                        <span class="material-symbols-outlined">store</span>
+                    </div>
+                    <div class="connected-item__info">
+                        <p class="connected-item__name">NFT Marketplace</p>
+                        <p class="connected-item__permissions">Sign transactions</p>
+                    </div>
+                    <button class="connected-item__action">Remove</button>
+                </div>
+                <div class="connected-item">
+                    <div class="connected-item__icon">
+                        <span class="material-symbols-outlined">apps</span>
+                    </div>
+                    <div class="connected-item__info">
+                        <p class="connected-item__name">GameFi Platform</p>
+                        <p class="connected-item__permissions">View address</p>
+                    </div>
+                    <button class="connected-item__action">Remove</button>
+                </div>
+            </section>
+
+            <!-- Approval Settings -->
+            <section class="security-section">
+                <h2 class="security-section__title">Approval Settings</h2>
+                <div class="approval-item">
+                    <div class="approval-item__info">
+                        <div class="approval-item__icon">
+                            <span class="material-symbols-outlined">approval</span>
+                        </div>
+                        <span class="approval-item__name">Require biometric for swaps</span>
+                    </div>
+                    <div class="toggle toggle--active">
+                        <div class="toggle__knob"></div>
+                    </div>
+                </div>
+                <div class="approval-item">
+                    <div class="approval-item__info">
+                        <div class="approval-item__icon">
+                            <span class="material-symbols-outlined">call</span>
+                        </div>
+                        <span class="approval-item__name">Require for transactions over $1,000</span>
+                    </div>
+                    <div class="toggle">
+                        <div class="toggle__knob"></div>
+                    </div>
+                </div>
+                <div class="approval-item">
+                    <div class="approval-item__info">
+                        <div class="approval-item__icon">
+                            <span class="material-symbols-outlined">schedule</span>
+                        </div>
+                        <span class="approval-item__name">Auto-lock after 5 minutes</span>
+                    </div>
+                    <div class="toggle toggle--active">
+                        <div class="toggle__knob"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Recovery Reminder -->
+            <div class="status-card" style="background: linear-gradient(135deg, var(--accent-10), var(--bg-card));">
+                <div class="status-card__icon status-card__icon--success">
+                    <span class="material-symbols-outlined">verified</span>
+                </div>
+                <div class="status-card__info">
+                    <p class="status-card__title">Recovery phrase verified</p>
+                    <p class="status-card__desc">Your wallet can be restored if you lose access</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Nav -->
+        <nav class="mobile-nav">
+            <a href="wallet.html" class="mobile-nav__item">
+                <span class="material-symbols-outlined mobile-nav__icon">home</span>
+                <span class="mobile-nav__label">Home</span>
+            </a>
+            <a href="activity.html" class="mobile-nav__item">
+                <span class="material-symbols-outlined mobile-nav__icon">swap_horiz</span>
+                <span class="mobile-nav__label">Activity</span>
+            </a>
+            <a href="send.html" class="mobile-nav__item" style="position:relative;">
+                <span class="material-symbols-outlined mobile-nav__icon" style="background:var(--accent);color:var(--bg-main);width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-top:-20px;box-shadow:0 4px 12px rgba(183,245,58,0.3);">send</span>
+            </a>
+            <a href="rewards.html" class="mobile-nav__item">
+                <span class="material-symbols-outlined mobile-nav__icon">emoji_events</span>
+                <span class="mobile-nav__label">Rewards</span>
+            </a>
+            <a href="settings.html" class="mobile-nav__item mobile-nav__item--active">
+                <span class="material-symbols-outlined mobile-nav__icon">settings</span>
+                <span class="mobile-nav__label">Settings</span>
+            </a>
+        </nav>
+    </div>
+</body>
+</html>

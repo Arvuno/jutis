@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Settings — Jutis Partner</title>
+    <meta name="description" content="Manage your partner account settings.">
+    <meta name="robots" content="noindex">
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Settings — Jutis Partner">
+    <meta property="og:image" content="../og-image.svg">
+    <meta property="og:site_name" content="Jutis">
+
+    <link rel="stylesheet" href="../styles/tokens.css">
+    <link rel="stylesheet" href="../styles/base.css">
+    <link rel="stylesheet" href="../styles/components.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+</head>
+
+<body class="page page--dashboard">
+
+    <div class="partner-sidebar" id="sidebar">
+        <div class="sidebar-logo">
+            <a href="index.html" class="sidebar-logo__link">
+                <div class="sidebar-logo__mark" aria-hidden="true">
+                    <div class="sidebar-logo__ring sidebar-logo__ring--outer"></div>
+                    <div class="sidebar-logo__ring sidebar-logo__ring--inner"></div>
+                    <div class="sidebar-logo__bar"></div>
+                </div>
+                <span class="sidebar-logo__wordmark">Jutis</span>
+            </a>
+        </div>
+
+        <nav class="sidebar-nav">
+            <ul class="sidebar-nav__list">
+                <li><a href="dashboard.html" class="sidebar-nav__item">
+                    <span class="material-symbols-outlined sidebar-nav__icon" aria-hidden="true">dashboard</span>
+                    Dashboard
+                </a></li>
+                <li><a href="links.html" class="sidebar-nav__item">
+                    <span class="material-symbols-outlined sidebar-nav__icon" aria-hidden="true">link</span>
+                    Links
+                </a></li>
+                <li><a href="users.html" class="sidebar-nav__item">
+                    <span class="material-symbols-outlined sidebar-nav__icon" aria-hidden="true">group</span>
+                    Users
+                </a></li>
+                <li><a href="withdrawals.html" class="sidebar-nav__item">
+                    <span class="material-symbols-outlined sidebar-nav__icon" aria-hidden="true">payments</span>
+                    Withdrawals
+                </a></li>
+                <li><a href="support.html" class="sidebar-nav__item">
+                    <span class="material-symbols-outlined sidebar-nav__icon" aria-hidden="true">support</span>
+                    Support
+                </a></li>
+                <li><a href="settings.html" class="sidebar-nav__item sidebar-nav__item--active">
+                    <span class="material-symbols-outlined sidebar-nav__icon" aria-hidden="true">settings</span>
+                    Settings
+                </a></li>
+            </ul>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="login.html" class="sidebar-nav__item sidebar-nav__item--logout">
+                <span class="material-symbols-outlined sidebar-nav__icon" aria-hidden="true">logout</span>
+                Logout
+            </a>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <header class="topbar">
+            <div class="topbar-left">
+                <h1 class="page-title">Settings</h1>
+                <p class="page-subtitle">Manage your partner account and preferences</p>
+            </div>
+            <div class="topbar-right">
+                <div class="partner-badge">
+                    <span class="material-symbols-outlined" aria-hidden="true">workspace_premium</span>
+                    Partner Portal
+                </div>
+            </div>
+        </header>
+
+        <div class="content-area">
+
+            <div class="settings-grid">
+
+                <div class="settings-section">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Partner Profile</h2>
+                        </div>
+                        <div class="card-body">
+                            <form class="settings-form" onsubmit="return false;">
+                                <div class="form-row-2col">
+                                    <div class="form-group">
+                                        <label class="form-label" for="partnerName">Partner Name</label>
+                                        <input type="text" id="partnerName" class="form-input" value="TechReview Hub">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="partnerEmail">Email Address</label>
+                                        <input type="email" id="partnerEmail" class="form-input" value="alex@techreviewhub.io" disabled>
+                                        <span class="form-hint">Email cannot be changed — contact support</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="partnerWebsite">Website / Community URL</label>
+                                    <input type="url" id="partnerWebsite" class="form-input" value="https://techreviewhub.io">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="partnerBio">Bio / Description</label>
+                                    <textarea id="partnerBio" class="form-input" rows="3" placeholder="Brief description of your channel or community..." style="resize: vertical;">Independent tech review channel covering gadgets, software, and developer tools. 45K subscribers across YouTube and Substack.</textarea>
+                                </div>
+                                <button class="btn btn--accent">Save Changes</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Partner Slug</h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="slug-display">
+                                <span class="slug-label">Your partner link</span>
+                                <div class="slug-value">
+                                    <span class="slug-prefix">jutis.xyz/</span>
+                                    <span class="slug-slug">techreview</span>
+                                </div>
+                            </div>
+                            <p class="slug-note">Your slug identifies you in the Jutis partner program. Contact support if you need to change it.</p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Payout Settings</h2>
+                        </div>
+                        <div class="card-body">
+                            <form class="settings-form" onsubmit="return false;">
+                                <div class="form-group">
+                                    <label class="form-label" for="payoutAddress">Canton Wallet Address</label>
+                                    <input type="text" id="payoutAddress" class="form-input mono-input" value="0x7a3f4d9c2b8e1f0a3d5c6b9e2f4a8d1c3b9e5f7a">
+                                    <span class="form-hint">Ensure this wallet can receive standard ERC-20 tokens. Minimum withdrawal: $10.00.</span>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="payoutLabel">Wallet Label (optional)</label>
+                                    <input type="text" id="payoutLabel" class="form-input" placeholder="e.g. Main Wallet, Hardware Wallet" value="Main Wallet">
+                                </div>
+                                <button class="btn btn--accent">Update Payout Settings</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="settings-sidebar">
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Notification Settings</h2>
+                        </div>
+                        <div class="card-body" style="padding: var(--space-4) var(--space-5);">
+                            <div class="toggle-list">
+                                <label class="toggle-item">
+                                    <div class="toggle-item__info">
+                                        <div class="toggle-item__label">New Referral Signups</div>
+                                        <div class="toggle-item__sub">Email when a new user signs up via your link</div>
+                                    </div>
+                                    <input type="checkbox" class="toggle-input" checked>
+                                </label>
+                                <label class="toggle-item">
+                                    <div class="toggle-item__info">
+                                        <div class="toggle-item__label">Reward Approvals</div>
+                                        <div class="toggle-item__sub">Email when a referral qualifies and reward is approved</div>
+                                    </div>
+                                    <input type="checkbox" class="toggle-input" checked>
+                                </label>
+                                <label class="toggle-item">
+                                    <div class="toggle-item__info">
+                                        <div class="toggle-item__label">Withdrawal Updates</div>
+                                        <div class="toggle-item__sub">Email when your withdrawal is processed</div>
+                                    </div>
+                                    <input type="checkbox" class="toggle-input" checked>
+                                </label>
+                                <label class="toggle-item">
+                                    <div class="toggle-item__info">
+                                        <div class="toggle-item__label">Campaign Performance</div>
+                                        <div class="toggle-item__sub">Weekly summary of link clicks and conversions</div>
+                                    </div>
+                                    <input type="checkbox" class="toggle-input">
+                                </label>
+                                <label class="toggle-item">
+                                    <div class="toggle-item__info">
+                                        <div class="toggle-item__label">Partner Program Updates</div>
+                                        <div class="toggle-item__sub">News about program changes and new features</div>
+                                    </div>
+                                    <input type="checkbox" class="toggle-input" checked>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Security</h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="security-info">
+                                <div class="security-info__row">
+                                    <span class="security-info__label">Password</span>
+                                    <button class="btn btn--ghost btn--sm">Change Password</button>
+                                </div>
+                                <div class="security-info__row">
+                                    <span class="security-info__label">Two-Factor Auth</span>
+                                    <span class="badge badge--green">Not Enabled</span>
+                                </div>
+                                <div class="security-info__row">
+                                    <span class="security-info__label">Last Login</span>
+                                    <span class="security-info__value">May 10, 2026 · 14:23 UTC</span>
+                                </div>
+                            </div>
+                            <button class="btn btn--accent w-full" style="margin-top: var(--space-4);">
+                                <span class="material-symbols-outlined" aria-hidden="true">shield</span>
+                                Enable Two-Factor Authentication
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="card danger-card">
+                        <div class="card-header card-header--danger">
+                            <h2 class="card-title card-title--danger">Danger Zone</h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="danger-action">
+                                <div>
+                                    <div class="danger-action__title">Deactivate Partner Account</div>
+                                    <div class="danger-action__sub">Your account will be suspended and all active links disabled. This cannot be undone.</div>
+                                </div>
+                                <button class="btn btn--danger-outline">Deactivate</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <style>
+    .partner-sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 240px;
+        height: 100vh;
+        background: var(--bg-card);
+        border-right: 1px solid var(--border);
+        display: flex;
+        flex-direction: column;
+        z-index: 100;
+        overflow-y: auto;
+    }
+
+    .sidebar-logo {
+        padding: var(--space-5) var(--space-5) var(--space-4);
+        border-bottom: 1px solid var(--border);
+    }
+
+    .sidebar-logo__link {
+        display: flex;
+        align-items: center;
+        gap: var(--space-3);
+        text-decoration: none;
+    }
+
+    .sidebar-logo__mark {
+        position: relative;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    .sidebar-logo__ring {
+        position: absolute;
+        border-radius: 6px;
+        border: 2px solid var(--accent);
+    }
+
+    .sidebar-logo__ring--outer {
+        inset: 0;
+        transform: rotate(45deg) scale(0.9);
+    }
+
+    .sidebar-logo__ring--inner {
+        inset: 4px;
+        border-color: rgba(230, 232, 236, 0.2);
+        transform: rotate(12deg);
+    }
+
+    .sidebar-logo__bar {
+        position: relative;
+        z-index: 1;
+        width: 4px;
+        height: 14px;
+        background-color: var(--accent);
+        border-radius: 2px;
+    }
+
+    .sidebar-logo__wordmark {
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: var(--text-lg);
+        color: var(--fg-primary);
+    }
+
+    .sidebar-nav {
+        flex: 1;
+        padding: var(--space-4) var(--space-3);
+    }
+
+    .sidebar-nav__list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-1);
+    }
+
+    .sidebar-nav__item {
+        display: flex;
+        align-items: center;
+        gap: var(--space-3);
+        padding: var(--space-3) var(--space-3);
+        border-radius: var(--radius-md);
+        color: var(--fg-secondary);
+        text-decoration: none;
+        font-size: var(--text-sm);
+        font-weight: 500;
+        transition: background-color var(--duration-fast) var(--ease-out),
+                    color var(--duration-fast) var(--ease-out);
+    }
+
+    .sidebar-nav__item:hover {
+        background: var(--bg-inset);
+        color: var(--fg-primary);
+    }
+
+    .sidebar-nav__item--active {
+        background: var(--accent-10);
+        color: var(--accent);
+    }
+
+    .sidebar-nav__item--active:hover {
+        background: var(--accent-10);
+        color: var(--accent);
+    }
+
+    .sidebar-nav__icon {
+        font-size: 20px;
+        flex-shrink: 0;
+    }
+
+    .sidebar-footer {
+        padding: var(--space-4) var(--space-3);
+        border-top: 1px solid var(--border);
+    }
+
+    .sidebar-nav__item--logout {
+        color: var(--fg-muted);
+    }
+
+    .sidebar-nav__item--logout:hover {
+        color: #ef4444;
+        background: rgba(239, 68, 68, 0.08);
+    }
+
+    .main-content {
+        margin-left: 240px;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: var(--space-4) var(--space-8);
+        background: var(--bg-main);
+        border-bottom: 1px solid var(--border);
+        backdrop-filter: blur(8px);
+    }
+
+    .topbar-left {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-1);
+    }
+
+    .page-title {
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: var(--text-xl);
+        color: var(--fg-primary);
+    }
+
+    .page-subtitle {
+        font-size: var(--text-sm);
+        color: var(--fg-secondary);
+    }
+
+    .partner-badge {
+        display: flex;
+        align-items: center;
+        gap: var(--space-2);
+        padding: var(--space-2) var(--space-3);
+        background: var(--accent-10);
+        border: 1px solid var(--accent-20);
+        border-radius: var(--radius-pill);
+        font-size: var(--text-xs);
+        font-weight: 600;
+        color: var(--accent);
+    }
+
+    .partner-badge .material-symbols-outlined {
+        font-size: 16px;
+    }
+
+    .content-area {
+        flex: 1;
+        padding: var(--space-8);
+    }
+
+    .settings-grid {
+        display: grid;
+        grid-template-columns: 1fr 320px;
+        gap: var(--space-6);
+        align-items: start;
+    }
+
+    .settings-section {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-5);
+    }
+
+    .card {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+    }
+
+    .card-header {
+        padding: var(--space-5) var(--space-6);
+        border-bottom: 1px solid var(--border);
+    }
+
+    .card-header--danger {
+        border-bottom-color: rgba(239, 68, 68, 0.3);
+        background: rgba(239, 68, 68, 0.04);
+    }
+
+    .card-title {
+        font-weight: 600;
+        font-size: var(--text-base);
+    }
+
+    .card-title--danger {
+        color: #ef4444;
+    }
+
+    .card-body {
+        padding: var(--space-6);
+    }
+
+    .settings-form {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-5);
+    }
+
+    .form-row-2col {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-4);
+    }
+
+    @media (max-width: 600px) {
+        .form-row-2col { grid-template-columns: 1fr; }
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-2);
+    }
+
+    .form-label {
+        font-size: var(--text-sm);
+        font-weight: 500;
+    }
+
+    .form-input {
+        width: 100%;
+        padding: var(--space-3) var(--space-4);
+        background-color: var(--bg-main);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-md);
+        color: var(--fg-primary);
+        font-size: var(--text-base);
+        transition: border-color var(--duration-fast) var(--ease-out);
+    }
+
+    .form-input:focus {
+        outline: none;
+        border-color: var(--accent-30);
+    }
+
+    .form-input:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+    .form-hint {
+        font-size: var(--text-xs);
+        color: var(--fg-muted);
+    }
+
+    .mono-input {
+        font-family: monospace;
+        font-size: var(--text-sm);
+    }
+
+    .slug-display {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: var(--space-4);
+        background: var(--bg-inset);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-md);
+        margin-bottom: var(--space-3);
+    }
+
+    .slug-label {
+        font-size: var(--text-xs);
+        color: var(--fg-secondary);
+        font-weight: 500;
+    }
+
+    .slug-value {
+        display: flex;
+        align-items: center;
+        gap: 0;
+        font-family: monospace;
+        font-size: var(--text-sm);
+    }
+
+    .slug-prefix {
+        color: var(--fg-muted);
+    }
+
+    .slug-slug {
+        color: var(--accent);
+        font-weight: 600;
+    }
+
+    .slug-note {
+        font-size: var(--text-xs);
+        color: var(--fg-muted);
+    }
+
+    .toggle-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .toggle-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--space-4);
+        padding: var(--space-3) 0;
+        border-bottom: 1px solid var(--border);
+        cursor: pointer;
+    }
+
+    .toggle-item:last-child {
+        border-bottom: none;
+    }
+
+    .toggle-item__info {
+        flex: 1;
+    }
+
+    .toggle-item__label {
+        font-size: var(--text-sm);
+        font-weight: 500;
+        margin-bottom: 2px;
+    }
+
+    .toggle-item__sub {
+        font-size: var(--text-xs);
+        color: var(--fg-muted);
+    }
+
+    .toggle-input {
+        width: 40px;
+        height: 22px;
+        accent-color: var(--accent);
+        cursor: pointer;
+        flex-shrink: 0;
+    }
+
+    .security-info {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-3);
+    }
+
+    .security-info__row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .security-info__label {
+        font-size: var(--text-sm);
+        color: var(--fg-secondary);
+    }
+
+    .security-info__value {
+        font-size: var(--text-sm);
+        color: var(--fg-muted);
+    }
+
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: var(--space-2);
+        padding: var(--space-3) var(--space-5);
+        border-radius: var(--radius-md);
+        font-size: var(--text-sm);
+        font-weight: 600;
+        cursor: pointer;
+        border: none;
+        transition: background-color var(--duration-fast) var(--ease-out);
+    }
+
+    .btn--accent {
+        background-color: var(--accent);
+        color: var(--bg-main);
+    }
+
+    .btn--accent:hover {
+        background-color: var(--fg-primary);
+    }
+
+    .btn--ghost {
+        background: transparent;
+        border: 1px solid var(--border);
+        color: var(--fg-primary);
+    }
+
+    .btn--ghost:hover {
+        background: var(--bg-inset);
+    }
+
+    .btn--sm {
+        padding: var(--space-2) var(--space-3);
+        font-size: var(--text-xs);
+    }
+
+    .btn .material-symbols-outlined {
+        font-size: 18px;
+    }
+
+    .w-full { width: 100%; }
+
+    .badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 2px var(--space-2);
+        border-radius: var(--radius-pill);
+        font-size: var(--text-xs);
+        font-weight: 600;
+    }
+
+    .badge--green {
+        background: rgba(34, 197, 94, 0.1);
+        color: #22c55e;
+    }
+
+    .danger-card {
+        border-color: rgba(239, 68, 68, 0.3);
+    }
+
+    .danger-action {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--space-4);
+    }
+
+    .danger-action__title {
+        font-size: var(--text-sm);
+        font-weight: 600;
+        margin-bottom: var(--space-1);
+    }
+
+    .danger-action__sub {
+        font-size: var(--text-xs);
+        color: var(--fg-muted);
+        max-width: 280px;
+    }
+
+    .btn--danger-outline {
+        background: transparent;
+        border: 1px solid rgba(239, 68, 68, 0.4);
+        color: #ef4444;
+        flex-shrink: 0;
+    }
+
+    .btn--danger-outline:hover {
+        background: rgba(239, 68, 68, 0.08);
+    }
+    </style>
+
+</body>
+</html>

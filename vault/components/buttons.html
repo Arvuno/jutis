@@ -1,0 +1,111 @@
+<!-- ==========================================================================
+   Jutis Button Components
+   vault/components/buttons.html
+
+   BUTTON VARIANTS:
+   - Primary: white bg, dark text (homepage CTA)
+   - Secondary/Accent: lime bg (dashboard CTA)
+   - Ghost: border only
+   - Small: tighter padding for dense UI
+   - CTA Pair: two buttons side by side (primary + ghost)
+
+   All buttons use design tokens. No hard-coded values.
+   ========================================================================== -->
+
+<!-- PRIMARY BUTTON — white bg, used for main CTAs -->
+<a href="signup.html" class="btn btn--primary">Get Started</a>
+
+<!-- ACCENT BUTTON — lime bg, used for dashboard actions -->
+<button class="btn btn--accent">Add Wallet</button>
+
+<!-- GHOST BUTTON — border only, used for secondary actions -->
+<a href="developers/index.html" class="btn btn--ghost">View Documentation</a>
+
+<!-- SMALL BUTTON — tighter padding -->
+<button class="btn btn--accent btn--sm">Copy Address</button>
+<button class="btn btn--ghost btn--sm">View All</button>
+
+<!-- CTA PAIR — primary + secondary side by side -->
+<div class="cta-pair">
+    <a href="signup.html" class="btn btn--primary btn--lg">Create Wallet</a>
+    <a href="developers/index.html" class="btn btn--ghost btn--lg">Developer Docs</a>
+</div>
+
+<!-- DISABLED BUTTON — no href, disabled attribute -->
+<button class="btn btn--primary" disabled>Sign In</button>
+
+<!-- ICON BUTTON -->
+<button class="btn btn--icon btn--ghost" aria-label="Close">
+    <span class="material-symbols-outlined" aria-hidden="true">close</span>
+</button>
+
+<!-- BADGE (pill, not a button but documented here) -->
+<span class="badge">
+    <span class="badge__dot badge__dot--pulse"></span>
+    BETA
+</span>
+
+<style>
+.cta-pair {
+    display: flex;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+/* Button base — already in components.css but extended here */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-6);
+    border-radius: var(--radius-pill);
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
+    transition:
+        background-color var(--duration-fast) var(--ease-out),
+        color var(--duration-fast) var(--ease-out),
+        transform var(--duration-fast) var(--ease-out);
+    white-space: nowrap;
+}
+.btn:hover { transform: scale(1.02); }
+.btn:active { transform: scale(0.98); }
+.btn[disabled] {
+    opacity: 0.4;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+.btn--primary {
+    background-color: var(--fg-primary);
+    color: var(--bg-main);
+}
+.btn--primary:hover { background-color: var(--accent); color: var(--bg-main); }
+.btn--accent {
+    background-color: var(--accent);
+    color: var(--bg-main);
+}
+.btn--accent:hover { background-color: var(--fg-primary); }
+.btn--ghost {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--fg-primary);
+}
+.btn--ghost:hover { border-color: var(--accent-30); }
+.btn--icon {
+    padding: var(--space-3);
+    border-radius: var(--radius-md);
+}
+.btn--sm {
+    font-size: var(--text-sm);
+    padding: var(--space-2) var(--space-4);
+}
+.btn--lg {
+    font-size: var(--text-lg);
+    padding: var(--space-4) var(--space-8);
+}
+</style>

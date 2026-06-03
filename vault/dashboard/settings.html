@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Settings - Jutis</title>
+    <meta name="description" content="Jutis Settings — Customize your wallet preferences.">
+    <meta name="robots" content="noindex">
+
+    <!-- Favicon (nested path) -->
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Settings - Jutis">
+    <meta property="og:description" content="Customize your wallet preferences.">
+    <meta property="og:image" content="../og-image.svg">
+    <meta property="og:site_name" content="Jutis">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../styles/tokens.css">
+    <link rel="stylesheet" href="../styles/base.css">
+    <link rel="stylesheet" href="../styles/layout.css">
+    <link rel="stylesheet" href="../styles/components.css">
+
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+</head>
+
+<body class="page page--dashboard">
+
+    <!-- MOBILE HEADER -->
+    <header class="dashboard-mobile-header">
+        <button id="menuToggle" class="dashboard-mobile-header__btn" aria-label="Open menu">
+            <span class="material-symbols-outlined" aria-hidden="true">menu</span>
+        </button>
+        <a href="../index.html" class="dashboard-mobile-header__logo">
+            <div class="dashboard-mobile-header__logo-mark" aria-hidden="true">
+                <div class="dashboard-mobile-header__logo-ring dashboard-mobile-header__logo-ring--outer"></div>
+                <div class="dashboard-mobile-header__logo-ring dashboard-mobile-header__logo-ring--inner"></div>
+                <div class="dashboard-mobile-header__logo-bar"></div>
+            </div>
+            <span class="dashboard-mobile-header__wordmark">Jutis</span>
+        </a>
+        <button class="dashboard-mobile-header__btn dashboard-mobile-header__btn--notif" aria-label="Notifications">
+            <span class="material-symbols-outlined" aria-hidden="true">notifications</span>
+            <span class="dashboard-mobile-header__notif-dot"></span>
+        </button>
+    </header>
+
+    <!-- SIDEBAR OVERLAY -->
+    <div id="sidebarOverlay" class="dashboard-sidebar__overlay" onclick="closeSidebar()"></div>
+
+    <!-- SIDEBAR -->
+    <aside id="sidebar" class="dashboard-sidebar">
+        <div class="dashboard-sidebar__brand">
+            <a href="../index.html" class="dashboard-sidebar__logo">
+                <div class="dashboard-sidebar__logo-mark" aria-hidden="true">
+                    <div class="dashboard-sidebar__logo-ring dashboard-sidebar__logo-ring--outer"></div>
+                    <div class="dashboard-sidebar__logo-ring dashboard-sidebar__logo-ring--inner"></div>
+                    <div class="dashboard-sidebar__logo-bar"></div>
+                </div>
+                <span class="dashboard-sidebar__wordmark">Jutis</span>
+            </a>
+        </div>
+
+        <nav class="dashboard-sidebar__nav" aria-label="Dashboard navigation">
+            <a href="index.html" class="dashboard-nav-item">
+                <span class="material-symbols-outlined" aria-hidden="true">dashboard</span>
+                <span>Dashboard</span>
+            </a>
+            <a href="wallet.html" class="dashboard-nav-item">
+                <span class="material-symbols-outlined" aria-hidden="true">account_balance_wallet</span>
+                <span>Wallet</span>
+            </a>
+            <a href="swap.html" class="dashboard-nav-item">
+                <span class="material-symbols-outlined" aria-hidden="true">swap_horiz</span>
+                <span>Swap</span>
+            </a>
+            <a href="history.html" class="dashboard-nav-item">
+                <span class="material-symbols-outlined" aria-hidden="true">history</span>
+                <span>History</span>
+            </a>
+            <a href="rewards.html" class="dashboard-nav-item">
+                <span class="material-symbols-outlined" aria-hidden="true">stars</span>
+                <span>Rewards</span>
+            </a>
+            <a href="leaderboard.html" class="dashboard-nav-item">
+                <span class="material-symbols-outlined" aria-hidden="true">leaderboard</span>
+                <span>Leaderboard</span>
+            </a>
+            <a href="security.html" class="dashboard-nav-item">
+                <span class="material-symbols-outlined" aria-hidden="true">security</span>
+                <span>Security</span>
+            </a>
+            <a href="settings.html" class="dashboard-nav-item dashboard-nav-item--active" aria-current="page">
+                <span class="material-symbols-outlined" aria-hidden="true">settings</span>
+                <span>Settings</span>
+            </a>
+        </nav>
+
+        <div class="dashboard-sidebar__footer">
+            <div class="dashboard-sidebar__user">
+                <div class="dashboard-sidebar__user-avatar">JD</div>
+                <div class="dashboard-sidebar__user-info">
+                    <p class="dashboard-sidebar__user-name">john.doe@email.com</p>
+                    <p class="dashboard-sidebar__user-status">2,840 XP · Rank #128</p>
+                </div>
+                <button class="dashboard-sidebar__logout" aria-label="Logout">
+                    <span class="material-symbols-outlined" aria-hidden="true">logout</span>
+                </button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="dashboard-main">
+        <header class="dashboard-page-header">
+            <div class="dashboard-page-header__left">
+                <h1 class="dashboard-page-title">Settings</h1>
+                <p class="dashboard-page-subtitle">Customize your experience</p>
+            </div>
+            <span class="dashboard-xp-badge hide-mobile">
+                <span class="material-symbols-outlined" aria-hidden="true">stars</span>
+                2,840 XP · Rank #128
+            </span>
+        </header>
+
+        <div class="settings-form" style="max-width: 720px;">
+
+            <!-- PROFILE -->
+            <div class="widget" style="margin-bottom: var(--space-6);">
+                <h3 class="widget__title" style="margin-bottom: var(--space-6);">Profile</h3>
+                <div class="settings-profile">
+                    <div class="settings-avatar">JD</div>
+                    <div class="settings-avatar-actions">
+                        <button class="btn btn--ghost btn--sm">Change Avatar</button>
+                    </div>
+                </div>
+                <div class="settings-fields">
+                    <div class="form-group">
+                        <label class="form-label" for="displayName">Display Name</label>
+                        <input type="text" id="displayName" class="form-input" value="John Doe">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="email">Email</label>
+                        <input type="email" id="email" class="form-input" value="john.doe@email.com">
+                    </div>
+                </div>
+            </div>
+
+            <!-- NOTIFICATIONS -->
+            <div class="widget" style="margin-bottom: var(--space-6);">
+                <h3 class="widget__title" style="margin-bottom: var(--space-6);">Notifications</h3>
+                <div class="settings-toggles">
+
+                    <div class="settings-toggle">
+                        <div class="settings-toggle__icon">
+                            <span class="material-symbols-outlined" aria-hidden="true">mail</span>
+                        </div>
+                        <div class="settings-toggle__content">
+                            <p class="settings-toggle__title">Email Notifications</p>
+                            <p class="settings-toggle__desc">Receive updates via email</p>
+                        </div>
+                        <label class="toggle">
+                            <input type="checkbox" checked>
+                            <span class="toggle__track"></span>
+                        </label>
+                    </div>
+
+                    <div class="settings-toggle">
+                        <div class="settings-toggle__icon">
+                            <span class="material-symbols-outlined" aria-hidden="true">payments</span>
+                        </div>
+                        <div class="settings-toggle__content">
+                            <p class="settings-toggle__title">Transaction Alerts</p>
+                            <p class="settings-toggle__desc">Get notified on every transaction</p>
+                        </div>
+                        <label class="toggle">
+                            <input type="checkbox" checked>
+                            <span class="toggle__track"></span>
+                        </label>
+                    </div>
+
+                    <div class="settings-toggle">
+                        <div class="settings-toggle__icon">
+                            <span class="material-symbols-outlined" aria-hidden="true">security</span>
+                        </div>
+                        <div class="settings-toggle__content">
+                            <p class="settings-toggle__title">Security Alerts</p>
+                            <p class="settings-toggle__desc">Login attempts and security events</p>
+                        </div>
+                        <label class="toggle">
+                            <input type="checkbox" checked>
+                            <span class="toggle__track"></span>
+                        </label>
+                    </div>
+
+                    <div class="settings-toggle">
+                        <div class="settings-toggle__icon">
+                            <span class="material-symbols-outlined" aria-hidden="true">campaign</span>
+                        </div>
+                        <div class="settings-toggle__content">
+                            <p class="settings-toggle__title">Marketing</p>
+                            <p class="settings-toggle__desc">News and promotional content</p>
+                        </div>
+                        <label class="toggle">
+                            <input type="checkbox">
+                            <span class="toggle__track"></span>
+                        </label>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- APPEARANCE -->
+            <div class="widget" style="margin-bottom: var(--space-6);">
+                <h3 class="widget__title" style="margin-bottom: var(--space-6);">Appearance</h3>
+                <div class="appearance-options">
+                    <button class="appearance-option appearance-option--active">
+                        <span class="material-symbols-outlined" aria-hidden="true">dark_mode</span>
+                        <span>Dark</span>
+                    </button>
+                    <button class="appearance-option">
+                        <span class="material-symbols-outlined" aria-hidden="true">light_mode</span>
+                        <span>Light</span>
+                    </button>
+                    <button class="appearance-option">
+                        <span class="material-symbols-outlined" aria-hidden="true">contrast</span>
+                        <span>System</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- PREFERENCES -->
+            <div class="widget" style="margin-bottom: var(--space-6);">
+                <h3 class="widget__title" style="margin-bottom: var(--space-6);">Preferences</h3>
+                <div class="settings-fields settings-fields--2col">
+                    <div class="form-group">
+                        <label class="form-label" for="fiatCurrency">Fiat Currency</label>
+                        <select id="fiatCurrency" class="form-select">
+                            <option>USD — US Dollar</option>
+                            <option>EUR — Euro</option>
+                            <option>GBP — British Pound</option>
+                            <option>TRY — Turkish Lira</option>
+                            <option>JPY — Japanese Yen</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="language">Language</label>
+                        <select id="language" class="form-select">
+                            <option>English</option>
+                            <option>Deutsch</option>
+                            <option>Français</option>
+                            <option>Español</option>
+                            <option>Türkçe</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DANGER ZONE -->
+            <div class="widget widget--danger" style="margin-bottom: var(--space-6);">
+                <h3 class="widget__title widget__title--danger">Danger Zone</h3>
+                <p class="settings-danger-desc">These actions are irreversible. Please proceed with caution.</p>
+                <div class="settings-danger-actions">
+                    <button class="btn btn--outline btn--sm">Export All Data</button>
+                    <button class="btn btn--outline btn--sm btn--danger">Delete Account</button>
+                </div>
+            </div>
+
+            <!-- SAVE BUTTON -->
+            <div class="settings-save">
+                <button class="btn btn--accent btn--lg">Save Changes</button>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- TOP ACCENT LINE -->
+    <div class="top-accent" aria-hidden="true"></div>
+
+    <script>
+    const sidebar = document.getElementById('sidebar');
+    const sidebarOverlay = document.getElementById('sidebarOverlay');
+    const menuToggle = document.getElementById('menuToggle');
+
+    function openSidebar() {
+        sidebar.classList.add('dashboard-sidebar--open');
+        sidebarOverlay.style.display = 'block';
+    }
+
+    function closeSidebar() {
+        sidebar.classList.remove('dashboard-sidebar--open');
+        sidebarOverlay.style.display = 'none';
+    }
+
+    menuToggle.addEventListener('click', openSidebar);
+    </script>
+
+    <style>
+    .dashboard-mobile-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: var(--space-3) var(--space-4);
+        background: var(--bg-card);
+        border-bottom: 1px solid var(--border);
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: var(--z-sticky);
+        height: 56px;
+    }
+
+    @media (min-width: 1024px) {
+        .dashboard-mobile-header { display: none; }
+    }
+
+    .dashboard-mobile-header__btn {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: var(--radius-md);
+        color: var(--fg-primary);
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        transition: background-color var(--duration-fast) var(--ease-out);
+    }
+
+    .dashboard-mobile-header__btn:hover {
+        background-color: var(--border);
+    }
+
+    .dashboard-mobile-header__logo {
+        display: flex;
+        align-items: center;
+        gap: var(--space-2);
+        text-decoration: none;
+    }
+
+    .dashboard-mobile-header__logo-mark {
+        position: relative;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .dashboard-mobile-header__logo-ring {
+        position: absolute;
+        border-radius: 6px;
+    }
+
+    .dashboard-mobile-header__logo-ring--outer {
+        inset: 0;
+        border: 2px solid var(--accent);
+        transform: rotate(45deg) scale(0.9);
+    }
+
+    .dashboard-mobile-header__logo-ring--inner {
+        inset: 4px;
+        border: 1.5px solid rgba(220, 232, 122, 0.35);
+        transform: rotate(12deg);
+        border-radius: 6px;
+    }
+
+    .dashboard-mobile-header__logo-bar {
+        width: 4px;
+        height: 16px;
+        background: var(--accent);
+        border-radius: 2px;
+        z-index: 1;
+    }
+
+    .dashboard-mobile-header__wordmark {
+        font-family: var(--font-display);
+        font-weight: 700;
+        letter-spacing: var(--tracking-wider);
+        text-transform: uppercase;
+        font-size: var(--text-lg);
+        color: var(--fg-primary);
+    }
+
+    .dashboard-mobile-header__notif-dot {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        width: 6px;
+        height: 6px;
+        background: var(--danger);
+        border-radius: 50%;
+    }
+
+    .dashboard-page-header {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-4);
+        margin-bottom: var(--space-6);
+    }
+
+    @media (min-width: 640px) {
+        .dashboard-page-header {
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+        }
+    }
+
+    .dashboard-page-title {
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: var(--text-2xl);
+        margin-bottom: var(--space-1);
+    }
+
+    .dashboard-page-subtitle {
+        color: var(--fg-secondary);
+    }
+
+    .dashboard-xp-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-2);
+        padding: var(--space-1) var(--space-3);
+        background: var(--accent-10);
+        border: 1px solid var(--accent-20);
+        border-radius: var(--radius-pill);
+        font-size: var(--text-xs);
+        font-weight: 600;
+        color: var(--accent);
+        white-space: nowrap;
+    }
+
+    .settings-profile {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space-4);
+        margin-bottom: var(--space-6);
+    }
+
+    @media (min-width: 640px) {
+        .settings-profile {
+            flex-direction: row;
+        }
+    }
+
+    .settings-avatar {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background: var(--accent-20);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: var(--text-2xl);
+        color: var(--accent);
+        flex-shrink: 0;
+    }
+
+    .settings-avatar-actions {
+        flex: 1;
+    }
+
+    .settings-fields {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: var(--space-4);
+    }
+
+    @media (min-width: 640px) {
+        .settings-fields--2col {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-2);
+    }
+
+    .form-label {
+        font-size: var(--text-sm);
+        color: var(--fg-secondary);
+    }
+
+    .form-input, .form-select {
+        width: 100%;
+        padding: var(--space-3) var(--space-4);
+        background: var(--bg-main);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-md);
+        color: var(--fg-primary);
+        font-size: var(--text-base);
+        outline: none;
+        transition: border-color var(--duration-fast) var(--ease-out);
+    }
+
+    .form-input:focus, .form-select:focus {
+        border-color: var(--accent-30);
+    }
+
+    .form-input::placeholder {
+        color: var(--fg-muted);
+    }
+
+    .settings-toggles {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-3);
+    }
+
+    .settings-toggle {
+        display: flex;
+        align-items: center;
+        gap: var(--space-4);
+        padding: var(--space-4);
+        background: var(--bg-main);
+        border-radius: var(--radius-lg);
+    }
+
+    .settings-toggle__icon {
+        color: var(--fg-secondary);
+        font-size: 24px;
+        flex-shrink: 0;
+    }
+
+    .settings-toggle__content { flex: 1; }
+    .settings-toggle__title { font-size: var(--text-sm); font-weight: 500; }
+    .settings-toggle__desc { font-size: var(--text-xs); color: var(--fg-secondary); }
+
+    /* Toggle Switch */
+    .toggle {
+        position: relative;
+        display: inline-flex;
+        cursor: pointer;
+        flex-shrink: 0;
+    }
+
+    .toggle input {
+        position: absolute;
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    .toggle__track {
+        width: 44px;
+        height: 24px;
+        background: var(--border);
+        border-radius: 12px;
+        transition: background-color var(--duration-fast) var(--ease-out);
+        position: relative;
+    }
+
+    .toggle__track::after {
+        content: '';
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        width: 20px;
+        height: 20px;
+        background: var(--fg-secondary);
+        border-radius: 50%;
+        transition: transform var(--duration-fast) var(--ease-out),
+                    background-color var(--duration-fast) var(--ease-out);
+    }
+
+    .toggle input:checked + .toggle__track {
+        background: var(--accent);
+    }
+
+    .toggle input:checked + .toggle__track::after {
+        transform: translateX(20px);
+        background: var(--bg-main);
+    }
+
+    /* Appearance Options */
+    .appearance-options {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-4);
+    }
+
+    .appearance-option {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space-2);
+        padding: var(--space-4);
+        background: var(--bg-main);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        cursor: pointer;
+        font-size: var(--text-sm);
+        font-weight: 500;
+        color: var(--fg-secondary);
+        transition: border-color var(--duration-fast) var(--ease-out);
+    }
+
+    .appearance-option:hover {
+        border-color: var(--accent-30);
+    }
+
+    .appearance-option--active {
+        border-color: var(--accent);
+        color: var(--accent);
+    }
+
+    .appearance-option .material-symbols-outlined {
+        font-size: 32px;
+    }
+
+    /* Danger Zone */
+    .widget--danger {
+        border-color: rgba(239, 68, 68, 0.3);
+    }
+
+    .widget__title--danger {
+        color: var(--danger);
+    }
+
+    .settings-danger-desc {
+        font-size: var(--text-sm);
+        color: var(--fg-secondary);
+        margin-bottom: var(--space-4);
+    }
+
+    .settings-danger-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-4);
+    }
+
+    .btn--outline {
+        background: transparent;
+        border: 1px solid var(--border);
+        color: var(--fg-primary);
+    }
+
+    .btn--outline:hover {
+        border-color: var(--accent-30);
+    }
+
+    .btn--danger {
+        border-color: var(--danger);
+        color: var(--danger);
+    }
+
+    .btn--danger:hover {
+        background: var(--danger-bg);
+    }
+
+    .settings-save {
+        display: flex;
+        justify-content: flex-end;
+    }
+    </style>
+
+</body>
+</html>
